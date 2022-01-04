@@ -1,0 +1,33 @@
+<!-- About -->
+<div class="containerAbout">
+  <section class="containerAboutData">
+    <h2>Acerca</h2>
+    <p id="aboutText">
+      Administrador, gestor tributario, desarrollador web, editor.
+    </p>
+    <i
+      class="fas fa-pencil-alt iconEditAbout"
+      onclick="handleForm(`aboutForm`)"
+    ></i>
+    <!-- About Edit -->
+    <div id="aboutForm" class="hide">
+      <div class="containerAboutEdit">
+        <textarea
+          id="aboutInputText"
+          type="text"
+          placeholder="Acerca de.."
+        ></textarea>
+        <div>
+          <button
+            onclick="handleSaveEdit(null, idText=`aboutText`, null, null, idForm=`aboutForm`, null, idInputText=`aboutInputText`, null)"
+          >
+            Editar
+          </button>
+          <button class="btnCancel" onclick="handleForm('aboutForm')">
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
