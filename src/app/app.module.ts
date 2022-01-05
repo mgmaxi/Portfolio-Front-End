@@ -10,6 +10,7 @@ import { ProfileAboutComponent } from './components/profile-about/profile-about.
 import { ProfileEducationComponent } from './components/profile-education/profile-education.component';
 import { ProfileExperienceComponent } from './components/profile-experience/profile-experience.component';
 import { ProfileProjectsComponent } from './components/profile-projects/profile-projects.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,12 +22,10 @@ import { ProfileProjectsComponent } from './components/profile-projects/profile-
     ProfileAboutComponent,
     ProfileEducationComponent,
     ProfileExperienceComponent,
-    ProfileProjectsComponent
+    ProfileProjectsComponent,
   ],
-  imports: [
-    BrowserModule
-  ],
+  imports: [BrowserModule, HttpClientModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
