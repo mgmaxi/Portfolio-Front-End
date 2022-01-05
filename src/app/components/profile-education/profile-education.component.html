@@ -1,39 +1,22 @@
 <!-- Education -->
 <div class="containerEducation">
-  <section id="education" class="containerEducationData">
+  <section class="containerEducationData">
     <h2>Educación</h2>
-    <i class="fas fa-plus iconAdd" onclick="handleForm('addEducationForm')"></i>
-    <!-- Education New Element Form -->
-    <div id="addEducationForm" class="hide">
-      <h3 style="margin: 10px 0">Agregar Educación</h3>
-      <div class="containerEducationEdit">
-        <input
-          id="addEducationInputTitle"
-          type="text"
-          placeholder="Nombre de la institución"
-        />
-        <textarea
-          id="addEducationInputText"
-          type="text"
-          placeholder="Nombre de la carrera, tecnicatura, diplomatura, curso, etc."
-        ></textarea>
-        <input
-          id="addEducationInputYear"
-          type="number"
-          placeholder="Año de realización"
-        />
-        <div>
-          <button
-            onclick="handleSaveAddSection( placement='educationList', idForm='addEducationForm', idTitle='addEducationInputTitle', idText='addEducationInputText', idYear='addEducationInputYear', urlLogoSection='assets/logoUTN.png')"
-          >
-            Agregar
-          </button>
-          <button class="btnCancel" onclick="handleForm('addEducationForm')">
-            Cancelar
-          </button>
-        </div>
-      </div>
+    <i class="fas fa-plus iconAdd"></i>
+    <!-- Education List -->
+    <div *ngFor="let education of educationList" class="containerSectionItem">
+      <img
+        class="logoSection"
+        [src]="education.logo"
+        alt="Logo de la sección"
+      />
+      <section class="containerSectionItemData">
+        <h3>{{ education.title }}</h3>
+        <p>{{ education.description }}</p>
+        <p class="textSmall">{{ education.year }}</p>
+        <i class="far fa-trash-alt iconDelete"></i>
+        <i class="fas fa-pencil-alt iconEdit"></i>
+      </section>
     </div>
-    <div id="educationList"></div>
   </section>
 </div>

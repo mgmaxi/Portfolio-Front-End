@@ -9,7 +9,7 @@
 body {
   display: flex;
   flex-direction: column;
-  margin: 0;
+  position: relative;
   min-height: 100vh;
   width: 100%;
   background-color: papayawhip;
@@ -74,16 +74,14 @@ nav > ul > li > a > i:hover {
 /* Footer */
 
 footer {
-  margin-top: auto;
-  height: 50px;
-  width: 100%;
-  background-color: #000;
-}
-
-.containerFooter {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  bottom: -50px;
+  height: 50px;
+  width: 100%;
+  background-color: #000;
   color: #fff;
 }
 

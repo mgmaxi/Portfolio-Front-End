@@ -2,76 +2,28 @@
 <div class="containerProject">
   <section class="containerProjectData">
     <h2>Proyectos</h2>
-    <div id="projectItem" class="containerProjectItem">
-      <img
-        class="logoProject"
-        src="assets/logoProject.png"
-        alt="Logo del proyecto"
-      />
+    <div *ngFor="let project of projectList" class="containerProjectItem">
+      <img class="logoProject" [src]="project.logo" alt="Logo del proyecto" />
       <article class="containerProjectItemData">
-        <a
-          id="projectLink"
-          href="https://mgmaxi.github.io/markeTravel/"
-          target="_blank"
-          ><h3 id="projectTitle">markeTravel</h3></a
+        <a [href]="project.deploy" target="_blank"
+          ><h3>{{ project.title }}</h3></a
         >
-        <p id="projectText">
-          Proyecto realizado con HTML5, CSS3 y BOOTSTRAP5
-          <span
-            style="
-              display: flex;
-              flex-direction: row;
-              margin-top: 5px;
-              font-size: 12px;
-            "
-          >
-            <a
-              href="https://github.com/mgmaxi/markeTravel"
-              target="_blank"
-              style="margin-right: 10px"
-              ><i class="fab fa-github" style="color: black"></i>
+        <p>
+          {{ project.description }}
+          <span class="containerProjectLinks">
+            <a [href]="project.repository" target="_blank"
+              ><i class="fab fa-github"></i>
               Repositorio
             </a>
-            <a href="https://mgmaxi.github.io/markeTravel/" target="_blank"
-              ><i class="fas fa-rocket" style="color: black"></i> Despliegue</a
+            <a [href]="project.deploy" target="_blank"
+              ><i class="fas fa-rocket"></i> Despliegue</a
             >
           </span>
         </p>
-        <i
-          class="far fa-trash-alt iconDelete"
-          onclick="handleDelete(`projectItem`, `projectForm`)"
-        ></i>
-        <i
-          class="fas fa-pencil-alt iconEdit"
-          onclick="handleForm(`projectForm`)"
-        ></i>
+        <i class="far fa-trash-alt iconDelete"></i>
+        <i class="fas fa-pencil-alt iconEdit"></i>
       </article>
     </div>
     <i class="fas fa-plus iconAdd"></i>
-    <!-- Projects Edit -->
-    <div id="projectForm" class="hide">
-      <div class="containerProjectEdit">
-        <input
-          id="projectInputTitle"
-          type="text"
-          placeholder="Nombre del proyecto"
-        />
-        <textarea
-          id="projectInputText"
-          type="text"
-          placeholder="Descripción del proyecto"
-        ></textarea>
-        <input
-          id="projectInputLink"
-          type="text"
-          placeholder="Enlace al proyecto"
-        />
-        <button
-          onclick="handleSaveEdit(idTitle=`projectTitle`, idText=`projectText`, null, idLink=`projectLink`, idForm=`projectForm`, idInputTitle=`projectInputTitle`, idInputText=`projectInputText`, null, idInputLink=`projectInputLink`)"
-        >
-          Editar
-        </button>
-      </div>
-    </div>
   </section>
 </div>

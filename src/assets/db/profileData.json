@@ -1,0 +1,101 @@
+{
+  "name": "Maximiliano",
+  "position": "Desarrollador Web Full Stack",
+  "profileCover": "assets/profileCover.jpg",
+  "profileImage": "assets/profileImage.jpg",
+  "about": "Administrador, gestor tributario, desarrollador web, editor.",
+  "experience": [
+    {
+      "section": "experience",
+      "title": "SA",
+      "description": "Administrador",
+      "year": "Current",
+      "logo": "assets/logoCompany.png"
+    },
+    {
+      "section": "experience",
+      "title": "SA",
+      "description": "Administrador",
+      "year": "Current",
+      "logo": "assets/logoCompany.png"
+    }
+  ],
+  "education": [
+    {
+      "section": "education",
+      "title": "IBM & Codo a Codo",
+      "description": "Curso de Especialización en Desarrollo Mobile - React Native",
+      "year": 2021,
+      "logo": "assets/logoUTN.png"
+    },
+    {
+      "section": "education",
+      "title": "Universidad Tecnológica Nacional",
+      "description": "Diplomatura en Programación Web Full Stack - React",
+      "year": 2021,
+      "logo": "assets/logoUTN.png"
+    },
+    {
+      "section": "education",
+      "title": "Codo a Codo - GCBA",
+      "description": "Desarrollo Web Full Stack",
+      "year": 2021,
+      "logo": "assets/logoUTN.png"
+    },
+    {
+      "section": "education",
+      "title": "CurseIT",
+      "description": "HTML y CSS",
+      "year": 2021,
+      "logo": "assets/logoUTN.png"
+    },
+    {
+      "section": "education",
+      "title": "Google Actívate",
+      "description": "HTML y CSS",
+      "year": 2021,
+      "logo": "assets/logoUTN.png"
+    },
+    {
+      "section": "education",
+      "title": "Universidad Empresarial S21",
+      "description": "Tecnicatura en Administración y Gestión Tributaria",
+      "year": 2017,
+      "logo": "assets/logoUTN.png"
+    },
+    {
+      "section": "education",
+      "title": "Universidad Empresarial S21",
+      "description": "Contador Público (4to año)",
+      "year": 2015,
+      "logo": "assets/logoUTN.png"
+    },
+    {
+      "section": "education",
+      "title": "CapacitaciónIT",
+      "description": "Diseño Web",
+      "year": 2012,
+      "logo": "assets/logoUTN.png"
+    }
+  ],
+  "projects": [
+    {
+      "section": "project",
+      "title": "markeTravel",
+      "description": "Proyecto realizado con HTML5, CSS3 y BOOTSTRAP5 ",
+      "repository": "https://github.com/mgmaxi/markeTravel",
+      "deploy": "https://mgmaxi.github.io/markeTravel",
+      "year": "2021",
+      "logo": "assets/logoProjectMT.png"
+    },
+    {
+      "section": "project",
+      "title": "Shopping Cart",
+      "description": "Proyecto realizado con HTML5, CSS3 y JavaScript ",
+      "repository": "https://github.com/mgmaxi/shoppingCart",
+      "deploy": "https://mgmaxi.github.io/shoppingCart",
+      "year": "2021",
+      "logo": "assets/logoProjectSC.png"
+    }
+  ]
+}

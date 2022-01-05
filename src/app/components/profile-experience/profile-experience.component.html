@@ -2,41 +2,21 @@
 <div class="containerExperience">
   <section class="containerExperienceData">
     <h2>Experiencia</h2>
-    <i
-      class="fas fa-plus iconAdd"
-      onclick="handleForm('addExperienceForm')"
-    ></i>
-    <!-- Experience New Element Form -->
-    <div id="addExperienceForm" class="hide">
-      <h3 style="margin: 10px 0">Agregar Experiencia</h3>
-      <div class="containerExperienceEdit">
-        <input
-          id="addExperienceInputTitle"
-          type="text"
-          placeholder="Nombre de la empresa"
-        />
-        <textarea
-          id="addExperienceInputText"
-          type="text"
-          placeholder="Descripción del puesto ocupado"
-        ></textarea>
-        <input
-          id="addExperienceInputYear"
-          type="number"
-          placeholder="Año de servicio"
-        />
-        <div>
-          <button
-            onclick="handleSaveAddSection( placement='experienceList', idForm='addExperienceForm', idTitle='addExperienceInputTitle', idText='addExperienceInputText', idYear='addExperienceInputYear', urlLogoSection='assets/logoCompany.png')"
-          >
-            Agregar
-          </button>
-          <button class="btnCancel" onclick="hideAddForm('addExperienceForm')">
-            Cancelar
-          </button>
-        </div>
-      </div>
+    <i class="fas fa-plus iconAdd"></i>
+    <!-- Experience List -->
+    <div *ngFor="let experience of experienceList" class="containerSectionItem">
+      <img
+        class="logoSection"
+        [src]="experience.logo"
+        alt="Logo de la sección"
+      />
+      <section class="containerSectionItemData">
+        <h3>{{ experience.title }}</h3>
+        <p>{{ experience.description }}</p>
+        <p class="textSmall">{{ experience.year }}</p>
+        <i class="far fa-trash-alt iconDelete"></i>
+        <i class="fas fa-pencil-alt iconEdit"></i>
+      </section>
     </div>
-    <div id="experienceList"></div>
   </section>
 </div>

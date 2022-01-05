@@ -1,0 +1,14 @@
+.containerProjectLinks {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+.containerProjectLinks > a {
+  margin-right: 10px;
+}
+
+.containerProjectLinks > a > i {
+  color: #000;
+}
