@@ -1,0 +1,15 @@
+/* Main */
+
+.containerMain {
+  margin: 0 auto;
+  padding: 10px;
+  width: 100%;
+}
+
+/* Media Queries */
+
+@media only screen and (min-width: 768px) {
+  .containerMain {
+    width: 748px;
+  }
+}

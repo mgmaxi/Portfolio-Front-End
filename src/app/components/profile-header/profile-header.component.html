@@ -1,15 +1,15 @@
 <!-- Person Profile -->
-<div class="containerPerson">
-  <div class="containerPersonCover">
+<div class="containerProfileHeader">
+  <div class="containerProfileHeaderCover">
     <img class="imgCover" [src]="portfolio.profileCover" alt="Profile cover" />
     <img
-      class="imgPerson"
+      class="imgProfileHeader"
       [src]="portfolio.profileImage"
       alt="Image of person profile"
     />
-    <i class="fas fa-user-edit iconEditPerson" s></i>
+    <i class="fas fa-user-edit iconEditProfileHeader" s></i>
   </div>
-  <section class="containerPersonData">
+  <section class="containerProfileHeaderData">
     <h2>{{ portfolio.name }}</h2>
     <p>{{ portfolio.position }}</p>
     <button active>Intereses</button>

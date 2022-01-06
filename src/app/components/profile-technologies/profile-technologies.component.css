@@ -1,0 +1,25 @@
+.containerTechnologies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.containerTechnologieItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px;
+  padding: 2px;
+  width: 80px;
+}
+
+.logoTechnologie {
+  height: 50px;
+  width: 50px;
+}
+
+figcaption {
+  margin: 2px 0 0 0;
+  text-align: center;
+  font-size: 14px;
+}

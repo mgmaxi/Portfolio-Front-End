@@ -1,0 +1,18 @@
+<!-- Languages -->
+<div class="containerSection">
+  <section class="containerSectionData">
+    <h2>Idiomas</h2>
+    <i class="fas fa-plus iconAdd"></i>
+    <!-- Languages List -->
+    <div *ngFor="let language of languagesList" class="containerSectionItem">
+      <section class="containerSectionItemData">
+        <h3>
+          {{ language.title }}
+        </h3>
+        <p class="languageLevel">{{ language.level }}</p>
+        <i class="far fa-trash-alt iconDelete"></i>
+        <i class="fas fa-pencil-alt iconEdit"></i>
+      </section>
+    </div>
+  </section>
+</div>

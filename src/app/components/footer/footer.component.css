@@ -1,0 +1,18 @@
+/* Footer */
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: -50px;
+  height: 50px;
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+}
+
+.developer {
+  margin: 0 10px 0 0;
+  font-size: 12px;
+}

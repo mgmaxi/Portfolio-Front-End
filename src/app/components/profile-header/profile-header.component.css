@@ -1,3 +1,51 @@
+/* Profile header */
+
+.containerProfileHeader {
+  margin: 0 0 10px 0;
+  border: 1px solid rgb(0, 0, 0, 0.2);
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transition: all 0.3s ease;
+}
+
+.containerProfileHeader:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.containerProfileHeaderCover {
+  margin: 0 0 70px 0;
+  position: relative;
+}
+
+.imgCover {
+  height: 300px;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+}
+
+.imgProfileHeader {
+  position: absolute;
+  bottom: -65px;
+  left: 5px;
+  width: 150px;
+  height: 150px;
+  border: 1px solid rgb(0, 0, 0, 0.6);
+  border-radius: 150px;
+}
+
+.iconEditProfileHeader {
+  position: absolute;
+  bottom: -60px;
+  left: 165px;
+  color: #000;
+}
+
+.containerProfileHeaderData {
+  margin: 0 0 5px 5px;
+  padding: 0 0 10px 10px;
+}
+
 button {
   margin: 0 5px 0 0;
 }

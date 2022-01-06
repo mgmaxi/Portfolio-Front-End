@@ -1,23 +1,17 @@
 {
   "name": "Maximiliano",
   "position": "Desarrollador Web Full Stack",
-  "profileCover": "assets/profileCover.jpg",
-  "profileImage": "assets/profileImage.jpg",
+  "profileCover": "assets/profile/profileCover.jpg",
+  "profileImage": "assets/profile/profileImage.jpg",
   "about": "Administrador, gestor tributario, desarrollador web, editor.",
   "experience": [
     {
       "section": "experience",
       "title": "SA",
+      "company": "",
       "description": "Administrador",
       "year": "Current",
-      "logo": "assets/logoCompany.png"
-    },
-    {
-      "section": "experience",
-      "title": "SA",
-      "description": "Administrador",
-      "year": "Current",
-      "logo": "assets/logoCompany.png"
+      "logo": "assets/experience/logoExperience.png"
     }
   ],
   "education": [
@@ -26,76 +20,208 @@
       "title": "IBM & Codo a Codo",
       "description": "Curso de Especialización en Desarrollo Mobile - React Native",
       "year": 2021,
-      "logo": "assets/logoUTN.png"
+      "logo": "assets/education/logoIBM.png"
     },
     {
       "section": "education",
       "title": "Universidad Tecnológica Nacional",
       "description": "Diplomatura en Programación Web Full Stack - React",
       "year": 2021,
-      "logo": "assets/logoUTN.png"
+      "logo": "assets/education/logoUTN.png"
     },
     {
       "section": "education",
       "title": "Codo a Codo - GCBA",
       "description": "Desarrollo Web Full Stack",
       "year": 2021,
-      "logo": "assets/logoUTN.png"
+      "logo": "assets/education/logoCaC.png"
     },
     {
       "section": "education",
-      "title": "CurseIT",
+      "title": "Course IT",
       "description": "HTML y CSS",
       "year": 2021,
-      "logo": "assets/logoUTN.png"
+      "logo": "assets/education/logoCourseIT.png"
     },
     {
       "section": "education",
       "title": "Google Actívate",
       "description": "HTML y CSS",
       "year": 2021,
-      "logo": "assets/logoUTN.png"
+      "logo": "assets/education/logoGoogle.png"
     },
     {
       "section": "education",
       "title": "Universidad Empresarial S21",
       "description": "Tecnicatura en Administración y Gestión Tributaria",
       "year": 2017,
-      "logo": "assets/logoUTN.png"
+      "logo": "assets/education/logoS21.jpg"
     },
     {
       "section": "education",
       "title": "Universidad Empresarial S21",
       "description": "Contador Público (4to año)",
       "year": 2015,
-      "logo": "assets/logoUTN.png"
+      "logo": "assets/education/logoS21.jpg"
     },
     {
       "section": "education",
-      "title": "CapacitaciónIT",
+      "title": "Capacitación IT",
       "description": "Diseño Web",
       "year": 2012,
-      "logo": "assets/logoUTN.png"
+      "logo": "assets/education/logoCapacitacionIT.png"
     }
   ],
   "projects": [
     {
       "section": "project",
       "title": "markeTravel",
-      "description": "Proyecto realizado con HTML5, CSS3 y BOOTSTRAP5 ",
+      "technologies": "Realizado con HTML5, CSS3 y BOOTSTRAP5 ",
       "repository": "https://github.com/mgmaxi/markeTravel",
       "deploy": "https://mgmaxi.github.io/markeTravel",
       "year": "2021",
-      "logo": "assets/logoProjectMT.png"
+      "logo": "assets/projects/logoProjectMT.png"
     },
     {
       "section": "project",
       "title": "Shopping Cart",
-      "description": "Proyecto realizado con HTML5, CSS3 y JavaScript ",
+      "technologies": "Realizado con HTML5, CSS3 y JavaScript ",
       "repository": "https://github.com/mgmaxi/shoppingCart",
       "deploy": "https://mgmaxi.github.io/shoppingCart",
       "year": "2021",
-      "logo": "assets/logoProjectSC.png"
+      "logo": "assets/projects/logoProjectSC.png"
+    },
+    {
+      "section": "project",
+      "title": "Ice Cream Weather",
+      "technologies": "Realizado con React Native CLI",
+      "repository": "https://github.com/mgmaxi/weatherIBM",
+      "deploy": "https://github.com/mgmaxi/weatherIBM",
+      "year": "2021",
+      "logo": "assets/projects/logoProjectSC.png"
+    },
+    {
+      "section": "project",
+      "title": "Client Manager",
+      "technologies": "Realizado con React Native CLI",
+      "repository": "https://github.com/mgmaxi/crudClientManager",
+      "deploy": "https://raw.githubusercontent.com/mgmaxi/crudClientManager/main/assets/previewProject.gif",
+      "year": "2021",
+      "logo": "assets/projects/logoProjectSC.png"
+    },
+    {
+      "section": "project",
+      "title": "Wheater",
+      "technologies": "Realizado con React Native CLI",
+      "repository": "https://github.com/mgmaxi/weather",
+      "deploy": "https://raw.githubusercontent.com/mgmaxi/weather/main/assets/previewProject.gif",
+      "year": "2021",
+      "logo": "assets/projects/logoProjectSC.png"
+    },
+    {
+      "section": "project",
+      "title": "Cryptocurrency Compare",
+      "technologies": "Realizado con React Native CLI",
+      "repository": "https://github.com/mgmaxi/cryptocurrencyCompare",
+      "deploy": "https://raw.githubusercontent.com/mgmaxi/cryptocurrencyCompare/main/assets/previewProject.gif",
+      "year": "2021",
+      "logo": "assets/projects/logoCrypto.png"
+    }
+  ],
+  "technologies": [
+    {
+      "title": "HTML",
+      "type": "FrontEnd",
+      "logo": "assets/technologies/logoHTML.svg"
+    },
+    {
+      "title": "CSS",
+      "type": "FrontEnd",
+      "logo": "assets/technologies/logoCSS.svg"
+    },
+    {
+      "title": "Bootstrap",
+      "type": "FrontEnd",
+      "logo": "assets/technologies/logoBootstrap.svg"
+    },
+    {
+      "title": "JavaScript",
+      "type": "FrontEnd",
+      "logo": "assets/technologies/logoJS.svg"
+    },
+    {
+      "title": "TypeScript",
+      "type": "FrontEnd and BackEnd",
+      "logo": "assets/technologies/logoTypescript.svg"
+    },
+    {
+      "title": "React",
+      "type": "FrontEnd",
+      "logo": "assets/technologies/logoReact.svg"
+    },
+    {
+      "title": "React Native",
+      "type": "Desarrollo Móvil",
+      "logo": "assets/technologies/logoReactNative.svg"
+    },
+    {
+      "title": "Angular",
+      "type": "FrontEnd",
+      "logo": "assets/technologies/logoAngular.svg"
+    },
+    {
+      "title": "NodeJS",
+      "type": "BackEnd",
+      "logo": "assets/technologies/logoNode.svg"
+    },
+    {
+      "title": "Express",
+      "type": "BackEnd",
+      "logo": "assets/technologies/logoExpress.svg"
+    },
+    {
+      "title": "MySQL",
+      "type": "Database",
+      "logo": "assets/technologies/logoMySQL.png"
+    },
+    {
+      "title": "Git",
+      "type": "SCV",
+      "logo": "assets/technologies/logoGit.svg"
+    },
+    {
+      "title": "Photoshop",
+      "type": "Other",
+      "logo": "assets/technologies/logoPS.svg"
+    },
+    {
+      "title": "Adobe Premiere",
+      "type": "Other",
+      "logo": "assets/technologies/logoAP.svg"
+    },
+    {
+      "title": "Adobe After Effects",
+      "type": "Other",
+      "logo": "assets/technologies/logoAAE.svg"
+    },
+    {
+      "title": "Vegas",
+      "type": "Other",
+      "logo": "assets/technologies/logoVegas.png"
+    }
+  ],
+  "languages": [
+    {
+      "title": "Español",
+      "level": "Nativo"
+    },
+    {
+      "title": "Inglés",
+      "level": "Avanzado"
+    },
+    {
+      "title": "Italiano",
+      "level": "Básico"
     }
   ]
 }

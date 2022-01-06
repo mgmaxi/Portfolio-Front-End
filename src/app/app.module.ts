@@ -11,6 +11,8 @@ import { ProfileEducationComponent } from './components/profile-education/profil
 import { ProfileExperienceComponent } from './components/profile-experience/profile-experience.component';
 import { ProfileProjectsComponent } from './components/profile-projects/profile-projects.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProfileLanguagesComponent } from './components/profile-languages/profile-languages.component';
+import { ProfileTechnologiesComponent } from './components/profile-technologies/profile-technologies.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     ProfileEducationComponent,
     ProfileExperienceComponent,
     ProfileProjectsComponent,
+    ProfileLanguagesComponent,
+    ProfileTechnologiesComponent,
   ],
   imports: [BrowserModule, HttpClientModule],
   providers: [],

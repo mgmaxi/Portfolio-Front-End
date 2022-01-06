@@ -12,82 +12,14 @@ body {
   position: relative;
   min-height: 100vh;
   width: 100%;
-  background-color: papayawhip;
+  background: linear-gradient(
+    90deg,
+    rgba(241, 218, 174, 1) 0%,
+    rgba(255, 239, 213, 1) 25%,
+    rgba(255, 239, 213, 1) 75%,
+    rgb(241, 218, 174, 1) 100%
+  );
   font-family: "Montserrat", sans-serif;
-}
-
-/* Header */
-
-header {
-  height: 50px;
-  background-color: #000;
-}
-
-.containerHeader {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-}
-header.containerHeader > nav > ul {
-  margin: 0 10px 0 0;
-}
-
-header.containerHeader > nav > ul > li {
-  display: inline-block;
-  margin: 0 2.5px;
-  list-style-type: none;
-}
-header.containerHeader > nav > ul > li:active {
-  background-color: rgb(0, 0, 0);
-}
-
-nav > ul > li > button {
-  background-color: rgb(0, 0, 0);
-  border: 1px solid rgb(255, 255, 255, 0.4);
-}
-
-nav > ul > li > button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-nav > ul > li:active > button:active {
-  background-color: rgb(0, 0, 0);
-}
-
-nav > ul > li > a > i {
-  transition: all 0.3s ease;
-}
-
-nav > ul > li > a > i:hover {
-  transform: rotate(18deg);
-}
-
-/* Main */
-
-.containerMain {
-  margin: 0 auto;
-  padding: 10px;
-  width: 100%;
-}
-
-/* Footer */
-
-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  bottom: -50px;
-  height: 50px;
-  width: 100%;
-  background-color: #000;
-  color: #fff;
-}
-
-.developer {
-  margin: 0 10px 0 0;
-  font-size: 12px;
 }
 
 /* Global */
@@ -222,134 +154,54 @@ button:active {
   width: 100%;
 }
 
-/* Person Profile */
-
-.containerPerson {
-  margin: 0 0 10px 0;
-  border: 1px solid rgb(0, 0, 0, 0.2);
-  border-radius: 10px;
-  background-color: rgb(255, 255, 255);
-}
-
-.containerPersonCover {
-  margin: 0 0 70px 0;
-  position: relative;
-}
-
-.imgCover {
-  height: 300px;
-  width: 100%;
-  border-radius: 10px 10px 0 0;
-}
-
-.imgPerson {
-  position: absolute;
-  bottom: -65px;
-  left: 5px;
-  width: 150px;
-  height: 150px;
-  border: 1px solid rgb(0, 0, 0, 0.6);
-  border-radius: 150px;
-}
-
-.iconEditPerson {
-  position: absolute;
-  bottom: -60px;
-  left: 165px;
-  color: #000;
-}
-
-.containerPersonData {
-  margin: 0 0 5px 5px;
-  padding: 0 0 10px 10px;
-}
-
-/* About */
-
-.containerAbout {
-  margin: 0 0 10px 0;
-  padding: 10px;
-  border: 1px solid rgb(0, 0, 0, 0.2);
-  border-radius: 10px;
-  background-color: rgb(255, 255, 255);
-}
-
-.containerAboutData {
-  margin: 0 0 5px 5px;
-  position: relative;
-}
-
-.containerAboutEdit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 10px 0 0 0;
-  width: 100%;
-  height: 100%;
-}
-
 /* Education, Experience and Projects */
-.containerSection,
-.containerEducation,
-.containerExperience,
-.containerProject {
+.containerSection {
   margin: 0 0 10px 0;
   padding: 10px;
   border: 1px solid rgb(0, 0, 0, 0.2);
   border-radius: 10px;
   background-color: rgb(255, 255, 255);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  scale: 1;
+  transition: all 0.3s ease;
 }
 
-.containerSectionData,
-.containerEducationData,
-.containerExperienceData,
-.containerProjectData {
-  margin: 0 0 5px 5px;
+.containerSection:hover {
+  scale: 1.01;
+}
+
+.containerSectionData {
+  margin: 5px;
   position: relative;
 }
 
-.containerSectionItem,
-.containerEducationItem,
-.containerExperienceItem,
-.containerProjectItem {
+.containerSectionItem {
   display: flex;
-  margin-top: 10px;
+  scale: 1;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 15px;
+  transition: all 0.3s ease;
 }
 
-.containerSectionItemData,
-.containerEducationItemData,
-.containerExperienceItemData,
-.containerProjectItemData {
+.containerSectionItem:hover {
+  scale: 1.01;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.containerSectionItemData {
   padding: 0 65px 0 0;
   position: relative;
   width: 100%;
 }
 
-.logoSection,
-.logoEducation,
-.logoExperience,
-.logoProject {
+.logoSection {
   margin: 0 10px 0 0;
   height: 75px;
   width: 75px;
-}
-
-.containerSectionEdit,
-.containerEducationEdit,
-.containerExperienceEdit,
-.containerProjectEdit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 10px 0 0 0;
-  width: 100%;
-  height: 100%;
-}
-
-/* Media Queries */
-
-@media only screen and (min-width: 768px) {
-  .containerMain {
-    width: 748px;
-  }
+  border: 0.5px solid black;
+  border-radius: 150px;
 }
