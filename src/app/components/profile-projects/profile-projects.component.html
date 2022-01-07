@@ -8,8 +8,12 @@
         <a [href]="project.deploy" target="_blank"
           ><h3>{{ project.title }}</h3></a
         >
-        <p>
-          {{ project.technologies }}
+        <div>
+          <p>{{ project.technologies }}</p>
+          <p class="textSmall">
+            Fecha de realización:
+            {{ project.year | date: "y" }}
+          </p>
           <span class="containerProjectLinks">
             <a [href]="project.repository" target="_blank"
               ><i class="fab fa-github"></i>
@@ -19,7 +23,7 @@
               ><i class="fas fa-rocket"></i> Despliegue</a
             >
           </span>
-        </p>
+        </div>
         <i class="far fa-trash-alt iconDelete"></i>
         <i class="fas fa-pencil-alt iconEdit"></i>
       </article>

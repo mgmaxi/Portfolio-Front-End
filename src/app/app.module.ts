@@ -13,7 +13,6 @@ import { ProfileProjectsComponent } from './components/profile-projects/profile-
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileLanguagesComponent } from './components/profile-languages/profile-languages.component';
 import { ProfileTechnologiesComponent } from './components/profile-technologies/profile-technologies.component';
-
 @NgModule({
   declarations: [
     AppComponent,

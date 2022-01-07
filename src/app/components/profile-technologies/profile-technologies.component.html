@@ -9,11 +9,13 @@
         *ngFor="let technologie of technologiesList"
         class="containerTechnologieItem"
       >
-        <img
-          class="logoTechnologie"
-          [src]="technologie.logo"
-          alt="Logo de la sección"
-        />
+        <a [href]="technologie.url" target="_blank">
+          <img
+            class="logoTechnologie"
+            [src]="technologie.logo"
+            alt="Logo de la sección"
+          />
+        </a>
         <figcaption>{{ technologie.title }}</figcaption>
       </figure>
     </div>
