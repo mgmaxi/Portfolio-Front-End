@@ -1,15 +1,16 @@
 /* Main */
 
-.containerMain {
+main {
   margin: 0 auto;
   padding: 10px;
   width: 100%;
+  margin-bottom: 50px;
 }
 
 /* Media Queries */
 
 @media only screen and (min-width: 768px) {
-  .containerMain {
+  main {
     width: 748px;
   }
 }

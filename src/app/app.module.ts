@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { AppRoutingModule } from './app-routing.module.ts/app-routing.module.ts.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MainComponent } from './components/main/main.component';
@@ -13,6 +13,7 @@ import { ProfileProjectsComponent } from './components/profile-projects/profile-
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileLanguagesComponent } from './components/profile-languages/profile-languages.component';
 import { ProfileTechnologiesComponent } from './components/profile-technologies/profile-technologies.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,8 +27,9 @@ import { ProfileTechnologiesComponent } from './components/profile-technologies/
     ProfileProjectsComponent,
     ProfileLanguagesComponent,
     ProfileTechnologiesComponent,
+    NotFoundComponent,
   ],
-  imports: [BrowserModule, HttpClientModule],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })
