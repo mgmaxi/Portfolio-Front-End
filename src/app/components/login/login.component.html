@@ -1,0 +1,15 @@
+<div class="containerForm">
+  <form [formGroup]="form">
+    <p class="title">Iniciar sesión</p>
+    <input type="user" placeholder="Usuario" formControlName="user" autofocus />
+    <i class="fa fa-user"></i>
+    <input
+      type="password"
+      placeholder="Contraseña"
+      formControlName="password"
+    />
+    <i class="fa fa-key"></i>
+    <p>¿No tienes una cuenta? <a routerLink="/signup">Regístrate</a></p>
+    <button>Iniciar sesión</button>
+  </form>
+</div>

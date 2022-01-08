@@ -205,3 +205,111 @@ button:active {
   border: 0.5px solid black;
   border-radius: 150px;
 }
+
+/* Form */
+
+.containerForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 125px);
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+form {
+  border-radius: 2px 2px 5px 5px;
+  padding: 10px 20px 20px 20px;
+  width: 90%;
+  max-width: 320px;
+  background: #ffffff;
+  position: relative;
+  padding-bottom: 80px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+form .title {
+  color: #444;
+  font-size: 1.6em;
+  font-weight: bold;
+  margin: 10px 0 30px 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+}
+
+form input {
+  display: block;
+  padding: 15px 10px;
+  margin-bottom: 10px;
+  height: 48px;
+  width: 100%;
+  line-height: 50px;
+  border-radius: 4px;
+  background: rgb(51, 51, 51);
+  color: #fff;
+  border: 1px solid #ddd;
+}
+
+form input:focus {
+  outline: none;
+  color: rgb(255, 255, 255, 0.4);
+  border-color: #2196f3;
+  border-left-width: 35px;
+}
+
+form i.fa {
+  color: #fff;
+  font-size: 1em;
+  position: absolute;
+  margin-top: -42px;
+  opacity: 0;
+  left: 0;
+  transition: all 0.1s ease-in;
+}
+
+form input:focus + i.fa {
+  opacity: 1;
+  left: 30px;
+  transition: all 0.5s ease-out;
+}
+
+form p {
+  text-align: center;
+}
+
+form p a {
+  font-size: 1em;
+  color: cornflowerblue;
+  text-decoration: none;
+}
+
+form button {
+  width: 100%;
+  height: 100%;
+  padding: 10px 10px;
+  background: cornflowerblue;
+  color: #fff;
+  font-size: 1.2rem;
+  display: block;
+  border: none;
+  margin-top: 20px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  max-height: 60px;
+  border: 0px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 2px 2px;
+  transform: rotateZ(0deg);
+  border-bottom-width: 7px;
+  transition: all 0.1s ease-out;
+}
+
+form button:hover {
+  background-color: rgb(61, 112, 207);
+  box-shadow: 0px 1px 3px #2196f3;
+  transition: all 0.3s ease;
+}
+form button:active {
+  border-bottom-width: 4px;
+  background-color: cornflowerblue;
+}

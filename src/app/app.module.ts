@@ -13,7 +13,10 @@ import { ProfileProjectsComponent } from './components/profile-projects/profile-
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileLanguagesComponent } from './components/profile-languages/profile-languages.component';
 import { ProfileTechnologiesComponent } from './components/profile-technologies/profile-technologies.component';
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,9 +30,17 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     ProfileProjectsComponent,
     ProfileLanguagesComponent,
     ProfileTechnologiesComponent,
+    LoginComponent,
+    SignupComponent,
     NotFoundComponent,
   ],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

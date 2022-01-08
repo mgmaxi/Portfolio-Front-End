@@ -1,0 +1,23 @@
+<div class="containerForm">
+  <form [formGroup]="form">
+    <p class="title">Crear una cuenta</p>
+    <input
+      type="user"
+      placeholder="Nombre de usuario"
+      formControlName="user"
+      autofocus
+    />
+    <i class="fa fa-user"></i>
+    <input
+      type="email"
+      placeholder="Correo electrónico"
+      formControlName="email"
+      autofocus
+    />
+    <i class="fa fa-at"></i>
+    <input type="password" placeholder="Password" formControlName="password" />
+    <i class="fa fa-key"></i>
+    <p>¿Ya tenés una cuenta? <a routerLink="/login">Inicia sesión</a></p>
+    <button>Registrarse</button>
+  </form>
+</div>
