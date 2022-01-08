@@ -42,16 +42,16 @@ header.containerHeader > nav > ul > li:active {
   background-color: rgb(0, 0, 0);
 }
 
-nav > ul > li > button {
+nav > ul > li > a > button {
   background-color: rgb(0, 0, 0);
   border: 1px solid rgb(255, 255, 255, 0.4);
 }
 
-nav > ul > li > button:hover {
+nav > ul > li > a > button:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-nav > ul > li:active > button:active {
+nav > ul > li > a > button:active {
   background-color: rgb(0, 0, 0);
 }
 
