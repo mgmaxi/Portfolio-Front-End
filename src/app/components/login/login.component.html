@@ -1,15 +1,39 @@
 <div class="containerForm">
-  <form [formGroup]="form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
     <p class="title">Iniciar sesión</p>
-    <input type="user" placeholder="Usuario" formControlName="user" autofocus />
-    <i class="fa fa-user"></i>
+    <!-- User input -->
     <input
-      type="password"
-      placeholder="Contraseña"
-      formControlName="password"
+      type="user"
+      placeholder="Nombre de usuario"
+      formControlName="user"
+      autofocus
     />
+    <i class="fa fa-user"></i>
+    <!-- User validation error -->
+    <div *ngIf="User?.errors && (User?.touched || User?.dirty)">
+      <p *ngIf="User?.hasError('required')" class="error">
+        *El nombre de usuario es requerido.
+      </p>
+      <p
+        *ngIf="User?.hasError('minlength') || User?.hasError('maxlength')"
+        class="error"
+      >
+        El nombre de usuario debe tener entre 5 a 12 caracteres.
+      </p>
+    </div>
+    <!-- Password input -->
+    <input type="password" placeholder="Password" formControlName="password" />
     <i class="fa fa-key"></i>
+    <!-- Password validation error -->
+    <div *ngIf="Password?.errors && (Password?.touched || Password?.dirty)">
+      <p *ngIf="Password?.hasError('required')" class="error">
+        *La contraseña es requerida.
+      </p>
+      <p *ngIf="Password?.hasError('minlength')" class="error">
+        *La contraseña debe tener al menos 8 caracteres.
+      </p>
+    </div>
     <p>¿No tienes una cuenta? <a routerLink="/signup">Regístrate</a></p>
-    <button>Iniciar sesión</button>
+    <button type="submit">Iniciar sesión</button>
   </form>
 </div>

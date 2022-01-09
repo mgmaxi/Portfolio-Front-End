@@ -240,7 +240,7 @@ form .title {
 form input {
   display: block;
   padding: 15px 10px;
-  margin-bottom: 10px;
+  margin-top: 10px;
   height: 48px;
   width: 100%;
   line-height: 50px;
@@ -261,7 +261,7 @@ form i.fa {
   color: #fff;
   font-size: 1em;
   position: absolute;
-  margin-top: -42px;
+  margin-top: -38px;
   opacity: 0;
   left: 0;
   transition: all 0.1s ease-in;
@@ -279,6 +279,7 @@ form p {
 
 form p a {
   font-size: 1em;
+  font-weight: bold;
   color: cornflowerblue;
   text-decoration: none;
 }
@@ -312,4 +313,31 @@ form button:hover {
 form button:active {
   border-bottom-width: 4px;
   background-color: cornflowerblue;
+}
+
+/* Form validations and errors */
+
+.error {
+  color: #e50914;
+  font-size: 12px;
+}
+
+input.ng-touched,
+input.ng-dirty {
+  border: 1.5px solid #e50914;
+}
+
+input:focus.ng-touched,
+input:focus.ng-dirty {
+  border-color: #e50914;
+}
+
+input.ng-valid {
+  border: 1.5px solid rgb(46, 204, 113);
+}
+
+input:focus.ng-valid {
+  color: rgb(255, 255, 255, 0.4);
+  border: 1.5px solid rgb(46, 204, 113);
+  border-left-width: 35px;
 }

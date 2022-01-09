@@ -1,6 +1,7 @@
 <div class="containerForm">
-  <form [formGroup]="form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
     <p class="title">Crear una cuenta</p>
+    <!-- User input -->
     <input
       type="user"
       placeholder="Nombre de usuario"
@@ -8,6 +9,19 @@
       autofocus
     />
     <i class="fa fa-user"></i>
+    <!-- User validation error -->
+    <div *ngIf="User?.errors && (User?.touched || User?.dirty)">
+      <p *ngIf="User?.hasError('required')" class="error">
+        *El nombre de usuario es requerido.
+      </p>
+      <p
+        *ngIf="User?.hasError('minlength') || User?.hasError('maxlength')"
+        class="error"
+      >
+        El nombre de usuario debe tener entre 5 a 12 caracteres.
+      </p>
+    </div>
+    <!-- Email input -->
     <input
       type="email"
       placeholder="Correo electrónico"
@@ -15,9 +29,28 @@
       autofocus
     />
     <i class="fa fa-at"></i>
+    <!-- Email validation error -->
+    <div *ngIf="Email?.errors && (Email?.touched || Email?.dirty)">
+      <p *ngIf="Email?.hasError('required')" class="error">
+        *El correo electrónico es requerido.
+      </p>
+      <p *ngIf="Email?.hasError('email')" class="error">
+        *El formato del correo electrónico debe ser válido.
+      </p>
+    </div>
+    <!-- Password input -->
     <input type="password" placeholder="Password" formControlName="password" />
     <i class="fa fa-key"></i>
+    <!-- Password validation error -->
+    <div *ngIf="Password?.errors && (Password?.touched || Password?.dirty)">
+      <p *ngIf="Password?.hasError('required')" class="error">
+        *La contraseña es requerida.
+      </p>
+      <p *ngIf="Password?.hasError('minlength')" class="error">
+        *La contraseña debe tener al menos 8 caracteres.
+      </p>
+    </div>
     <p>¿Ya tenés una cuenta? <a routerLink="/login">Inicia sesión</a></p>
-    <button>Registrarse</button>
+    <button type="submit" [disabled]="!form.valid">Registrarse</button>
   </form>
 </div>
