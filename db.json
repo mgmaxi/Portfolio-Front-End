@@ -1,0 +1,307 @@
+{
+  "header": [
+    {
+      "name": "Maximiliano",
+      "position": "Desarrollador Web Full Stack",
+      "profileCover": "assets/logos/profile/profileCover.jpg",
+      "profileImage": "assets/logos/profile/profileImage.jpg"
+    }
+  ],
+  "about": ["Administrador, gestor tributario, desarrollador web, editor."],
+  "experience": [
+    {
+      "id": 1,
+      "section": "experience",
+      "title": "Administrador",
+      "company": "",
+      "description": "Administración y mantenimiento de inmuebles.",
+      "year": "2020 - Actual",
+      "logo": "assets/logos/experience/logoExperience.png"
+    },
+    {
+      "id": 2,
+      "section": "experience",
+      "title": "Contable y gestión tributaria",
+      "company": "",
+      "description": "Tareas contables e impositivas. Asesoramiento impositivo. Liquidación de impuestos.",
+      "year": "2017 - 2019",
+      "logo": "assets/logos/experience/logoExperience.png"
+    }
+  ],
+  "education": [
+    {
+      "id": 1,
+      "section": "education",
+      "title": "IBM & Codo a Codo",
+      "description": "Curso de Especialización en Desarrollo Mobile - React Native",
+      "year": "2021",
+      "logo": "assets/logos/education/logoIBM.png"
+    },
+    {
+      "id": 2,
+      "section": "education",
+      "title": "Universidad Tecnológica Nacional",
+      "description": "Diplomatura en Programación Web Full Stack - React",
+      "year": "2021",
+      "logo": "assets/logos/education/logoUTN.png"
+    },
+    {
+      "id": 3,
+      "section": "education",
+      "title": "Codo a Codo - GCBA",
+      "description": "Desarrollo Web Full Stack",
+      "year": "2021",
+      "logo": "assets/logos/education/logoCaC.png"
+    },
+    {
+      "id": 4,
+      "section": "education",
+      "title": "Course IT",
+      "description": "HTML y CSS",
+      "year": "2021",
+      "logo": "assets/logos/education/logoCourseIT.png"
+    },
+    {
+      "id": 5,
+      "section": "education",
+      "title": "Google Actívate",
+      "description": "HTML y CSS",
+      "year": "2021",
+      "logo": "assets/logos/education/logoGoogle.png"
+    },
+    {
+      "id": 6,
+      "section": "education",
+      "title": "Universidad Empresarial S21",
+      "description": "Tecnicatura en Administración y Gestión Tributaria",
+      "year": "2017",
+      "logo": "assets/logos/education/logoS21.jpg"
+    },
+    {
+      "id": 7,
+      "section": "education",
+      "title": "Universidad Empresarial S21",
+      "description": "Contador Público (4to año completo)",
+      "year": "2015",
+      "logo": "assets/logos/education/logoS21.jpg"
+    },
+    {
+      "id": 8,
+      "section": "education",
+      "title": "Capacitación IT",
+      "description": "Diseño Web",
+      "year": "2012",
+      "logo": "assets/logos/education/logoCapacitacionIT.png"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "section": "project",
+      "title": "Portfolio",
+      "technologies": "Realizado con HTML5, CSS3, Angular",
+      "repository": "",
+      "deploy": "",
+      "year": "2022",
+      "logo": "assets/logos/logoMMG.png"
+    },
+    {
+      "id": 2,
+      "section": "project",
+      "title": "markeTravel",
+      "technologies": "Realizado con HTML5, CSS3 y BOOTSTRAP5 ",
+      "repository": "https://github.com/mgmaxi/markeTravel",
+      "deploy": "https://mgmaxi.github.io/markeTravel",
+      "year": "2021",
+      "logo": "assets/logos/projects/logoProjectMT.png"
+    },
+    {
+      "id": 3,
+      "section": "project",
+      "title": "Shopping Cart",
+      "technologies": "Realizado con HTML5, CSS3 y JavaScript ",
+      "repository": "https://github.com/mgmaxi/shoppingCart",
+      "deploy": "https://mgmaxi.github.io/shoppingCart",
+      "year": "2021",
+      "logo": "assets/logos/projects/logoProjectSC.png"
+    },
+    {
+      "id": 4,
+      "section": "project",
+      "title": "Ice Cream Weather",
+      "technologies": "Realizado con React Native CLI",
+      "repository": "https://github.com/mgmaxi/weatherIBM",
+      "deploy": "https://github.com/mgmaxi/weatherIBM",
+      "year": "2021",
+      "logo": "assets/logos/projects/logoProjectICW.png"
+    },
+    {
+      "id": 5,
+      "section": "project",
+      "title": "Client Manager",
+      "technologies": "Realizado con React Native CLI",
+      "repository": "https://github.com/mgmaxi/crudClientManager",
+      "deploy": "https://raw.githubusercontent.com/mgmaxi/crudClientManager/main/assets/previewProject.gif",
+      "year": "2021",
+      "logo": "assets/logos/projects/logoProjectCM.png"
+    },
+    {
+      "id": 6,
+      "section": "project",
+      "title": "Wheater",
+      "technologies": "Realizado con React Native CLI",
+      "repository": "https://github.com/mgmaxi/weather",
+      "deploy": "https://raw.githubusercontent.com/mgmaxi/weather/main/assets/previewProject.gif",
+      "year": "2021",
+      "logo": "assets/logos/projects/logoProjectWeather.png"
+    },
+    {
+      "id": 7,
+      "section": "project",
+      "title": "Cryptocurrency Compare",
+      "technologies": "Realizado con React Native CLI",
+      "repository": "https://github.com/mgmaxi/cryptocurrencyCompare",
+      "deploy": "https://raw.githubusercontent.com/mgmaxi/cryptocurrencyCompare/main/assets/previewProject.gif",
+      "year": "2021",
+      "logo": "assets/logos/projects/logoCrypto.png"
+    }
+  ],
+  "technologies": [
+    {
+      "id": 1,
+      "title": "HTML",
+      "type": "FrontEnd",
+      "logo": "assets/logos/technologies/logoHTML.svg",
+      "url": "https://html.spec.whatwg.org/multipage/"
+    },
+    {
+      "id": 2,
+      "title": "CSS",
+      "type": "FrontEnd",
+      "logo": "assets/logos/technologies/logoCSS.svg",
+      "url": "https://www.w3.org/Style/CSS"
+    },
+    {
+      "id": 3,
+      "title": "Bootstrap",
+      "type": "FrontEnd",
+      "logo": "assets/logos/technologies/logoBootstrap.svg",
+      "url": "https://getbootstrap.com"
+    },
+    {
+      "id": 4,
+      "title": "JavaScript",
+      "type": "FrontEnd",
+      "logo": "assets/logos/technologies/logoJS.svg",
+      "url": "https://www.w3.org/standards/webdesign/script"
+    },
+    {
+      "id": 5,
+      "title": "TypeScript",
+      "type": "FrontEnd and BackEnd",
+      "logo": "assets/logos/technologies/logoTypescript.svg",
+      "url": "https://www.typescriptlang.org"
+    },
+    {
+      "id": 6,
+      "title": "React",
+      "type": "FrontEnd",
+      "logo": "assets/logos/technologies/logoReact.svg",
+      "url": "https://es.reactjs.org"
+    },
+    {
+      "id": 7,
+      "title": "React Native",
+      "type": "Desarrollo Móvil",
+      "logo": "assets/logos/technologies/logoReactNative.svg",
+      "url": "https://reactnative.dev"
+    },
+    {
+      "id": 8,
+      "title": "Angular",
+      "type": "FrontEnd",
+      "logo": "assets/logos/technologies/logoAngular.svg",
+      "url": "https://angular.io"
+    },
+    {
+      "id": 9,
+      "title": "NodeJS",
+      "type": "BackEnd",
+      "logo": "assets/logos/technologies/logoNode.svg",
+      "url": "https://nodejs.org"
+    },
+    {
+      "id": 10,
+      "title": "Express",
+      "type": "BackEnd",
+      "logo": "assets/logos/technologies/logoExpress.svg",
+      "url": "https://expressjs.com"
+    },
+    {
+      "id": 11,
+      "title": "MySQL",
+      "type": "Database",
+      "logo": "assets/logos/technologies/logoMySQL.png",
+      "url": "https://www.mysql.com"
+    },
+    {
+      "id": 12,
+      "title": "Git",
+      "type": "SCV",
+      "logo": "assets/logos/technologies/logoGit.svg",
+      "url": "https://git-scm.com"
+    },
+    {
+      "id": 13,
+      "title": "GitHub",
+      "type": "Hosting",
+      "logo": "assets/logos/technologies/logoGitHub.svg",
+      "url": "https://github.com"
+    },
+    {
+      "id": 14,
+      "title": "Photoshop",
+      "type": "Other",
+      "logo": "assets/logos/technologies/logoPS.svg",
+      "url": "https://www.adobe.com/la/products/photoshop.html"
+    },
+    {
+      "id": 15,
+      "title": "Adobe Premiere",
+      "type": "Other",
+      "logo": "assets/logos/technologies/logoAP.svg",
+      "url": "https://www.adobe.com/la/products/premiere.html"
+    },
+    {
+      "id": 16,
+      "title": "Adobe After Effects",
+      "type": "Other",
+      "logo": "assets/logos/technologies/logoAAE.svg",
+      "url": "https://www.adobe.com/la/products/aftereffects.html"
+    },
+    {
+      "id": 17,
+      "title": "Vegas",
+      "type": "Other",
+      "logo": "assets/logos/technologies/logoVegas.png",
+      "url": "https://www.vegascreativesoftware.com/us/vegas-pro"
+    }
+  ],
+  "languages": [
+    {
+      "id": 1,
+      "title": "Español",
+      "level": "Nativo"
+    },
+    {
+      "id": 2,
+      "title": "Inglés",
+      "level": "Avanzado"
+    },
+    {
+      "id": 3,
+      "title": "Italiano",
+      "level": "Básico"
+    }
+  ]
+}

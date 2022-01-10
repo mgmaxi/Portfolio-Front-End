@@ -14,7 +14,18 @@ export class ProfileLanguagesComponent implements OnInit {
 
   ngOnInit(): void {
     this.portfolioData
-      .getData()
-      .subscribe((data) => (this.languagesList = data.languages));
+      .getSection('languages')
+      .subscribe((data) => (this.languagesList = data));
+  }
+
+  deleteItem(item: LanguagesList) {
+    this.portfolioData
+      .deleteItem('languages', item)
+      .subscribe(
+        () =>
+          (this.languagesList = this.languagesList.filter(
+            (list) => list.id !== item.id
+          ))
+      );
   }
 }

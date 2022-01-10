@@ -14,7 +14,10 @@
         <h3>{{ education.title }}</h3>
         <p>{{ education.description }}</p>
         <p class="textSmall">{{ education.year | date: "y" }}</p>
-        <i class="far fa-trash-alt iconDelete"></i>
+        <i
+          class="far fa-trash-alt iconDelete"
+          (click)="deleteItem(education)"
+        ></i>
         <i class="fas fa-pencil-alt iconEdit"></i>
       </section>
     </div>

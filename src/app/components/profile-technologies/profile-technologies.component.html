@@ -16,7 +16,10 @@
             alt="Logo de la sección"
           />
         </a>
-        <figcaption>{{ technologie.title }}</figcaption>
+        <figcaption>
+          {{ technologie.title }}
+          <i class="far fa-trash-alt" (click)="deleteItem(technologie)"></i>
+        </figcaption>
       </figure>
     </div>
   </section>

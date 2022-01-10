@@ -32,3 +32,9 @@ figcaption {
   text-align: center;
   font-size: 14px;
 }
+
+figcaption i {
+  display: block;
+  margin: 5px 0 0 0;
+  color: #e50914;
+}

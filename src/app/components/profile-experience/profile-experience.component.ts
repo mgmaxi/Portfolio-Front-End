@@ -14,7 +14,18 @@ export class ProfileExperienceComponent implements OnInit {
 
   ngOnInit(): void {
     this.portfolioData
-      .getData()
-      .subscribe((data) => (this.experienceList = data.experience));
+      .getSection('experience')
+      .subscribe((data) => (this.experienceList = data));
+  }
+
+  deleteItem(item: ExperienceList) {
+    this.portfolioData
+      .deleteItem('experience', item)
+      .subscribe(
+        () =>
+          (this.experienceList = this.experienceList.filter(
+            (list) => list.id !== item.id
+          ))
+      );
   }
 }

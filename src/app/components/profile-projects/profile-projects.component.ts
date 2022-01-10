@@ -13,7 +13,18 @@ export class ProfileProjectsComponent implements OnInit {
 
   ngOnInit(): void {
     this.portfolioData
-      .getData()
-      .subscribe((data) => (this.projectList = data.projects));
+      .getSection('projects')
+      .subscribe((data) => (this.projectList = data));
+  }
+
+  deleteItem(item: ProjectsList) {
+    this.portfolioData
+      .deleteItem('projects', item)
+      .subscribe(
+        () =>
+          (this.projectList = this.projectList.filter(
+            (list) => list.id !== item.id
+          ))
+      );
   }
 }

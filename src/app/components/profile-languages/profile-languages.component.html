@@ -10,7 +10,10 @@
           {{ language.title }}
         </h3>
         <p class="languageLevel">{{ language.level }}</p>
-        <i class="far fa-trash-alt iconDelete"></i>
+        <i
+          class="far fa-trash-alt iconDelete"
+          (click)="deleteItem(language)"
+        ></i>
         <i class="fas fa-pencil-alt iconEdit"></i>
       </section>
     </div>

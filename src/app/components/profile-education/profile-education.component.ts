@@ -14,7 +14,18 @@ export class ProfileEducationComponent implements OnInit {
 
   ngOnInit(): void {
     this.portfolioData
-      .getData()
-      .subscribe((data) => (this.educationList = data.education));
+      .getSection('education')
+      .subscribe((data) => (this.educationList = data));
+  }
+
+  deleteItem(item: EducationList) {
+    this.portfolioData
+      .deleteItem('education', item)
+      .subscribe(
+        () =>
+          (this.educationList = this.educationList.filter(
+            (list) => list.id !== item.id
+          ))
+      );
   }
 }

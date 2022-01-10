@@ -14,7 +14,18 @@ export class ProfileTechnologiesComponent implements OnInit {
 
   ngOnInit(): void {
     this.portfolioData
-      .getData()
-      .subscribe((data) => (this.technologiesList = data.technologies));
+      .getSection('technologies')
+      .subscribe((data) => (this.technologiesList = data));
+  }
+
+  deleteItem(item: TechnologiesList) {
+    this.portfolioData
+      .deleteItem('technologies', item)
+      .subscribe(
+        () =>
+          (this.technologiesList = this.technologiesList.filter(
+            (list) => list.id !== item.id
+          ))
+      );
   }
 }

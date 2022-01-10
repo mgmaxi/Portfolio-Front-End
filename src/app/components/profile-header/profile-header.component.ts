@@ -8,13 +8,13 @@ import { Header } from './Header';
   styleUrls: ['./profile-header.component.css'],
 })
 export class ProfileHeaderComponent implements OnInit {
-  header: Header[] = [];
+  header: any;
 
   constructor(private portfolioData: PortfolioService) {}
 
   ngOnInit(): void {
     this.portfolioData
-      .getData()
-      .subscribe((data) => (this.header = data.header));
+      .getSection('header')
+      .subscribe((data) => (this.header = data[0]));
   }
 }

@@ -14,7 +14,10 @@
         <h3>{{ experience.title }}</h3>
         <p>{{ experience.description }}</p>
         <p class="textSmall">{{ experience.year | date: "y" }}</p>
-        <i class="far fa-trash-alt iconDelete"></i>
+        <i
+          class="far fa-trash-alt iconDelete"
+          (click)="deleteItem(experience)"
+        ></i>
         <i class="fas fa-pencil-alt iconEdit"></i>
       </section>
     </div>
