@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PortfolioService } from 'src/app/service/portfolio.service';
+import { TechnologiesList } from './TechnologiesList';
 
 @Component({
   selector: 'app-profile-technologies',
@@ -7,7 +8,7 @@ import { PortfolioService } from 'src/app/service/portfolio.service';
   styleUrls: ['./profile-technologies.component.css'],
 })
 export class ProfileTechnologiesComponent implements OnInit {
-  technologiesList: any;
+  technologiesList: TechnologiesList[] = [];
 
   constructor(private portfolioData: PortfolioService) {}
 

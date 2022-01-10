@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PortfolioService } from 'src/app/service/portfolio.service';
+import { ProjectsList } from './ProjectsList';
 
 @Component({
   selector: 'app-profile-projects',
@@ -7,7 +8,7 @@ import { PortfolioService } from 'src/app/service/portfolio.service';
   styleUrls: ['./profile-projects.component.css'],
 })
 export class ProfileProjectsComponent implements OnInit {
-  projectList: any;
+  projectList: ProjectsList[] = [];
   constructor(private portfolioData: PortfolioService) {}
 
   ngOnInit(): void {

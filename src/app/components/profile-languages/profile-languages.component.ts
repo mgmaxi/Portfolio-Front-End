@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PortfolioService } from 'src/app/service/portfolio.service';
+import { LanguagesList } from './LanguagesList';
 
 @Component({
   selector: 'app-profile-languages',
@@ -7,7 +8,7 @@ import { PortfolioService } from 'src/app/service/portfolio.service';
   styleUrls: ['./profile-languages.component.css'],
 })
 export class ProfileLanguagesComponent implements OnInit {
-  languagesList: any;
+  languagesList: LanguagesList[] = [];
 
   constructor(private portfolioData: PortfolioService) {}
 

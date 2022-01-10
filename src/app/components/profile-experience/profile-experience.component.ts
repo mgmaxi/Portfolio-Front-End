@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PortfolioService } from 'src/app/service/portfolio.service';
+import { ExperienceList } from './ExperienceList';
 
 @Component({
   selector: 'app-profile-experience',
@@ -7,7 +8,7 @@ import { PortfolioService } from 'src/app/service/portfolio.service';
   styleUrls: ['./profile-experience.component.css'],
 })
 export class ProfileExperienceComponent implements OnInit {
-  experienceList: any;
+  experienceList: ExperienceList[] = [];
 
   constructor(private portfolioData: PortfolioService) {}
 

@@ -1,8 +1,12 @@
 {
-  "name": "Maximiliano",
-  "position": "Desarrollador Web Full Stack",
-  "profileCover": "assets/logos/profile/profileCover.jpg",
-  "profileImage": "assets/logos/profile/profileImage.jpg",
+  "header": [
+    {
+      "name": "Maximiliano",
+      "position": "Desarrollador Web Full Stack",
+      "profileCover": "assets/logos/profile/profileCover.jpg",
+      "profileImage": "assets/logos/profile/profileImage.jpg"
+    }
+  ],
   "about": "Administrador, gestor tributario, desarrollador web, editor.",
   "experience": [
     {
@@ -10,7 +14,7 @@
       "title": "SA",
       "company": "",
       "description": "Administrador",
-      "year": "Current",
+      "year": "2022",
       "logo": "assets/logos/experience/logoExperience.png"
     }
   ],
