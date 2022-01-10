@@ -132,9 +132,32 @@ button:active {
 
 .iconAdd {
   position: absolute;
+  right: 50px;
+  top: 0px;
+  color: #fff;
+  background-color: rgba(23, 99, 0, 0.6);
+  border-radius: 25px;
+  padding: 7px;
+}
+
+.iconAdd span {
+  font-weight: bold;
+  letter-spacing: 0.3px;
+}
+
+.iconDeleteSection {
+  position: absolute;
   right: 10px;
-  top: 5px;
-  color: rgba(23, 99, 0, 0.6);
+  top: 0px;
+  color: #fff;
+  background-color: #e50914;
+  border-radius: 25px;
+  padding: 7px;
+}
+
+.iconDeleteSection span {
+  font-weight: bold;
+  letter-spacing: 0.3px;
 }
 
 .iconDelete,
@@ -175,6 +198,11 @@ button:active {
 .containerSectionData {
   margin: 5px;
   position: relative;
+}
+
+.sectionTitle {
+  margin: 0 0 10px 0;
+  padding: 2px;
 }
 
 .containerSectionItem {

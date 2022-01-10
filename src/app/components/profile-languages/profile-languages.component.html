@@ -1,8 +1,9 @@
 <!-- Languages -->
 <div class="containerSection">
   <section class="containerSectionData">
-    <h2>Idiomas</h2>
+    <h2 class="sectionTitle">Idiomas</h2>
     <i class="fas fa-plus iconAdd"></i>
+    <i class="fas fa-trash iconDeleteSection"></i>
     <!-- Languages List -->
     <div *ngFor="let language of languagesList" class="containerSectionItem">
       <section class="containerSectionItemData">
@@ -10,10 +11,7 @@
           {{ language.title }}
         </h3>
         <p class="languageLevel">{{ language.level }}</p>
-        <i
-          class="far fa-trash-alt iconDelete"
-          (click)="deleteItem(language)"
-        ></i>
+        <i class="fas fa-trash iconDelete" (click)="deleteItem(language)"></i>
         <i class="fas fa-pencil-alt iconEdit"></i>
       </section>
     </div>

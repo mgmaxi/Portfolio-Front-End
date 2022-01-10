@@ -1,7 +1,9 @@
 <!-- Projects -->
 <div class="containerSection">
   <section class="containerSectionData">
-    <h2>Proyectos</h2>
+    <h2 class="sectionTitle">Proyectos</h2>
+    <i class="fas fa-plus iconAdd"></i>
+    <i class="fas fa-trash iconDeleteSection"></i>
     <div *ngFor="let project of projectList" class="containerSectionItem">
       <img class="logoSection" [src]="project.logo" alt="Logo del proyecto" />
       <article class="containerSectionItemData">
@@ -24,10 +26,7 @@
             >
           </span>
         </div>
-        <i
-          class="far fa-trash-alt iconDelete"
-          (click)="deleteItem(project)"
-        ></i>
+        <i class="fas fa-trash iconDelete" (click)="deleteItem(project)"></i>
         <i class="fas fa-pencil-alt iconEdit"></i>
       </article>
     </div>
