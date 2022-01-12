@@ -9,6 +9,7 @@ import { TechnologiesList } from './TechnologiesList';
 })
 export class ProfileTechnologiesComponent implements OnInit {
   technologiesList: TechnologiesList[] = [];
+  showForm: boolean = false;
 
   constructor(private portfolioData: PortfolioService) {}
 
@@ -27,5 +28,15 @@ export class ProfileTechnologiesComponent implements OnInit {
             (list) => list.id !== item.id
           ))
       );
+  }
+
+  addTechnologie(newItem: TechnologiesList) {
+    this.portfolioData
+      .addItem('technologies', newItem)
+      .subscribe((newItem) => this.technologiesList.push(newItem));
+  }
+
+  toggleForm() {
+    this.showForm = !this.showForm;
   }
 }

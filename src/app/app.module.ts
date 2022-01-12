@@ -17,6 +17,11 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormAddEducationComponent } from './components/forms/form-add-education/form-add-education.component';
+import { FormAddExperienceComponent } from './components/forms/form-add-experience/form-add-experience.component';
+import { FormAddProjectComponent } from './components/forms/form-add-project/form-add-project.component';
+import { FormAddLanguageComponent } from './components/forms/form-add-language/form-add-language.component';
+import { FormAddTechnologieComponent } from './components/forms/form-add-technologie/form-add-technologie.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +38,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     SignupComponent,
     NotFoundComponent,
+    FormAddEducationComponent,
+    FormAddExperienceComponent,
+    FormAddProjectComponent,
+    FormAddLanguageComponent,
+    FormAddTechnologieComponent,
   ],
   imports: [
     BrowserModule,

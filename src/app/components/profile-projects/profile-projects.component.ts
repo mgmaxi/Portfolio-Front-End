@@ -9,6 +9,8 @@ import { ProjectsList } from './ProjectsList';
 })
 export class ProfileProjectsComponent implements OnInit {
   projectList: ProjectsList[] = [];
+  showForm: boolean = false;
+
   constructor(private portfolioData: PortfolioService) {}
 
   ngOnInit(): void {
@@ -26,5 +28,15 @@ export class ProfileProjectsComponent implements OnInit {
             (list) => list.id !== item.id
           ))
       );
+  }
+
+  addProject(newItem: ProjectsList) {
+    this.portfolioData
+      .addItem('projects', newItem)
+      .subscribe((newItem) => this.projectList.push(newItem));
+  }
+
+  toggleForm() {
+    this.showForm = !this.showForm;
   }
 }

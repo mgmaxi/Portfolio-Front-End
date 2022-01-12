@@ -9,6 +9,7 @@ import { LanguagesList } from './LanguagesList';
 })
 export class ProfileLanguagesComponent implements OnInit {
   languagesList: LanguagesList[] = [];
+  showForm: boolean = false;
 
   constructor(private portfolioData: PortfolioService) {}
 
@@ -27,5 +28,15 @@ export class ProfileLanguagesComponent implements OnInit {
             (list) => list.id !== item.id
           ))
       );
+  }
+
+  addLanguage(newItem: LanguagesList) {
+    this.portfolioData
+      .addItem('languages', newItem)
+      .subscribe((newItem) => this.languagesList.push(newItem));
+  }
+
+  toggleForm() {
+    this.showForm = !this.showForm;
   }
 }

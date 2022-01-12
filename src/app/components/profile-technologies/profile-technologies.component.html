@@ -2,8 +2,16 @@
 <div class="containerSection">
   <section class="containerSectionData">
     <h2 class="sectionTitle">Tecnologías</h2>
-    <i class="fas fa-plus iconAdd"></i>
+    <i
+      class="{{ showForm ? 'fas fa-times iconClose' : 'fas fa-plus iconAdd' }}"
+      (click)="toggleForm()"
+      >{{ showForm ? " Cerrar formulario " : " Agregar tecnología " }}</i
+    >
     <i class="fas fa-trash iconDeleteSection"></i>
+    <app-form-add-technologie
+      *ngIf="showForm"
+      (onAddTechnologie)="addTechnologie($event)"
+    ></app-form-add-technologie>
     <!-- Technologies List -->
     <div class="containerTechnologies">
       <figure

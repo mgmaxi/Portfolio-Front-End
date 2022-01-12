@@ -1,6 +1,6 @@
 export interface ProjectsList {
   id?: number;
-  section: string;
+  section?: string;
   title: string;
   technologies: string;
   repository: string;

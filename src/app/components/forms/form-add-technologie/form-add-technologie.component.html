@@ -1,0 +1,41 @@
+<div class="containerFormAdd">
+  <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+    <p class="title">Agregar nueva tecnología</p>
+    <!-- Title input -->
+    <input
+      type="text"
+      placeholder="Nombre de la tecnología"
+      formControlName="title"
+      autofocus
+    />
+    <i class="fa fa-plus-circle"></i>
+    <!-- Title validation error -->
+    <div *ngIf="Title?.errors && (Title?.touched || Title?.dirty)">
+      <p *ngIf="Title?.hasError('required')" class="error">
+        *El nombre de la tecnología es requerido.
+      </p>
+    </div>
+    <!-- Categoría input -->
+    <input
+      type="text"
+      placeholder="Categoría (desarrollo, diseño, edición, etc..)"
+      formControlName="url"
+    />
+    <!-- Logo input -->
+    <input
+      type="file"
+      placeholder="Agregue el logo de la tecnología"
+      formControlName="logo"
+      class="inputLogo"
+    />
+    <i class="fa fa-plus-circle"></i>
+    <!-- Url input -->
+    <input
+      type="text"
+      placeholder="Enlace a la tecnología"
+      formControlName="url"
+    />
+    <i class="fa fa-plus-circle"></i>
+    <button type="submit">Agregar</button>
+  </form>
+</div>

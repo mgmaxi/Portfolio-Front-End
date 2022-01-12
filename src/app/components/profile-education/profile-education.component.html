@@ -2,8 +2,16 @@
 <div class="containerSection">
   <section class="containerSectionData">
     <h2 class="sectionTitle">Educación</h2>
-    <i class="fas fa-plus iconAdd"></i>
+    <i
+      class="{{ showForm ? 'fas fa-times iconClose' : 'fas fa-plus iconAdd' }}"
+      (click)="toggleForm()"
+      >{{ showForm ? " Cerrar formulario " : " Agregar educación " }}</i
+    >
     <i class="fas fa-trash iconDeleteSection"></i>
+    <app-form-add-education
+      *ngIf="showForm"
+      (onAddEducation)="addEducation($event)"
+    ></app-form-add-education>
     <!-- Education List -->
     <div *ngFor="let education of educationList" class="containerSectionItem">
       <img
@@ -14,7 +22,7 @@
       <section class="containerSectionItemData">
         <h3>{{ education.title }}</h3>
         <p>{{ education.description }}</p>
-        <p class="textSmall">{{ education.year | date: "y" }}</p>
+        <p class="textSmall">{{ education.year }}</p>
         <i class="fas fa-trash iconDelete" (click)="deleteItem(education)"></i>
         <i class="fas fa-pencil-alt iconEdit"></i>
       </section>

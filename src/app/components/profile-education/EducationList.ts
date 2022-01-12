@@ -1,6 +1,6 @@
 export interface EducationList {
   id?: number;
-  section: string;
+  section?: string;
   title: string;
   description: string;
   year: number;

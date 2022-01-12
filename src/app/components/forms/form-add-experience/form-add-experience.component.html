@@ -1,0 +1,60 @@
+<div class="containerFormAdd">
+  <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+    <p class="title">Agregar nueva experiencia</p>
+    <!-- Title input -->
+    <input
+      type="text"
+      placeholder="Nombre del puesto"
+      formControlName="title"
+      autofocus
+    />
+    <i class="fa fa-plus-circle"></i>
+    <!-- Title validation error -->
+    <div *ngIf="Title?.errors && (Title?.touched || Title?.dirty)">
+      <p *ngIf="Title?.hasError('required')" class="error">
+        *El nombre del puesto es requerido.
+      </p>
+    </div>
+    <!-- Company input -->
+    <input
+      type="text"
+      placeholder="Nombre de la empresa"
+      formControlName="company"
+    />
+    <i class="fa fa-plus-circle"></i>
+    <!-- Description input -->
+    <input
+      type="text"
+      placeholder="Descripción del puesto"
+      formControlName="description"
+    />
+    <i class="fa fa-plus-circle"></i>
+    <!-- Description validation error -->
+    <div
+      *ngIf="
+        Description?.errors && (Description?.touched || Description?.dirty)
+      "
+    >
+      <p *ngIf="Description?.hasError('required')" class="error">
+        *La descripción es requerida.
+      </p>
+    </div>
+    <!-- Year input -->
+    <input type="number" placeholder="Año de servicio" formControlName="year" />
+    <i class="fa fa-plus-circle"></i>
+    <!-- Year validation error -->
+    <div *ngIf="Year?.errors && (Year?.touched || Year?.dirty)">
+      <p *ngIf="Year?.hasError('required')" class="error">
+        *El año es requerido.
+      </p>
+    </div>
+    <!-- Logo input -->
+    <input
+      type="file"
+      placeholder="Agregue el logo de la institución"
+      formControlName="logo"
+      class="inputLogo"
+    />
+    <button type="submit">Agregar</button>
+  </form>
+</div>

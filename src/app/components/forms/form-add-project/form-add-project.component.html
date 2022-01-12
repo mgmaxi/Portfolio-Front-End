@@ -1,0 +1,71 @@
+<div class="containerFormAdd">
+  <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+    <p class="title">Agregar nuevo proyecto</p>
+    <!-- Title input -->
+    <input
+      type="text"
+      placeholder="Nombre del proyecto"
+      formControlName="title"
+      autofocus
+    />
+    <i class="fa fa-plus-circle"></i>
+    <!-- Title validation error -->
+    <div *ngIf="Title?.errors && (Title?.touched || Title?.dirty)">
+      <p *ngIf="Title?.hasError('required')" class="error">
+        *El nombre del proyecto es requerido.
+      </p>
+    </div>
+    <!-- Technologies input -->
+    <input
+      type="text"
+      placeholder="Descripción y/o las tecnologías utilizadas"
+      formControlName="technologies"
+    />
+    <i class="fa fa-plus-circle"></i>
+    <!-- Technologies validation error -->
+    <div
+      *ngIf="
+        Technologies?.errors && (Technologies?.touched || Technologies?.dirty)
+      "
+    >
+      <p *ngIf="Technologies?.hasError('required')" class="error">
+        *La descripción es requerida.
+      </p>
+    </div>
+    <!-- Repository input -->
+    <input
+      type="text"
+      placeholder="Enlace al repositorio"
+      formControlName="repository"
+    />
+    <i class="fa fa-plus-circle"></i>
+    <!-- Deploy input -->
+    <input
+      type="text"
+      placeholder="Enlace al deploy"
+      formControlName="deploy"
+    />
+    <i class="fa fa-plus-circle"></i>
+    <!-- Year input -->
+    <input
+      type="number"
+      placeholder="Año de realización"
+      formControlName="year"
+    />
+    <i class="fa fa-plus-circle"></i>
+    <!-- Year validation error -->
+    <div *ngIf="Year?.errors && (Year?.touched || Year?.dirty)">
+      <p *ngIf="Year?.hasError('required')" class="error">
+        *El año es requerido.
+      </p>
+    </div>
+    <!-- Logo input -->
+    <input
+      type="file"
+      placeholder="Agregue el logo del proyecto"
+      formControlName="logo"
+      class="inputLogo"
+    />
+    <button type="submit">Agregar</button>
+  </form>
+</div>

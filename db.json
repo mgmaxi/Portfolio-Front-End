@@ -7,7 +7,9 @@
       "profileImage": "assets/logos/profile/profileImage.jpg"
     }
   ],
-  "about": ["Administrador, gestor tributario, desarrollador web, editor."],
+  "about": [
+    "Administrador, gestor tributario, desarrollador web, editor."
+  ],
   "experience": [
     {
       "id": 1,

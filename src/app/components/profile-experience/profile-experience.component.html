@@ -2,8 +2,16 @@
 <div class="containerSection">
   <section class="containerSectionData">
     <h2 class="sectionTitle">Experiencia</h2>
-    <i class="fas fa-plus iconAdd"></i>
+    <i
+      class="{{ showForm ? 'fas fa-times iconClose' : 'fas fa-plus iconAdd' }}"
+      (click)="toggleForm()"
+      >{{ showForm ? " Cerrar formulario " : " Agregar experiencia " }}</i
+    >
     <i class="fas fa-trash iconDeleteSection"></i>
+    <app-form-add-experience
+      *ngIf="showForm"
+      (onAddExperience)="addExperience($event)"
+    ></app-form-add-experience>
     <!-- Experience List -->
     <div *ngFor="let experience of experienceList" class="containerSectionItem">
       <img
@@ -12,9 +20,12 @@
         alt="Logo de la sección"
       />
       <section class="containerSectionItemData">
-        <h3>{{ experience.title }}</h3>
+        <h3>
+          {{ experience.title }}
+          {{ experience.company ? "en " + experience.company : "" }}
+        </h3>
         <p>{{ experience.description }}</p>
-        <p class="textSmall">{{ experience.year | date: "y" }}</p>
+        <p class="textSmall">{{ experience.year }}</p>
         <i class="fas fa-trash iconDelete" (click)="deleteItem(experience)"></i>
         <i class="fas fa-pencil-alt iconEdit"></i>
         <i class="far fa-trash-alt" (click)="deleteItem(experience)"></i>

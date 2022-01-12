@@ -1,6 +1,6 @@
 export interface ExperienceList {
   id?: number;
-  section: string;
+  section?: string;
   title: string;
   company: string;
   description: string;

@@ -9,6 +9,7 @@ import { ExperienceList } from './ExperienceList';
 })
 export class ProfileExperienceComponent implements OnInit {
   experienceList: ExperienceList[] = [];
+  showForm: boolean = false;
 
   constructor(private portfolioData: PortfolioService) {}
 
@@ -27,5 +28,15 @@ export class ProfileExperienceComponent implements OnInit {
             (list) => list.id !== item.id
           ))
       );
+  }
+
+  addExperience(newItem: ExperienceList) {
+    this.portfolioData
+      .addItem('experience', newItem)
+      .subscribe((newItem) => this.experienceList.push(newItem));
+  }
+
+  toggleForm() {
+    this.showForm = !this.showForm;
   }
 }

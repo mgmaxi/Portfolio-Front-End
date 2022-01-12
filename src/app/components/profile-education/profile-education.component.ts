@@ -9,6 +9,7 @@ import { EducationList } from './EducationList';
 })
 export class ProfileEducationComponent implements OnInit {
   educationList: EducationList[] = [];
+  showForm: boolean = false;
 
   constructor(private portfolioData: PortfolioService) {}
 
@@ -27,5 +28,15 @@ export class ProfileEducationComponent implements OnInit {
             (list) => list.id !== item.id
           ))
       );
+  }
+
+  addEducation(newItem: EducationList) {
+    this.portfolioData
+      .addItem('education', newItem)
+      .subscribe((newItem) => this.educationList.push(newItem));
+  }
+
+  toggleForm() {
+    this.showForm = !this.showForm;
   }
 }
