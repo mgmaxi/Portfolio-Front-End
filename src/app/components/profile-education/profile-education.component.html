@@ -1,6 +1,10 @@
 <!-- Education -->
 <div class="containerSection">
-  <section class="containerSectionData">
+  <section
+    class="containerSectionData"
+    cdkDropList
+    (cdkDropListDropped)="onDropped($event)"
+  >
     <h2 class="sectionTitle">Educación</h2>
     <i
       class="{{ showForm ? 'fas fa-times iconClose' : 'fas fa-plus iconAdd' }}"
@@ -13,7 +17,11 @@
       (onAddEducation)="addEducation($event)"
     ></app-form-add-education>
     <!-- Education List -->
-    <div *ngFor="let education of educationList" class="containerSectionItem">
+    <div
+      *ngFor="let education of educationList"
+      class="containerSectionItem"
+      cdkDrag
+    >
       <img
         class="logoSection"
         [src]="education.logo"

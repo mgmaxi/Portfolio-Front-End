@@ -22,6 +22,8 @@ import { FormAddExperienceComponent } from './components/forms/form-add-experien
 import { FormAddProjectComponent } from './components/forms/form-add-project/form-add-project.component';
 import { FormAddLanguageComponent } from './components/forms/form-add-language/form-add-language.component';
 import { FormAddTechnologieComponent } from './components/forms/form-add-technologie/form-add-technologie.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +52,7 @@ import { FormAddTechnologieComponent } from './components/forms/form-add-technol
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    DragDropModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

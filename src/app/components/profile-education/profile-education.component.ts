@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PortfolioService } from 'src/app/service/portfolio.service';
 import { EducationList } from './EducationList';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-profile-education',
@@ -38,5 +39,11 @@ export class ProfileEducationComponent implements OnInit {
 
   toggleForm() {
     this.showForm = !this.showForm;
+  }
+
+  onDropped(event: CdkDragDrop<any>) {
+    const previous = event.previousIndex;
+    const current = event.currentIndex;
+    moveItemInArray(this.educationList, previous, current);
   }
 }
