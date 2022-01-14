@@ -1,17 +1,18 @@
+<!-- Add Project Modal -->
+<div class="modal" *ngIf="showForm">
+  <div class="containerFormAdd">
+    <i class="fas fa-times iconClose" (click)="toggleForm()"></i>
+    <app-form-add-project
+      (onAddProject)="addProject($event)"
+    ></app-form-add-project>
+  </div>
+</div>
 <!-- Projects -->
 <div class="containerSection">
   <section class="containerSectionData">
     <h2 class="sectionTitle">Proyectos</h2>
-    <i
-      class="{{ showForm ? 'fas fa-times iconClose' : 'fas fa-plus iconAdd' }}"
-      (click)="toggleForm()"
-      >{{ showForm ? " Cerrar formulario " : " Agregar proyecto " }}</i
-    >
+    <i class="fas fa-plus iconAdd" (click)="toggleForm()"></i>
     <i class="fas fa-trash iconDeleteSection"></i>
-    <app-form-add-project
-      *ngIf="showForm"
-      (onAddProject)="addProject($event)"
-    ></app-form-add-project>
     <!-- Projects List -->
     <div *ngFor="let project of projectList" class="containerSectionItem">
       <img class="logoSection" [src]="project.logo" alt="Logo del proyecto" />

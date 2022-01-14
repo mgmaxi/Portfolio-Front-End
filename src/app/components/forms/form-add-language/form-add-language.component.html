@@ -1,8 +1,8 @@
-<div class="containerFormAdd">
+<div class="containerForm">
   <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
-    <p class="title">Agregar nuevo idioma</p>
+    <p class="title">Agregar idioma</p>
     <!-- Title input -->
-    <input type="text" placeholder="Idioma" formControlName="title" autofocus />
+    <input type="text" placeholder="Idioma" formControlName="title" />
     <i class="fa fa-plus-circle"></i>
     <!-- Title validation error -->
     <div *ngIf="Title?.errors && (Title?.touched || Title?.dirty)">

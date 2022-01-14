@@ -13,7 +13,7 @@ export class ProfileAboutComponent implements OnInit {
 
   ngOnInit(): void {
     this.portfolioData
-      .getSection('about')
-      .subscribe((data) => (this.about = data[0]));
+      .getSection('header')
+      .subscribe((data) => (this.about = data[0].about));
   }
 }

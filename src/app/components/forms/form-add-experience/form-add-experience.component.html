@@ -1,12 +1,11 @@
-<div class="containerFormAdd">
+<div class="containerForm">
   <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
-    <p class="title">Agregar nueva experiencia</p>
+    <p class="title">Agregar experiencia</p>
     <!-- Title input -->
     <input
       type="text"
       placeholder="Nombre del puesto"
       formControlName="title"
-      autofocus
     />
     <i class="fa fa-plus-circle"></i>
     <!-- Title validation error -->

@@ -39,6 +39,8 @@ export class ProfileEducationComponent implements OnInit {
 
   toggleForm() {
     this.showForm = !this.showForm;
+    console.log(this.showForm);
+    console.log('padre');
   }
 
   onDropped(event: CdkDragDrop<any>) {

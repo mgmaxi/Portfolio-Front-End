@@ -3,12 +3,10 @@
     {
       "name": "Maximiliano",
       "position": "Desarrollador Web Full Stack",
+      "about": "Administrador, gestor tributario, desarrollador web, editor.",
       "profileCover": "assets/logos/profile/profileCover.jpg",
       "profileImage": "assets/logos/profile/profileImage.jpg"
     }
-  ],
-  "about": [
-    "Administrador, gestor tributario, desarrollador web, editor."
   ],
   "experience": [
     {
@@ -58,13 +56,29 @@
     {
       "id": 4,
       "section": "education",
+      "title": "Free Code Camp",
+      "description": "Algoritmos de JavaScript y Estructuras de Datos",
+      "year": "2021",
+      "logo": "assets/logos/education/logoFCC.png"
+    },
+    {
+      "id": 5,
+      "section": "education",
+      "title": "Solo Learn",
+      "description": "HTML, CSS, JavaScript, React, Angular, Ruby, SQL, Responsive Web Design",
+      "year": "2021",
+      "logo": "assets/logos/education/logoSoloLearn.png"
+    },
+    {
+      "id": 6,
+      "section": "education",
       "title": "Course IT",
       "description": "HTML y CSS",
       "year": "2021",
       "logo": "assets/logos/education/logoCourseIT.png"
     },
     {
-      "id": 5,
+      "id": 7,
       "section": "education",
       "title": "Google Actívate",
       "description": "HTML y CSS",
@@ -72,7 +86,7 @@
       "logo": "assets/logos/education/logoGoogle.png"
     },
     {
-      "id": 6,
+      "id": 8,
       "section": "education",
       "title": "Universidad Empresarial S21",
       "description": "Tecnicatura en Administración y Gestión Tributaria",
@@ -80,7 +94,7 @@
       "logo": "assets/logos/education/logoS21.jpg"
     },
     {
-      "id": 7,
+      "id": 9,
       "section": "education",
       "title": "Universidad Empresarial S21",
       "description": "Contador Público (4to año completo)",
@@ -88,7 +102,7 @@
       "logo": "assets/logos/education/logoS21.jpg"
     },
     {
-      "id": 8,
+      "id": 10,
       "section": "education",
       "title": "Capacitación IT",
       "description": "Diseño Web",

@@ -1,17 +1,18 @@
+<!-- Add Experience Modal  -->
+<div class="modal" *ngIf="showForm">
+  <div class="containerFormAdd">
+    <i class="fas fa-times iconClose" (click)="toggleForm()"></i>
+    <app-form-add-experience
+      (onAddExperience)="addExperience($event)"
+    ></app-form-add-experience>
+  </div>
+</div>
 <!-- Experience -->
 <div class="containerSection">
   <section class="containerSectionData">
     <h2 class="sectionTitle">Experiencia</h2>
-    <i
-      class="{{ showForm ? 'fas fa-times iconClose' : 'fas fa-plus iconAdd' }}"
-      (click)="toggleForm()"
-      >{{ showForm ? " Cerrar formulario " : " Agregar experiencia " }}</i
-    >
+    <i class="fas fa-plus iconAdd" (click)="toggleForm()"></i>
     <i class="fas fa-trash iconDeleteSection"></i>
-    <app-form-add-experience
-      *ngIf="showForm"
-      (onAddExperience)="addExperience($event)"
-    ></app-form-add-experience>
     <!-- Experience List -->
     <div *ngFor="let experience of experienceList" class="containerSectionItem">
       <img

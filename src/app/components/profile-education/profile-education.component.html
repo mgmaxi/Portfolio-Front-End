@@ -1,3 +1,12 @@
+<!-- Add Education Modal -->
+<div class="modal" *ngIf="showForm">
+  <div class="containerFormAdd">
+    <i class="fas fa-times iconClose" (click)="toggleForm()"></i>
+    <app-form-add-education
+      (onAddEducation)="addEducation($event)"
+    ></app-form-add-education>
+  </div>
+</div>
 <!-- Education -->
 <div class="containerSection">
   <section
@@ -6,16 +15,8 @@
     (cdkDropListDropped)="onDropped($event)"
   >
     <h2 class="sectionTitle">Educación</h2>
-    <i
-      class="{{ showForm ? 'fas fa-times iconClose' : 'fas fa-plus iconAdd' }}"
-      (click)="toggleForm()"
-      >{{ showForm ? " Cerrar formulario " : " Agregar educación " }}</i
-    >
+    <i class="fas fa-plus iconAdd" (click)="toggleForm()"></i>
     <i class="fas fa-trash iconDeleteSection"></i>
-    <app-form-add-education
-      *ngIf="showForm"
-      (onAddEducation)="addEducation($event)"
-    ></app-form-add-education>
     <!-- Education List -->
     <div
       *ngFor="let education of educationList"

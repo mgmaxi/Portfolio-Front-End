@@ -1,17 +1,18 @@
+<!-- Add Language Modal -->
+<div class="modal" *ngIf="showForm">
+  <div class="containerFormAdd">
+    <i class="fas fa-times iconClose" (click)="toggleForm()"></i>
+    <app-form-add-language
+      (onAddLanguage)="addLanguage($event)"
+    ></app-form-add-language>
+  </div>
+</div>
 <!-- Languages -->
 <div class="containerSection">
   <section class="containerSectionData">
     <h2 class="sectionTitle">Idiomas</h2>
-    <i
-      class="{{ showForm ? 'fas fa-times iconClose' : 'fas fa-plus iconAdd' }}"
-      (click)="toggleForm()"
-      >{{ showForm ? " Cerrar formulario " : " Agregar idioma " }}</i
-    >
+    <i class="fas fa-plus iconAdd" (click)="toggleForm()"></i>
     <i class="fas fa-trash iconDeleteSection"></i>
-    <app-form-add-language
-      *ngIf="showForm"
-      (onAddLanguage)="addLanguage($event)"
-    ></app-form-add-language>
     <!-- Languages List -->
     <div *ngFor="let language of languagesList" class="containerSectionItem">
       <section class="containerSectionItemData">
