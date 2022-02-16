@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthenticationService } from 'src/app/service/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,9 +10,13 @@ import { Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private authenticationService: AuthenticationService,
+    private route: Router
+  ) {
     this.form = this.formBuilder.group({
-      user: [
+      username: [
         '',
         [
           Validators.required,
@@ -29,14 +34,19 @@ export class LoginComponent implements OnInit {
     event.preventDefault;
 
     if (this.form.valid) {
-      console.log('Paso validaciones');
+      this.authenticationService
+        .IniciarSesion(this.form.value)
+        .subscribe((data) => {
+          console.log('DATA: ' + JSON.stringify(data));
+          this.route.navigate(['/portfolio']);
+        });
     } else {
       this.form.markAllAsTouched();
     }
   }
 
-  get User() {
-    return this.form.get('user');
+  get Username() {
+    return this.form.get('username');
   }
 
   get Password() {
