@@ -10,7 +10,7 @@ import { ProfileAboutComponent } from './components/profile-about/profile-about.
 import { ProfileEducationComponent } from './components/profile-education/profile-education.component';
 import { ProfileExperienceComponent } from './components/profile-experience/profile-experience.component';
 import { ProfileProjectsComponent } from './components/profile-projects/profile-projects.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProfileLanguagesComponent } from './components/profile-languages/profile-languages.component';
 import { ProfileTechnologiesComponent } from './components/profile-technologies/profile-technologies.component';
 import { LoginComponent } from './components/login/login.component';
@@ -23,6 +23,8 @@ import { FormAddProjectComponent } from './components/forms/form-add-project/for
 import { FormAddLanguageComponent } from './components/forms/form-add-language/form-add-language.component';
 import { FormAddTechnologieComponent } from './components/forms/form-add-technologie/form-add-technologie.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { InterceptorService } from './service/interceptor.service';
+import { PortfolioService } from './service/portfolio.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,10 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ReactiveFormsModule,
     DragDropModule,
   ],
-  providers: [],
+  providers: [
+    PortfolioService,
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
