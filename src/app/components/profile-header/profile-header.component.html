@@ -1,17 +1,24 @@
 <!-- Person Profile -->
 <div class="containerProfileHeader">
   <div class="containerProfileHeaderCover">
-    <img class="imgCover" [src]="header.profileCover" alt="Profile cover" />
+    <img
+      class="imgCover"
+      [src]="header.cover_photo != null ? header.cover_photo : cover_photo"
+      alt="Profile cover"
+    />
     <img
       class="imgProfileHeader"
-      [src]="header.profileImage"
+      [src]="
+        header.profile_photo != null ? header.profile_photo : profile_photo
+      "
       alt="Image of person profile"
     />
-    <i class="fas fa-user-edit iconEditProfileHeader" s></i>
+    <i class="fas fa-user-edit iconEditProfileHeader"></i>
   </div>
   <section class="containerProfileHeaderData">
     <h2>{{ header.name }}</h2>
-    <p>{{ header.position }}</p>
+    <p>{{ header.nationality }}</p>
+    <p>{{ header.profession }}</p>
     <button active>Intereses</button>
     <button>Añadir sección</button>
     <button>Más</button>

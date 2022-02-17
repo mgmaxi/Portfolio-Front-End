@@ -8,14 +8,15 @@ import { ExperienceList } from './ExperienceList';
   styleUrls: ['./profile-experience.component.css'],
 })
 export class ProfileExperienceComponent implements OnInit {
-  experienceList: ExperienceList[] = [];
+  experienceList: any[] = [];
   showForm: boolean = false;
+  person_id: number = 1;
 
   constructor(private portfolioData: PortfolioService) {}
 
   ngOnInit(): void {
     this.portfolioData
-      .getSection('experience')
+      .getSection('/experiences/persons/' + this.person_id)
       .subscribe((data) => (this.experienceList = data));
   }
 

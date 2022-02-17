@@ -1,8 +1,9 @@
 export interface EducationList {
   id?: number;
   section?: string;
-  title: string;
+  name: string;
   description: string;
-  year: number;
-  logo: string;
+  end_date: Date;
+  start_date: Date;
+  school: any;
 }

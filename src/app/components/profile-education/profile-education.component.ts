@@ -11,15 +11,17 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 export class ProfileEducationComponent implements OnInit {
   educationList: EducationList[] = [];
   showForm: boolean = false;
+  person_id: number = 1;
+  school_id: number = 1;
+  logo: string = '';
 
   constructor(private portfolioData: PortfolioService) {}
 
   ngOnInit(): void {
     this.portfolioData
-      .getSection('education')
+      .getSection('/educations/persons/' + this.person_id)
       .subscribe((data) => (this.educationList = data));
   }
-
   deleteItem(item: EducationList) {
     this.portfolioData
       .deleteItem('education', item)
@@ -33,7 +35,10 @@ export class ProfileEducationComponent implements OnInit {
 
   addEducation(newItem: EducationList) {
     this.portfolioData
-      .addItem('education', newItem)
+      .addItem(
+        '/educations/' + this.person_id + '/schools/' + this.school_id,
+        newItem
+      )
       .subscribe((newItem) => this.educationList.push(newItem));
   }
 

@@ -8,12 +8,13 @@ import { PortfolioService } from 'src/app/service/portfolio.service';
 })
 export class ProfileAboutComponent implements OnInit {
   about: string[] = [];
+  person_id: number = 1;
 
   constructor(private portfolioData: PortfolioService) {}
 
   ngOnInit(): void {
     this.portfolioData
-      .getSection('header')
-      .subscribe((data) => (this.about = data[0].about));
+      .getSection('/persons/' + this.person_id)
+      .subscribe((data) => (this.about = data.about));
   }
 }

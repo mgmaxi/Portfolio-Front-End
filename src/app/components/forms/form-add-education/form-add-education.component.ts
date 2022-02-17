@@ -9,7 +9,7 @@ import { EducationList } from '../../profile-education/EducationList';
   styleUrls: ['./form-add-education.component.css'],
 })
 export class FormAddEducationComponent implements OnInit {
-  @Output() onAddEducation: EventEmitter<EducationList> = new EventEmitter();
+  @Output() onAddEducation: EventEmitter<any> = new EventEmitter();
   form: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {

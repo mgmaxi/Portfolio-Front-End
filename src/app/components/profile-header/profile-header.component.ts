@@ -9,12 +9,15 @@ import { Header } from './Header';
 })
 export class ProfileHeaderComponent implements OnInit {
   header: any;
+  person_id: any = 1;
+  cover_photo: string = '../../../assets/image/profile/profileCover.jpg';
+  profile_photo: string = '../../../assets/image/profile/profileCover.jpg';
 
   constructor(private portfolioData: PortfolioService) {}
 
   ngOnInit(): void {
     this.portfolioData
-      .getSection('header')
-      .subscribe((data) => (this.header = data[0]));
+      .getSection('/persons/' + this.person_id + '/profile')
+      .subscribe((data) => (this.header = data));
   }
 }

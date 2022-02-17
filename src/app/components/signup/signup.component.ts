@@ -11,7 +11,7 @@ export class SignupComponent implements OnInit {
   form: FormGroup;
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      user: [
+      username: [
         '',
         [
           Validators.required,
@@ -38,8 +38,8 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  get User() {
-    return this.form.get('user');
+  get Username() {
+    return this.form.get('username');
   }
 
   get Email() {

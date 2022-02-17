@@ -8,14 +8,15 @@ import { ProjectsList } from './ProjectsList';
   styleUrls: ['./profile-projects.component.css'],
 })
 export class ProfileProjectsComponent implements OnInit {
-  projectList: ProjectsList[] = [];
+  projectList: any[] = [];
   showForm: boolean = false;
+  person_id: number = 1;
 
   constructor(private portfolioData: PortfolioService) {}
 
   ngOnInit(): void {
     this.portfolioData
-      .getSection('projects')
+      .getSection('/projects/persons/' + this.person_id)
       .subscribe((data) => (this.projectList = data));
   }
 

@@ -8,15 +8,16 @@ import { LanguagesList } from './LanguagesList';
   styleUrls: ['./profile-languages.component.css'],
 })
 export class ProfileLanguagesComponent implements OnInit {
-  languagesList: LanguagesList[] = [];
+  languagesList: any[] = [];
   showForm: boolean = false;
+  person_id: number = 1;
 
   constructor(private portfolioData: PortfolioService) {}
 
   ngOnInit(): void {
     this.portfolioData
-      .getSection('languages')
-      .subscribe((data) => (this.languagesList = data));
+      .getSection('/persons/' + this.person_id)
+      .subscribe((data) => (this.languagesList = data.languages));
   }
 
   deleteItem(item: LanguagesList) {

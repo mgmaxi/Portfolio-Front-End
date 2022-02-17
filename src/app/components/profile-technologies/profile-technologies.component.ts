@@ -8,15 +8,16 @@ import { TechnologiesList } from './TechnologiesList';
   styleUrls: ['./profile-technologies.component.css'],
 })
 export class ProfileTechnologiesComponent implements OnInit {
-  technologiesList: TechnologiesList[] = [];
+  technologiesList: any[] = [];
   showForm: boolean = false;
+  person_id: number = 1;
 
   constructor(private portfolioData: PortfolioService) {}
 
   ngOnInit(): void {
     this.portfolioData
-      .getSection('technologies')
-      .subscribe((data) => (this.technologiesList = data));
+      .getSection('/persons/' + this.person_id)
+      .subscribe((data) => (this.technologiesList = data.technologies));
   }
 
   deleteItem(item: TechnologiesList) {

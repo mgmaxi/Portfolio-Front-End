@@ -12,11 +12,12 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class PortfolioService {
-  private apiUrl = 'http://localhost:5000/';
+  private apiUrl = 'http://localhost:8080/api';
+
   constructor(private http: HttpClient) {}
 
   getSection(section: string): Observable<any> {
-    return this.http.get<any[]>(this.apiUrl + section);
+    return this.http.get<any>(this.apiUrl + section);
   }
 
   deleteItem(section: string, item: any): Observable<any> {

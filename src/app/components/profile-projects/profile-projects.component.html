@@ -18,13 +18,13 @@
       <img class="logoSection" [src]="project.logo" alt="Logo del proyecto" />
       <article class="containerSectionItemData">
         <a [href]="project.deploy" target="_blank"
-          ><h3>{{ project.title }}</h3></a
+          ><h3>{{ project.name }}</h3></a
         >
         <div>
-          <p>{{ project.technologies }}</p>
+          <p>{{ project.description }}</p>
           <p class="textSmall">
             Fecha de realización:
-            {{ project.year }}
+            {{ project.end_date }}
           </p>
           <span class="containerProjectLinks">
             <a [href]="project.repository" target="_blank"

@@ -6,17 +6,19 @@
       <input
         type="text"
         placeholder="Nombre de usuario"
-        formControlName="user"
+        formControlName="username"
         autofocus
       />
       <i class="fa fa-user"></i>
       <!-- User validation error -->
-      <div *ngIf="User?.errors && (User?.touched || User?.dirty)">
-        <p *ngIf="User?.hasError('required')" class="error">
+      <div *ngIf="Username?.errors && (Username?.touched || Username?.dirty)">
+        <p *ngIf="Username?.hasError('required')" class="error">
           *El nombre de usuario es requerido.
         </p>
         <p
-          *ngIf="User?.hasError('minlength') || User?.hasError('maxlength')"
+          *ngIf="
+            Username?.hasError('minlength') || Username?.hasError('maxlength')
+          "
           class="error"
         >
           El nombre de usuario debe tener entre 5 a 12 caracteres.
@@ -42,7 +44,7 @@
       <!-- Password input -->
       <input
         type="password"
-        placeholder="Password"
+        placeholder="Contraseña"
         formControlName="password"
       />
       <i class="fa fa-key"></i>

@@ -17,9 +17,8 @@
     <div *ngFor="let language of languagesList" class="containerSectionItem">
       <section class="containerSectionItemData">
         <h3>
-          {{ language.title }}
+          {{ language.name }}
         </h3>
-        <p class="languageLevel">{{ language.level }}</p>
         <i class="fas fa-trash iconDelete" (click)="deleteItem(language)"></i>
         <i class="fas fa-pencil-alt iconEdit"></i>
       </section>
