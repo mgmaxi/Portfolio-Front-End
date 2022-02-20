@@ -3,15 +3,21 @@
   <div class="containerProfileHeaderCover">
     <img
       class="imgCover"
-      [src]="header.cover_photo != null ? header.cover_photo : cover_photo"
+      [src]="
+        (header && header.cover_photo) != null
+          ? header.cover_photo
+          : cover_photo
+      "
       alt="Profile cover"
     />
     <img
       class="imgProfileHeader"
       [src]="
-        header.profile_photo != null ? header.profile_photo : profile_photo
+        header && header.profile_photo != null
+          ? header.profile_photo
+          : profile_photo
       "
-      alt="Image of person profile"
+      alt="Profile image"
     />
     <i class="fas fa-user-edit iconEditProfileHeader"></i>
   </div>

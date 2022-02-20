@@ -29,9 +29,14 @@
           ><i class="fab fa-youtube"></i
         ></a>
       </li>
-      <li>
+      <li *ngIf="!isLogged">
         <a routerLink="/login">
           <button>Iniciar sesión</button>
+        </a>
+      </li>
+      <li *ngIf="isLogged" (click)="onLogOut()">
+        <a>
+          <button>Cerrar sesión</button>
         </a>
       </li>
     </ul>

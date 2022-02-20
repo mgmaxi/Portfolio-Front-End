@@ -8,7 +8,7 @@ import { Header } from './Header';
   styleUrls: ['./profile-header.component.css'],
 })
 export class ProfileHeaderComponent implements OnInit {
-  header: any;
+  header: any = null;
   person_id: any = 1;
   cover_photo: string = '../../../assets/image/profile/profileCover.jpg';
   profile_photo: string = '../../../assets/image/profile/profileCover.jpg';

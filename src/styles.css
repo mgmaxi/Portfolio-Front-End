@@ -429,3 +429,15 @@ input:focus.ng-valid {
   border-radius: 25px;
   background-color: rgb(0, 0, 0, 0.15);
 }
+
+.errorServerMsg {
+  margin: 20px 0 0 0;
+  padding: 15px;
+  max-width: 500px;
+  border-radius: 5px;
+  background-color: rgb(238, 53, 20);
+  font-size: 16px;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+}

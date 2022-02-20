@@ -13,8 +13,8 @@ import { ProfileProjectsComponent } from './components/profile-projects/profile-
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileLanguagesComponent } from './components/profile-languages/profile-languages.component';
 import { ProfileTechnologiesComponent } from './components/profile-technologies/profile-technologies.component';
-import { LoginComponent } from './components/login/login.component';
-import { SignupComponent } from './components/signup/signup.component';
+import { LoginComponent } from './security/auth/login/login.component';
+import { SignupComponent } from './security/auth/signup/signup.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormAddEducationComponent } from './components/forms/form-add-education/form-add-education.component';
@@ -23,6 +23,7 @@ import { FormAddProjectComponent } from './components/forms/form-add-project/for
 import { FormAddLanguageComponent } from './components/forms/form-add-language/form-add-language.component';
 import { FormAddTechnologieComponent } from './components/forms/form-add-technologie/form-add-technologie.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { interceptorProvider } from './security/interceptors/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ReactiveFormsModule,
     DragDropModule,
   ],
-  providers: [],
+  providers: [interceptorProvider],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
