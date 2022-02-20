@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PortfolioService } from 'src/app/service/portfolio.service';
 import { EducationList } from './EducationList';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { TokenService } from 'src/app/service/token.service';
 
 @Component({
   selector: 'app-profile-education',
@@ -14,14 +15,34 @@ export class ProfileEducationComponent implements OnInit {
   person_id: number = 1;
   school_id: number = 1;
   logo: string = '';
+  roles: string[] = [];
+  isAdmin = false;
 
-  constructor(private portfolioData: PortfolioService) {}
+  constructor(
+    private portfolioData: PortfolioService,
+    private tokenService: TokenService
+  ) {}
 
   ngOnInit(): void {
+    this.getEducations();
+    this.getRoles();
+  }
+
+  getRoles() {
+    this.roles = this.tokenService.getAuthorities();
+    this.roles.forEach((role) => {
+      if (role === 'ROLE_ADMIN') {
+        this.isAdmin = true;
+      }
+    });
+  }
+
+  getEducations() {
     this.portfolioData
       .getSection('/educations/persons/' + this.person_id)
       .subscribe((data) => (this.educationList = data));
   }
+
   deleteItem(item: EducationList) {
     this.portfolioData
       .deleteItem('education', item)

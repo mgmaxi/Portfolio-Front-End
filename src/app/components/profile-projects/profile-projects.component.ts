@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PortfolioService } from 'src/app/service/portfolio.service';
+import { TokenService } from 'src/app/service/token.service';
 import { ProjectsList } from './ProjectsList';
 
 @Component({
@@ -11,10 +12,29 @@ export class ProfileProjectsComponent implements OnInit {
   projectList: any[] = [];
   showForm: boolean = false;
   person_id: number = 1;
+  roles: string[] = [];
+  isAdmin = false;
 
-  constructor(private portfolioData: PortfolioService) {}
+  constructor(
+    private portfolioData: PortfolioService,
+    private tokenService: TokenService
+  ) {}
 
   ngOnInit(): void {
+    this.getProjects();
+    this.getRoles();
+  }
+
+  getRoles() {
+    this.roles = this.tokenService.getAuthorities();
+    this.roles.forEach((role) => {
+      if (role === 'ROLE_ADMIN') {
+        this.isAdmin = true;
+      }
+    });
+  }
+
+  getProjects() {
     this.portfolioData
       .getSection('/projects/persons/' + this.person_id)
       .subscribe((data) => (this.projectList = data));

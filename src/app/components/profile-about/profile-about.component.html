@@ -3,6 +3,6 @@
   <section class="containerSectionData">
     <h2>Acerca</h2>
     <p id="aboutText">{{ about }}</p>
-    <i class="fas fa-pencil-alt iconEditAbout"></i>
+    <i class="fas fa-pencil-alt iconEditAbout" *ngIf="isAdmin"></i>
   </section>
 </div>

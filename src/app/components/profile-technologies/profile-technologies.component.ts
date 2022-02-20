@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PortfolioService } from 'src/app/service/portfolio.service';
+import { TokenService } from 'src/app/service/token.service';
 import { TechnologiesList } from './TechnologiesList';
 
 @Component({
@@ -11,10 +12,29 @@ export class ProfileTechnologiesComponent implements OnInit {
   technologiesList: any[] = [];
   showForm: boolean = false;
   person_id: number = 1;
+  roles: string[] = [];
+  isAdmin = false;
 
-  constructor(private portfolioData: PortfolioService) {}
+  constructor(
+    private portfolioData: PortfolioService,
+    private tokenService: TokenService
+  ) {}
 
   ngOnInit(): void {
+    this.getTechnologies();
+    this.getRoles();
+  }
+
+  getRoles() {
+    this.roles = this.tokenService.getAuthorities();
+    this.roles.forEach((role) => {
+      if (role === 'ROLE_ADMIN') {
+        this.isAdmin = true;
+      }
+    });
+  }
+
+  getTechnologies() {
     this.portfolioData
       .getSection('/persons/' + this.person_id)
       .subscribe((data) => (this.technologiesList = data.technologies));
