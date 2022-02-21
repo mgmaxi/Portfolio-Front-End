@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onSubmit(event: Event) {
+  onLogin(event: Event) {
     event.preventDefault;
     if (this.form.valid) {
       this.loginUser = new LoginUser(

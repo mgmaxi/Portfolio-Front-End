@@ -1,6 +1,6 @@
 <div class="modal">
   <div class="containerForm">
-    <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+    <form [formGroup]="form" (ngSubmit)="onSignup($event)">
       <p class="title">Crear una cuenta</p>
       <!-- User input -->
       <input
@@ -59,6 +59,12 @@
       </div>
       <p>¿Ya tenés una cuenta? <a routerLink="/login">Inicia sesión</a></p>
       <button type="submit" [disabled]="!form.valid">Registrarse</button>
+      <div *ngIf="isSignedupFail" class="errorServerMsg">
+        {{ errorMsg }}
+      </div>
+      <div *ngIf="isSignedup" class="succesServerMsg">
+        {{ succesMsg }}
+      </div>
     </form>
   </div>
 </div>
