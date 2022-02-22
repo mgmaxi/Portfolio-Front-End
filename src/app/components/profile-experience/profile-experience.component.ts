@@ -43,9 +43,14 @@ export class ProfileExperienceComponent implements OnInit {
   }
 
   addExperience(experience: Experience) {
-    let { name, company, description, start_date, end_date } = experience;
+    let {
+      name,
+      company: company_id,
+      description,
+      start_date,
+      end_date,
+    } = experience;
     const newExperience = { name, description, start_date, end_date };
-    let company_id = company;
     this.experienceService
       .addExperience(this.person_id, company_id, newExperience)
       .subscribe((newExperience) => this.experienceList.push(newExperience));
@@ -53,9 +58,14 @@ export class ProfileExperienceComponent implements OnInit {
   }
 
   updateExperience(experience: Experience) {
-    let { id, name, company, description, start_date, end_date } = experience;
-    let experience_id = id;
-    let company_id = company;
+    let {
+      id: experience_id,
+      name,
+      company: company_id,
+      description,
+      start_date,
+      end_date,
+    } = experience;
     const updatedExperience = { name, description, start_date, end_date };
     this.experienceService
       .updateExperience(
@@ -86,9 +96,8 @@ export class ProfileExperienceComponent implements OnInit {
     this.showAddForm = !this.showAddForm;
   }
 
-  toggleUpdateForm(experience?: any) {
+  toggleUpdateForm(experience?: Experience) {
     this.showUpdateForm = !this.showUpdateForm;
     this.currentExperience = experience;
-    console.log(this.currentExperience);
   }
 }

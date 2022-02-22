@@ -18,13 +18,13 @@ import { SignupComponent } from './security/auth/signup/signup.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormAddEducationComponent } from './components/forms/form-add-education/form-add-education.component';
-import { FormAddExperienceComponent } from './components/forms/form-add-experience/form-add-experience.component';
+import { FormAddExperienceComponent } from './components/profile-experience/form-add-experience/form-add-experience.component';
+import { FormUpdateExperienceComponent } from './components/profile-experience/form-update-experience/form-update-experience.component';
 import { FormAddProjectComponent } from './components/forms/form-add-project/form-add-project.component';
 import { FormAddLanguageComponent } from './components/forms/form-add-language/form-add-language.component';
 import { FormAddTechnologieComponent } from './components/forms/form-add-technologie/form-add-technologie.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { interceptorProvider } from './security/interceptors/interceptor.service';
-import { FormUpdateExperienceComponent } from './components/forms/form-update-experience/form-update-experience.component';
 
 @NgModule({
   declarations: [

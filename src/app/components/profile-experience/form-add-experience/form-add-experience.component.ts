@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { ExperienceList } from '../../profile-experience/ExperienceList';
+import { ExperienceList } from '../ExperienceList';
 
 @Component({
   selector: 'app-form-add-experience',
