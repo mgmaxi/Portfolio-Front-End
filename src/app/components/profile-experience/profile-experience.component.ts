@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PortfolioService } from 'src/app/service/portfolio.service';
+import { Experience } from 'src/app/models/experience';
+import { ExperienceService } from 'src/app/service/experience.service';
 import { TokenService } from 'src/app/service/token.service';
-import { ExperienceList } from './ExperienceList';
 
 @Component({
   selector: 'app-profile-experience',
@@ -9,18 +9,17 @@ import { ExperienceList } from './ExperienceList';
   styleUrls: ['./profile-experience.component.css'],
 })
 export class ProfileExperienceComponent implements OnInit {
-  experienceList: any[] = [];
+  experienceList: Experience[] = [];
+  roles: string[] = [];
+  person_id: number = 1;
+  isAdmin = false;
   showAddForm: boolean = false;
   showUpdateForm: boolean = false;
-  person_id: any = 1;
-  roles: string[] = [];
-  isAdmin = false;
-
   currentExperience: any;
 
   constructor(
-    private portfolioData: PortfolioService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private experienceService: ExperienceService
   ) {}
 
   ngOnInit(): void {
@@ -38,59 +37,43 @@ export class ProfileExperienceComponent implements OnInit {
   }
 
   getExperiences() {
-    this.portfolioData
-      .getSection('/experiences/persons/' + this.person_id)
+    this.experienceService
+      .getExperiences(this.person_id)
       .subscribe((data) => (this.experienceList = data));
   }
 
-  addExperience(newItem: ExperienceList) {
-    let { name, company, description, start_date, end_date } = newItem;
+  addExperience(experience: Experience) {
+    let { name, company, description, start_date, end_date } = experience;
     const newExperience = { name, description, start_date, end_date };
-    let company_id: any = company;
-    this.portfolioData
-      .addItemMultipleParameters(
-        'experiences',
-        'persons',
-        this.person_id,
-        'companies',
-        company_id,
-        newExperience
-      )
+    let company_id = company;
+    this.experienceService
+      .addExperience(this.person_id, company_id, newExperience)
       .subscribe((newExperience) => this.experienceList.push(newExperience));
     this.toggleAddForm();
   }
 
-  updateExperience(updatedExperience: any) {
-    let { id, name, company, description, start_date, end_date } =
-      updatedExperience;
+  updateExperience(experience: Experience) {
+    let { id, name, company, description, start_date, end_date } = experience;
     let experience_id = id;
     let company_id = company;
-    const newExperience = { name, description, start_date, end_date };
-
-    this.portfolioData
-      .updateItemMultipleParameters(
-        'experiences',
-        experience_id,
-        'persons',
+    const updatedExperience = { name, description, start_date, end_date };
+    this.experienceService
+      .updateExperience(
+        experience_id!,
         this.person_id,
-        'companies',
         company_id,
-        newExperience
+        updatedExperience
       )
-      .subscribe((newExperience) => this.experienceList.push(newExperience));
+      .subscribe((updatedExperience) =>
+        this.experienceList.push(updatedExperience)
+      );
     this.toggleUpdateForm();
   }
 
-  deleteItem(item: ExperienceList) {
-    console.log(item);
-    let experience_id: any = item.id;
-    this.portfolioData
-      .deleteItemMultipleParameters(
-        'experiences',
-        experience_id,
-        'persons',
-        this.person_id
-      )
+  deleteItem(experience: Experience) {
+    let experience_id = experience.id;
+    this.experienceService
+      .deleteExperience(experience_id!, this.person_id)
       .subscribe(
         () =>
           (this.experienceList = this.experienceList.filter(

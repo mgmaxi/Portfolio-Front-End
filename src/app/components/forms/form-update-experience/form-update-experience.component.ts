@@ -40,7 +40,6 @@ export class FormUpdateExperienceComponent implements OnInit {
         start_date,
         end_date,
       };
-      console.log(updatedExperience);
       this.onUpdateExperience.emit(updatedExperience);
       this.form.reset();
       return;
