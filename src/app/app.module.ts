@@ -24,6 +24,7 @@ import { FormAddLanguageComponent } from './components/forms/form-add-language/f
 import { FormAddTechnologieComponent } from './components/forms/form-add-technologie/form-add-technologie.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { interceptorProvider } from './security/interceptors/interceptor.service';
+import { FormUpdateExperienceComponent } from './components/forms/form-update-experience/form-update-experience.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { interceptorProvider } from './security/interceptors/interceptor.service
     FormAddProjectComponent,
     FormAddLanguageComponent,
     FormAddTechnologieComponent,
+    FormUpdateExperienceComponent,
   ],
   imports: [
     BrowserModule,

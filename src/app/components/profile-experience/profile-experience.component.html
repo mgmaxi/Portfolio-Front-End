@@ -1,17 +1,31 @@
 <!-- Add Experience Modal  -->
-<div class="modal" *ngIf="showForm">
+<div class="modal" *ngIf="showAddForm">
   <div class="containerFormAdd">
-    <i class="fas fa-times iconClose" (click)="toggleForm()"></i>
+    <i class="fas fa-times iconClose" (click)="toggleAddForm()"></i>
     <app-form-add-experience
       (onAddExperience)="addExperience($event)"
     ></app-form-add-experience>
+  </div>
+</div>
+<!-- Update Experience Modal  -->
+<div class="modal" *ngIf="showUpdateForm">
+  <div class="containerFormAdd">
+    <i class="fas fa-times iconClose" (click)="toggleUpdateForm()"></i>
+    <app-form-update-experience
+      (onUpdateExperience)="updateExperience($event)"
+      [currentExperienceForm]="currentExperience"
+    ></app-form-update-experience>
   </div>
 </div>
 <!-- Experience -->
 <div class="containerSection">
   <section class="containerSectionData">
     <h2 class="sectionTitle">Experiencia</h2>
-    <i class="fas fa-plus iconAdd" (click)="toggleForm()" *ngIf="isAdmin"></i>
+    <i
+      class="fas fa-plus iconAdd"
+      (click)="toggleAddForm()"
+      *ngIf="isAdmin"
+    ></i>
     <i class="fas fa-trash iconDeleteSection" *ngIf="isAdmin"></i>
     <!-- Experience List -->
     <div *ngFor="let experience of experienceList" class="containerSectionItem">
@@ -31,13 +45,12 @@
           Fecha de finalización: {{ experience.end_date }}
         </p>
         <i
-          class="fas fa-trash iconDelete"
-          (click)="deleteItem(experience)"
+          class="fas fa-pencil-alt iconEdit"
+          (click)="toggleUpdateForm(experience)"
           *ngIf="isAdmin"
         ></i>
-        <i class="fas fa-pencil-alt iconEdit" *ngIf="isAdmin"></i>
         <i
-          class="far fa-trash-alt"
+          class="fas fa-trash iconDelete"
           (click)="deleteItem(experience)"
           *ngIf="isAdmin"
         ></i>

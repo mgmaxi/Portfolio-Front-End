@@ -1,15 +1,17 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { ExperienceList } from '../../profile-experience/ExperienceList';
 
 @Component({
-  selector: 'app-form-add-experience',
-  templateUrl: './form-add-experience.component.html',
-  styleUrls: ['./form-add-experience.component.css'],
+  selector: 'app-form-update-experience',
+  templateUrl: './form-update-experience.component.html',
+  styleUrls: ['./form-update-experience.component.css'],
 })
-export class FormAddExperienceComponent implements OnInit {
-  @Output() onAddExperience: EventEmitter<ExperienceList> = new EventEmitter();
+export class FormUpdateExperienceComponent implements OnInit {
+  @Output() onUpdateExperience: EventEmitter<ExperienceList> =
+    new EventEmitter();
+  @Input() currentExperienceForm: any;
   form: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
@@ -29,9 +31,17 @@ export class FormAddExperienceComponent implements OnInit {
     if (this.form.valid) {
       let { name, company, description, start_date, end_date } =
         this.form.value;
-      const newItem = { name, company, description, start_date, end_date };
-      console.log(newItem);
-      this.onAddExperience.emit(newItem);
+      let id = this.currentExperienceForm.id;
+      const updatedExperience = {
+        id,
+        name,
+        company,
+        description,
+        start_date,
+        end_date,
+      };
+      console.log(updatedExperience);
+      this.onUpdateExperience.emit(updatedExperience);
       this.form.reset();
       return;
     } else {

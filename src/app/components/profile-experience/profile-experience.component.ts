@@ -10,10 +10,13 @@ import { ExperienceList } from './ExperienceList';
 })
 export class ProfileExperienceComponent implements OnInit {
   experienceList: any[] = [];
-  showForm: boolean = false;
-  person_id: number = 1;
+  showAddForm: boolean = false;
+  showUpdateForm: boolean = false;
+  person_id: any = 1;
   roles: string[] = [];
   isAdmin = false;
+
+  currentExperience: any;
 
   constructor(
     private portfolioData: PortfolioService,
@@ -40,24 +43,69 @@ export class ProfileExperienceComponent implements OnInit {
       .subscribe((data) => (this.experienceList = data));
   }
 
-  deleteItem(item: ExperienceList) {
+  addExperience(newItem: ExperienceList) {
+    let { name, company, description, start_date, end_date } = newItem;
+    const newExperience = { name, description, start_date, end_date };
+    let company_id: any = company;
     this.portfolioData
-      .deleteItem('experience', item)
+      .addItemMultipleParameters(
+        'experiences',
+        'persons',
+        this.person_id,
+        'companies',
+        company_id,
+        newExperience
+      )
+      .subscribe((newExperience) => this.experienceList.push(newExperience));
+    this.toggleAddForm();
+  }
+
+  updateExperience(updatedExperience: any) {
+    let { id, name, company, description, start_date, end_date } =
+      updatedExperience;
+    let experience_id = id;
+    let company_id = company;
+    const newExperience = { name, description, start_date, end_date };
+
+    this.portfolioData
+      .updateItemMultipleParameters(
+        'experiences',
+        experience_id,
+        'persons',
+        this.person_id,
+        'companies',
+        company_id,
+        newExperience
+      )
+      .subscribe((newExperience) => this.experienceList.push(newExperience));
+    this.toggleUpdateForm();
+  }
+
+  deleteItem(item: ExperienceList) {
+    console.log(item);
+    let experience_id: any = item.id;
+    this.portfolioData
+      .deleteItemMultipleParameters(
+        'experiences',
+        experience_id,
+        'persons',
+        this.person_id
+      )
       .subscribe(
         () =>
           (this.experienceList = this.experienceList.filter(
-            (list) => list.id !== item.id
+            (list) => list.id !== experience_id
           ))
       );
   }
 
-  addExperience(newItem: ExperienceList) {
-    this.portfolioData
-      .addItem('experience', newItem)
-      .subscribe((newItem) => this.experienceList.push(newItem));
+  toggleAddForm() {
+    this.showAddForm = !this.showAddForm;
   }
 
-  toggleForm() {
-    this.showForm = !this.showForm;
+  toggleUpdateForm(experience?: any) {
+    this.showUpdateForm = !this.showUpdateForm;
+    this.currentExperience = experience;
+    console.log(this.currentExperience);
   }
 }

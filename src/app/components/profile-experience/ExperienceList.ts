@@ -1,9 +1,9 @@
 export interface ExperienceList {
   id?: number;
   section?: string;
-  title: string;
-  company: string;
+  name: string;
+  company?: number;
   description: string;
-  year: number;
-  logo: string;
+  start_date: Date;
+  end_date: Date;
 }

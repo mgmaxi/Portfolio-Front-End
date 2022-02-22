@@ -1,6 +1,6 @@
 <div class="containerForm">
   <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
-    <p class="title">Agregar experiencia</p>
+    <p class="title">Modificar experiencia</p>
     <!-- Name input -->
     <input type="text" placeholder="Nombre del puesto" formControlName="name" />
     <i class="fa fa-plus-circle"></i>
@@ -66,7 +66,6 @@
         *La fecha de finalización es requerida.
       </p>
     </div>
-
-    <button type="submit">Agregar</button>
+    <button type="submit">Modificar</button>
   </form>
 </div>
