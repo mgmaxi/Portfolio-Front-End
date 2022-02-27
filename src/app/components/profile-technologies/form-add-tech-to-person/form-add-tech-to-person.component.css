@@ -1,0 +1,100 @@
+.containerSection {
+  margin: 0 35px 0 15px;
+  min-width: 400px;
+}
+
+.sectionTitle {
+  padding: 0 0 15px 0;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.containerTechnology {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.containerTechnologyItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px;
+  padding: 2px;
+  width: 80px;
+}
+
+.logoTechnology {
+  height: 50px;
+  width: 50px;
+  scale: 1;
+  transition: all 0.3s ease;
+}
+
+.logoTechnology:hover {
+  height: 50px;
+  width: 50px;
+  scale: 1.1;
+  cursor: pointer;
+}
+
+figure {
+  overflow-wrap: anywhere;
+}
+
+figcaption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px 0 0 0;
+  text-align: center;
+  font-size: 14px;
+}
+
+figcaption i {
+  display: block;
+  margin: 5px 5px 0 0;
+  transition: all 0.5s ease-out;
+}
+
+.iconsTechContainer {
+  display: flex;
+}
+
+.iconAddTechToPerson {
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 150px;
+  color: rgb(119, 178, 85);
+  background-color: rgb(0, 0, 0, 0.05);
+  transition: all 0.5s ease-out;
+}
+
+.iconDeleteTech {
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 150px;
+  color: #e50914;
+  background-color: rgb(0, 0, 0, 0.05);
+  transition: all 0.5s ease-out;
+}
+
+.iconAddToPerson:hover {
+  background-color: rgb(0, 0, 0, 0.15);
+}
+
+form .title {
+  margin: 10px 0;
+}
+
+.subTitle {
+  margin: 0 0 10px 0;
+  text-align: center;
+  letter-spacing: 1px;
+}

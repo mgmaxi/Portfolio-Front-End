@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { PortfolioService } from 'src/app/service/portfolio.service';
-import { EducationList } from './EducationList';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+//import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { TokenService } from 'src/app/service/token.service';
+import { EducationService } from 'src/app/service/education.service';
+import { Education } from 'src/app/models/education';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile-education',
@@ -10,17 +11,18 @@ import { TokenService } from 'src/app/service/token.service';
   styleUrls: ['./profile-education.component.css'],
 })
 export class ProfileEducationComponent implements OnInit {
-  educationList: EducationList[] = [];
-  showForm: boolean = false;
-  person_id: number = 1;
-  school_id: number = 1;
-  logo: string = '';
+  educationList: Education[] = [];
   roles: string[] = [];
+  person_id: number = 1;
+  showAddForm: boolean = false;
+  showUpdateForm: boolean = false;
   isAdmin = false;
+  currentEducation: any;
 
   constructor(
-    private portfolioData: PortfolioService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private educationService: EducationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -38,40 +40,84 @@ export class ProfileEducationComponent implements OnInit {
   }
 
   getEducations() {
-    this.portfolioData
-      .getSection('/educations/persons/' + this.person_id)
+    this.educationService
+      .getEducations(this.person_id)
       .subscribe((data) => (this.educationList = data));
   }
 
-  deleteItem(item: EducationList) {
-    this.portfolioData
-      .deleteItem('education', item)
+  addEducation(education: Education) {
+    let {
+      name,
+      description,
+      start_date,
+      end_date,
+      school: school_id,
+    } = education;
+    const newEducation = { name, description, start_date, end_date };
+    this.educationService
+      .addEducation(this.person_id, school_id, newEducation)
+      .subscribe((newEducation) => this.educationList.push(newEducation));
+    this.toggleAddForm();
+  }
+
+  updateEducation(education: Education) {
+    let {
+      id: education_id,
+      name,
+      school: school_id,
+      description,
+      start_date,
+      end_date,
+    } = education;
+    const updatedEducation = { name, description, start_date, end_date };
+    this.educationService
+      .updateEducation(
+        education_id!,
+        this.person_id,
+        school_id,
+        updatedEducation
+      )
+      .subscribe((updatedEducation) =>
+        this.educationList.push(updatedEducation)
+      );
+    this.toggleUpdateForm();
+    this.refreshComponent();
+  }
+
+  deleteEducation(education: Education) {
+    let education_id = education.id;
+
+    this.educationService
+      .deleteEducation(education_id!, this.person_id)
       .subscribe(
         () =>
           (this.educationList = this.educationList.filter(
-            (list) => list.id !== item.id
+            (list) => list.id !== education.id
           ))
       );
   }
 
-  addEducation(newItem: EducationList) {
-    this.portfolioData
-      .addItem(
-        '/educations/' + this.person_id + '/schools/' + this.school_id,
-        newItem
-      )
-      .subscribe((newItem) => this.educationList.push(newItem));
+  deleteAllEducationsFromPerson() {
+    this.educationService
+      .deleteAllEducationsFromPerson(this.person_id)
+      .subscribe(() => (this.educationList = []));
   }
 
-  toggleForm() {
-    this.showForm = !this.showForm;
-    console.log(this.showForm);
-    console.log('padre');
+  toggleAddForm() {
+    this.showAddForm = !this.showAddForm;
   }
 
-  onDropped(event: CdkDragDrop<any>) {
-    const previous = event.previousIndex;
-    const current = event.currentIndex;
-    moveItemInArray(this.educationList, previous, current);
+  toggleUpdateForm(education?: Education) {
+    this.showUpdateForm = !this.showUpdateForm;
+    this.currentEducation = education;
+    console.log(education);
+  }
+
+  refreshComponent() {
+    this.router
+      .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
+      .then(() => {
+        this.router.navigate(['portfolio']);
+      });
   }
 }

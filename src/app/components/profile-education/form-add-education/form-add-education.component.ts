@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { EducationList } from '../../profile-education/EducationList';
 
 @Component({
   selector: 'app-form-add-education',
@@ -14,10 +13,18 @@ export class FormAddEducationComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      title: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      year: ['', [Validators.required]],
-      logo: ['', []],
+      name: ['', [Validators.required]],
+      description: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(250),
+        ],
+      ],
+      start_date: ['', [Validators.required]],
+      end_date: ['', [Validators.required]],
+      school: ['', []],
     });
   }
 
@@ -26,12 +33,10 @@ export class FormAddEducationComponent implements OnInit {
   onSubmit(event: Event) {
     event.preventDefault;
     if (this.form.valid) {
-      let { title, description, year, logo } = this.form.value;
-      logo.length === 0
-        ? (logo = 'assets/logos/education/logoEducation.png')
-        : logo;
-      const newItem = { title, description, year, logo };
-      this.onAddEducation.emit(newItem);
+      let { name, description, start_date, end_date, school } = this.form.value;
+
+      const newEducation = { name, description, start_date, end_date, school };
+      this.onAddEducation.emit(newEducation);
       this.form.reset();
       return;
     } else {
@@ -39,19 +44,23 @@ export class FormAddEducationComponent implements OnInit {
     }
   }
 
-  get Title() {
-    return this.form.get('title');
+  get Name() {
+    return this.form.get('name');
   }
 
   get Description() {
     return this.form.get('description');
   }
 
-  get Year() {
-    return this.form.get('year');
+  get Start_date() {
+    return this.form.get('start_date');
   }
 
-  get Logo() {
-    return this.form.get('logo');
+  get End_date() {
+    return this.form.get('end_date');
+  }
+
+  get School() {
+    return this.form.get('school');
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { TechnologiesList } from '../../profile-technologies/TechnologiesList';
+import { Technology } from 'src/app/models/technology';
 
 @Component({
   selector: 'app-form-add-technologie',
@@ -9,14 +9,13 @@ import { TechnologiesList } from '../../profile-technologies/TechnologiesList';
   styleUrls: ['./form-add-technologie.component.css'],
 })
 export class FormAddTechnologieComponent implements OnInit {
-  @Output() onAddTechnologie: EventEmitter<TechnologiesList> =
-    new EventEmitter();
+  @Output() onAddTechnology: EventEmitter<Technology> = new EventEmitter();
   form: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      title: ['', [Validators.required]],
-      type: ['', []],
+      name: ['', [Validators.required]],
+      category: ['', [Validators.required]],
       logo: ['', []],
       url: ['', []],
     });
@@ -27,13 +26,13 @@ export class FormAddTechnologieComponent implements OnInit {
   onSubmit(event: Event) {
     event.preventDefault;
     if (this.form.valid) {
-      let { title, type, logo, url } = this.form.value;
+      let { name, category, logo, url } = this.form.value;
       logo.length === 0
         ? (logo = 'assets/logos/technologies/logoTechnologie.png')
         : logo;
       !url.includes('https://') ? (url = 'https://' + url) : url;
-      const newItem = { title, type, logo, url };
-      this.onAddTechnologie.emit(newItem);
+      const newTechnology = { name, category, logo, url };
+      this.onAddTechnology.emit(newTechnology);
       this.form.reset();
       return;
     } else {
@@ -41,12 +40,12 @@ export class FormAddTechnologieComponent implements OnInit {
     }
   }
 
-  get Title() {
-    return this.form.get('title');
+  get Name() {
+    return this.form.get('name');
   }
 
-  get Type() {
-    return this.form.get('type');
+  get Category() {
+    return this.form.get('category');
   }
 
   get Logo() {

@@ -1,36 +1,59 @@
-<!-- Add Technologie Modal -->
-<div class="modal" *ngIf="showForm">
+<!-- Add Technology Modal -->
+<div class="modal" *ngIf="showAddForm">
   <div class="containerFormAdd">
-    <i class="fas fa-times iconClose" (click)="toggleForm()"></i>
+    <i class="fas fa-times iconClose" (click)="toggleAddForm()"></i>
     <app-form-add-technologie
-      (onAddTechnologie)="addTechnologie($event)"
+      (onAddTechnology)="addTechnology($event)"
     ></app-form-add-technologie>
   </div>
 </div>
-<!-- Technologies -->
+<!-- Add Technology To Person Modal -->
+<div class="modal" *ngIf="showAddTechToPersonForm">
+  <div class="containerFormAdd">
+    <i
+      class="fas fa-times iconClose iconCloseModalAddTech"
+      (click)="toggleAddTechToPersonForm()"
+    ></i>
+    <app-form-add-tech-to-person
+      (onAddTechToPerson)="addTechToPerson($event)"
+    ></app-form-add-tech-to-person>
+  </div>
+</div>
+<!-- Technology -->
 <div class="containerSection">
   <section class="containerSectionData">
     <h2 class="sectionTitle">Tecnologías</h2>
-    <i class="fas fa-plus iconAdd" (click)="toggleForm()" *ngIf="isAdmin"></i>
-    <i class="fas fa-trash iconDeleteSection" *ngIf="isAdmin"></i>
-    <!-- Technologies List -->
-    <div class="containerTechnologies">
+    <button class="btnCreate" (click)="toggleAddForm()" *ngIf="isAdmin">
+      Crear
+    </button>
+    <i
+      class="fas fa-plus iconAdd"
+      (click)="toggleAddTechToPersonForm()"
+      *ngIf="isAdmin"
+    ></i>
+    <i
+      class="fas fa-trash iconDeleteSection"
+      (click)="deleteAllTechnologiesFromPerson()"
+      *ngIf="isAdmin"
+    ></i>
+    <!-- Technology List -->
+    <div class="containerTechnology">
       <figure
-        *ngFor="let technologie of technologiesList"
-        class="containerTechnologieItem"
+        *ngFor="let technology of technologyList"
+        class="containerTechnologyItem"
       >
-        <a [href]="technologie.url" target="_blank">
+        <a [href]="technology.url" target="_blank">
           <img
-            class="logoTechnologie"
-            [src]="technologie.logo"
+            class="logoTechnology"
+            [src]="technology.logo"
             alt="Logo de la sección"
           />
         </a>
         <figcaption>
-          {{ technologie.name }}
+          {{ technology.name }}
           <i
             class="fas fa-trash"
-            (click)="deleteItem(technologie)"
+            (click)="deleteTechnologyOfPerson(technology)"
             *ngIf="isAdmin"
           ></i>
         </figcaption>

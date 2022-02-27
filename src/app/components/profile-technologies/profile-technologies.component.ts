@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PortfolioService } from 'src/app/service/portfolio.service';
+import { Router } from '@angular/router';
+import { Technology } from 'src/app/models/technology';
+import { TechnologyService } from 'src/app/service/technology.service';
 import { TokenService } from 'src/app/service/token.service';
-import { TechnologiesList } from './TechnologiesList';
 
 @Component({
   selector: 'app-profile-technologies',
@@ -9,19 +10,21 @@ import { TechnologiesList } from './TechnologiesList';
   styleUrls: ['./profile-technologies.component.css'],
 })
 export class ProfileTechnologiesComponent implements OnInit {
-  technologiesList: any[] = [];
-  showForm: boolean = false;
-  person_id: number = 1;
+  technologyList: any[] = [];
   roles: string[] = [];
+  person_id: number = 1;
   isAdmin = false;
+  showAddForm: boolean = false;
+  showAddTechToPersonForm: boolean = false;
 
   constructor(
-    private portfolioData: PortfolioService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private technologyService: TechnologyService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.getTechnologies();
+    this.getByPersonId();
     this.getRoles();
   }
 
@@ -34,30 +37,63 @@ export class ProfileTechnologiesComponent implements OnInit {
     });
   }
 
-  getTechnologies() {
-    this.portfolioData
-      .getSection('/persons/' + this.person_id)
-      .subscribe((data) => (this.technologiesList = data.technologies));
+  getByPersonId() {
+    this.technologyService
+      .findByPersonId(this.person_id)
+      .subscribe((data) => (this.technologyList = data));
   }
 
-  deleteItem(item: TechnologiesList) {
-    this.portfolioData
-      .deleteItem('technologies', item)
+  addTechnology(technology: Technology) {
+    let { name, category, logo, url } = technology;
+    const newTechnology = { name, category, logo, url };
+    this.technologyService
+      .addTechnology(newTechnology)
+      .subscribe((newTechnology) => this.technologyList.push(newTechnology));
+    this.toggleAddForm();
+    this.refreshComponent();
+    //revisar suscribe
+  }
+
+  addTechToPerson(technology_id: number) {
+    this.technologyService
+      .addTechnologyToPerson(this.person_id, technology_id)
+      .subscribe((newTechnology) => this.technologyList.push(newTechnology));
+    this.toggleAddTechToPersonForm();
+    this.refreshComponent();
+    //revisar suscribe
+  }
+
+  deleteTechnologyOfPerson(technology: Technology) {
+    let technology_id = technology.id;
+    this.technologyService
+      .deleteTechnologyOfPerson(this.person_id, technology_id!)
       .subscribe(
         () =>
-          (this.technologiesList = this.technologiesList.filter(
-            (list) => list.id !== item.id
+          (this.technologyList = this.technologyList.filter(
+            (list) => list.id !== technology_id
           ))
       );
   }
 
-  addTechnologie(newItem: TechnologiesList) {
-    this.portfolioData
-      .addItem('technologies', newItem)
-      .subscribe((newItem) => this.technologiesList.push(newItem));
+  deleteAllTechnologiesFromPerson() {
+    this.technologyService
+      .deleteAllTechnologiesFromPerson(this.person_id)
+      .subscribe(() => (this.technologyList = []));
   }
 
-  toggleForm() {
-    this.showForm = !this.showForm;
+  toggleAddForm() {
+    this.showAddForm = !this.showAddForm;
+  }
+
+  toggleAddTechToPersonForm() {
+    this.showAddTechToPersonForm = !this.showAddTechToPersonForm;
+  }
+
+  refreshComponent() {
+    this.router
+      .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
+      .then(() => {
+        this.router.navigate(['portfolio']);
+      });
   }
 }

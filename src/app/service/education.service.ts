@@ -22,9 +22,13 @@ export class EducationService {
     return this.http.get<Education[]>(url);
   }
 
-  addEducation(person_id: number, school_id: number, newEducation: Education) {
+  addEducation(
+    person_id: number,
+    school_id: number,
+    newEducation: Education
+  ): Observable<any> {
     const url = `${this.apiUrl}/educations/persons/${person_id}/schools/${school_id}`;
-    this.http.post<any>(url, newEducation, httpOptions);
+    return this.http.post<any>(url, newEducation, httpOptions);
   }
 
   updateEducation(
@@ -37,8 +41,14 @@ export class EducationService {
     return this.http.put<any>(url, updatedEducation, httpOptions);
   }
 
-  deleteExperience(education_id: number, person_id: number): Observable<any> {
+  deleteEducation(education_id: number, person_id: number): Observable<any> {
     const url = `${this.apiUrl}/educations/${education_id}/persons/${person_id}`;
+    return this.http.delete<any>(url, { responseType: 'text' as 'json' });
+  }
+
+  // Delete All educations from person
+  deleteAllEducationsFromPerson(person_id: number): Observable<any> {
+    const url = `${this.apiUrl}/educations/persons/${person_id}`;
     return this.http.delete<any>(url, { responseType: 'text' as 'json' });
   }
 }

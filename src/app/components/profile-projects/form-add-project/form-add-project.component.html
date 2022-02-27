@@ -1,35 +1,41 @@
 <div class="containerForm">
   <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
     <p class="title">Agregar proyecto</p>
-    <!-- Title input -->
+    <!-- Name input -->
     <input
       type="text"
       placeholder="Nombre del proyecto"
-      formControlName="title"
+      formControlName="name"
       autofocus
     />
     <i class="fa fa-plus-circle"></i>
-    <!-- Title validation error -->
-    <div *ngIf="Title?.errors && (Title?.touched || Title?.dirty)">
-      <p *ngIf="Title?.hasError('required')" class="error">
+    <!-- Name validation error -->
+    <div *ngIf="Name?.errors && (Name?.touched || Name?.dirty)">
+      <p *ngIf="Name?.hasError('required')" class="error">
         *El nombre del proyecto es requerido.
       </p>
     </div>
-    <!-- Technologies input -->
+    <!-- Description input -->
     <input
       type="text"
       placeholder="Descripción y/o las tecnologías utilizadas"
-      formControlName="technologies"
+      formControlName="description"
     />
     <i class="fa fa-plus-circle"></i>
-    <!-- Technologies validation error -->
+    <!-- Description validation error -->
     <div
       *ngIf="
-        Technologies?.errors && (Technologies?.touched || Technologies?.dirty)
+        Description?.errors && (Description?.touched || Description?.dirty)
       "
     >
-      <p *ngIf="Technologies?.hasError('required')" class="error">
+      <p *ngIf="Description?.hasError('required')" class="error">
         *La descripción es requerida.
+      </p>
+      <p *ngIf="Description?.hasError('minlength')" class="error">
+        *La descripción debe tener al menos 10 caracteres.
+      </p>
+      <p *ngIf="Description?.hasError('maxlength')" class="error">
+        *La descripción no puede tener más de 250 caracteres.
       </p>
     </div>
     <!-- Repository input -->
@@ -46,17 +52,17 @@
       formControlName="deploy"
     />
     <i class="fa fa-plus-circle"></i>
-    <!-- Year input -->
+    <!-- End_date input -->
     <input
-      type="number"
+      type="date"
       placeholder="Año de realización"
-      formControlName="year"
+      formControlName="end_date"
     />
     <i class="fa fa-plus-circle"></i>
-    <!-- Year validation error -->
-    <div *ngIf="Year?.errors && (Year?.touched || Year?.dirty)">
-      <p *ngIf="Year?.hasError('required')" class="error">
-        *El año es requerido.
+    <!-- End_date validation error -->
+    <div *ngIf="End_date?.errors && (End_date?.touched || End_date?.dirty)">
+      <p *ngIf="End_date?.hasError('required')" class="error">
+        *La fecha de realización es requerida.
       </p>
     </div>
     <!-- Logo input -->

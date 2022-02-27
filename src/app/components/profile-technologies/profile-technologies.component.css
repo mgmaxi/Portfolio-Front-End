@@ -1,10 +1,10 @@
-.containerTechnologies {
+.containerTechnology {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.containerTechnologieItem {
+.containerTechnologyItem {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,18 +13,22 @@
   width: 80px;
 }
 
-.logoTechnologie {
+.logoTechnology {
   height: 50px;
   width: 50px;
   scale: 1;
   transition: all 0.3s ease;
 }
 
-.logoTechnologie:hover {
+.logoTechnology:hover {
   height: 50px;
   width: 50px;
   scale: 1.1;
   cursor: pointer;
+}
+
+figure {
+  overflow-wrap: anywhere;
 }
 
 figcaption {
@@ -37,4 +41,9 @@ figcaption i {
   display: block;
   margin: 5px 0 0 0;
   color: #e50914;
+}
+
+.iconCloseModalAddTech {
+  top: 8px;
+  right: 42px;
 }

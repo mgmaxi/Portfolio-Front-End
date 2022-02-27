@@ -1,3 +1,26 @@
+<!-- Update Person Modal  -->
+<div class="modal" *ngIf="showUpdateForm">
+  <div class="containerFormAdd">
+    <i class="fas fa-times iconClose" (click)="toggleUpdateForm()"></i>
+    <app-form-update-header
+      (onUpdatePerson)="updatePerson($event)"
+      [currentPerson_idForm]="person_id"
+    ></app-form-update-header>
+  </div>
+</div>
+<!-- Update Userphotos Modal  -->
+<div class="modal" *ngIf="showUpdateUserphotosForm">
+  <div class="containerFormAdd">
+    <i
+      class="fas fa-times iconClose"
+      (click)="toggleUpdateUserphotosForm()"
+    ></i>
+    <app-form-update-userphotos
+      (onUpdateUserphotos)="updateUserphotos($event)"
+      [currentUserphotos_idForm]="userphotos_id"
+    ></app-form-update-userphotos>
+  </div>
+</div>
 <!-- Person Profile -->
 <div class="containerProfileHeader">
   <div class="containerProfileHeaderCover">
@@ -19,7 +42,26 @@
       "
       alt="Profile image"
     />
-    <i class="fas fa-user-edit iconEditProfileHeader"></i>
+    <div
+      class="iconEditProfilePhotoContainer"
+      (click)="toggleUpdateUserphotosForm()"
+      *ngIf="isAdmin"
+    >
+      <p>
+        <i class="fas fa-images iconEditProfilePhoto"></i>
+        Editar imágenes
+      </p>
+    </div>
+    <div
+      class="iconEditProfileHeaderContainer"
+      (click)="toggleUpdateForm()"
+      *ngIf="isAdmin"
+    >
+      <p>
+        <i class="fas fa-user-edit iconEditProfileHeader"></i>
+        Editar perfil
+      </p>
+    </div>
   </div>
   <section class="containerProfileHeaderData">
     <h2>{{ header.name }}</h2>

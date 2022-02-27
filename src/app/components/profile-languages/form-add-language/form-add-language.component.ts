@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { LanguagesList } from '../../profile-languages/LanguagesList';
+import { Language } from 'src/app/models/language';
 
 @Component({
   selector: 'app-form-add-language',
@@ -9,13 +9,12 @@ import { LanguagesList } from '../../profile-languages/LanguagesList';
   styleUrls: ['./form-add-language.component.css'],
 })
 export class FormAddLanguageComponent implements OnInit {
-  @Output() onAddLanguage: EventEmitter<LanguagesList> = new EventEmitter();
+  @Output() onAddLanguage: EventEmitter<Language> = new EventEmitter();
   form: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      title: ['', [Validators.required]],
-      level: ['', [Validators.required]],
+      name: ['', [Validators.required]],
     });
   }
 
@@ -24,9 +23,9 @@ export class FormAddLanguageComponent implements OnInit {
   onSubmit(event: Event) {
     event.preventDefault;
     if (this.form.valid) {
-      let { title, level } = this.form.value;
-      const newItem = { title, level };
-      this.onAddLanguage.emit(newItem);
+      let { name } = this.form.value;
+      const newLanguage = { name };
+      this.onAddLanguage.emit(newLanguage);
       this.form.reset();
       return;
     } else {
@@ -34,11 +33,7 @@ export class FormAddLanguageComponent implements OnInit {
     }
   }
 
-  get Title() {
-    return this.form.get('title');
-  }
-
-  get Level() {
-    return this.form.get('level');
+  get Name() {
+    return this.form.get('name');
   }
 }

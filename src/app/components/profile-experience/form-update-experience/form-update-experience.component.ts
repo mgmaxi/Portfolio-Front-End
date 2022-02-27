@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { ExperienceList } from '../../profile-experience/ExperienceList';
+import { Experience } from 'src/app/models/experience';
 
 @Component({
   selector: 'app-form-update-experience',
@@ -9,8 +9,7 @@ import { ExperienceList } from '../../profile-experience/ExperienceList';
   styleUrls: ['./form-update-experience.component.css'],
 })
 export class FormUpdateExperienceComponent implements OnInit {
-  @Output() onUpdateExperience: EventEmitter<ExperienceList> =
-    new EventEmitter();
+  @Output() onUpdateExperience: EventEmitter<Experience> = new EventEmitter();
   @Input() currentExperienceForm: any;
   form: FormGroup;
 
@@ -18,7 +17,14 @@ export class FormUpdateExperienceComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
       company: ['', [Validators.required]],
-      description: ['', [Validators.required, Validators.minLength(10)]],
+      description: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(250),
+        ],
+      ],
       start_date: ['', [Validators.required]],
       end_date: ['', []],
     });

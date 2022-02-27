@@ -1,0 +1,64 @@
+<div class="containerForm">
+  <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+    <p class="title">Modificar perfil</p>
+    <!-- Name input -->
+    <input type="text" placeholder="Nombre" formControlName="name" />
+    <i class="fa fa-plus-circle"></i>
+    <!-- Name validation error -->
+    <div *ngIf="Name?.errors && (Name?.touched || Name?.dirty)">
+      <p *ngIf="Name?.hasError('required')" class="error">
+        *El nombre es requerido.
+      </p>
+      <p *ngIf="Name?.hasError('minlength')" class="error">
+        *El nombre debe tener al menos 3 caracteres.
+      </p>
+    </div>
+    <!-- Nationality input -->
+    <input
+      type="text"
+      placeholder="Nacionalidad"
+      formControlName="nationality"
+    />
+    <i class="fa fa-plus-circle"></i>
+    <!-- Nationality validation error -->
+    <div
+      *ngIf="
+        Nationality?.errors && (Nationality?.touched || Nationality?.dirty)
+      "
+    >
+      <p *ngIf="Nationality?.hasError('required')" class="error">
+        *La nacionalidad es requerida.
+      </p>
+    </div>
+
+    <!-- Profession input -->
+    <input type="text" placeholder="Profesión" formControlName="profession" />
+    <i class="fa fa-plus-circle"></i>
+    <!-- Profession validation error -->
+    <div
+      *ngIf="Profession?.errors && (Profession?.touched || Profession?.dirty)"
+    >
+      <p *ngIf="Profession?.hasError('required')" class="error">
+        *La profesión es requerida.
+      </p>
+    </div>
+    <!-- About input -->
+    <input type="text" placeholder="Acerca de" formControlName="about" />
+    <i class="fa fa-plus-circle"></i>
+    <!-- About validation error -->
+    <div *ngIf="About?.errors && (About?.touched || About?.dirty)">
+      <p *ngIf="About?.hasError('required')" class="error">
+        *El campo "acerca de" es requerido.
+      </p>
+
+      <p *ngIf="About?.hasError('minlength')" class="error">
+        *El campo "acerca de" debe tener al menos 10 caracteres.
+      </p>
+      <p *ngIf="About?.hasError('maxlength')" class="error">
+        *El campo "acerca de" no puede tener más de 250 caracteres.
+      </p>
+    </div>
+
+    <button type="submit">Modificar</button>
+  </form>
+</div>

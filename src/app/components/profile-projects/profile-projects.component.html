@@ -1,18 +1,36 @@
 <!-- Add Project Modal -->
-<div class="modal" *ngIf="showForm">
+<div class="modal" *ngIf="showAddForm">
   <div class="containerFormAdd">
-    <i class="fas fa-times iconClose" (click)="toggleForm()"></i>
+    <i class="fas fa-times iconClose" (click)="toggleAddForm()"></i>
     <app-form-add-project
       (onAddProject)="addProject($event)"
     ></app-form-add-project>
+  </div>
+</div>
+<!-- Update Project Modal -->
+<div class="modal" *ngIf="showUpdateForm">
+  <div class="containerFormAdd">
+    <i class="fas fa-times iconClose" (click)="toggleUpdateForm()"></i>
+    <app-form-update-project
+      (onUpdateProject)="updateProject($event)"
+      [currentProjectForm]="currentProject"
+    ></app-form-update-project>
   </div>
 </div>
 <!-- Projects -->
 <div class="containerSection">
   <section class="containerSectionData">
     <h2 class="sectionTitle">Proyectos</h2>
-    <i class="fas fa-plus iconAdd" (click)="toggleForm()" *ngIf="isAdmin"></i>
-    <i class="fas fa-trash iconDeleteSection" *ngIf="isAdmin"></i>
+    <i
+      class="fas fa-plus iconAdd"
+      (click)="toggleAddForm()"
+      *ngIf="isAdmin"
+    ></i>
+    <i
+      class="fas fa-trash iconDeleteSection"
+      (click)="deleteAllProjectsFromPerson()"
+      *ngIf="isAdmin"
+    ></i>
     <!-- Projects List -->
     <div *ngFor="let project of projectList" class="containerSectionItem">
       <img class="logoSection" [src]="project.logo" alt="Logo del proyecto" />
@@ -41,7 +59,11 @@
           (click)="deleteItem(project)"
           *ngIf="isAdmin"
         ></i>
-        <i class="fas fa-pencil-alt iconEdit" *ngIf="isAdmin"></i>
+        <i
+          class="fas fa-pencil-alt iconEdit"
+          (click)="toggleUpdateForm(project)"
+          *ngIf="isAdmin"
+        ></i>
       </article>
     </div>
   </section>

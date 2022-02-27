@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { ProjectsList } from '../../profile-projects/ProjectsList';
+import { Project } from 'src/app/models/project';
 
 @Component({
   selector: 'app-form-add-project',
@@ -9,16 +9,23 @@ import { ProjectsList } from '../../profile-projects/ProjectsList';
   styleUrls: ['./form-add-project.component.css'],
 })
 export class FormAddProjectComponent implements OnInit {
-  @Output() onAddProject: EventEmitter<ProjectsList> = new EventEmitter();
+  @Output() onAddProject: EventEmitter<Project> = new EventEmitter();
   form: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      title: ['', [Validators.required]],
-      technologies: ['', [Validators.required]],
+      name: ['', [Validators.required]],
+      description: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(250),
+        ],
+      ],
       repository: ['', []],
       deploy: ['', []],
-      year: ['', [Validators.required]],
+      end_date: ['', [Validators.required]],
       logo: ['', []],
     });
   }
@@ -28,7 +35,7 @@ export class FormAddProjectComponent implements OnInit {
   onSubmit(event: Event) {
     event.preventDefault;
     if (this.form.valid) {
-      let { title, technologies, repository, deploy, year, logo } =
+      let { name, description, repository, deploy, end_date, logo } =
         this.form.value;
       logo.length === 0
         ? (logo = 'assets/logos/projects/logoProject.png')
@@ -37,8 +44,15 @@ export class FormAddProjectComponent implements OnInit {
         ? (repository = 'https://' + repository)
         : repository;
       !deploy.includes('https://') ? (deploy = 'https://' + deploy) : deploy;
-      const newItem = { title, technologies, repository, deploy, year, logo };
-      this.onAddProject.emit(newItem);
+      const newProject = {
+        name,
+        description,
+        repository,
+        deploy,
+        end_date,
+        logo,
+      };
+      this.onAddProject.emit(newProject);
       this.form.reset();
       return;
     } else {
@@ -46,12 +60,12 @@ export class FormAddProjectComponent implements OnInit {
     }
   }
 
-  get Title() {
-    return this.form.get('title');
+  get Name() {
+    return this.form.get('name');
   }
 
-  get Technologies() {
-    return this.form.get('technologies');
+  get Description() {
+    return this.form.get('description');
   }
 
   get Repository() {
@@ -62,8 +76,8 @@ export class FormAddProjectComponent implements OnInit {
     return this.form.get('deploy');
   }
 
-  get Year() {
-    return this.form.get('year');
+  get End_date() {
+    return this.form.get('end_date');
   }
 
   get Logo() {

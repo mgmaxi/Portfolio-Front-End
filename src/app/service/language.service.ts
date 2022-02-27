@@ -22,17 +22,36 @@ export class LanguageService {
     return this.http.get<Language[]>(url);
   }
 
+  //get all languages from one person
+  findByPersonId(person_id: number): Observable<Language[]> {
+    const url = `${this.apiUrl}/languages/persons/${person_id}`;
+    return this.http.get<Language[]>(url);
+  }
+
   addLanguage(newLanguage: Language): Observable<any> {
     const url = `${this.apiUrl}/languages`;
     return this.http.post<any>(url, newLanguage, httpOptions);
   }
 
-  updateLanguage(
-    language_id: number,
-    updatedLanguage: Language
+  //add one language to a person
+  addLanguageToPerson(person_id: number, language_id: number): Observable<any> {
+    const url = `${this.apiUrl}/persons/${person_id}/languages/${language_id}`;
+    return this.http.put<any>(url, httpOptions);
+  }
+
+  // Delete language of person
+  deleteLanguageOfPerson(
+    person_id: number,
+    language_id: number
   ): Observable<any> {
-    const url = `${this.apiUrl}/languages/${language_id}`;
-    return this.http.put<any>(url, updatedLanguage, httpOptions);
+    const url = `${this.apiUrl}/persons/${person_id}/languages/${language_id}`;
+    return this.http.delete<any>(url, { responseType: 'text' as 'json' });
+  }
+
+  // Delete All languages from person
+  deleteAllLanguagesFromPerson(person_id: number): Observable<any> {
+    const url = `${this.apiUrl}/persons/${person_id}/languages`;
+    return this.http.delete<any>(url, { responseType: 'text' as 'json' });
   }
 
   deleteLanguage(language_id: number): Observable<any> {

@@ -38,11 +38,28 @@
   background-color: aliceblue;
 }
 
-.iconEditProfileHeader {
+.iconEditProfileHeaderContainer {
   position: absolute;
   bottom: -60px;
   left: 165px;
+  cursor: pointer;
+}
+
+.iconEditProfileHeader {
   color: #000;
+}
+
+.iconEditProfilePhotoContainer {
+  position: absolute;
+  bottom: -30px;
+  left: 165px;
+  cursor: pointer;
+}
+
+.iconEditProfilePhoto {
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  font-weight: 300;
 }
 
 .containerProfileHeaderData {

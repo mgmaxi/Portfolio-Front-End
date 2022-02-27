@@ -37,6 +37,9 @@
       <p *ngIf="Description?.hasError('minlength')" class="error">
         *La descripción debe tener al menos 10 caracteres.
       </p>
+      <p *ngIf="Description?.hasError('maxlength')" class="error">
+        *La descripción no puede tener más de 250 caracteres.
+      </p>
     </div>
     <!-- Start_date input -->
     <input

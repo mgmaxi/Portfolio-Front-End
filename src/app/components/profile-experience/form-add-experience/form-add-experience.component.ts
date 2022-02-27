@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { ExperienceList } from '../ExperienceList';
+import { Experience } from 'src/app/models/experience';
 
 @Component({
   selector: 'app-form-add-experience',
@@ -9,14 +9,21 @@ import { ExperienceList } from '../ExperienceList';
   styleUrls: ['./form-add-experience.component.css'],
 })
 export class FormAddExperienceComponent implements OnInit {
-  @Output() onAddExperience: EventEmitter<ExperienceList> = new EventEmitter();
+  @Output() onAddExperience: EventEmitter<Experience> = new EventEmitter();
   form: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
       company: ['', [Validators.required]],
-      description: ['', [Validators.required, Validators.minLength(10)]],
+      description: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(250),
+        ],
+      ],
       start_date: ['', [Validators.required]],
       end_date: ['', []],
     });
@@ -30,7 +37,6 @@ export class FormAddExperienceComponent implements OnInit {
       let { name, company, description, start_date, end_date } =
         this.form.value;
       const newItem = { name, company, description, start_date, end_date };
-      console.log(newItem);
       this.onAddExperience.emit(newItem);
       this.form.reset();
       return;

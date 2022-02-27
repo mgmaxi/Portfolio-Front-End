@@ -1,0 +1,77 @@
+<div class="containerForm">
+  <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+    <p class="title">Modificar educación</p>
+    <!-- Name input -->
+    <input
+      type="text"
+      placeholder="Nombre del título educativo"
+      formControlName="name"
+    />
+    <i class="fa fa-plus-circle"></i>
+    <!-- Name validation error -->
+    <div *ngIf="Name?.errors && (Name?.touched || Name?.dirty)">
+      <p *ngIf="Name?.hasError('required')" class="error">
+        *El nombre del título educativo es requerido.
+      </p>
+    </div>
+    <!-- School input -->
+    <input
+      type="number"
+      placeholder="Nombre de la institución"
+      formControlName="school"
+    />
+    <i class="fa fa-plus-circle"></i>
+    <!-- Description input -->
+    <input
+      type="text"
+      placeholder="Descripción de la educación"
+      formControlName="description"
+    />
+    <i class="fa fa-plus-circle"></i>
+    <!-- Description validation error -->
+    <div
+      *ngIf="
+        Description?.errors && (Description?.touched || Description?.dirty)
+      "
+    >
+      <p *ngIf="Description?.hasError('required')" class="error">
+        *La descripción es requerida.
+      </p>
+      <p *ngIf="Description?.hasError('minlength')" class="error">
+        *La descripción debe tener al menos 10 caracteres.
+      </p>
+      <p *ngIf="Description?.hasError('maxlength')" class="error">
+        *La descripción no puede tener más de 250 caracteres.
+      </p>
+    </div>
+    <!-- Start_date input -->
+    <input
+      type="date"
+      placeholder="Fecha de inicio"
+      formControlName="start_date"
+    />
+    <i class="fa fa-plus-circle"></i>
+    <!-- Start_date validation error -->
+    <div
+      *ngIf="Start_date?.errors && (Start_date?.touched || Start_date?.dirty)"
+    >
+      <p *ngIf="Start_date?.hasError('required')" class="error">
+        *La fecha de inicio es requerida.
+      </p>
+    </div>
+    <!-- End_date input -->
+    <input
+      type="date"
+      placeholder="Fecha de finalización"
+      formControlName="end_date"
+    />
+    <i class="fa fa-plus-circle"></i>
+    <!-- End_date validation error -->
+    <div *ngIf="End_date?.errors && (End_date?.touched || End_date?.dirty)">
+      <p *ngIf="End_date?.hasError('required')" class="error">
+        *La fecha de finalización es requerida.
+      </p>
+    </div>
+    <button type="submit">Modificar</button>
+  </form>
+</div>

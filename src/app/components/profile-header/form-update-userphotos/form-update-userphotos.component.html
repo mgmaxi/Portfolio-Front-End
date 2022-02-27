@@ -1,0 +1,41 @@
+<div class="containerForm">
+  <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+    <p class="title">Modificar imágenes</p>
+    <!-- Profile_photo input -->
+    <input
+      type="text"
+      placeholder="Imagen de perfil"
+      formControlName="profile_photo"
+    />
+    <i class="fa fa-plus-circle"></i>
+    <!-- Profile_photo validation error -->
+    <div
+      *ngIf="
+        Profile_photo?.errors &&
+        (Profile_photo?.touched || Profile_photo?.dirty)
+      "
+    >
+      <p *ngIf="Profile_photo?.hasError('required')" class="error">
+        *La imagen de perfil es requerido.
+      </p>
+    </div>
+    <!-- Cover_photo input -->
+    <input
+      type="text"
+      placeholder="Imagen de portada"
+      formControlName="cover_photo"
+    />
+    <i class="fa fa-plus-circle"></i>
+    <!-- Cover_photo validation error -->
+    <div
+      *ngIf="
+        Cover_photo?.errors && (Cover_photo?.touched || Cover_photo?.dirty)
+      "
+    >
+      <p *ngIf="Cover_photo?.hasError('required')" class="error">
+        *La imagen de portada es requerido.
+      </p>
+    </div>
+    <button type="submit">Modificar</button>
+  </form>
+</div>

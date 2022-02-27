@@ -1,0 +1,77 @@
+<div class="containerForm">
+  <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+    <p class="title">Modificar proyecto</p>
+    <!-- Name input -->
+    <input
+      type="text"
+      placeholder="Nombre del proyecto"
+      formControlName="name"
+      autofocus
+    />
+    <i class="fa fa-plus-circle"></i>
+    <!-- Name validation error -->
+    <div *ngIf="Name?.errors && (Name?.touched || Name?.dirty)">
+      <p *ngIf="Name?.hasError('required')" class="error">
+        *El nombre del proyecto es requerido.
+      </p>
+    </div>
+    <!-- Description input -->
+    <input
+      type="text"
+      placeholder="Descripción y/o las tecnologías utilizadas"
+      formControlName="description"
+    />
+    <i class="fa fa-plus-circle"></i>
+    <!-- Description validation error -->
+    <div
+      *ngIf="
+        Description?.errors && (Description?.touched || Description?.dirty)
+      "
+    >
+      <p *ngIf="Description?.hasError('required')" class="error">
+        *La descripción es requerida.
+      </p>
+      <p *ngIf="Description?.hasError('minlength')" class="error">
+        *La descripción debe tener al menos 10 caracteres.
+      </p>
+      <p *ngIf="Description?.hasError('maxlength')" class="error">
+        *La descripción no puede tener más de 250 caracteres.
+      </p>
+    </div>
+    <!-- Repository input -->
+    <input
+      type="text"
+      placeholder="Enlace al repositorio"
+      formControlName="repository"
+    />
+    <i class="fa fa-plus-circle"></i>
+    <!-- Deploy input -->
+    <input
+      type="text"
+      placeholder="Enlace al deploy"
+      formControlName="deploy"
+    />
+    <i class="fa fa-plus-circle"></i>
+    <!-- End_date input -->
+    <input
+      type="date"
+      placeholder="Año de realización"
+      formControlName="end_date"
+    />
+    <i class="fa fa-plus-circle"></i>
+    <!-- End_date validation error -->
+    <div *ngIf="End_date?.errors && (End_date?.touched || End_date?.dirty)">
+      <p *ngIf="End_date?.hasError('required')" class="error">
+        *El año es requerido.
+      </p>
+    </div>
+    <!-- Logo input -->
+    <input
+      type="file"
+      placeholder="Agregue el logo del proyecto"
+      formControlName="logo"
+      class="inputLogo"
+    />
+    <button type="submit">Agregar</button>
+  </form>
+</div>

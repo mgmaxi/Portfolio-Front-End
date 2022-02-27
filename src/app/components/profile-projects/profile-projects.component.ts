@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PortfolioService } from 'src/app/service/portfolio.service';
+import { Router } from '@angular/router';
+import { Project } from 'src/app/models/project';
+import { ProjectService } from 'src/app/service/project.service';
 import { TokenService } from 'src/app/service/token.service';
-import { ProjectsList } from './ProjectsList';
 
 @Component({
   selector: 'app-profile-projects',
@@ -14,10 +15,14 @@ export class ProfileProjectsComponent implements OnInit {
   person_id: number = 1;
   roles: string[] = [];
   isAdmin = false;
+  showAddForm: boolean = false;
+  showUpdateForm: boolean = false;
+  currentProject: any;
 
   constructor(
-    private portfolioData: PortfolioService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private projectService: ProjectService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -35,29 +40,77 @@ export class ProfileProjectsComponent implements OnInit {
   }
 
   getProjects() {
-    this.portfolioData
-      .getSection('/projects/persons/' + this.person_id)
+    this.projectService
+      .getProjects(this.person_id)
       .subscribe((data) => (this.projectList = data));
   }
 
-  deleteItem(item: ProjectsList) {
-    this.portfolioData
-      .deleteItem('projects', item)
+  addProject(project: Project) {
+    this.projectService
+      .addProject(this.person_id, project)
+      .subscribe((newProject) => this.projectList.push(newProject));
+    this.toggleAddForm();
+  }
+
+  updateProject(project: Project) {
+    let {
+      id: project_id,
+      name,
+      description,
+      repository,
+      deploy,
+      end_date,
+      logo,
+    } = project;
+    const updatedProject = {
+      name,
+      description,
+      repository,
+      deploy,
+      end_date,
+      logo,
+    };
+
+    this.projectService
+      .updateProject(project_id!, this.person_id, updatedProject)
+      .subscribe((updatedProject) => this.projectList.push(updatedProject));
+    this.toggleUpdateForm();
+    this.refreshComponent();
+  }
+
+  deleteItem(project: Project) {
+    let project_id = project.id;
+    this.projectService
+      .deleteProject(project_id!, this.person_id)
       .subscribe(
         () =>
           (this.projectList = this.projectList.filter(
-            (list) => list.id !== item.id
+            (list) => list.id !== project.id
           ))
       );
   }
 
-  addProject(newItem: ProjectsList) {
-    this.portfolioData
-      .addItem('projects', newItem)
-      .subscribe((newItem) => this.projectList.push(newItem));
+  deleteAllProjectsFromPerson() {
+    this.projectService
+      .deleteAllProjectsFromPerson(this.person_id)
+      .subscribe(() => (this.projectList = []));
   }
 
-  toggleForm() {
-    this.showForm = !this.showForm;
+  toggleAddForm() {
+    this.showAddForm = !this.showAddForm;
+  }
+
+  toggleUpdateForm(project?: Project) {
+    this.showUpdateForm = !this.showUpdateForm;
+    this.currentProject = project;
+    console.log(project);
+  }
+
+  refreshComponent() {
+    this.router
+      .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
+      .then(() => {
+        this.router.navigate(['portfolio']);
+      });
   }
 }

@@ -22,9 +22,9 @@ export class CompanyService {
     return this.http.get<Company[]>(url);
   }
 
-  addCompany(newCompany: Company) {
+  addCompany(newCompany: Company): Observable<any> {
     const url = `${this.apiUrl}/companies`;
-    this.http.post<any>(url, newCompany, httpOptions);
+    return this.http.post<any>(url, newCompany, httpOptions);
   }
 
   updateCompany(company_id: number, updatedCompany: Company): Observable<any> {

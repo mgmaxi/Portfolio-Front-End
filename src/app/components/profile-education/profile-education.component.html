@@ -1,22 +1,36 @@
 <!-- Add Education Modal -->
-<div class="modal" *ngIf="showForm">
+<div class="modal" *ngIf="showAddForm">
   <div class="containerFormAdd">
-    <i class="fas fa-times iconClose" (click)="toggleForm()"></i>
+    <i class="fas fa-times iconClose" (click)="toggleAddForm()"></i>
     <app-form-add-education
       (onAddEducation)="addEducation($event)"
     ></app-form-add-education>
   </div>
 </div>
+<!-- Update Education Modal  -->
+<div class="modal" *ngIf="showUpdateForm">
+  <div class="containerFormAdd">
+    <i class="fas fa-times iconClose" (click)="toggleUpdateForm()"></i>
+    <app-form-update-education
+      (onUpdateEducation)="updateEducation($event)"
+      [currentEducationForm]="currentEducation"
+    ></app-form-update-education>
+  </div>
+</div>
 <!-- Education -->
 <div class="containerSection">
-  <section
-    class="containerSectionData"
-    cdkDropList
-    (cdkDropListDropped)="onDropped($event)"
-  >
+  <section class="containerSectionData">
     <h2 class="sectionTitle">Educación</h2>
-    <i class="fas fa-plus iconAdd" (click)="toggleForm()" *ngIf="isAdmin"></i>
-    <i class="fas fa-trash iconDeleteSection" *ngIf="isAdmin"></i>
+    <i
+      class="fas fa-plus iconAdd"
+      (click)="toggleAddForm()"
+      *ngIf="isAdmin"
+    ></i>
+    <i
+      class="fas fa-trash iconDeleteSection"
+      (click)="deleteAllEducationsFromPerson()"
+      *ngIf="isAdmin"
+    ></i>
     <!-- Education List -->
     <div
       *ngFor="let education of educationList"
@@ -38,10 +52,14 @@
         <p class="textSmall">Fecha de finalización: {{ education.end_date }}</p>
         <i
           class="fas fa-trash iconDelete"
-          (click)="deleteItem(education)"
+          (click)="deleteEducation(education)"
           *ngIf="isAdmin"
         ></i>
-        <i class="fas fa-pencil-alt iconEdit" *ngIf="isAdmin"></i>
+        <i
+          class="fas fa-pencil-alt iconEdit"
+          (click)="toggleUpdateForm(education)"
+          *ngIf="isAdmin"
+        ></i>
       </section>
     </div>
   </section>

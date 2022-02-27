@@ -1,0 +1,51 @@
+<div class="containerSection">
+  <section class="containerSectionData">
+    <h2 class="sectionTitle">Agregar Idioma</h2>
+    <p class="subTitle">
+      <i
+        class="fas fa-plus iconAddTechToPerson"
+        style="
+          width: 20px;
+          height: 20px;
+          font-size: 10px;
+          display: inline-block;
+        "
+      ></i>
+      Agrega un idioma a tu cuenta.
+    </p>
+    <p class="subTitle">
+      <i
+        class="fas fa-trash iconDeleteTech"
+        style="
+          width: 20px;
+          height: 20px;
+          font-size: 10px;
+          display: inline-block;
+        "
+      ></i>
+      Elimina un idioma permanentemente.
+    </p>
+
+    <!-- Language List -->
+    <div class="containerLanguage">
+      <figure
+        *ngFor="let language of languageList"
+        class="containerLanguageItem"
+      >
+        <figcaption>
+          <h3>{{ language.name }}</h3>
+          <div class="iconsTechContainer">
+            <i
+              class="fas fa-plus iconAddTechToPerson"
+              (click)="addLanguageToPerson(language)"
+            ></i>
+            <i
+              class="fas fa-trash iconDeleteTech"
+              (click)="deleteLanguage(language)"
+            ></i>
+          </div>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+</div>

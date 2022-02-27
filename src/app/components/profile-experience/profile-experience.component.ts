@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Experience } from 'src/app/models/experience';
 import { ExperienceService } from 'src/app/service/experience.service';
 import { TokenService } from 'src/app/service/token.service';
@@ -19,7 +20,8 @@ export class ProfileExperienceComponent implements OnInit {
 
   constructor(
     private tokenService: TokenService,
-    private experienceService: ExperienceService
+    private experienceService: ExperienceService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -78,9 +80,10 @@ export class ProfileExperienceComponent implements OnInit {
         this.experienceList.push(updatedExperience)
       );
     this.toggleUpdateForm();
+    this.refreshComponent();
   }
 
-  deleteItem(experience: Experience) {
+  deleteExperience(experience: Experience) {
     let experience_id = experience.id;
     this.experienceService
       .deleteExperience(experience_id!, this.person_id)
@@ -92,6 +95,12 @@ export class ProfileExperienceComponent implements OnInit {
       );
   }
 
+  deleteAllExperiencesFromPerson() {
+    this.experienceService
+      .deleteAllExperiencesFromPerson(this.person_id)
+      .subscribe(() => (this.experienceList = []));
+  }
+
   toggleAddForm() {
     this.showAddForm = !this.showAddForm;
   }
@@ -99,5 +108,13 @@ export class ProfileExperienceComponent implements OnInit {
   toggleUpdateForm(experience?: Experience) {
     this.showUpdateForm = !this.showUpdateForm;
     this.currentExperience = experience;
+  }
+
+  refreshComponent() {
+    this.router
+      .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
+      .then(() => {
+        this.router.navigate(['portfolio']);
+      });
   }
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PortfolioService } from 'src/app/service/portfolio.service';
+import { Router } from '@angular/router';
+import { Language } from 'src/app/models/language';
+import { LanguageService } from 'src/app/service/language.service';
 import { TokenService } from 'src/app/service/token.service';
-import { LanguagesList } from './LanguagesList';
 
 @Component({
   selector: 'app-profile-languages',
@@ -10,18 +11,20 @@ import { LanguagesList } from './LanguagesList';
 })
 export class ProfileLanguagesComponent implements OnInit {
   languagesList: any[] = [];
-  showForm: boolean = false;
-  person_id: number = 1;
   roles: string[] = [];
+  person_id: number = 1;
   isAdmin = false;
+  showAddForm: boolean = false;
+  showAddLanguageToPersonForm: boolean = false;
 
   constructor(
-    private portfolioData: PortfolioService,
-    private tokenService: TokenService
+    private languageService: LanguageService,
+    private tokenService: TokenService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.getLanguages();
+    this.getByPersonId();
     this.getRoles();
   }
 
@@ -34,30 +37,60 @@ export class ProfileLanguagesComponent implements OnInit {
     });
   }
 
-  getLanguages() {
-    this.portfolioData
-      .getSection('/persons/' + this.person_id)
-      .subscribe((data) => (this.languagesList = data.languages));
+  getByPersonId() {
+    this.languageService
+      .findByPersonId(this.person_id)
+      .subscribe((data) => (this.languagesList = data));
   }
 
-  deleteItem(item: LanguagesList) {
-    this.portfolioData
-      .deleteItem('languages', item)
+  addLanguage(language: Language) {
+    this.languageService
+      .addLanguage(language)
+      .subscribe((language) => this.languagesList.push(language));
+    this.toggleAddForm();
+    this.refreshComponent();
+  }
+
+  addLanguageToPerson(language_id: number) {
+    this.languageService
+      .addLanguageToPerson(this.person_id, language_id)
+      .subscribe((newLanguage) => this.languagesList.push(newLanguage));
+    this.toggleAddLanguageToPersonForm();
+    this.refreshComponent();
+    //revisar suscribe
+  }
+
+  deleteLanguageOfPerson(language: Language) {
+    let language_id = language.id;
+    this.languageService
+      .deleteLanguageOfPerson(this.person_id, language_id!)
       .subscribe(
         () =>
           (this.languagesList = this.languagesList.filter(
-            (list) => list.id !== item.id
+            (list) => list.id !== language_id
           ))
       );
   }
 
-  addLanguage(newItem: LanguagesList) {
-    this.portfolioData
-      .addItem('languages', newItem)
-      .subscribe((newItem) => this.languagesList.push(newItem));
+  deleteAllLanguagesFromPerson() {
+    this.languageService
+      .deleteAllLanguagesFromPerson(this.person_id)
+      .subscribe(() => (this.languagesList = []));
   }
 
-  toggleForm() {
-    this.showForm = !this.showForm;
+  toggleAddForm() {
+    this.showAddForm = !this.showAddForm;
+  }
+
+  toggleAddLanguageToPersonForm(language?: Language) {
+    this.showAddLanguageToPersonForm = !this.showAddLanguageToPersonForm;
+  }
+
+  refreshComponent() {
+    this.router
+      .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
+      .then(() => {
+        this.router.navigate(['portfolio']);
+      });
   }
 }

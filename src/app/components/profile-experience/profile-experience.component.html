@@ -26,7 +26,11 @@
       (click)="toggleAddForm()"
       *ngIf="isAdmin"
     ></i>
-    <i class="fas fa-trash iconDeleteSection" *ngIf="isAdmin"></i>
+    <i
+      class="fas fa-trash iconDeleteSection"
+      (click)="deleteAllExperiencesFromPerson()"
+      *ngIf="isAdmin"
+    ></i>
     <!-- Experience List -->
     <div *ngFor="let experience of experienceList" class="containerSectionItem">
       <img
@@ -51,7 +55,7 @@
         ></i>
         <i
           class="fas fa-trash iconDelete"
-          (click)="deleteItem(experience)"
+          (click)="deleteExperience(experience)"
           *ngIf="isAdmin"
         ></i>
       </section>

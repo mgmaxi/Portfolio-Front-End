@@ -17,14 +17,20 @@ import { LoginComponent } from './security/auth/login/login.component';
 import { SignupComponent } from './security/auth/signup/signup.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FormAddEducationComponent } from './components/forms/form-add-education/form-add-education.component';
+import { FormAddEducationComponent } from './components/profile-education/form-add-education/form-add-education.component';
 import { FormAddExperienceComponent } from './components/profile-experience/form-add-experience/form-add-experience.component';
 import { FormUpdateExperienceComponent } from './components/profile-experience/form-update-experience/form-update-experience.component';
-import { FormAddProjectComponent } from './components/forms/form-add-project/form-add-project.component';
-import { FormAddLanguageComponent } from './components/forms/form-add-language/form-add-language.component';
-import { FormAddTechnologieComponent } from './components/forms/form-add-technologie/form-add-technologie.component';
+import { FormAddProjectComponent } from './components/profile-projects/form-add-project/form-add-project.component';
+import { FormAddLanguageComponent } from './components/profile-languages/form-add-language/form-add-language.component';
+import { FormAddTechnologieComponent } from './components/profile-technologies/form-add-technologie/form-add-technologie.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { interceptorProvider } from './security/interceptors/interceptor.service';
+import { FormUpdateEducationComponent } from './components/profile-education/form-update-education/form-update-education.component';
+import { FormUpdateProjectComponent } from './components/profile-projects/form-update-project/form-update-project.component';
+import { FormUpdateLanguageComponent } from './components/profile-languages/form-update-language/form-update-language.component';
+import { FormUpdateHeaderComponent } from './components/profile-header/form-update-header/form-update-header.component';
+import { FormUpdateUserphotosComponent } from './components/profile-header/form-update-userphotos/form-update-userphotos.component';
+import { FormAddTechToPersonComponent } from './components/profile-technologies/form-add-tech-to-person/form-add-tech-to-person.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +54,12 @@ import { interceptorProvider } from './security/interceptors/interceptor.service
     FormAddLanguageComponent,
     FormAddTechnologieComponent,
     FormUpdateExperienceComponent,
+    FormUpdateEducationComponent,
+    FormUpdateProjectComponent,
+    FormUpdateLanguageComponent,
+    FormUpdateHeaderComponent,
+    FormUpdateUserphotosComponent,
+    FormAddTechToPersonComponent,
   ],
   imports: [
     BrowserModule,
