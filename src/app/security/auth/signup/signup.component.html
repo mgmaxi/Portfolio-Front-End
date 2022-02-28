@@ -1,6 +1,7 @@
 <div class="modal">
   <div class="containerForm">
     <form [formGroup]="form" (ngSubmit)="onSignup($event)">
+      <!-- Signup User Data -->
       <p class="title">Crear una cuenta</p>
       <!-- User input -->
       <input
@@ -55,6 +56,19 @@
         </p>
         <p *ngIf="Password?.hasError('minlength')" class="error">
           *La contraseña debe tener al menos 8 caracteres.
+        </p>
+      </div>
+      <!-- Signup Person Data -->
+      <!-- Name input -->
+      <input type="text" placeholder="Nombre" formControlName="name" />
+      <i class="fa fa-user"></i>
+      <!-- Name validation error -->
+      <div *ngIf="Name?.errors && (Name?.touched || Name?.dirty)">
+        <p *ngIf="Name?.hasError('required')" class="error">
+          *El nombre es requerido.
+        </p>
+        <p *ngIf="Name?.hasError('minlength')" class="error">
+          El nombre debe tener al menos 3 caracteres.
         </p>
       </div>
       <p>¿Ya tenés una cuenta? <a routerLink="/login">Inicia sesión</a></p>

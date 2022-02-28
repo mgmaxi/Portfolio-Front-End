@@ -16,7 +16,7 @@ export class SignupComponent implements OnInit {
   form: FormGroup;
   isSignedup = false;
   isSignedupFail = false;
-  signupUser: SignupUser = new SignupUser('', '', '');
+  signupUser: SignupUser = new SignupUser('', '', '', '');
   errorMsg: string = '';
   succesMsg: string = '';
   isLogged = false;
@@ -38,6 +38,7 @@ export class SignupComponent implements OnInit {
       ],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
+      name: ['', [Validators.required, Validators.minLength(3)]],
     });
   }
 
@@ -53,7 +54,8 @@ export class SignupComponent implements OnInit {
       this.signupUser = new SignupUser(
         this.form.value.username,
         this.form.value.email,
-        this.form.value.password
+        this.form.value.password,
+        this.form.value.name
       );
 
       this.authService.signup(this.signupUser).subscribe(
@@ -87,5 +89,9 @@ export class SignupComponent implements OnInit {
 
   get Password() {
     return this.form.get('password');
+  }
+
+  get Name() {
+    return this.form.get('name');
   }
 }
