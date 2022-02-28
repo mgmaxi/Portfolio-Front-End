@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Person } from '../models/person';
+import { PersonDTO } from '../models/personDTO';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -22,9 +23,9 @@ export class PersonService {
     return this.http.get<Person[]>(url);
   }
 
-  getPersonProfile(person_id: number): Observable<Person[]> {
+  getPersonProfile(person_id: number): Observable<PersonDTO[]> {
     const url = `${this.apiUrl}/persons/${person_id}/profile`;
-    return this.http.get<Person[]>(url);
+    return this.http.get<PersonDTO[]>(url);
   }
 
   updatePerson(

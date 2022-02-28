@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TokenService } from 'src/app/service/token.service';
+import { TokenService } from 'src/app/security/service/token.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',

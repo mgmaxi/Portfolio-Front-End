@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PortfolioService } from 'src/app/service/portfolio.service';
-import { TokenService } from 'src/app/service/token.service';
+import { PersonService } from 'src/app/service/person.service';
+import { SectionsService } from 'src/app/service/sections.service';
+import { TokenService } from 'src/app/security/service/token.service';
 
 @Component({
   selector: 'app-profile-about',
@@ -8,18 +9,21 @@ import { TokenService } from 'src/app/service/token.service';
   styleUrls: ['./profile-about.component.css'],
 })
 export class ProfileAboutComponent implements OnInit {
-  about: string[] = [];
+  person: any = '';
   person_id: number = 1;
   roles: string[] = [];
   isAdmin = false;
+  showAboutSection: boolean = true;
 
   constructor(
-    private portfolioData: PortfolioService,
-    private tokenService: TokenService
+    private personService: PersonService,
+    private tokenService: TokenService,
+    private sectionsService: SectionsService
   ) {}
 
   ngOnInit(): void {
     this.getAbout();
+    this.showAbout();
   }
 
   getRoles() {
@@ -32,8 +36,17 @@ export class ProfileAboutComponent implements OnInit {
   }
 
   getAbout() {
-    this.portfolioData
-      .getSection('/persons/' + this.person_id)
-      .subscribe((data) => (this.about = data.about));
+    this.personService.getPersonProfile(this.person_id).subscribe((data) => {
+      this.person = data;
+      if (this.person.about.length === 0 || !this.person.about.trim()) {
+        this.showAboutSection = false;
+      }
+    });
+  }
+
+  showAbout() {
+    this.sectionsService.showAboutSection.subscribe((data) => {
+      this.showAboutSection = data;
+    });
   }
 }

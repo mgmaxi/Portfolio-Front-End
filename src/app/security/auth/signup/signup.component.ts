@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/service/auth.service';
-import { TokenService } from 'src/app/service/token.service';
+import { AuthService } from 'src/app/security/service/auth.service';
+import { TokenService } from 'src/app/security/service/token.service';
 import { SignupUser } from '../../models/signup-user';
 
 @Component({

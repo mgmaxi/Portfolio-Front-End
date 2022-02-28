@@ -1,0 +1,58 @@
+<!-- Add Language Modal -->
+<div class="modal" *ngIf="showAddForm">
+  <div class="containerFormAdd">
+    <i class="fas fa-times iconClose" (click)="toggleAddForm()"></i>
+    <app-form-add-language
+      (onAddLanguage)="addLanguage($event)"
+    ></app-form-add-language>
+  </div>
+</div>
+<!-- Add Language To Person Modal -->
+<div class="modal" *ngIf="showAddLanguageToPersonForm">
+  <div class="containerFormAdd">
+    <i
+      class="fas fa-times iconClose iconCloseModalAddLanguage"
+      (click)="toggleAddLanguageToPersonForm()"
+    ></i>
+    <app-add-language-to-person
+      (onAddLanguageToPerson)="addLanguageToPerson($event)"
+    ></app-add-language-to-person>
+  </div>
+</div>
+<!-- Languages -->
+<div class="containerSection" *ngIf="showLanguageSection">
+  <section class="containerSectionData">
+    <h2 class="sectionTitle">Idiomas</h2>
+    <button class="btnCreate" (click)="toggleAddForm()" *ngIf="isAdmin">
+      Crear
+    </button>
+    <i
+      class="fas fa-plus iconAdd"
+      (click)="toggleAddLanguageToPersonForm()"
+      *ngIf="isAdmin"
+    ></i>
+    <i
+      class="fas fa-trash iconDeleteSection"
+      (click)="deleteAllLanguagesFromPerson()"
+      *ngIf="isAdmin"
+    ></i>
+    <!-- Languages List -->
+    <div *ngFor="let language of languagesList" class="containerSectionItem">
+      <section class="containerSectionItemData">
+        <h3>
+          {{ language.name }}
+        </h3>
+        <i
+          class="fas fa-trash iconDelete"
+          (click)="deleteLanguageOfPerson(language)"
+          *ngIf="isAdmin"
+        ></i>
+        <i
+          class="fas fa-pencil-alt iconEdit"
+          (click)="toggleAddLanguageToPersonForm(language)"
+          *ngIf="isAdmin"
+        ></i>
+      </section>
+    </div>
+  </section>
+</div>

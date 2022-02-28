@@ -4,7 +4,7 @@
     <!-- Name input -->
     <input
       type="text"
-      placeholder="Nombre de la educación"
+      placeholder="Nombre de la disciplina académica"
       formControlName="name"
       autofocus
     />
@@ -12,19 +12,19 @@
     <!-- Name validation error -->
     <div *ngIf="Name?.errors && (Name?.touched || Name?.dirty)">
       <p *ngIf="Name?.hasError('required')" class="error">
-        *El nombre de la institución es requerido.
+        *El nombre de la disciplina académica es requerido.
       </p>
     </div>
     <!-- School input -->
     <input
       type="number"
-      placeholder="Nombre de la institución"
+      placeholder="Nombre de la institución académica"
       formControlName="school"
     />
     <!-- Description input -->
     <input
       type="text"
-      placeholder="Descripción de la educación"
+      placeholder="Descripción de la disciplina académica"
       formControlName="description"
     />
     <i class="fa fa-plus-circle"></i>
@@ -47,7 +47,7 @@
     <!-- Start_date input -->
     <input
       type="date"
-      placeholder="Año de inicio"
+      placeholder="Fecha de inicio"
       formControlName="start_date"
     />
     <i class="fa fa-plus-circle"></i>
@@ -56,20 +56,20 @@
       *ngIf="Start_date?.errors && (Start_date?.touched || Start_date?.dirty)"
     >
       <p *ngIf="Start_date?.hasError('required')" class="error">
-        *El año de inicio es requerido.
+        *La fecha de inicio es requerida.
       </p>
     </div>
     <!-- End_date input -->
     <input
       type="date"
-      placeholder="Año de realización"
+      placeholder="Fecha de realización"
       formControlName="end_date"
     />
     <i class="fa fa-plus-circle"></i>
     <!-- End_date validation error -->
     <div *ngIf="End_date?.errors && (End_date?.touched || End_date?.dirty)">
       <p *ngIf="End_date?.hasError('required')" class="error">
-        *El año de finalización es requerido.
+        *La fecha de finalización es requerido.
       </p>
     </div>
 

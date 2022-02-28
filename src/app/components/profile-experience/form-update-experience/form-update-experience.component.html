@@ -2,12 +2,12 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
     <p class="title">Modificar experiencia</p>
     <!-- Name input -->
-    <input type="text" placeholder="Nombre del puesto" formControlName="name" />
+    <input type="text" placeholder="Nombre del cargo" formControlName="name" />
     <i class="fa fa-plus-circle"></i>
     <!-- Name validation error -->
     <div *ngIf="Name?.errors && (Name?.touched || Name?.dirty)">
       <p *ngIf="Name?.hasError('required')" class="error">
-        *El nombre del puesto es requerido.
+        *El nombre del cargo es requerido.
       </p>
     </div>
     <!-- Company input -->
@@ -20,7 +20,7 @@
     <!-- Description input -->
     <input
       type="text"
-      placeholder="Descripción del puesto"
+      placeholder="Descripción del cargo"
       formControlName="description"
     />
     <i class="fa fa-plus-circle"></i>
@@ -44,7 +44,7 @@
     <!-- Start_date input -->
     <input
       type="date"
-      placeholder="Año de servicio"
+      placeholder="Fecha de inicio"
       formControlName="start_date"
     />
     <i class="fa fa-plus-circle"></i>
@@ -59,7 +59,7 @@
     <!-- End_date input -->
     <input
       type="date"
-      placeholder="Año de servicio"
+      placeholder="Fecha de finalización"
       formControlName="end_date"
     />
     <i class="fa fa-plus-circle"></i>

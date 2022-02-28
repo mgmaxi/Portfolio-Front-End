@@ -3,8 +3,9 @@ import { Router } from '@angular/router';
 import { Person } from 'src/app/models/person';
 import { Userphotos } from 'src/app/models/userphotos';
 import { PersonService } from 'src/app/service/person.service';
-import { TokenService } from 'src/app/service/token.service';
+import { TokenService } from 'src/app/security/service/token.service';
 import { UserphotosService } from 'src/app/service/userphotos.service';
+import { SectionsService } from 'src/app/service/sections.service';
 
 @Component({
   selector: 'app-profile-header',
@@ -12,7 +13,7 @@ import { UserphotosService } from 'src/app/service/userphotos.service';
   styleUrls: ['./profile-header.component.css'],
 })
 export class ProfileHeaderComponent implements OnInit {
-  header: any = null;
+  person: any = '';
   roles: string[] = [];
   isAdmin = false;
   showUpdateForm: boolean = false;
@@ -22,11 +23,18 @@ export class ProfileHeaderComponent implements OnInit {
   userphotos_id: any = 1;
   cover_photo: string = '../../../assets/image/profile/profileCover.jpg';
   profile_photo: string = '../../../assets/image/profile/profileCover.jpg';
+  showAboutSection: boolean = true;
+  showExperienceSection: boolean = true;
+  showEducationSection: boolean = true;
+  showProjectSection: boolean = true;
+  showLanguageSection: boolean = true;
+  showTechnologySection: boolean = true;
 
   constructor(
     private tokenService: TokenService,
     private personService: PersonService,
     private userphotosService: UserphotosService,
+    private sectionsService: SectionsService,
     private router: Router
   ) {}
 
@@ -47,7 +55,7 @@ export class ProfileHeaderComponent implements OnInit {
   getPersonProfile() {
     this.personService
       .getPersonProfile(this.person_id)
-      .subscribe((data) => (this.header = data));
+      .subscribe((data) => (this.person = data));
   }
 
   updatePerson(person: Person) {
@@ -55,7 +63,7 @@ export class ProfileHeaderComponent implements OnInit {
     const updatedPerson = { name, nationality, profession, about };
     this.personService
       .updatePerson(this.user_id, person_id!, updatedPerson)
-      .subscribe((updatedPerson) => this.header.push(updatedPerson));
+      .subscribe((updatedPerson) => this.person.push(updatedPerson));
     this.toggleUpdateForm();
     this.refreshComponent();
   }
@@ -66,8 +74,8 @@ export class ProfileHeaderComponent implements OnInit {
     const updatedUserphotos = { profile_photo, cover_photo };
     this.userphotosService
       .updateUserphotos(this.user_id, userphotos_id!, updatedUserphotos)
-      // header.push reemplaza los datos de updatePerson name, nationality, etc
-      .subscribe((updatedUserphotos) => this.header.push(updatedUserphotos));
+      // person.push reemplaza los datos de updatePerson name, nationality, etc
+      .subscribe((updatedUserphotos) => this.person.push(updatedUserphotos));
     this.toggleUpdateUserphotosForm();
     this.refreshComponent();
   }
@@ -85,5 +93,31 @@ export class ProfileHeaderComponent implements OnInit {
       .then(() => {
         this.router.navigate(['portfolio']);
       });
+  }
+
+  showAbout() {
+    this.showAboutSection = !this.showAboutSection;
+    this.sectionsService.showAbout(this.showAboutSection);
+  }
+
+  showExperience() {
+    this.showExperienceSection = !this.showExperienceSection;
+    this.sectionsService.showExperience(this.showExperienceSection);
+  }
+  showEducation() {
+    this.showEducationSection = !this.showEducationSection;
+    this.sectionsService.showEducation(this.showEducationSection);
+  }
+  showProject() {
+    this.showProjectSection = !this.showProjectSection;
+    this.sectionsService.showProject(this.showProjectSection);
+  }
+  showLanguage() {
+    this.showLanguageSection = !this.showLanguageSection;
+    this.sectionsService.showLanguage(this.showLanguageSection);
+  }
+  showTechnology() {
+    this.showTechnologySection = !this.showTechnologySection;
+    this.sectionsService.showTechnology(this.showTechnologySection);
   }
 }

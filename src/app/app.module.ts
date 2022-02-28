@@ -9,10 +9,10 @@ import { ProfileHeaderComponent } from './components/profile-header/profile-head
 import { ProfileAboutComponent } from './components/profile-about/profile-about.component';
 import { ProfileEducationComponent } from './components/profile-education/profile-education.component';
 import { ProfileExperienceComponent } from './components/profile-experience/profile-experience.component';
-import { ProfileProjectsComponent } from './components/profile-projects/profile-projects.component';
+import { ProfileProjectsComponent } from './components/profile-project/profile-project.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ProfileLanguagesComponent } from './components/profile-languages/profile-languages.component';
-import { ProfileTechnologiesComponent } from './components/profile-technologies/profile-technologies.component';
+import { ProfileLanguagesComponent } from './components/profile-language/profile-language.component';
+import { ProfileTechnologiesComponent } from './components/profile-technology/profile-technology.component';
 import { LoginComponent } from './security/auth/login/login.component';
 import { SignupComponent } from './security/auth/signup/signup.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
@@ -20,17 +20,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormAddEducationComponent } from './components/profile-education/form-add-education/form-add-education.component';
 import { FormAddExperienceComponent } from './components/profile-experience/form-add-experience/form-add-experience.component';
 import { FormUpdateExperienceComponent } from './components/profile-experience/form-update-experience/form-update-experience.component';
-import { FormAddProjectComponent } from './components/profile-projects/form-add-project/form-add-project.component';
-import { FormAddLanguageComponent } from './components/profile-languages/form-add-language/form-add-language.component';
-import { FormAddTechnologieComponent } from './components/profile-technologies/form-add-technologie/form-add-technologie.component';
+import { FormAddProjectComponent } from './components/profile-project/form-add-project/form-add-project.component';
+import { FormAddLanguageComponent } from './components/profile-language/form-add-language/form-add-language.component';
+import { FormAddTechnologieComponent } from './components/profile-technology/form-add-technology/form-add-technology.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { interceptorProvider } from './security/interceptors/interceptor.service';
 import { FormUpdateEducationComponent } from './components/profile-education/form-update-education/form-update-education.component';
-import { FormUpdateProjectComponent } from './components/profile-projects/form-update-project/form-update-project.component';
-import { FormUpdateLanguageComponent } from './components/profile-languages/form-update-language/form-update-language.component';
+import { FormUpdateProjectComponent } from './components/profile-project/form-update-project/form-update-project.component';
+import { FormUpdateLanguageComponent } from './components/profile-language/add-language-to-person/add-language-to-person.component';
 import { FormUpdateHeaderComponent } from './components/profile-header/form-update-header/form-update-header.component';
 import { FormUpdateUserphotosComponent } from './components/profile-header/form-update-userphotos/form-update-userphotos.component';
-import { FormAddTechToPersonComponent } from './components/profile-technologies/form-add-tech-to-person/form-add-tech-to-person.component';
+import { FormAddTechToPersonComponent } from './components/profile-technology/add-technology-to-person/add-technology-to-person.component';
 
 @NgModule({
   declarations: [

@@ -27,8 +27,8 @@
     <img
       class="imgCover"
       [src]="
-        (header && header.cover_photo) != null
-          ? header.cover_photo
+        (person && person.cover_photo) != null
+          ? person.cover_photo
           : cover_photo
       "
       alt="Profile cover"
@@ -36,8 +36,8 @@
     <img
       class="imgProfileHeader"
       [src]="
-        header && header.profile_photo != null
-          ? header.profile_photo
+        person && person.profile_photo != null
+          ? person.profile_photo
           : profile_photo
       "
       alt="Profile image"
@@ -64,11 +64,14 @@
     </div>
   </div>
   <section class="containerProfileHeaderData">
-    <h2>{{ header.name }}</h2>
-    <p>{{ header.nationality }}</p>
-    <p>{{ header.profession }}</p>
-    <button active>Intereses</button>
-    <button>Añadir sección</button>
-    <button>Más</button>
+    <h2>{{ person.name }}</h2>
+    <p>{{ person.nationality }}</p>
+    <p>{{ person.profession }}</p>
+    <button (click)="showAbout()">Acerca de..</button>
+    <button (click)="showExperience()">Experiencia</button>
+    <button (click)="showEducation()">Educación</button>
+    <button (click)="showProject()">Proyectos</button>
+    <button (click)="showLanguage()">Idiomas</button>
+    <button (click)="showTechnology()">Tecnologías</button>
   </section>
 </div>

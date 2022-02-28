@@ -5,7 +5,7 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import { TokenService } from 'src/app/service/token.service';
+import { TokenService } from 'src/app/security/service/token.service';
 
 @Injectable({
   providedIn: 'root',

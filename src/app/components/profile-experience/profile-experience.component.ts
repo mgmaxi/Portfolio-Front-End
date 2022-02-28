@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Experience } from 'src/app/models/experience';
 import { ExperienceService } from 'src/app/service/experience.service';
-import { TokenService } from 'src/app/service/token.service';
+import { SectionsService } from 'src/app/service/sections.service';
+import { TokenService } from 'src/app/security/service/token.service';
 
 @Component({
   selector: 'app-profile-experience',
@@ -17,16 +18,20 @@ export class ProfileExperienceComponent implements OnInit {
   showAddForm: boolean = false;
   showUpdateForm: boolean = false;
   currentExperience: any;
+  showExperienceSection: boolean = true;
 
   constructor(
     private tokenService: TokenService,
     private experienceService: ExperienceService,
+    private sectionsService: SectionsService,
+
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.getExperiences();
     this.getRoles();
+    this.showExperience();
   }
 
   getRoles() {
@@ -39,9 +44,12 @@ export class ProfileExperienceComponent implements OnInit {
   }
 
   getExperiences() {
-    this.experienceService
-      .getExperiences(this.person_id)
-      .subscribe((data) => (this.experienceList = data));
+    this.experienceService.getExperiences(this.person_id).subscribe((data) => {
+      this.experienceList = data;
+      if (this.experienceList.length === 0) {
+        this.showExperienceSection = false;
+      }
+    });
   }
 
   addExperience(experience: Experience) {
@@ -98,7 +106,10 @@ export class ProfileExperienceComponent implements OnInit {
   deleteAllExperiencesFromPerson() {
     this.experienceService
       .deleteAllExperiencesFromPerson(this.person_id)
-      .subscribe(() => (this.experienceList = []));
+      .subscribe(() => {
+        this.experienceList = [];
+        this.refreshComponent();
+      });
   }
 
   toggleAddForm() {
@@ -116,5 +127,11 @@ export class ProfileExperienceComponent implements OnInit {
       .then(() => {
         this.router.navigate(['portfolio']);
       });
+  }
+
+  showExperience() {
+    this.sectionsService.showExperienceSection.subscribe((data) => {
+      this.showExperienceSection = data;
+    });
   }
 }

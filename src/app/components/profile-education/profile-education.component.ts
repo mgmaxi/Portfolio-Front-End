@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 //import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { TokenService } from 'src/app/service/token.service';
+import { TokenService } from 'src/app/security/service/token.service';
 import { EducationService } from 'src/app/service/education.service';
 import { Education } from 'src/app/models/education';
 import { Router } from '@angular/router';
+import { SectionsService } from 'src/app/service/sections.service';
 
 @Component({
   selector: 'app-profile-education',
@@ -18,16 +19,19 @@ export class ProfileEducationComponent implements OnInit {
   showUpdateForm: boolean = false;
   isAdmin = false;
   currentEducation: any;
+  showEducationSection: boolean = true;
 
   constructor(
     private tokenService: TokenService,
     private educationService: EducationService,
+    private sectionsService: SectionsService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.getEducations();
     this.getRoles();
+    this.showEducation();
   }
 
   getRoles() {
@@ -40,9 +44,12 @@ export class ProfileEducationComponent implements OnInit {
   }
 
   getEducations() {
-    this.educationService
-      .getEducations(this.person_id)
-      .subscribe((data) => (this.educationList = data));
+    this.educationService.getEducations(this.person_id).subscribe((data) => {
+      this.educationList = data;
+      if (this.educationList.length === 0) {
+        this.showEducationSection = false;
+      }
+    });
   }
 
   addEducation(education: Education) {
@@ -100,7 +107,10 @@ export class ProfileEducationComponent implements OnInit {
   deleteAllEducationsFromPerson() {
     this.educationService
       .deleteAllEducationsFromPerson(this.person_id)
-      .subscribe(() => (this.educationList = []));
+      .subscribe(() => {
+        this.educationList = [];
+        this.refreshComponent();
+      });
   }
 
   toggleAddForm() {
@@ -119,5 +129,11 @@ export class ProfileEducationComponent implements OnInit {
       .then(() => {
         this.router.navigate(['portfolio']);
       });
+  }
+
+  showEducation() {
+    this.sectionsService.showEducationSection.subscribe((data) => {
+      this.showEducationSection = data;
+    });
   }
 }

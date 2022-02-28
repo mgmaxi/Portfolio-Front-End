@@ -4,27 +4,27 @@
     <!-- Name input -->
     <input
       type="text"
-      placeholder="Nombre del título educativo"
+      placeholder="Nombre de la disciplina académica"
       formControlName="name"
     />
     <i class="fa fa-plus-circle"></i>
     <!-- Name validation error -->
     <div *ngIf="Name?.errors && (Name?.touched || Name?.dirty)">
       <p *ngIf="Name?.hasError('required')" class="error">
-        *El nombre del título educativo es requerido.
+        *El nombre de la disciplina académica es requerido.
       </p>
     </div>
     <!-- School input -->
     <input
       type="number"
-      placeholder="Nombre de la institución"
+      placeholder="Nombre de la institución académica"
       formControlName="school"
     />
     <i class="fa fa-plus-circle"></i>
     <!-- Description input -->
     <input
       type="text"
-      placeholder="Descripción de la educación"
+      placeholder="Descripción de la disciplina académica"
       formControlName="description"
     />
     <i class="fa fa-plus-circle"></i>

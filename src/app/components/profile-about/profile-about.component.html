@@ -1,8 +1,8 @@
 <!-- About -->
-<div class="containerSection">
+<div class="containerSection" *ngIf="showAboutSection">
   <section class="containerSectionData">
     <h2>Acerca</h2>
-    <p id="aboutText">{{ about }}</p>
+    <p id="aboutText">{{ person.about }}</p>
     <i class="fas fa-pencil-alt iconEditAbout" *ngIf="isAdmin"></i>
   </section>
 </div>
