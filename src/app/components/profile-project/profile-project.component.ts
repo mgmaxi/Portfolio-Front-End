@@ -14,7 +14,6 @@ export class ProfileProjectsComponent implements OnInit {
   projectList: any[] = [];
   showForm: boolean = false;
   person_id: number = 1;
-  roles: string[] = [];
   isAdmin = false;
   showAddForm: boolean = false;
   showUpdateForm: boolean = false;
@@ -29,18 +28,9 @@ export class ProfileProjectsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isAdmin = this.tokenService.isAdmin();
     this.getProjects();
-    this.getRoles();
     this.showProject();
-  }
-
-  getRoles() {
-    this.roles = this.tokenService.getAuthorities();
-    this.roles.forEach((role) => {
-      if (role === 'ROLE_ADMIN') {
-        this.isAdmin = true;
-      }
-    });
   }
 
   getProjects() {

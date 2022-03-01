@@ -5,28 +5,20 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import { TokenService } from 'src/app/security/service/token.service';
+import { TokenService } from '../service/token.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class GuardService implements CanActivate {
-  realRole: string = '';
-
+export class LoginGuard implements CanActivate {
   constructor(private tokenService: TokenService, private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    const expectedRoles = route.data['expectedRole'];
-
-    this.realRole = this.tokenService.isAdmin() ? 'admin' : 'user';
-    if (
-      !this.tokenService.isLogged() ||
-      expectedRoles.indexOf(this.realRole) < 0
-    ) {
-      this.router.navigate(['/login']);
+    if (this.tokenService.isLogged()) {
+      this.router.navigate(['/']);
       return false;
     }
     return true;

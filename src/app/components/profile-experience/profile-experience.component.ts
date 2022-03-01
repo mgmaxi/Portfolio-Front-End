@@ -12,7 +12,6 @@ import { TokenService } from 'src/app/security/service/token.service';
 })
 export class ProfileExperienceComponent implements OnInit {
   experienceList: Experience[] = [];
-  roles: string[] = [];
   person_id: number = 1;
   isAdmin = false;
   showAddForm: boolean = false;
@@ -29,18 +28,9 @@ export class ProfileExperienceComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isAdmin = this.tokenService.isAdmin();
     this.getExperiences();
-    this.getRoles();
     this.showExperience();
-  }
-
-  getRoles() {
-    this.roles = this.tokenService.getAuthorities();
-    this.roles.forEach((role) => {
-      if (role === 'ROLE_ADMIN') {
-        this.isAdmin = true;
-      }
-    });
   }
 
   getExperiences() {

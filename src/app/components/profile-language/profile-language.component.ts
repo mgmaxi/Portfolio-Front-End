@@ -12,7 +12,6 @@ import { TokenService } from 'src/app/security/service/token.service';
 })
 export class ProfileLanguagesComponent implements OnInit {
   languagesList: any[] = [];
-  roles: string[] = [];
   person_id: number = 1;
   isAdmin = false;
   showAddForm: boolean = false;
@@ -27,18 +26,9 @@ export class ProfileLanguagesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isAdmin = this.tokenService.isAdmin();
     this.getByPersonId();
-    this.getRoles();
     this.showLanguage();
-  }
-
-  getRoles() {
-    this.roles = this.tokenService.getAuthorities();
-    this.roles.forEach((role) => {
-      if (role === 'ROLE_ADMIN') {
-        this.isAdmin = true;
-      }
-    });
   }
 
   getByPersonId() {

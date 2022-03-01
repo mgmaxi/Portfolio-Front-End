@@ -13,7 +13,6 @@ import { SectionsService } from 'src/app/service/sections.service';
 })
 export class ProfileEducationComponent implements OnInit {
   educationList: Education[] = [];
-  roles: string[] = [];
   person_id: number = 1;
   showAddForm: boolean = false;
   showUpdateForm: boolean = false;
@@ -29,18 +28,9 @@ export class ProfileEducationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isAdmin = this.tokenService.isAdmin();
     this.getEducations();
-    this.getRoles();
     this.showEducation();
-  }
-
-  getRoles() {
-    this.roles = this.tokenService.getAuthorities();
-    this.roles.forEach((role) => {
-      if (role === 'ROLE_ADMIN') {
-        this.isAdmin = true;
-      }
-    });
   }
 
   getEducations() {

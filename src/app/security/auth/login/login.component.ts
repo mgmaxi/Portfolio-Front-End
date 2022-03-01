@@ -12,10 +12,9 @@ import { TokenService } from 'src/app/security/service/token.service';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
-  isLogged = false;
-  isLoginFail = false;
+  isLogged = false; // cambiar por toastr
+  isLoginFail = false; // cambiar por toastr
   loginUser: LoginUser = new LoginUser('', '');
-  roles: string[] = [];
   errorMsg: string = '';
 
   constructor(
@@ -37,13 +36,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    if (this.tokenService.getToken()) {
-      this.isLogged = true;
-      this.isLoginFail = false;
-      this.roles = this.tokenService.getAuthorities();
-    }
-  }
+  ngOnInit() {}
 
   onLogin(event: Event) {
     event.preventDefault;
@@ -59,9 +52,6 @@ export class LoginComponent implements OnInit {
           this.isLoginFail = false;
 
           this.tokenService.setToken(data.token);
-          this.tokenService.setUsername(data.username);
-          this.tokenService.setAuthorities(data.authorities);
-          this.roles = data.authorities;
           this.router.navigate(['/portfolio']);
         },
         (err) => {

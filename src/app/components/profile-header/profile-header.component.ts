@@ -13,8 +13,7 @@ import { SectionsService } from 'src/app/service/sections.service';
   styleUrls: ['./profile-header.component.css'],
 })
 export class ProfileHeaderComponent implements OnInit {
-  person: any = '';
-  roles: string[] = [];
+  person: any = [];
   isAdmin = false;
   showUpdateForm: boolean = false;
   showUpdateUserphotosForm: boolean = false;
@@ -39,17 +38,8 @@ export class ProfileHeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getRoles();
+    this.isAdmin = this.tokenService.isAdmin();
     this.getPersonProfile();
-  }
-
-  getRoles() {
-    this.roles = this.tokenService.getAuthorities();
-    this.roles.forEach((role) => {
-      if (role === 'ROLE_ADMIN') {
-        this.isAdmin = true;
-      }
-    });
   }
 
   getPersonProfile() {
@@ -69,7 +59,6 @@ export class ProfileHeaderComponent implements OnInit {
   }
 
   updateUserphotos(userphotos: Userphotos) {
-    console.log(userphotos);
     let { id: userphotos_id, profile_photo, cover_photo } = userphotos;
     const updatedUserphotos = { profile_photo, cover_photo };
     this.userphotosService

@@ -6,16 +6,17 @@ import { MainComponent } from '../components/main/main.component';
 import { LoginComponent } from '../security/auth/login/login.component';
 import { SignupComponent } from '../security/auth/signup/signup.component';
 import { NotFoundComponent } from '../components/not-found/not-found.component';
-import { GuardService as guard } from '../security/guards/guard.service';
+import { GuardService } from '../security/guards/guard.service';
+import { LoginGuard } from '../security/guards/login.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
+  { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
+  { path: 'signup', component: SignupComponent, canActivate: [LoginGuard] },
   {
     path: 'portfolio',
     component: MainComponent,
-    canActivate: [guard],
+    canActivate: [GuardService],
     data: { expectedRole: ['admin', 'user'] },
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },

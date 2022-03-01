@@ -14,12 +14,11 @@ import { SignupUser } from '../../models/signup-user';
 })
 export class SignupComponent implements OnInit {
   form: FormGroup;
-  isSignedup = false;
-  isSignedupFail = false;
+  isSignedup = false; // cambiar por toastr
+  isSignedupFail = false; // cambiar por toastr
   signupUser: SignupUser = new SignupUser('', '', '', '');
   errorMsg: string = '';
   succesMsg: string = '';
-  isLogged = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -42,11 +41,7 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    if (this.tokenService.getToken()) {
-      this.isLogged = true;
-    }
-  }
+  ngOnInit() {}
 
   onSignup(event: Event) {
     event.preventDefault;

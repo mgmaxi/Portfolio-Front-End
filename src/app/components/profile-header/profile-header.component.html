@@ -27,18 +27,22 @@
     <img
       class="imgCover"
       [src]="
-        (person && person.cover_photo) != null
-          ? person.cover_photo
-          : cover_photo
+        person.cover_photo === null ||
+        person.cover_photo === undefined ||
+        !person.cover_photo.trim()
+          ? cover_photo
+          : person.cover_photo
       "
       alt="Profile cover"
     />
     <img
       class="imgProfileHeader"
       [src]="
-        person && person.profile_photo != null
-          ? person.profile_photo
-          : profile_photo
+        person.profile_photo === null ||
+        person.profile_photo === undefined ||
+        !person.cover_photo.trim()
+          ? profile_photo
+          : person.profile_photo
       "
       alt="Profile image"
     />

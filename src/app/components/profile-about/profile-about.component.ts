@@ -11,13 +11,10 @@ import { TokenService } from 'src/app/security/service/token.service';
 export class ProfileAboutComponent implements OnInit {
   person: any = '';
   person_id: number = 1;
-  roles: string[] = [];
-  isAdmin = false;
   showAboutSection: boolean = true;
 
   constructor(
     private personService: PersonService,
-    private tokenService: TokenService,
     private sectionsService: SectionsService
   ) {}
 
@@ -26,19 +23,14 @@ export class ProfileAboutComponent implements OnInit {
     this.showAbout();
   }
 
-  getRoles() {
-    this.roles = this.tokenService.getAuthorities();
-    this.roles.forEach((role) => {
-      if (role === 'ROLE_ADMIN') {
-        this.isAdmin = true;
-      }
-    });
-  }
-
   getAbout() {
     this.personService.getPersonProfile(this.person_id).subscribe((data) => {
       this.person = data;
-      if (this.person.about.length === 0 || !this.person.about.trim()) {
+      if (
+        this.person.about.length === 0 ||
+        this.person.about === null ||
+        !this.person.about.trim()
+      ) {
         this.showAboutSection = false;
       }
     });
