@@ -4,6 +4,7 @@ import { Experience } from 'src/app/models/experience';
 import { ExperienceService } from 'src/app/service/experience.service';
 import { SectionsService } from 'src/app/service/sections.service';
 import { TokenService } from 'src/app/security/service/token.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile-experience',
@@ -23,7 +24,7 @@ export class ProfileExperienceComponent implements OnInit {
     private tokenService: TokenService,
     private experienceService: ExperienceService,
     private sectionsService: SectionsService,
-
+    private toastr: ToastrService,
     private router: Router
   ) {}
 
@@ -53,7 +54,27 @@ export class ProfileExperienceComponent implements OnInit {
     const newExperience = { name, description, start_date, end_date };
     this.experienceService
       .addExperience(this.person_id, company_id, newExperience)
-      .subscribe((newExperience) => this.experienceList.push(newExperience));
+      .subscribe(
+        (data) => {
+          this.toastr.success(
+            'La experiencia laboral "' +
+              name +
+              '" ha sido agregada a la cuenta!',
+            'Experiencia agregada',
+            {
+              timeOut: 3000,
+              positionClass: 'toast-top-center',
+            }
+          );
+          this.refreshComponent();
+        },
+        (err) => {
+          this.toastr.error(err.error.message, 'Error', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
+        }
+      );
     this.toggleAddForm();
   }
 
@@ -74,11 +95,26 @@ export class ProfileExperienceComponent implements OnInit {
         company_id,
         updatedExperience
       )
-      .subscribe((updatedExperience) =>
-        this.experienceList.push(updatedExperience)
+      .subscribe(
+        (data) => {
+          this.toastr.success(
+            'La experiencia laboral "' + name + '" ha sido modificada!',
+            'Modificación exitosa',
+            {
+              timeOut: 3000,
+              positionClass: 'toast-top-center',
+            }
+          );
+          this.refreshComponent();
+        },
+        (err) => {
+          this.toastr.error(err.error.message, 'Error', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
+        }
       );
     this.toggleUpdateForm();
-    this.refreshComponent();
   }
 
   deleteExperience(experience: Experience) {
@@ -86,20 +122,50 @@ export class ProfileExperienceComponent implements OnInit {
     this.experienceService
       .deleteExperience(experience_id!, this.person_id)
       .subscribe(
-        () =>
-          (this.experienceList = this.experienceList.filter(
-            (list) => list.id !== experience_id
-          ))
+        (data) => {
+          this.toastr.success(
+            'La experiencia laboral "' +
+              experience.name +
+              '" ha sido eliminada!',
+            'Eliminación exitosa',
+            {
+              timeOut: 3000,
+              positionClass: 'toast-top-center',
+            }
+          );
+          this.refreshComponent();
+        },
+        (err) => {
+          this.toastr.error(err.error.message, 'Error', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
+        }
       );
   }
 
   deleteAllExperiencesFromPerson() {
     this.experienceService
       .deleteAllExperiencesFromPerson(this.person_id)
-      .subscribe(() => {
-        this.experienceList = [];
-        this.refreshComponent();
-      });
+      .subscribe(
+        (data) => {
+          this.toastr.success(
+            'Todas las experiencias laborales han sido eliminadas!',
+            'Eliminación exitosa',
+            {
+              timeOut: 3000,
+              positionClass: 'toast-top-center',
+            }
+          );
+          this.refreshComponent();
+        },
+        (err) => {
+          this.toastr.error(err.error.message, 'Error', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
+        }
+      );
   }
 
   toggleAddForm() {

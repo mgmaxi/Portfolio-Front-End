@@ -4,6 +4,7 @@ import { Technology } from 'src/app/models/technology';
 import { SectionsService } from 'src/app/service/sections.service';
 import { TechnologyService } from 'src/app/service/technology.service';
 import { TokenService } from 'src/app/security/service/token.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile-technology',
@@ -22,6 +23,7 @@ export class ProfileTechnologiesComponent implements OnInit {
     private tokenService: TokenService,
     private technologyService: TechnologyService,
     private sectionsService: SectionsService,
+    private toastr: ToastrService,
     private router: Router
   ) {}
 
@@ -43,21 +45,51 @@ export class ProfileTechnologiesComponent implements OnInit {
   addTechnology(technology: Technology) {
     let { name, category, logo, url } = technology;
     const newTechnology = { name, category, logo, url };
-    this.technologyService
-      .addTechnology(newTechnology)
-      .subscribe((newTechnology) => this.technologyList.push(newTechnology));
+    this.technologyService.addTechnology(newTechnology).subscribe(
+      (data) => {
+        this.toastr.success(
+          'La tecnología "' + name + '" ha sido creada!',
+          'Creación exitosa',
+          {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          }
+        );
+        this.refreshComponent();
+      },
+      (err) => {
+        this.toastr.error(err.error.message, 'Error', {
+          timeOut: 3000,
+          positionClass: 'toast-top-center',
+        });
+      }
+    );
     this.toggleAddForm();
-    this.refreshComponent();
-    //revisar suscribe
   }
 
   addTechToPerson(technology_id: number) {
     this.technologyService
       .addTechnologyToPerson(this.person_id, technology_id)
-      .subscribe((newTechnology) => this.technologyList.push(newTechnology));
+      .subscribe(
+        (data) => {
+          this.toastr.success(
+            'La tecnología ha sido agregada a "' + data.name + '"!',
+            'Tecnología agregada',
+            {
+              timeOut: 3000,
+              positionClass: 'toast-top-center',
+            }
+          );
+          this.refreshComponent();
+        },
+        (err) => {
+          this.toastr.error(err.error.message, 'Error', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
+        }
+      );
     this.toggleAddTechToPersonForm();
-    this.refreshComponent();
-    //revisar suscribe
   }
 
   deleteTechnologyOfPerson(technology: Technology) {
@@ -65,20 +97,50 @@ export class ProfileTechnologiesComponent implements OnInit {
     this.technologyService
       .deleteTechnologyOfPerson(this.person_id, technology_id!)
       .subscribe(
-        () =>
-          (this.technologyList = this.technologyList.filter(
-            (list) => list.id !== technology_id
-          ))
+        (data) => {
+          this.toastr.success(
+            'La tecnología "' +
+              technology.name +
+              '" ha sido eliminado de la cuenta!',
+            'Eliminación exitosa',
+            {
+              timeOut: 3000,
+              positionClass: 'toast-top-center',
+            }
+          );
+          this.refreshComponent();
+        },
+        (err) => {
+          this.toastr.error(err.error.message, 'Error', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
+        }
       );
   }
 
   deleteAllTechnologiesFromPerson() {
     this.technologyService
       .deleteAllTechnologiesFromPerson(this.person_id)
-      .subscribe(() => {
-        this.technologyList = [];
-        this.refreshComponent();
-      });
+      .subscribe(
+        (data) => {
+          this.toastr.success(
+            'Todas las tecnologías han sido eliminados de la cuenta!',
+            'Eliminación exitosa',
+            {
+              timeOut: 3000,
+              positionClass: 'toast-top-center',
+            }
+          );
+          this.refreshComponent();
+        },
+        (err) => {
+          this.toastr.error(err.error.message, 'Error', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
+        }
+      );
   }
 
   toggleAddForm() {

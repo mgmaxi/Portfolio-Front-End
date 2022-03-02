@@ -42,9 +42,6 @@
       <p>¿No tienes una cuenta? <a routerLink="/signup">Regístrate</a></p>
       <p>Ir al <a routerLink="/home">Inicio</a></p>
       <button type="submit">Iniciar sesión</button>
-      <div *ngIf="isLoginFail" class="errorServerMsg">
-        Error al iniciar sesión {{ errorMsg }}
-      </div>
     </form>
   </div>
 </div>

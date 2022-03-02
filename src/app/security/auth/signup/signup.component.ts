@@ -1,11 +1,9 @@
-import { HttpStatusCode } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/security/service/auth.service';
-import { TokenService } from 'src/app/security/service/token.service';
 import { SignupUser } from '../../models/signup-user';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signup',
@@ -14,16 +12,13 @@ import { SignupUser } from '../../models/signup-user';
 })
 export class SignupComponent implements OnInit {
   form: FormGroup;
-  isSignedup = false; // cambiar por toastr
-  isSignedupFail = false; // cambiar por toastr
   signupUser: SignupUser = new SignupUser('', '', '', '');
   errorMsg: string = '';
-  succesMsg: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
-    private tokenService: TokenService,
     private authService: AuthService,
+    private toastr: ToastrService,
     private router: Router
   ) {
     this.form = this.formBuilder.group({
@@ -55,18 +50,18 @@ export class SignupComponent implements OnInit {
 
       this.authService.signup(this.signupUser).subscribe(
         (data) => {
-          this.isSignedup = true;
-          this.isSignedupFail = false;
-
-          this.succesMsg = data.messageSent;
-          setTimeout(() => {
-            this.router.navigate(['/login']);
-          }, 3000);
+          this.toastr.success('La cuenta ha sido creada!', 'Registro exitoso', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
+          this.router.navigate(['/login']);
         },
         (err) => {
-          this.isSignedup = false;
-          this.isSignedupFail = true;
-          this.errorMsg = err.error;
+          this.errorMsg = err.error.messageSent;
+          this.toastr.error(this.errorMsg, 'Registro fallido', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
         }
       );
     } else {

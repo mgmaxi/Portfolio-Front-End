@@ -6,6 +6,7 @@ import { PersonService } from 'src/app/service/person.service';
 import { TokenService } from 'src/app/security/service/token.service';
 import { UserphotosService } from 'src/app/service/userphotos.service';
 import { SectionsService } from 'src/app/service/sections.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile-header',
@@ -34,6 +35,7 @@ export class ProfileHeaderComponent implements OnInit {
     private personService: PersonService,
     private userphotosService: UserphotosService,
     private sectionsService: SectionsService,
+    private toastr: ToastrService,
     private router: Router
   ) {}
 
@@ -53,9 +55,26 @@ export class ProfileHeaderComponent implements OnInit {
     const updatedPerson = { name, nationality, profession, about };
     this.personService
       .updatePerson(this.user_id, person_id!, updatedPerson)
-      .subscribe((updatedPerson) => this.person.push(updatedPerson));
+      .subscribe(
+        (data) => {
+          this.toastr.success(
+            'Los datos de "' + person.name + '" han sido modificados!',
+            'Modificación exitosa',
+            {
+              timeOut: 3000,
+              positionClass: 'toast-top-center',
+            }
+          );
+          this.refreshComponent();
+        },
+        (err) => {
+          this.toastr.error(err.error.message, 'Error', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
+        }
+      );
     this.toggleUpdateForm();
-    this.refreshComponent();
   }
 
   updateUserphotos(userphotos: Userphotos) {
@@ -63,10 +82,26 @@ export class ProfileHeaderComponent implements OnInit {
     const updatedUserphotos = { profile_photo, cover_photo };
     this.userphotosService
       .updateUserphotos(this.user_id, userphotos_id!, updatedUserphotos)
-      // person.push reemplaza los datos de updatePerson name, nationality, etc
-      .subscribe((updatedUserphotos) => this.person.push(updatedUserphotos));
+      .subscribe(
+        (data) => {
+          this.toastr.success(
+            'Las imágenes han sido modificadas!',
+            'Modificación exitosa',
+            {
+              timeOut: 3000,
+              positionClass: 'toast-top-center',
+            }
+          );
+          this.refreshComponent();
+        },
+        (err) => {
+          this.toastr.error(err.error.message, 'Error', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
+        }
+      );
     this.toggleUpdateUserphotosForm();
-    this.refreshComponent();
   }
 
   toggleUpdateForm() {

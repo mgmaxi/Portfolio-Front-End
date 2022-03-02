@@ -72,12 +72,6 @@
       <p>¿Ya tenés una cuenta? <a routerLink="/login">Inicia sesión</a></p>
       <p>Ir al <a routerLink="/home">Inicio</a></p>
       <button type="submit" [disabled]="!form.valid">Registrarse</button>
-      <div *ngIf="isSignedupFail" class="errorServerMsg">
-        {{ errorMsg }}
-      </div>
-      <div *ngIf="isSignedup" class="succesServerMsg">
-        {{ succesMsg }}
-      </div>
     </form>
   </div>
 </div>

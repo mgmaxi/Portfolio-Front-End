@@ -4,6 +4,7 @@ import { Project } from 'src/app/models/project';
 import { ProjectService } from 'src/app/service/project.service';
 import { SectionsService } from 'src/app/service/sections.service';
 import { TokenService } from 'src/app/security/service/token.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile-project',
@@ -24,6 +25,7 @@ export class ProfileProjectsComponent implements OnInit {
     private tokenService: TokenService,
     private projectService: ProjectService,
     private sectionsService: SectionsService,
+    private toastr: ToastrService,
     private router: Router
   ) {}
 
@@ -43,9 +45,25 @@ export class ProfileProjectsComponent implements OnInit {
   }
 
   addProject(project: Project) {
-    this.projectService
-      .addProject(this.person_id, project)
-      .subscribe((newProject) => this.projectList.push(newProject));
+    this.projectService.addProject(this.person_id, project).subscribe(
+      (data) => {
+        this.toastr.success(
+          'El proyecto "' + project.name + '" ha sido agregado a la cuenta!',
+          'Proyecto agregado',
+          {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          }
+        );
+        this.refreshComponent();
+      },
+      (err) => {
+        this.toastr.error(err.error.message, 'Error', {
+          timeOut: 3000,
+          positionClass: 'toast-top-center',
+        });
+      }
+    );
     this.toggleAddForm();
   }
 
@@ -70,30 +88,71 @@ export class ProfileProjectsComponent implements OnInit {
 
     this.projectService
       .updateProject(project_id!, this.person_id, updatedProject)
-      .subscribe((updatedProject) => this.projectList.push(updatedProject));
+      .subscribe(
+        (data) => {
+          this.toastr.success(
+            'El proyecto "' + name + '" ha sido modificado!',
+            'Modificación exitosa',
+            {
+              timeOut: 3000,
+              positionClass: 'toast-top-center',
+            }
+          );
+          this.refreshComponent();
+        },
+        (err) => {
+          this.toastr.error(err.error.message, 'Error', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
+        }
+      );
     this.toggleUpdateForm();
-    this.refreshComponent();
   }
 
-  deleteItem(project: Project) {
+  deleteProject(project: Project) {
     let project_id = project.id;
-    this.projectService
-      .deleteProject(project_id!, this.person_id)
-      .subscribe(
-        () =>
-          (this.projectList = this.projectList.filter(
-            (list) => list.id !== project.id
-          ))
-      );
+    this.projectService.deleteProject(project_id!, this.person_id).subscribe(
+      (data) => {
+        this.toastr.success(
+          'El proyecto "' + project.name + '" ha sido eliminado!',
+          'Eliminación exitosa',
+          {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          }
+        );
+        this.refreshComponent();
+      },
+      (err) => {
+        this.toastr.error(err.error.message, 'Error', {
+          timeOut: 3000,
+          positionClass: 'toast-top-center',
+        });
+      }
+    );
   }
 
   deleteAllProjectsFromPerson() {
-    this.projectService
-      .deleteAllProjectsFromPerson(this.person_id)
-      .subscribe(() => {
-        this.projectList = [];
+    this.projectService.deleteAllProjectsFromPerson(this.person_id).subscribe(
+      (data) => {
+        this.toastr.success(
+          'Todos los proyectos han sido eliminados!',
+          'Eliminación exitosa',
+          {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          }
+        );
         this.refreshComponent();
-      });
+      },
+      (err) => {
+        this.toastr.error(err.error.message, 'Error', {
+          timeOut: 3000,
+          positionClass: 'toast-top-center',
+        });
+      }
+    );
   }
 
   toggleAddForm() {

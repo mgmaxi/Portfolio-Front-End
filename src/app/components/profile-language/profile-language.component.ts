@@ -4,6 +4,7 @@ import { Language } from 'src/app/models/language';
 import { LanguageService } from 'src/app/service/language.service';
 import { SectionsService } from 'src/app/service/sections.service';
 import { TokenService } from 'src/app/security/service/token.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile-language',
@@ -22,6 +23,7 @@ export class ProfileLanguagesComponent implements OnInit {
     private languageService: LanguageService,
     private tokenService: TokenService,
     private sectionsService: SectionsService,
+    private toastr: ToastrService,
     private router: Router
   ) {}
 
@@ -41,20 +43,51 @@ export class ProfileLanguagesComponent implements OnInit {
   }
 
   addLanguage(language: Language) {
-    this.languageService
-      .addLanguage(language)
-      .subscribe((language) => this.languagesList.push(language));
+    this.languageService.addLanguage(language).subscribe(
+      (data) => {
+        this.toastr.success(
+          'El idioma "' + language.name + '" ha sido creado!',
+          'Creación exitosa',
+          {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          }
+        );
+        this.refreshComponent();
+      },
+      (err) => {
+        this.toastr.error(err.error.message, 'Error', {
+          timeOut: 3000,
+          positionClass: 'toast-top-center',
+        });
+      }
+    );
     this.toggleAddForm();
-    this.refreshComponent();
   }
 
   addLanguageToPerson(language_id: number) {
     this.languageService
       .addLanguageToPerson(this.person_id, language_id)
-      .subscribe((newLanguage) => this.languagesList.push(newLanguage));
+      .subscribe(
+        (data) => {
+          this.toastr.success(
+            'El idioma ha sido agregado a "' + data.name + '"!',
+            'Idioma agregado',
+            {
+              timeOut: 3000,
+              positionClass: 'toast-top-center',
+            }
+          );
+          this.refreshComponent();
+        },
+        (err) => {
+          this.toastr.error(err.error.message, 'Error', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
+        }
+      );
     this.toggleAddLanguageToPersonForm();
-    this.refreshComponent();
-    //revisar suscribe
   }
 
   deleteLanguageOfPerson(language: Language) {
@@ -62,20 +95,46 @@ export class ProfileLanguagesComponent implements OnInit {
     this.languageService
       .deleteLanguageOfPerson(this.person_id, language_id!)
       .subscribe(
-        () =>
-          (this.languagesList = this.languagesList.filter(
-            (list) => list.id !== language_id
-          ))
+        (data) => {
+          this.toastr.success(
+            'El idioma "' + language.name + '" ha sido eliminado de la cuenta!',
+            'Eliminación exitosa',
+            {
+              timeOut: 3000,
+              positionClass: 'toast-top-center',
+            }
+          );
+          this.refreshComponent();
+        },
+        (err) => {
+          this.toastr.error(err.error.message, 'Error', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
+        }
       );
   }
 
   deleteAllLanguagesFromPerson() {
-    this.languageService
-      .deleteAllLanguagesFromPerson(this.person_id)
-      .subscribe(() => {
-        this.languagesList = [];
+    this.languageService.deleteAllLanguagesFromPerson(this.person_id).subscribe(
+      (data) => {
+        this.toastr.success(
+          'Todos los idiomas han sido eliminados de la cuenta!',
+          'Eliminación exitosa',
+          {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          }
+        );
         this.refreshComponent();
-      });
+      },
+      (err) => {
+        this.toastr.error(err.error.message, 'Error', {
+          timeOut: 3000,
+          positionClass: 'toast-top-center',
+        });
+      }
+    );
   }
 
   toggleAddForm() {

@@ -32,6 +32,9 @@ import { FormUpdateHeaderComponent } from './components/profile-header/form-upda
 import { FormUpdateUserphotosComponent } from './components/profile-header/form-update-userphotos/form-update-userphotos.component';
 import { FormAddTechToPersonComponent } from './components/profile-technology/add-technology-to-person/add-technology-to-person.component';
 import { HomeComponent } from './components/home/home.component';
+// Toastr
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -70,6 +73,8 @@ import { HomeComponent } from './components/home/home.component';
     FormsModule,
     ReactiveFormsModule,
     DragDropModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [interceptorProvider],
   bootstrap: [AppComponent],

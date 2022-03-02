@@ -4,6 +4,7 @@ import { LoginUser } from '../../models/login-user';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/security/service/auth.service';
 import { TokenService } from 'src/app/security/service/token.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +13,6 @@ import { TokenService } from 'src/app/security/service/token.service';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
-  isLogged = false; // cambiar por toastr
-  isLoginFail = false; // cambiar por toastr
   loginUser: LoginUser = new LoginUser('', '');
   errorMsg: string = '';
 
@@ -21,6 +20,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private tokenService: TokenService,
     private authService: AuthService,
+    private toastr: ToastrService,
     private router: Router
   ) {
     this.form = this.formBuilder.group({
@@ -48,16 +48,23 @@ export class LoginComponent implements OnInit {
 
       this.authService.login(this.loginUser).subscribe(
         (data) => {
-          this.isLogged = true;
-          this.isLoginFail = false;
-
           this.tokenService.setToken(data.token);
+
+          this.toastr.success('Bienvenido!', 'Inicio de sesión exitoso', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
           this.router.navigate(['/portfolio']);
         },
         (err) => {
-          this.isLogged = false;
-          this.isLoginFail = true;
           this.errorMsg = err.error.message;
+          if (this.errorMsg === 'No value present') {
+            this.errorMsg = 'Datos incorrectos';
+          }
+          this.toastr.error(this.errorMsg, 'Inicio de sesión fallido', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
         }
       );
     } else {

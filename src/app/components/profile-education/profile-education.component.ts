@@ -5,6 +5,7 @@ import { EducationService } from 'src/app/service/education.service';
 import { Education } from 'src/app/models/education';
 import { Router } from '@angular/router';
 import { SectionsService } from 'src/app/service/sections.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile-education',
@@ -24,6 +25,7 @@ export class ProfileEducationComponent implements OnInit {
     private tokenService: TokenService,
     private educationService: EducationService,
     private sectionsService: SectionsService,
+    private toastr: ToastrService,
     private router: Router
   ) {}
 
@@ -53,7 +55,27 @@ export class ProfileEducationComponent implements OnInit {
     const newEducation = { name, description, start_date, end_date };
     this.educationService
       .addEducation(this.person_id, school_id, newEducation)
-      .subscribe((newEducation) => this.educationList.push(newEducation));
+      .subscribe(
+        (data) => {
+          this.toastr.success(
+            'La disciplina académica "' +
+              name +
+              '" ha sido agregada a la cuenta!',
+            'Educación agregada',
+            {
+              timeOut: 3000,
+              positionClass: 'toast-top-center',
+            }
+          );
+          this.refreshComponent();
+        },
+        (err) => {
+          this.toastr.error(err.error.message, 'Error', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
+        }
+      );
     this.toggleAddForm();
   }
 
@@ -74,11 +96,26 @@ export class ProfileEducationComponent implements OnInit {
         school_id,
         updatedEducation
       )
-      .subscribe((updatedEducation) =>
-        this.educationList.push(updatedEducation)
+      .subscribe(
+        (data) => {
+          this.toastr.success(
+            'La disciplina académica "' + name + '" ha sido modificada!',
+            'Modificación exitosa',
+            {
+              timeOut: 3000,
+              positionClass: 'toast-top-center',
+            }
+          );
+          this.refreshComponent();
+        },
+        (err) => {
+          this.toastr.error(err.error.message, 'Error', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
+        }
       );
     this.toggleUpdateForm();
-    this.refreshComponent();
   }
 
   deleteEducation(education: Education) {
@@ -87,20 +124,50 @@ export class ProfileEducationComponent implements OnInit {
     this.educationService
       .deleteEducation(education_id!, this.person_id)
       .subscribe(
-        () =>
-          (this.educationList = this.educationList.filter(
-            (list) => list.id !== education.id
-          ))
+        (data) => {
+          this.toastr.success(
+            'La disciplina académica "' +
+              education.name +
+              '" ha sido eliminada!',
+            'Eliminación exitosa',
+            {
+              timeOut: 3000,
+              positionClass: 'toast-top-center',
+            }
+          );
+          this.refreshComponent();
+        },
+        (err) => {
+          this.toastr.error(err.error.message, 'Error', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
+        }
       );
   }
 
   deleteAllEducationsFromPerson() {
     this.educationService
       .deleteAllEducationsFromPerson(this.person_id)
-      .subscribe(() => {
-        this.educationList = [];
-        this.refreshComponent();
-      });
+      .subscribe(
+        (data) => {
+          this.toastr.success(
+            'Todas las disciplinas académicas han sido eliminadas!',
+            'Eliminación exitosa',
+            {
+              timeOut: 3000,
+              positionClass: 'toast-top-center',
+            }
+          );
+          this.refreshComponent();
+        },
+        (err) => {
+          this.toastr.error(err.error.message, 'Error', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
+        }
+      );
   }
 
   toggleAddForm() {
@@ -110,7 +177,6 @@ export class ProfileEducationComponent implements OnInit {
   toggleUpdateForm(education?: Education) {
     this.showUpdateForm = !this.showUpdateForm;
     this.currentEducation = education;
-    console.log(education);
   }
 
   refreshComponent() {
