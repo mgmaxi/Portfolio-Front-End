@@ -8,7 +8,6 @@
         type="text"
         placeholder="Nombre de usuario"
         formControlName="username"
-        autofocus
       />
       <i class="fa fa-user"></i>
       <!-- User validation error -->
@@ -30,7 +29,6 @@
         type="email"
         placeholder="Correo electrónico"
         formControlName="email"
-        autofocus
       />
       <i class="fa fa-at"></i>
       <!-- Email validation error -->
@@ -72,6 +70,7 @@
         </p>
       </div>
       <p>¿Ya tenés una cuenta? <a routerLink="/login">Inicia sesión</a></p>
+      <p>Ir al <a routerLink="/home">Inicio</a></p>
       <button type="submit" [disabled]="!form.valid">Registrarse</button>
       <div *ngIf="isSignedupFail" class="errorServerMsg">
         {{ errorMsg }}

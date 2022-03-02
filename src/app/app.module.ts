@@ -31,11 +31,13 @@ import { FormUpdateLanguageComponent } from './components/profile-language/add-l
 import { FormUpdateHeaderComponent } from './components/profile-header/form-update-header/form-update-header.component';
 import { FormUpdateUserphotosComponent } from './components/profile-header/form-update-userphotos/form-update-userphotos.component';
 import { FormAddTechToPersonComponent } from './components/profile-technology/add-technology-to-person/add-technology-to-person.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    HomeComponent,
     MainComponent,
     FooterComponent,
     ProfileHeaderComponent,

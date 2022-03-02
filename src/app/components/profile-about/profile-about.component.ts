@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonService } from 'src/app/service/person.service';
 import { SectionsService } from 'src/app/service/sections.service';
-import { TokenService } from 'src/app/security/service/token.service';
 
 @Component({
   selector: 'app-profile-about',
