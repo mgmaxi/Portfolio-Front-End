@@ -39,7 +39,13 @@
     >
       <img
         class="logoSection"
-        [src]="education.school.logo"
+        [src]="
+          education.school.logo === null ||
+          education.school.logo === undefined ||
+          !education.school.logo.trim()
+            ? school_logo
+            : education.school.logo
+        "
         alt="Logo de la sección"
       />
       <section class="containerSectionItemData">

@@ -19,6 +19,7 @@ export class ProfileExperienceComponent implements OnInit {
   showUpdateForm: boolean = false;
   currentExperience: any;
   showExperienceSection: boolean = true;
+  company_logo: string = '../../../assets/logos/experience/logoExperience.png';
 
   constructor(
     private tokenService: TokenService,

@@ -1,3 +1,11 @@
+<!-- Add Company Modal -->
+<div class="modal" *ngIf="showAddCompany">
+  <div class="containerFormAdd">
+    <i class="fas fa-times iconClose" (click)="toggleAddCompany()"></i>
+    <app-company></app-company>
+  </div>
+</div>
+<!-- Add Experience Form -->
 <div class="containerForm">
   <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
     <p class="title">Agregar experiencia</p>
@@ -10,13 +18,6 @@
         *El nombre del cargo es requerido.
       </p>
     </div>
-    <!-- Company input -->
-    <input
-      type="number"
-      placeholder="Nombre de la empresa"
-      formControlName="company"
-    />
-    <i class="fa fa-plus-circle"></i>
     <!-- Description input -->
     <input
       type="text"
@@ -41,6 +42,28 @@
         *La descripción no puede tener más de 250 caracteres.
       </p>
     </div>
+    <!-- Add Company  -->
+    <p class="subNote" (click)="toggleAddCompany()">
+      Si la empresa no está en la lista, agrégala
+      <i
+        class="fas fa-plus iconNote"
+        style="
+          width: 20px;
+          height: 20px;
+          font-size: 10px;
+          display: inline-block;
+        "
+      ></i>
+    </p>
+
+    <!-- Company select -->
+    <select formControlName="company">
+      <option [ngValue]="null" disabled>Selecciona una empresa</option>
+      <option *ngFor="let company of companyList" [ngValue]="company.id">
+        {{ company.name }}
+      </option>
+    </select>
+    <i class="fa fa-plus-circle"></i>
     <!-- Start_date input -->
     <input
       type="date"

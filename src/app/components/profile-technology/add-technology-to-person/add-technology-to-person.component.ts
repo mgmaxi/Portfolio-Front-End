@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Technology } from 'src/app/models/technology';
 import { TechnologyService } from 'src/app/service/technology.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-technology-to-person',
@@ -11,7 +13,11 @@ export class FormAddTechToPersonComponent implements OnInit {
   @Output() onAddTechToPerson: EventEmitter<number> = new EventEmitter();
   technologyList: any[] = [];
 
-  constructor(private technologyService: TechnologyService) {}
+  constructor(
+    private technologyService: TechnologyService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getTechnologies();
@@ -31,13 +37,35 @@ export class FormAddTechToPersonComponent implements OnInit {
 
   deleteTechnology(technology: Technology) {
     let technology_id = technology.id;
-    this.technologyService
-      .deleteTechnology(technology_id!)
-      .subscribe(
-        () =>
-          (this.technologyList = this.technologyList.filter(
-            (list) => list.id !== technology_id
-          ))
-      );
+    this.technologyService.deleteTechnology(technology_id!).subscribe(
+      (data) => {
+        this.toastr.success(
+          'La tecnología "' +
+            technology.name +
+            '" ha sido eliminada permanentemente!',
+          'Eliminación exitosa',
+          {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          }
+        );
+        this.refreshComponent();
+      },
+      (err) => {
+        console.log(err);
+        this.toastr.error(err.error.message, 'Error', {
+          timeOut: 3000,
+          positionClass: 'toast-top-center',
+        });
+      }
+    );
+  }
+
+  refreshComponent() {
+    this.router
+      .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
+      .then(() => {
+        this.router.navigate(['portfolio']);
+      });
   }
 }

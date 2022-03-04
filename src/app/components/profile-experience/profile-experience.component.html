@@ -35,7 +35,13 @@
     <div *ngFor="let experience of experienceList" class="containerSectionItem">
       <img
         class="logoSection"
-        [src]="experience.company.logo"
+        [src]="
+          experience.company.logo === null ||
+          experience.company.logo === undefined ||
+          !experience.company.logo.trim()
+            ? company_logo
+            : experience.company.logo
+        "
         alt="Logo de la sección"
       />
       <section class="containerSectionItemData">

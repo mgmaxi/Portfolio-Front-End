@@ -32,6 +32,8 @@ import { FormUpdateHeaderComponent } from './components/profile-header/form-upda
 import { FormUpdateUserphotosComponent } from './components/profile-header/form-update-userphotos/form-update-userphotos.component';
 import { FormAddTechToPersonComponent } from './components/profile-technology/add-technology-to-person/add-technology-to-person.component';
 import { HomeComponent } from './components/home/home.component';
+import { SchoolComponent } from './components/profile-education/school/school.component';
+import { CompanyComponent } from './components/profile-experience/company/company.component';
 // Toastr
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -65,6 +67,8 @@ import { ToastrModule } from 'ngx-toastr';
     FormUpdateHeaderComponent,
     FormUpdateUserphotosComponent,
     FormAddTechToPersonComponent,
+    SchoolComponent,
+    CompanyComponent,
   ],
   imports: [
     BrowserModule,

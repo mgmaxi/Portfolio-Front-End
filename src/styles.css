@@ -71,7 +71,8 @@ a:active {
   color: rgb(0, 0, 0, 0.8);
 }
 
-input {
+input,
+select {
   display: inline-block;
   margin: 0 0 5px 0;
   padding: 5px;
@@ -145,6 +146,23 @@ button:active {
 
 .btnCreate:hover {
   background-color: rgb(0, 0, 0, 0.2);
+}
+
+.btnFilter {
+  margin: 2.5px 2.5px 10px 2.5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9000px;
+  height: 1.2rem;
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.05);
+  border: 2px solid transparent;
+  transition: all 0.3s ease-in-out;
+}
+.btnFilter:hover {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .textSmall {
@@ -318,7 +336,8 @@ form .title {
   padding-bottom: 20px;
 }
 
-form input {
+form input,
+form select {
   display: block;
   padding: 15px 10px;
   margin: 10px auto;
@@ -331,7 +350,8 @@ form input {
   border: 1px solid #ddd;
 }
 
-form input:focus {
+form input:focus,
+form select:focus {
   outline: none;
   color: rgb(255, 255, 255, 0.4);
   border-color: #2196f3;
@@ -348,7 +368,8 @@ form i.fa {
   transition: all 0.1s ease-in;
 }
 
-form input:focus + i.fa {
+form input:focus + i.fa,
+form select:focus + i.fa {
   opacity: 1;
   left: 46px;
   transition: all 0.5s ease-out;
@@ -404,20 +425,26 @@ form button:active {
 }
 
 input.ng-touched,
-input.ng-dirty {
+input.ng-dirty,
+select.ng-touched,
+select.ng-dirty {
   border: 1.5px solid #e50914;
 }
 
 input:focus.ng-touched,
-input:focus.ng-dirty {
+input:focus.ng-dirty,
+select:focus.ng-touched,
+select:focus.ng-dirty {
   border-color: #e50914;
 }
 
-input.ng-valid {
+input.ng-valid,
+select.ng-valid {
   border: 1.5px solid rgb(46, 204, 113);
 }
 
-input:focus.ng-valid {
+input:focus.ng-valid,
+select:focus.ng-valid {
   color: rgb(255, 255, 255, 0.4);
   border: 1.5px solid rgb(46, 204, 113);
   border-left-width: 35px;
@@ -441,6 +468,22 @@ input:focus.ng-valid {
 
 .inputLogo:focus {
   border-left-width: 0;
+}
+
+.subNote {
+  cursor: pointer;
+}
+
+.iconNote {
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 150px;
+  color: rgb(119, 178, 85);
+  background-color: rgb(0, 0, 0, 0.05);
+  transition: all 0.5s ease-out;
 }
 
 .iconClose {

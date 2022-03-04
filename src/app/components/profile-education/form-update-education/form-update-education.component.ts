@@ -1,7 +1,8 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Education } from 'src/app/models/education';
+import { School } from 'src/app/models/school';
+import { SchoolService } from 'src/app/service/school.service';
 
 @Component({
   selector: 'app-form-update-education',
@@ -12,10 +13,15 @@ export class FormUpdateEducationComponent implements OnInit {
   @Output() onUpdateEducation: EventEmitter<Education> = new EventEmitter();
   @Input() currentEducationForm: any;
   form: FormGroup;
-  constructor(private formBuilder: FormBuilder) {
+  schoolList: School[] = [];
+  showAddSchool: boolean = false;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private schoolService: SchoolService
+  ) {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
-      school: ['', [Validators.required]],
       description: [
         '',
         [
@@ -24,12 +30,21 @@ export class FormUpdateEducationComponent implements OnInit {
           Validators.maxLength(250),
         ],
       ],
+      school: [null, [Validators.required]],
       start_date: ['', [Validators.required]],
       end_date: ['', []],
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getSchools();
+  }
+
+  getSchools() {
+    this.schoolService.getSchools().subscribe((data) => {
+      this.schoolList = data;
+    });
+  }
 
   onSubmit(event: Event) {
     event.preventDefault;
@@ -50,6 +65,11 @@ export class FormUpdateEducationComponent implements OnInit {
     } else {
       this.form.markAllAsTouched();
     }
+  }
+
+  toggleAddSchool() {
+    this.showAddSchool = !this.showAddSchool;
+    this.getSchools();
   }
 
   get Name() {

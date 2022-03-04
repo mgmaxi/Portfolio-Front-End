@@ -1,9 +1,9 @@
 export class Company {
   id?: number;
   name: string;
-  logo?: any;
+  logo: string;
 
-  constructor(name: string, logo: any) {
+  constructor(name: string, logo: string) {
     this.name = name;
     this.logo = logo;
   }

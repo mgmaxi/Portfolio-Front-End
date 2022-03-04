@@ -23,6 +23,16 @@
 <div class="containerSection" *ngIf="showTechnologySection">
   <section class="containerSectionData">
     <h2 class="sectionTitle">Tecnologías</h2>
+    <div>
+      <button class="btnFilter" (click)="filter('all')">Todas</button>
+      <button class="btnFilter" (click)="filter('front-end')">Front End</button>
+      <button class="btnFilter" (click)="filter('back-end')">Back End</button>
+      <button class="btnFilter" (click)="filter('data-base')">
+        Base de Datos
+      </button>
+      <button class="btnFilter" (click)="filter('editing')">Edición</button>
+      <button class="btnFilter" (click)="filter('other')">Otras</button>
+    </div>
     <button class="btnCreate" (click)="toggleAddForm()" *ngIf="isAdmin">
       Crear
     </button>
@@ -37,9 +47,10 @@
       *ngIf="isAdmin"
     ></i>
     <!-- Technology List -->
+
     <div class="containerTechnology">
       <figure
-        *ngFor="let technology of technologyList"
+        *ngFor="let technology of filterCategory"
         class="containerTechnologyItem"
       >
         <a [href]="technology.url" target="_blank">

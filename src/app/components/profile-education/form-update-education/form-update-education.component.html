@@ -1,3 +1,10 @@
+<!-- Add School Modal -->
+<div class="modal" *ngIf="showAddSchool">
+  <div class="containerFormAdd">
+    <i class="fas fa-times iconClose" (click)="toggleAddSchool()"></i>
+    <app-school></app-school>
+  </div>
+</div>
 <div class="containerForm">
   <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
     <p class="title">Modificar educación</p>
@@ -14,13 +21,6 @@
         *El nombre de la disciplina académica es requerido.
       </p>
     </div>
-    <!-- School input -->
-    <input
-      type="number"
-      placeholder="Nombre de la institución académica"
-      formControlName="school"
-    />
-    <i class="fa fa-plus-circle"></i>
     <!-- Description input -->
     <input
       type="text"
@@ -44,6 +44,28 @@
         *La descripción no puede tener más de 250 caracteres.
       </p>
     </div>
+    <!-- Add School  -->
+    <p class="subTitle" (click)="toggleAddSchool()">
+      Si la institución no está en la lista, agrégala
+      <i
+        class="fas fa-plus iconNote"
+        style="
+          width: 20px;
+          height: 20px;
+          font-size: 10px;
+          display: inline-block;
+        "
+      ></i>
+    </p>
+
+    <!-- School select -->
+    <select formControlName="school">
+      <option [ngValue]="null" disabled>Selecciona una institución</option>
+      <option *ngFor="let school of schoolList" [ngValue]="school.id">
+        {{ school.name }}
+      </option>
+    </select>
+    <i class="fa fa-plus-circle"></i>
     <!-- Start_date input -->
     <input
       type="date"

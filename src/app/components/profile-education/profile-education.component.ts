@@ -20,6 +20,7 @@ export class ProfileEducationComponent implements OnInit {
   isAdmin = false;
   currentEducation: any;
   showEducationSection: boolean = true;
+  school_logo: string = '../../../assets/logos/education/logoEducation.png';
 
   constructor(
     private tokenService: TokenService,
@@ -33,6 +34,29 @@ export class ProfileEducationComponent implements OnInit {
     this.isAdmin = this.tokenService.isAdmin();
     this.getEducations();
     this.showEducation();
+  }
+
+  toggleAddForm() {
+    this.showAddForm = !this.showAddForm;
+  }
+
+  toggleUpdateForm(education?: Education) {
+    this.showUpdateForm = !this.showUpdateForm;
+    this.currentEducation = education;
+  }
+
+  showEducation() {
+    this.sectionsService.showEducationSection.subscribe((data) => {
+      this.showEducationSection = data;
+    });
+  }
+
+  refreshComponent() {
+    this.router
+      .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
+      .then(() => {
+        this.router.navigate(['portfolio']);
+      });
   }
 
   getEducations() {
@@ -59,7 +83,7 @@ export class ProfileEducationComponent implements OnInit {
         (data) => {
           this.toastr.success(
             'La disciplina académica "' +
-              name +
+              data.name +
               '" ha sido agregada a la cuenta!',
             'Educación agregada',
             {
@@ -168,28 +192,5 @@ export class ProfileEducationComponent implements OnInit {
           });
         }
       );
-  }
-
-  toggleAddForm() {
-    this.showAddForm = !this.showAddForm;
-  }
-
-  toggleUpdateForm(education?: Education) {
-    this.showUpdateForm = !this.showUpdateForm;
-    this.currentEducation = education;
-  }
-
-  refreshComponent() {
-    this.router
-      .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
-      .then(() => {
-        this.router.navigate(['portfolio']);
-      });
-  }
-
-  showEducation() {
-    this.sectionsService.showEducationSection.subscribe((data) => {
-      this.showEducationSection = data;
-    });
   }
 }

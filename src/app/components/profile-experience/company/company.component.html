@@ -1,0 +1,28 @@
+<div class="containerForm">
+  <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+    <p class="title">Agregar empresa</p>
+    <!-- Name input -->
+    <input
+      type="text"
+      placeholder="Nombre de la empresa"
+      formControlName="name"
+    />
+    <i class="fa fa-plus-circle"></i>
+    <!-- Name validation error -->
+    <div *ngIf="Name?.errors && (Name?.touched || Name?.dirty)">
+      <p *ngIf="Name?.hasError('required')" class="error">
+        *El nombre de la empresa es requerido.
+      </p>
+    </div>
+    <!-- Logo input -->
+    <input
+      type="file"
+      placeholder="Logo de la empresa"
+      formControlName="logo"
+      class="inputLogo"
+    />
+    <i class="fa fa-plus-circle"></i>
+
+    <button type="submit">Agregar</button>
+  </form>
+</div>

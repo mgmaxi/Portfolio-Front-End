@@ -12,7 +12,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./profile-technology.component.css'],
 })
 export class ProfileTechnologiesComponent implements OnInit {
-  technologyList: any[] = [];
+  technologyList: Technology[] = [];
+  filterCategory: Technology[] = [];
   person_id: number = 1;
   isAdmin = false;
   showAddForm: boolean = false;
@@ -33,9 +34,22 @@ export class ProfileTechnologiesComponent implements OnInit {
     this.showTechnology();
   }
 
+  filter(category: string) {
+    this.filterCategory = this.technologyList.filter((a: any) => {
+      if (category == 'all') {
+        return a;
+      }
+      if (a.category == category) {
+        return a;
+      }
+    });
+  }
+
   getByPersonId() {
     this.technologyService.findByPersonId(this.person_id).subscribe((data) => {
       this.technologyList = data;
+      this.filterCategory = data;
+
       if (this.technologyList.length === 0) {
         this.showTechnologySection = false;
       }
