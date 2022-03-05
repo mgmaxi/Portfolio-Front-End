@@ -165,6 +165,28 @@ button:active {
   background-color: rgba(0, 0, 0, 0.2);
 }
 
+.btnShowSection {
+  margin: 2.5px;
+  padding: 7px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.8rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  font-size: 0.8rem;
+  color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 2px solid transparent;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btnShowSection:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
 .textSmall {
   font-size: 11px;
 }
@@ -475,11 +497,12 @@ select:focus.ng-valid {
 }
 
 .iconNote {
+  display: inline-block;
   padding: 5px;
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 10px;
   border-radius: 150px;
   color: rgb(119, 178, 85);
   background-color: rgb(0, 0, 0, 0.05);

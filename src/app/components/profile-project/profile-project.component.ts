@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Project } from 'src/app/models/project';
 import { ProjectService } from 'src/app/service/project.service';
-import { SectionsService } from 'src/app/service/sections.service';
 import { TokenService } from 'src/app/security/service/token.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -19,12 +18,10 @@ export class ProfileProjectsComponent implements OnInit {
   showAddForm: boolean = false;
   showUpdateForm: boolean = false;
   currentProject: any;
-  showProjectSection: boolean = true;
 
   constructor(
     private tokenService: TokenService,
     private projectService: ProjectService,
-    private sectionsService: SectionsService,
     private toastr: ToastrService,
     private router: Router
   ) {}
@@ -32,15 +29,11 @@ export class ProfileProjectsComponent implements OnInit {
   ngOnInit(): void {
     this.isAdmin = this.tokenService.isAdmin();
     this.getProjects();
-    this.showProject();
   }
 
   getProjects() {
     this.projectService.getProjects(this.person_id).subscribe((data) => {
       this.projectList = data;
-      if (this.projectList.length === 0) {
-        this.showProjectSection = false;
-      }
     });
   }
 
@@ -171,11 +164,5 @@ export class ProfileProjectsComponent implements OnInit {
       .then(() => {
         this.router.navigate(['portfolio']);
       });
-  }
-
-  showProject() {
-    this.sectionsService.showProjectSection.subscribe((data) => {
-      this.showProjectSection = data;
-    });
   }
 }

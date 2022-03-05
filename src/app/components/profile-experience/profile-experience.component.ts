@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Experience } from 'src/app/models/experience';
 import { ExperienceService } from 'src/app/service/experience.service';
-import { SectionsService } from 'src/app/service/sections.service';
 import { TokenService } from 'src/app/security/service/token.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -18,13 +17,11 @@ export class ProfileExperienceComponent implements OnInit {
   showAddForm: boolean = false;
   showUpdateForm: boolean = false;
   currentExperience: any;
-  showExperienceSection: boolean = true;
   company_logo: string = '../../../assets/logos/experience/logoExperience.png';
 
   constructor(
     private tokenService: TokenService,
     private experienceService: ExperienceService,
-    private sectionsService: SectionsService,
     private toastr: ToastrService,
     private router: Router
   ) {}
@@ -32,15 +29,11 @@ export class ProfileExperienceComponent implements OnInit {
   ngOnInit(): void {
     this.isAdmin = this.tokenService.isAdmin();
     this.getExperiences();
-    this.showExperience();
   }
 
   getExperiences() {
     this.experienceService.getExperiences(this.person_id).subscribe((data) => {
       this.experienceList = data;
-      if (this.experienceList.length === 0) {
-        this.showExperienceSection = false;
-      }
     });
   }
 
@@ -184,11 +177,5 @@ export class ProfileExperienceComponent implements OnInit {
       .then(() => {
         this.router.navigate(['portfolio']);
       });
-  }
-
-  showExperience() {
-    this.sectionsService.showExperienceSection.subscribe((data) => {
-      this.showExperienceSection = data;
-    });
   }
 }

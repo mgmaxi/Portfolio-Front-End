@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonService } from 'src/app/service/person.service';
-import { SectionsService } from 'src/app/service/sections.service';
 
 @Component({
   selector: 'app-profile-about',
@@ -12,14 +11,10 @@ export class ProfileAboutComponent implements OnInit {
   person_id: number = 1;
   showAboutSection: boolean = true;
 
-  constructor(
-    private personService: PersonService,
-    private sectionsService: SectionsService
-  ) {}
+  constructor(private personService: PersonService) {}
 
   ngOnInit(): void {
     this.getAbout();
-    this.showAbout();
   }
 
   getAbout() {
@@ -32,12 +27,6 @@ export class ProfileAboutComponent implements OnInit {
       ) {
         this.showAboutSection = false;
       }
-    });
-  }
-
-  showAbout() {
-    this.sectionsService.showAboutSection.subscribe((data) => {
-      this.showAboutSection = data;
     });
   }
 }

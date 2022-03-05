@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { Person } from 'src/app/models/person';
 import { Userphotos } from 'src/app/models/userphotos';
 import { PersonService } from 'src/app/service/person.service';
 import { TokenService } from 'src/app/security/service/token.service';
 import { UserphotosService } from 'src/app/service/userphotos.service';
-import { SectionsService } from 'src/app/service/sections.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -23,18 +22,42 @@ export class ProfileHeaderComponent implements OnInit {
   userphotos_id: any = 1;
   cover_photo: string = '../../../assets/image/profile/profileCover.jpg';
   profile_photo: string = '../../../assets/image/profile/profileCover.jpg';
-  showAboutSection: boolean = true;
-  showExperienceSection: boolean = true;
-  showEducationSection: boolean = true;
-  showProjectSection: boolean = true;
-  showLanguageSection: boolean = true;
-  showTechnologySection: boolean = true;
+
+  @Output() onToggleAbout = new EventEmitter<string>();
+  @Output() onToggleExperience = new EventEmitter<string>();
+  @Output() onToggleEducation = new EventEmitter<string>();
+  @Output() onToggleProject = new EventEmitter<string>();
+  @Output() onToggleLanguage = new EventEmitter<string>();
+  @Output() onToggleTechnology = new EventEmitter<string>();
+
+  showAbout() {
+    this.onToggleAbout.emit();
+  }
+
+  showExperience() {
+    this.onToggleExperience.emit();
+  }
+
+  showEducation() {
+    this.onToggleEducation.emit();
+  }
+
+  showProject() {
+    this.onToggleProject.emit();
+  }
+
+  showLanguage() {
+    this.onToggleLanguage.emit();
+  }
+
+  showTechnology() {
+    this.onToggleTechnology.emit();
+  }
 
   constructor(
     private tokenService: TokenService,
     private personService: PersonService,
     private userphotosService: UserphotosService,
-    private sectionsService: SectionsService,
     private toastr: ToastrService,
     private router: Router
   ) {}
@@ -117,31 +140,5 @@ export class ProfileHeaderComponent implements OnInit {
       .then(() => {
         this.router.navigate(['portfolio']);
       });
-  }
-
-  showAbout() {
-    this.showAboutSection = !this.showAboutSection;
-    this.sectionsService.showAbout(this.showAboutSection);
-  }
-
-  showExperience() {
-    this.showExperienceSection = !this.showExperienceSection;
-    this.sectionsService.showExperience(this.showExperienceSection);
-  }
-  showEducation() {
-    this.showEducationSection = !this.showEducationSection;
-    this.sectionsService.showEducation(this.showEducationSection);
-  }
-  showProject() {
-    this.showProjectSection = !this.showProjectSection;
-    this.sectionsService.showProject(this.showProjectSection);
-  }
-  showLanguage() {
-    this.showLanguageSection = !this.showLanguageSection;
-    this.sectionsService.showLanguage(this.showLanguageSection);
-  }
-  showTechnology() {
-    this.showTechnologySection = !this.showTechnologySection;
-    this.sectionsService.showTechnology(this.showTechnologySection);
   }
 }

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Language } from 'src/app/models/language';
 import { LanguageService } from 'src/app/service/language.service';
-import { SectionsService } from 'src/app/service/sections.service';
 import { TokenService } from 'src/app/security/service/token.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -22,7 +21,6 @@ export class ProfileLanguagesComponent implements OnInit {
   constructor(
     private languageService: LanguageService,
     private tokenService: TokenService,
-    private sectionsService: SectionsService,
     private toastr: ToastrService,
     private router: Router
   ) {}
@@ -30,15 +28,11 @@ export class ProfileLanguagesComponent implements OnInit {
   ngOnInit(): void {
     this.isAdmin = this.tokenService.isAdmin();
     this.getByPersonId();
-    this.showLanguage();
   }
 
   getByPersonId() {
     this.languageService.findByPersonId(this.person_id).subscribe((data) => {
       this.languagesList = data;
-      if (this.languagesList.length === 0) {
-        this.showLanguageSection = false;
-      }
     });
   }
 
@@ -151,11 +145,5 @@ export class ProfileLanguagesComponent implements OnInit {
       .then(() => {
         this.router.navigate(['portfolio']);
       });
-  }
-
-  showLanguage() {
-    this.sectionsService.showLanguageSection.subscribe((data) => {
-      this.showLanguageSection = data;
-    });
   }
 }

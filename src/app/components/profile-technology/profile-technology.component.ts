@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Technology } from 'src/app/models/technology';
-import { SectionsService } from 'src/app/service/sections.service';
 import { TechnologyService } from 'src/app/service/technology.service';
 import { TokenService } from 'src/app/security/service/token.service';
 import { ToastrService } from 'ngx-toastr';
@@ -18,12 +17,10 @@ export class ProfileTechnologiesComponent implements OnInit {
   isAdmin = false;
   showAddForm: boolean = false;
   showAddTechToPersonForm: boolean = false;
-  showTechnologySection: boolean = true;
 
   constructor(
     private tokenService: TokenService,
     private technologyService: TechnologyService,
-    private sectionsService: SectionsService,
     private toastr: ToastrService,
     private router: Router
   ) {}
@@ -31,7 +28,6 @@ export class ProfileTechnologiesComponent implements OnInit {
   ngOnInit(): void {
     this.isAdmin = this.tokenService.isAdmin();
     this.getByPersonId();
-    this.showTechnology();
   }
 
   filter(category: string) {
@@ -49,10 +45,6 @@ export class ProfileTechnologiesComponent implements OnInit {
     this.technologyService.findByPersonId(this.person_id).subscribe((data) => {
       this.technologyList = data;
       this.filterCategory = data;
-
-      if (this.technologyList.length === 0) {
-        this.showTechnologySection = false;
-      }
     });
   }
 
@@ -171,11 +163,5 @@ export class ProfileTechnologiesComponent implements OnInit {
       .then(() => {
         this.router.navigate(['portfolio']);
       });
-  }
-
-  showTechnology() {
-    this.sectionsService.showTechnologySection.subscribe((data) => {
-      this.showTechnologySection = data;
-    });
   }
 }

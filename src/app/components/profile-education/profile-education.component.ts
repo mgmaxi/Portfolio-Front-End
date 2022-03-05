@@ -4,7 +4,6 @@ import { TokenService } from 'src/app/security/service/token.service';
 import { EducationService } from 'src/app/service/education.service';
 import { Education } from 'src/app/models/education';
 import { Router } from '@angular/router';
-import { SectionsService } from 'src/app/service/sections.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -19,13 +18,11 @@ export class ProfileEducationComponent implements OnInit {
   showUpdateForm: boolean = false;
   isAdmin = false;
   currentEducation: any;
-  showEducationSection: boolean = true;
   school_logo: string = '../../../assets/logos/education/logoEducation.png';
 
   constructor(
     private tokenService: TokenService,
     private educationService: EducationService,
-    private sectionsService: SectionsService,
     private toastr: ToastrService,
     private router: Router
   ) {}
@@ -33,7 +30,6 @@ export class ProfileEducationComponent implements OnInit {
   ngOnInit(): void {
     this.isAdmin = this.tokenService.isAdmin();
     this.getEducations();
-    this.showEducation();
   }
 
   toggleAddForm() {
@@ -43,12 +39,6 @@ export class ProfileEducationComponent implements OnInit {
   toggleUpdateForm(education?: Education) {
     this.showUpdateForm = !this.showUpdateForm;
     this.currentEducation = education;
-  }
-
-  showEducation() {
-    this.sectionsService.showEducationSection.subscribe((data) => {
-      this.showEducationSection = data;
-    });
   }
 
   refreshComponent() {
@@ -62,9 +52,6 @@ export class ProfileEducationComponent implements OnInit {
   getEducations() {
     this.educationService.getEducations(this.person_id).subscribe((data) => {
       this.educationList = data;
-      if (this.educationList.length === 0) {
-        this.showEducationSection = false;
-      }
     });
   }
 

@@ -71,11 +71,15 @@
     <h2>{{ person.name }}</h2>
     <p>{{ person.nationality }}</p>
     <p>{{ person.profession }}</p>
-    <button (click)="showAbout()">Acerca de..</button>
-    <button (click)="showExperience()">Experiencia</button>
-    <button (click)="showEducation()">Educación</button>
-    <button (click)="showProject()">Proyectos</button>
-    <button (click)="showLanguage()">Idiomas</button>
-    <button (click)="showTechnology()">Tecnologías</button>
+    <button class="btnShowSection" (click)="showAbout()">Acerca</button>
+    <button class="btnShowSection" (click)="showExperience()">
+      Experiencia
+    </button>
+    <button class="btnShowSection" (click)="showEducation()">Educación</button>
+    <button class="btnShowSection" (click)="showProject()">Proyectos</button>
+    <button class="btnShowSection" (click)="showLanguage()">Idiomas</button>
+    <button class="btnShowSection" (click)="showTechnology()">
+      Tecnologías
+    </button>
   </section>
 </div>

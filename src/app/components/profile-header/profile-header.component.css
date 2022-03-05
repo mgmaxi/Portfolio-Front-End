@@ -43,6 +43,11 @@
   bottom: -60px;
   left: 165px;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.iconEditProfileHeaderContainer:hover {
+  color: rgb(0, 0, 0, 0.6);
 }
 
 .iconEditProfileHeader {
@@ -54,6 +59,11 @@
   bottom: -30px;
   left: 165px;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.iconEditProfilePhotoContainer:hover {
+  color: rgb(0, 0, 0, 0.6);
 }
 
 .iconEditProfilePhoto {
