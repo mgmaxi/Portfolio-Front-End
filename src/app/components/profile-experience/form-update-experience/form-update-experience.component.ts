@@ -12,32 +12,45 @@ import { Company } from 'src/app/models/company';
 export class FormUpdateExperienceComponent implements OnInit {
   @Output() onUpdateExperience: EventEmitter<Experience> = new EventEmitter();
   @Input() currentExperienceForm: any;
-  form: FormGroup;
   companyList: Company[] = [];
   showAddCompany: boolean = false;
+
+  form: FormGroup = this.formBuilder.group({
+    name: ['', [Validators.required]],
+    description: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(250),
+      ],
+    ],
+    company: [null, [Validators.required]],
+    start_date: ['', [Validators.required]],
+    end_date: ['', []],
+  });
 
   constructor(
     private formBuilder: FormBuilder,
     private companyService: CompanyService
-  ) {
-    this.form = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      description: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(10),
-          Validators.maxLength(250),
-        ],
-      ],
-      company: [null, [Validators.required]],
-      start_date: ['', [Validators.required]],
-      end_date: ['', []],
-    });
-  }
+  ) {}
 
   ngOnInit(): void {
     this.getCompanies();
+    this.updateFormValues();
+  }
+
+  updateFormValues() {
+    let { name, description, company, start_date, end_date } =
+      this.currentExperienceForm;
+    let company_id = company.id;
+    this.form.patchValue({
+      name: name,
+      description: description,
+      company: company_id,
+      start_date: start_date,
+      end_date: end_date,
+    });
   }
 
   getCompanies() {

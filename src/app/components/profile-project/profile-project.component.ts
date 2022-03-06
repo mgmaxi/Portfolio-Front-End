@@ -155,7 +155,6 @@ export class ProfileProjectsComponent implements OnInit {
   toggleUpdateForm(project?: Project) {
     this.showUpdateForm = !this.showUpdateForm;
     this.currentProject = project;
-    console.log(project);
   }
 
   refreshComponent() {

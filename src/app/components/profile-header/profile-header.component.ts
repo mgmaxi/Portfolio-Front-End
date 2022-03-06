@@ -6,6 +6,7 @@ import { PersonService } from 'src/app/service/person.service';
 import { TokenService } from 'src/app/security/service/token.service';
 import { UserphotosService } from 'src/app/service/userphotos.service';
 import { ToastrService } from 'ngx-toastr';
+import { PersonDTO } from 'src/app/models/personDTO';
 
 @Component({
   selector: 'app-profile-header',
@@ -14,6 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ProfileHeaderComponent implements OnInit {
   person: any = [];
+  currentPerson: any;
   isAdmin = false;
   showUpdateForm: boolean = false;
   showUpdateUserphotosForm: boolean = false;
@@ -29,30 +31,6 @@ export class ProfileHeaderComponent implements OnInit {
   @Output() onToggleProject = new EventEmitter<string>();
   @Output() onToggleLanguage = new EventEmitter<string>();
   @Output() onToggleTechnology = new EventEmitter<string>();
-
-  showAbout() {
-    this.onToggleAbout.emit();
-  }
-
-  showExperience() {
-    this.onToggleExperience.emit();
-  }
-
-  showEducation() {
-    this.onToggleEducation.emit();
-  }
-
-  showProject() {
-    this.onToggleProject.emit();
-  }
-
-  showLanguage() {
-    this.onToggleLanguage.emit();
-  }
-
-  showTechnology() {
-    this.onToggleTechnology.emit();
-  }
 
   constructor(
     private tokenService: TokenService,
@@ -127,10 +105,12 @@ export class ProfileHeaderComponent implements OnInit {
     this.toggleUpdateUserphotosForm();
   }
 
-  toggleUpdateForm() {
+  toggleUpdateForm(person?: PersonDTO) {
+    this.currentPerson = person;
     this.showUpdateForm = !this.showUpdateForm;
   }
-  toggleUpdateUserphotosForm() {
+  toggleUpdateUserphotosForm(person?: PersonDTO) {
+    this.currentPerson = person;
     this.showUpdateUserphotosForm = !this.showUpdateUserphotosForm;
   }
 
@@ -140,5 +120,29 @@ export class ProfileHeaderComponent implements OnInit {
       .then(() => {
         this.router.navigate(['portfolio']);
       });
+  }
+
+  showAbout() {
+    this.onToggleAbout.emit();
+  }
+
+  showExperience() {
+    this.onToggleExperience.emit();
+  }
+
+  showEducation() {
+    this.onToggleEducation.emit();
+  }
+
+  showProject() {
+    this.onToggleProject.emit();
+  }
+
+  showLanguage() {
+    this.onToggleLanguage.emit();
+  }
+
+  showTechnology() {
+    this.onToggleTechnology.emit();
   }
 }

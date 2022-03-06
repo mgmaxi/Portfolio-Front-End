@@ -12,32 +12,45 @@ import { SchoolService } from 'src/app/service/school.service';
 export class FormUpdateEducationComponent implements OnInit {
   @Output() onUpdateEducation: EventEmitter<Education> = new EventEmitter();
   @Input() currentEducationForm: any;
-  form: FormGroup;
   schoolList: School[] = [];
   showAddSchool: boolean = false;
+
+  form: FormGroup = this.formBuilder.group({
+    name: ['', [Validators.required]],
+    description: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(250),
+      ],
+    ],
+    school: [null, [Validators.required]],
+    start_date: ['', [Validators.required]],
+    end_date: ['', []],
+  });
 
   constructor(
     private formBuilder: FormBuilder,
     private schoolService: SchoolService
-  ) {
-    this.form = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      description: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(10),
-          Validators.maxLength(250),
-        ],
-      ],
-      school: [null, [Validators.required]],
-      start_date: ['', [Validators.required]],
-      end_date: ['', []],
-    });
-  }
+  ) {}
 
   ngOnInit(): void {
     this.getSchools();
+    this.updateFormValues();
+  }
+
+  updateFormValues() {
+    let { name, description, school, start_date, end_date } =
+      this.currentEducationForm;
+    let school_id = school.id;
+    this.form.patchValue({
+      name: name,
+      description: description,
+      school: school_id,
+      start_date: start_date,
+      end_date: end_date,
+    });
   }
 
   getSchools() {

@@ -54,8 +54,12 @@
           {{ education.school.name ? "en " + education.school.name : "" }}
         </h3>
         <p>{{ education.description }}</p>
-        <p class="textSmall">Fecha de inicio: {{ education.start_date }}</p>
-        <p class="textSmall">Fecha de finalización: {{ education.end_date }}</p>
+        <p class="textSmall">
+          Fecha de inicio: {{ education.start_date | date: "dd/MM/yyyy" }}
+        </p>
+        <p class="textSmall">
+          Fecha de finalización: {{ education.end_date | date: "dd/MM/yyyy" }}
+        </p>
         <i
           class="fas fa-trash iconDelete"
           (click)="deleteEducation(education)"

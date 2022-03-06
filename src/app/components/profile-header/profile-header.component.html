@@ -4,7 +4,7 @@
     <i class="fas fa-times iconClose" (click)="toggleUpdateForm()"></i>
     <app-form-update-header
       (onUpdatePerson)="updatePerson($event)"
-      [currentPerson_idForm]="person_id"
+      [currentPersonForm]="currentPerson"
     ></app-form-update-header>
   </div>
 </div>
@@ -17,7 +17,7 @@
     ></i>
     <app-form-update-userphotos
       (onUpdateUserphotos)="updateUserphotos($event)"
-      [currentUserphotos_idForm]="userphotos_id"
+      [currentPersonForm]="currentPerson"
     ></app-form-update-userphotos>
   </div>
 </div>
@@ -48,7 +48,7 @@
     />
     <div
       class="iconEditProfilePhotoContainer"
-      (click)="toggleUpdateUserphotosForm()"
+      (click)="toggleUpdateUserphotosForm(person)"
       *ngIf="isAdmin"
     >
       <p>
@@ -58,7 +58,7 @@
     </div>
     <div
       class="iconEditProfileHeaderContainer"
-      (click)="toggleUpdateForm()"
+      (click)="toggleUpdateForm(person)"
       *ngIf="isAdmin"
     >
       <p>

@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Project } from 'src/app/models/project';
 
 @Component({
@@ -12,27 +11,40 @@ export class FormUpdateProjectComponent implements OnInit {
   @Output() onUpdateProject: EventEmitter<Project> = new EventEmitter();
   @Input() currentProjectForm: any;
 
-  form: FormGroup;
-
-  constructor(private formBuilder: FormBuilder) {
-    this.form = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      description: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(10),
-          Validators.maxLength(250),
-        ],
+  form: FormGroup = this.formBuilder.group({
+    name: ['', [Validators.required]],
+    description: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(250),
       ],
-      repository: ['', []],
-      deploy: ['', []],
-      end_date: ['', [Validators.required]],
-      logo: ['', []],
-    });
+    ],
+    repository: ['', []],
+    deploy: ['', []],
+    end_date: ['', [Validators.required]],
+    logo: ['', []],
+  });
+
+  constructor(private formBuilder: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.updateFormValues();
   }
 
-  ngOnInit(): void {}
+  updateFormValues() {
+    let { name, description, repository, deploy, end_date, logo } =
+      this.currentProjectForm;
+    this.form.patchValue({
+      name: name,
+      description: description,
+      school: repository,
+      start_date: deploy,
+      end_date: end_date,
+      logo: '',
+    });
+  }
 
   onSubmit(event: Event) {
     event.preventDefault;

@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Person } from 'src/app/models/person';
 
 @Component({
@@ -10,25 +9,36 @@ import { Person } from 'src/app/models/person';
 })
 export class FormUpdateHeaderComponent implements OnInit {
   @Output() onUpdatePerson: EventEmitter<Person> = new EventEmitter();
-  @Input() currentPerson_idForm: any;
-  form: FormGroup;
+  @Input() currentPersonForm: any;
 
-  constructor(private formBuilder: FormBuilder) {
-    this.form = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      nationality: ['', [Validators.required]],
-      profession: ['', [Validators.required]],
-      about: ['', []],
-    });
+  form: FormGroup = this.formBuilder.group({
+    name: ['', [Validators.required, Validators.minLength(3)]],
+    nationality: ['', [Validators.required]],
+    profession: ['', [Validators.required]],
+    about: ['', []],
+  });
+
+  constructor(private formBuilder: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.updateFormValues();
   }
 
-  ngOnInit(): void {}
+  updateFormValues() {
+    let { name, nationality, profession, about } = this.currentPersonForm;
+    this.form.patchValue({
+      name: name,
+      nationality: nationality,
+      profession: profession,
+      about: about,
+    });
+  }
 
   onSubmit(event: Event) {
     event.preventDefault;
     if (this.form.valid) {
       let { name, nationality, profession, about } = this.form.value;
-      let id = this.currentPerson_idForm;
+      let id = this.currentPersonForm.id;
       const updatedPerson = {
         id,
         name,

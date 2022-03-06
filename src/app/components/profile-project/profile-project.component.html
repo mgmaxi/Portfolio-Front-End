@@ -42,7 +42,7 @@
           <p>{{ project.description }}</p>
           <p class="textSmall">
             Fecha de realización:
-            {{ project.end_date }}
+            {{ project.end_date | date: "dd/MM/yyyy" }}
           </p>
           <span class="containerProjectLinks">
             <a [href]="project.repository" target="_blank"
