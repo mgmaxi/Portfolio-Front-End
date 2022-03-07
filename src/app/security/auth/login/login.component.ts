@@ -12,9 +12,16 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup;
   loginUser: LoginUser = new LoginUser('', '');
   errorMsg: string = '';
+
+  form: FormGroup = this.formBuilder.group({
+    username: [
+      '',
+      [Validators.required, Validators.minLength(5), Validators.maxLength(12)],
+    ],
+    password: ['', [Validators.required, Validators.minLength(8)]],
+  });
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,19 +29,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private toastr: ToastrService,
     private router: Router
-  ) {
-    this.form = this.formBuilder.group({
-      username: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(5),
-          Validators.maxLength(12),
-        ],
-      ],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-    });
-  }
+  ) {}
 
   ngOnInit() {}
 

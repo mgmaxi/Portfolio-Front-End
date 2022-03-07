@@ -11,30 +11,25 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-  form: FormGroup;
   signupUser: SignupUser = new SignupUser('', '', '', '');
   errorMsg: string = '';
+
+  form: FormGroup = this.formBuilder.group({
+    username: [
+      '',
+      [Validators.required, Validators.minLength(5), Validators.maxLength(12)],
+    ],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(8)]],
+    name: ['', [Validators.required, Validators.minLength(3)]],
+  });
 
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private toastr: ToastrService,
     private router: Router
-  ) {
-    this.form = this.formBuilder.group({
-      username: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(5),
-          Validators.maxLength(12),
-        ],
-      ],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      name: ['', [Validators.required, Validators.minLength(3)]],
-    });
-  }
+  ) {}
 
   ngOnInit() {}
 

@@ -13,9 +13,9 @@
         type="text"
         placeholder="Nombre de la tecnología"
         formControlName="name"
-        autofocus
       />
-      <i class="fa fa-plus-circle"></i>
+      <i class="fa fa-laptop-code"></i>
+
       <!-- Name validation error -->
       <div *ngIf="Name?.errors && (Name?.touched || Name?.dirty)">
         <p *ngIf="Name?.hasError('required')" class="error">
@@ -28,6 +28,8 @@
         placeholder="Categoría a la que pertenece"
         formControlName="category"
       />
+      <i class="fa fa-layer-group"></i>
+
       <!-- Category validation error -->
       <div *ngIf="Category?.errors && (Category?.touched || Category?.dirty)">
         <p *ngIf="Category?.hasError('required')" class="error">
@@ -36,19 +38,20 @@
       </div>
       <!-- Logo input -->
       <input
-        type="file"
+        type="text"
         placeholder="Logo de la tecnología"
         formControlName="logo"
         class="inputLogo"
+        onfocus="(this.type='file')"
       />
-      <i class="fa fa-plus-circle"></i>
+      <i class="fa fa-file-image"></i>
       <!-- Url input -->
       <input
         type="text"
         placeholder="Enlace a la página de la tecnología"
         formControlName="url"
       />
-      <i class="fa fa-plus-circle"></i>
+      <i class="fa fa-link"></i>
       <button type="submit">Crear</button>
     </form>
   </div>

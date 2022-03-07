@@ -10,18 +10,16 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./school.component.css'],
 })
 export class SchoolComponent implements OnInit {
-  form: FormGroup;
+  form: FormGroup = this.formBuilder.group({
+    name: ['', [Validators.required]],
+    logo: ['', []],
+  });
 
   constructor(
     private formBuilder: FormBuilder,
     private schoolService: SchoolService,
     private toastr: ToastrService
-  ) {
-    this.form = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      logo: ['', []],
-    });
-  }
+  ) {}
 
   ngOnInit(): void {}
 

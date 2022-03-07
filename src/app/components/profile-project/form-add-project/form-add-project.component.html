@@ -6,7 +6,6 @@
       type="text"
       placeholder="Nombre del proyecto"
       formControlName="name"
-      autofocus
     />
     <i class="fa fa-plus-circle"></i>
     <!-- Name validation error -->
@@ -18,10 +17,10 @@
     <!-- Description input -->
     <input
       type="text"
-      placeholder="Descripción y/o las tecnologías utilizadas"
+      placeholder="Descripción del proyecto"
       formControlName="description"
     />
-    <i class="fa fa-plus-circle"></i>
+    <i class="fa fa-file-alt"></i>
     <!-- Description validation error -->
     <div
       *ngIf="
@@ -44,21 +43,22 @@
       placeholder="Enlace al repositorio"
       formControlName="repository"
     />
-    <i class="fa fa-plus-circle"></i>
+    <i class="fa fa-link"></i>
     <!-- Deploy input -->
     <input
       type="text"
       placeholder="Enlace al deploy"
       formControlName="deploy"
     />
-    <i class="fa fa-plus-circle"></i>
+    <i class="fa fa-link"></i>
     <!-- End_date input -->
     <input
-      type="date"
-      placeholder="Año de realización"
+      type="text"
+      placeholder="Fecha de realización"
       formControlName="end_date"
+      onfocus="(this.type='date')"
     />
-    <i class="fa fa-plus-circle"></i>
+    <i class="fa fa-calendar-alt"></i>
     <!-- End_date validation error -->
     <div *ngIf="End_date?.errors && (End_date?.touched || End_date?.dirty)">
       <p *ngIf="End_date?.hasError('required')" class="error">
@@ -67,11 +67,13 @@
     </div>
     <!-- Logo input -->
     <input
-      type="file"
+      type="text"
       placeholder="Agregue el logo del proyecto"
       formControlName="logo"
       class="inputLogo"
+      onfocus="(this.type='file')"
     />
+    <i class="fa fa-file-image"></i>
     <button type="submit">Agregar</button>
   </form>
 </div>

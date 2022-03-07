@@ -3,7 +3,7 @@
     <p class="title">Modificar perfil</p>
     <!-- Name input -->
     <input type="text" placeholder="Nombre" formControlName="name" />
-    <i class="fa fa-plus-circle"></i>
+    <i class="fa fa-user"></i>
     <!-- Name validation error -->
     <div *ngIf="Name?.errors && (Name?.touched || Name?.dirty)">
       <p *ngIf="Name?.hasError('required')" class="error">
@@ -19,7 +19,7 @@
       placeholder="Nacionalidad"
       formControlName="nationality"
     />
-    <i class="fa fa-plus-circle"></i>
+    <i class="fa fa-flag"></i>
     <!-- Nationality validation error -->
     <div
       *ngIf="
@@ -33,7 +33,7 @@
 
     <!-- Profession input -->
     <input type="text" placeholder="Profesión" formControlName="profession" />
-    <i class="fa fa-plus-circle"></i>
+    <i class="fa fa-user-tie"></i>
     <!-- Profession validation error -->
     <div
       *ngIf="Profession?.errors && (Profession?.touched || Profession?.dirty)"
@@ -44,7 +44,7 @@
     </div>
     <!-- About input -->
     <input type="text" placeholder="Acerca de" formControlName="about" />
-    <i class="fa fa-plus-circle"></i>
+    <i class="fa fa-address-card"></i>
     <!-- About validation error -->
     <div *ngIf="About?.errors && (About?.touched || About?.dirty)">
       <p *ngIf="About?.hasError('required')" class="error">

@@ -10,16 +10,14 @@ import { Technology } from 'src/app/models/technology';
 })
 export class FormAddTechnologieComponent implements OnInit {
   @Output() onAddTechnology: EventEmitter<Technology> = new EventEmitter();
-  form: FormGroup;
+  form: FormGroup = this.formBuilder.group({
+    name: ['', [Validators.required]],
+    category: ['', [Validators.required]],
+    logo: ['', []],
+    url: ['', []],
+  });
 
-  constructor(private formBuilder: FormBuilder) {
-    this.form = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      category: ['', [Validators.required]],
-      logo: ['', []],
-      url: ['', []],
-    });
-  }
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {}
 

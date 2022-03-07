@@ -10,13 +10,11 @@ import { Language } from 'src/app/models/language';
 })
 export class FormAddLanguageComponent implements OnInit {
   @Output() onAddLanguage: EventEmitter<Language> = new EventEmitter();
-  form: FormGroup;
+  form: FormGroup = this.formBuilder.group({
+    name: ['', [Validators.required]],
+  });
 
-  constructor(private formBuilder: FormBuilder) {
-    this.form = this.formBuilder.group({
-      name: ['', [Validators.required]],
-    });
-  }
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {}
 

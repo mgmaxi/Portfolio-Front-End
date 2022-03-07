@@ -10,29 +10,28 @@ import { SchoolService } from 'src/app/service/school.service';
 })
 export class FormAddEducationComponent implements OnInit {
   @Output() onAddEducation: EventEmitter<any> = new EventEmitter();
-  form: FormGroup;
   schoolList: School[] = [];
   showAddSchool: boolean = false;
+
+  form: FormGroup = this.formBuilder.group({
+    name: ['', [Validators.required]],
+    description: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(250),
+      ],
+    ],
+    school: [null, [Validators.required]],
+    start_date: ['', [Validators.required]],
+    end_date: ['', [Validators.required]],
+  });
 
   constructor(
     private formBuilder: FormBuilder,
     private schoolService: SchoolService
-  ) {
-    this.form = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      description: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(10),
-          Validators.maxLength(250),
-        ],
-      ],
-      school: [null, [Validators.required]],
-      start_date: ['', [Validators.required]],
-      end_date: ['', [Validators.required]],
-    });
-  }
+  ) {}
 
   ngOnInit(): void {
     this.getSchools();

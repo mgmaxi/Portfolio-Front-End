@@ -10,18 +10,16 @@ import { CompanyService } from 'src/app/service/company.service';
   styleUrls: ['./company.component.css'],
 })
 export class CompanyComponent implements OnInit {
-  form: FormGroup;
+  form: FormGroup = this.formBuilder.group({
+    name: ['', [Validators.required]],
+    logo: ['', []],
+  });
 
   constructor(
     private formBuilder: FormBuilder,
     private companyService: CompanyService,
     private toastr: ToastrService
-  ) {
-    this.form = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      logo: ['', []],
-    });
-  }
+  ) {}
 
   ngOnInit(): void {}
 

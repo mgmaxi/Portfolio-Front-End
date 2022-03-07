@@ -11,29 +11,28 @@ import { CompanyService } from 'src/app/service/company.service';
 })
 export class FormAddExperienceComponent implements OnInit {
   @Output() onAddExperience: EventEmitter<Experience> = new EventEmitter();
-  form: FormGroup;
   companyList: Company[] = [];
   showAddCompany: boolean = false;
+
+  form: FormGroup = this.formBuilder.group({
+    name: ['', [Validators.required]],
+    description: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(250),
+      ],
+    ],
+    company: [null, [Validators.required]],
+    start_date: ['', [Validators.required]],
+    end_date: ['', [Validators.required]],
+  });
 
   constructor(
     private formBuilder: FormBuilder,
     private companyService: CompanyService
-  ) {
-    this.form = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      description: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(10),
-          Validators.maxLength(250),
-        ],
-      ],
-      company: [null, [Validators.required]],
-      start_date: ['', [Validators.required]],
-      end_date: ['', []],
-    });
-  }
+  ) {}
 
   ngOnInit(): void {
     this.getCompanies();

@@ -14,6 +14,13 @@ import { PersonDTO } from 'src/app/models/personDTO';
   styleUrls: ['./profile-header.component.css'],
 })
 export class ProfileHeaderComponent implements OnInit {
+  @Output() onToggleAbout = new EventEmitter<string>();
+  @Output() onToggleExperience = new EventEmitter<string>();
+  @Output() onToggleEducation = new EventEmitter<string>();
+  @Output() onToggleProject = new EventEmitter<string>();
+  @Output() onToggleLanguage = new EventEmitter<string>();
+  @Output() onToggleTechnology = new EventEmitter<string>();
+
   person: any = [];
   currentPerson: any;
   isAdmin = false;
@@ -24,13 +31,6 @@ export class ProfileHeaderComponent implements OnInit {
   userphotos_id: any = 1;
   cover_photo: string = '../../../assets/image/profile/profileCover.jpg';
   profile_photo: string = '../../../assets/image/profile/profileCover.jpg';
-
-  @Output() onToggleAbout = new EventEmitter<string>();
-  @Output() onToggleExperience = new EventEmitter<string>();
-  @Output() onToggleEducation = new EventEmitter<string>();
-  @Output() onToggleProject = new EventEmitter<string>();
-  @Output() onToggleLanguage = new EventEmitter<string>();
-  @Output() onToggleTechnology = new EventEmitter<string>();
 
   constructor(
     private tokenService: TokenService,

@@ -27,7 +27,7 @@ export class FormUpdateExperienceComponent implements OnInit {
     ],
     company: [null, [Validators.required]],
     start_date: ['', [Validators.required]],
-    end_date: ['', []],
+    end_date: ['', [Validators.required]],
   });
 
   constructor(

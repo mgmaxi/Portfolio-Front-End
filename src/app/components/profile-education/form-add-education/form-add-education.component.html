@@ -14,9 +14,8 @@
       type="text"
       placeholder="Nombre de la disciplina académica"
       formControlName="name"
-      autofocus
     />
-    <i class="fa fa-plus-circle"></i>
+    <i class="fa fa-graduation-cap"></i>
     <!-- Name validation error -->
     <div *ngIf="Name?.errors && (Name?.touched || Name?.dirty)">
       <p *ngIf="Name?.hasError('required')" class="error">
@@ -29,7 +28,7 @@
       placeholder="Descripción de la disciplina académica"
       formControlName="description"
     />
-    <i class="fa fa-plus-circle"></i>
+    <i class="fa fa-file-alt"></i>
     <!-- Description validation error -->
     <div
       *ngIf="
@@ -59,14 +58,21 @@
         {{ school.name }}
       </option>
     </select>
-    <i class="fa fa-plus-circle"></i>
+    <i class="fa fa-university"></i>
+    <!-- School validation error -->
+    <div *ngIf="School?.errors && (School?.touched || School?.dirty)">
+      <p *ngIf="School?.hasError('required')" class="error">
+        *Debes seleccionar una institución.
+      </p>
+    </div>
     <!-- Start_date input -->
     <input
-      type="date"
+      type="text"
       placeholder="Fecha de inicio"
       formControlName="start_date"
+      onfocus="(this.type='date')"
     />
-    <i class="fa fa-plus-circle"></i>
+    <i class="fa fa-calendar-alt"></i>
     <!-- Start_date validation error -->
     <div
       *ngIf="Start_date?.errors && (Start_date?.touched || Start_date?.dirty)"
@@ -77,15 +83,16 @@
     </div>
     <!-- End_date input -->
     <input
-      type="date"
-      placeholder="Fecha de realización"
+      type="text"
+      placeholder="Fecha de finalización"
       formControlName="end_date"
+      onfocus="(this.type='date')"
     />
-    <i class="fa fa-plus-circle"></i>
+    <i class="fa fa-calendar-alt"></i>
     <!-- End_date validation error -->
     <div *ngIf="End_date?.errors && (End_date?.touched || End_date?.dirty)">
       <p *ngIf="End_date?.hasError('required')" class="error">
-        *La fecha de finalización es requerido.
+        *La fecha de finalización es requerida.
       </p>
     </div>
 

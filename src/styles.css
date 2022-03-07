@@ -397,6 +397,28 @@ form select:focus + i.fa {
   transition: all 0.5s ease-out;
 }
 
+form input:focus + i.fa-file-alt,
+form select:focus + i.fa-file-alt,
+form input:focus + i.fa-file-image,
+form select:focus + i.fa-file-image,
+form input:focus + i.fa-globe-americas,
+form select:focus + i.fa-globe-americas,
+form input:focus + i.fa-layer-group,
+form select:focus + i.fa-layer-group,
+form input:focus + i.fa-building,
+form select:focus + i.fa-building,
+form input:focus + i.fa-calendar-alt,
+form select:focus + i.fa-calendar-alt {
+  left: 48px;
+}
+
+form input:focus + i.fa-graduation-cap,
+form select:focus + i.fa-graduation-cap,
+form input:focus + i.fa-address-card,
+form select:focus + i.fa-address-card {
+  left: 44px;
+}
+
 form p {
   text-align: center;
 }
@@ -483,9 +505,8 @@ select:focus.ng-valid {
 }
 
 .inputLogo {
-  text-align: center;
   margin: 10px auto;
-  padding: 0;
+  padding: 0 10px;
 }
 
 .inputLogo:focus {

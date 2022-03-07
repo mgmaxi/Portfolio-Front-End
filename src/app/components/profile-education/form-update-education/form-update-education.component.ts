@@ -27,7 +27,7 @@ export class FormUpdateEducationComponent implements OnInit {
     ],
     school: [null, [Validators.required]],
     start_date: ['', [Validators.required]],
-    end_date: ['', []],
+    end_date: ['', [Validators.required]],
   });
 
   constructor(

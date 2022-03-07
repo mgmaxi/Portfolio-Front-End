@@ -11,7 +11,7 @@
     <p class="title">Modificar experiencia</p>
     <!-- Name input -->
     <input type="text" placeholder="Nombre del cargo" formControlName="name" />
-    <i class="fa fa-plus-circle"></i>
+    <i class="fa fa-briefcase"></i>
     <!-- Name validation error -->
     <div *ngIf="Name?.errors && (Name?.touched || Name?.dirty)">
       <p *ngIf="Name?.hasError('required')" class="error">
@@ -24,7 +24,7 @@
       placeholder="Descripción del cargo"
       formControlName="description"
     />
-    <i class="fa fa-plus-circle"></i>
+    <i class="fa fa-file-alt"></i>
     <!-- Description validation error -->
     <div
       *ngIf="
@@ -55,14 +55,21 @@
         {{ company.name }}
       </option>
     </select>
-    <i class="fa fa-plus-circle"></i>
+    <i class="fa fa-building"></i>
+    <!-- Company validation error -->
+    <div *ngIf="Company?.errors && (Company?.touched || Company?.dirty)">
+      <p *ngIf="Company?.hasError('required')" class="error">
+        *Debes seleccionar una empresa.
+      </p>
+    </div>
     <!-- Start_date input -->
     <input
-      type="date"
+      type="text"
       placeholder="Fecha de inicio"
       formControlName="start_date"
+      onfocus="(this.type='date')"
     />
-    <i class="fa fa-plus-circle"></i>
+    <i class="fa fa-calendar-alt"></i>
     <!-- Start_date validation error -->
     <div
       *ngIf="Start_date?.errors && (Start_date?.touched || Start_date?.dirty)"
@@ -73,11 +80,12 @@
     </div>
     <!-- End_date input -->
     <input
-      type="date"
+      type="text"
       placeholder="Fecha de finalización"
       formControlName="end_date"
+      onfocus="(this.type='date')"
     />
-    <i class="fa fa-plus-circle"></i>
+    <i class="fa fa-calendar-alt"></i>
     <!-- End_date validation error -->
     <div *ngIf="End_date?.errors && (End_date?.touched || End_date?.dirty)">
       <p *ngIf="End_date?.hasError('required')" class="error">

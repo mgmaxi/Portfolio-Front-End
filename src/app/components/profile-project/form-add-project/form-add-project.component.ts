@@ -10,25 +10,23 @@ import { Project } from 'src/app/models/project';
 })
 export class FormAddProjectComponent implements OnInit {
   @Output() onAddProject: EventEmitter<Project> = new EventEmitter();
-  form: FormGroup;
-
-  constructor(private formBuilder: FormBuilder) {
-    this.form = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      description: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(10),
-          Validators.maxLength(250),
-        ],
+  form: FormGroup = this.formBuilder.group({
+    name: ['', [Validators.required]],
+    description: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(250),
       ],
-      repository: ['', []],
-      deploy: ['', []],
-      end_date: ['', [Validators.required]],
-      logo: ['', []],
-    });
-  }
+    ],
+    repository: ['', []],
+    deploy: ['', []],
+    end_date: ['', [Validators.required]],
+    logo: ['', []],
+  });
+
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {}
 

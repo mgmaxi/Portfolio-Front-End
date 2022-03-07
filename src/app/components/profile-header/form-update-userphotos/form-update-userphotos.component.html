@@ -7,7 +7,7 @@
       placeholder="Imagen de perfil"
       formControlName="profile_photo"
     />
-    <i class="fa fa-plus-circle"></i>
+    <i class="fa fa-file-image"></i>
     <!-- Profile_photo validation error -->
     <div
       *ngIf="
@@ -16,7 +16,7 @@
       "
     >
       <p *ngIf="Profile_photo?.hasError('required')" class="error">
-        *La imagen de perfil es requerido.
+        *La imagen de perfil es requerida.
       </p>
     </div>
     <!-- Cover_photo input -->
@@ -25,7 +25,7 @@
       placeholder="Imagen de portada"
       formControlName="cover_photo"
     />
-    <i class="fa fa-plus-circle"></i>
+    <i class="fa fa-file-image"></i>
     <!-- Cover_photo validation error -->
     <div
       *ngIf="
@@ -33,7 +33,7 @@
       "
     >
       <p *ngIf="Cover_photo?.hasError('required')" class="error">
-        *La imagen de portada es requerido.
+        *La imagen de portada es requerida.
       </p>
     </div>
     <button type="submit">Modificar</button>
