@@ -7,12 +7,31 @@
     (onToggleProject)="toggleProject()"
     (onToggleLanguage)="toggleLanguage()"
     (onToggleTechnology)="toggleTechnology()"
+    person_id="{{ person_id }}"
   ></app-profile-header>
-  <app-profile-about *ngIf="showAbout"></app-profile-about>
-  <app-profile-experience *ngIf="showExperience"></app-profile-experience>
-  <app-profile-education *ngIf="showEducation"></app-profile-education>
-  <app-profile-project *ngIf="showProject"></app-profile-project>
-  <app-profile-language *ngIf="showLanguage"></app-profile-language>
-  <app-profile-technology *ngIf="showTechnology"></app-profile-technology>
+  <app-profile-about
+    *ngIf="showAbout"
+    person_id="{{ person_id }}"
+  ></app-profile-about>
+  <app-profile-experience
+    *ngIf="showExperience"
+    person_id="{{ person_id }}"
+  ></app-profile-experience>
+  <app-profile-education
+    *ngIf="showEducation"
+    person_id="{{ person_id }}"
+  ></app-profile-education>
+  <app-profile-project
+    *ngIf="showProject"
+    person_id="{{ person_id }}"
+  ></app-profile-project>
+  <app-profile-language
+    *ngIf="showLanguage"
+    person_id="{{ person_id }}"
+  ></app-profile-language>
+  <app-profile-technology
+    *ngIf="showTechnology"
+    person_id="{{ person_id }}"
+  ></app-profile-technology>
 </main>
 <app-footer></app-footer>

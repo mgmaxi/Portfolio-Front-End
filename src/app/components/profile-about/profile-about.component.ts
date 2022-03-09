@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { PersonService } from 'src/app/service/person.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-profile-about',
@@ -8,25 +9,37 @@ import { PersonService } from 'src/app/service/person.service';
 })
 export class ProfileAboutComponent implements OnInit {
   person: any = '';
-  person_id: number = 1;
   showAboutSection: boolean = true;
+  @Input() person_id: any;
 
-  constructor(private personService: PersonService) {}
+  constructor(
+    private personService: PersonService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
-    this.getAbout();
+    this.getPersonId();
+  }
+
+  getPersonId() {
+    this.userService.person_id.subscribe((data) => {
+      this.person_id = data;
+      this.getAbout();
+    });
   }
 
   getAbout() {
-    this.personService.getPersonProfile(this.person_id).subscribe((data) => {
-      this.person = data;
-      if (
-        this.person.about.length === 0 ||
-        this.person.about === null ||
-        !this.person.about.trim()
-      ) {
-        this.showAboutSection = false;
-      }
-    });
+    if (this.person_id != 0) {
+      this.personService.getPersonProfile(this.person_id).subscribe((data) => {
+        this.person = data;
+        if (
+          this.person.about.length === 0 ||
+          this.person.about === null ||
+          !this.person.about.trim()
+        ) {
+          this.showAboutSection = false;
+        }
+      });
+    }
   }
 }

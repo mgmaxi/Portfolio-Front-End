@@ -4,6 +4,7 @@ export class PersonDTO {
   nationality: string;
   profession: string;
   about: string;
+  userphotos_id?: number;
   profile_photo: string;
   cover_photo: string;
 

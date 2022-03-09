@@ -5,6 +5,8 @@ import { EducationService } from 'src/app/service/education.service';
 import { ProjectService } from 'src/app/service/project.service';
 import { LanguageService } from 'src/app/service/language.service';
 import { TechnologyService } from 'src/app/service/technology.service';
+import { UserService } from 'src/app/service/user.service';
+import { TokenService } from 'src/app/security/service/token.service';
 
 @Component({
   selector: 'app-main',
@@ -12,8 +14,8 @@ import { TechnologyService } from 'src/app/service/technology.service';
   styleUrls: ['./main.component.css'],
 })
 export class MainComponent implements OnInit {
-  person_id: number = 1;
-  showAbout = true;
+  person_id: number = 0;
+  showAbout = false;
   showExperience = true;
   showEducation = true;
   showProject = true;
@@ -21,6 +23,8 @@ export class MainComponent implements OnInit {
   showTechnology = true;
 
   constructor(
+    private userService: UserService,
+    private tokenService: TokenService,
     private personService: PersonService,
     private experienceService: ExperienceService,
     private educationService: EducationService,
@@ -30,20 +34,31 @@ export class MainComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.AboutIsEmpty();
-    this.ExperienceIsEmpty();
-    this.EducationIsEmpty();
-    this.ProjectIsEmpty();
-    this.LanguageIsEmpty();
-    this.TechnologyIsEmpty();
+    this.getPersonId();
+  }
+
+  private getPersonId() {
+    const username = this.tokenService.getUsername();
+    this.userService.getPersonId(username).subscribe((data) => {
+      this.person_id = data;
+      this.userService.changePersonId(data);
+      this.AboutIsEmpty();
+      this.ExperienceIsEmpty();
+      this.EducationIsEmpty();
+      this.ProjectIsEmpty();
+      this.LanguageIsEmpty();
+      this.TechnologyIsEmpty();
+    });
   }
 
   private AboutIsEmpty() {
     this.personService.getPersonProfile(this.person_id).subscribe((data) => {
       let person: any = data;
-      person.about.length === 0
-        ? (this.showAbout = false)
-        : (this.showAbout = true);
+      if (person.about === '' || person.about === null) {
+        this.showAbout = false;
+      } else {
+        this.showAbout = true;
+      }
     });
   }
 

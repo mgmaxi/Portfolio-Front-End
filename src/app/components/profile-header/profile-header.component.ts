@@ -7,6 +7,7 @@ import { TokenService } from 'src/app/security/service/token.service';
 import { UserphotosService } from 'src/app/service/userphotos.service';
 import { ToastrService } from 'ngx-toastr';
 import { PersonDTO } from 'src/app/models/personDTO';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-profile-header',
@@ -20,15 +21,15 @@ export class ProfileHeaderComponent implements OnInit {
   @Output() onToggleProject = new EventEmitter<string>();
   @Output() onToggleLanguage = new EventEmitter<string>();
   @Output() onToggleTechnology = new EventEmitter<string>();
+  @Input() person_id: any;
 
   person: any = [];
   currentPerson: any;
   isAdmin = false;
   showUpdateForm: boolean = false;
   showUpdateUserphotosForm: boolean = false;
-  person_id: any = 1;
-  user_id: any = 1;
-  userphotos_id: any = 1;
+  user_id: any;
+  userphotos_id: any;
   cover_photo: string = '../../../assets/image/profile/profileCover.jpg';
   profile_photo: string = '../../../assets/image/profile/profileCover.jpg';
 
@@ -36,19 +37,38 @@ export class ProfileHeaderComponent implements OnInit {
     private tokenService: TokenService,
     private personService: PersonService,
     private userphotosService: UserphotosService,
+    private userService: UserService,
     private toastr: ToastrService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.isAdmin = this.tokenService.isAdmin();
-    this.getPersonProfile();
+    this.getUserId();
+    this.getPersonId();
+  }
+
+  getUserId() {
+    const username = this.tokenService.getUsername();
+    this.userService
+      .getUserId(username)
+      .subscribe((data) => (this.user_id = data));
+  }
+
+  getPersonId() {
+    this.userService.person_id.subscribe((data) => {
+      this.person_id = data;
+      this.getPersonProfile();
+    });
   }
 
   getPersonProfile() {
-    this.personService
-      .getPersonProfile(this.person_id)
-      .subscribe((data) => (this.person = data));
+    if (this.person_id != 0) {
+      this.personService.getPersonProfile(this.person_id).subscribe((data) => {
+        this.person = data;
+        this.userphotos_id = data.userphotos_id;
+      });
+    }
   }
 
   updatePerson(person: Person) {

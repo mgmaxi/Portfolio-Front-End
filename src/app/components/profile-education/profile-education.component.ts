@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 //import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { TokenService } from 'src/app/security/service/token.service';
 import { EducationService } from 'src/app/service/education.service';
 import { Education } from 'src/app/models/education';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-profile-education',
@@ -12,8 +13,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./profile-education.component.css'],
 })
 export class ProfileEducationComponent implements OnInit {
+  @Input() person_id: any;
   educationList: Education[] = [];
-  person_id: number = 1;
   showAddForm: boolean = false;
   showUpdateForm: boolean = false;
   isAdmin = false;
@@ -23,13 +24,21 @@ export class ProfileEducationComponent implements OnInit {
   constructor(
     private tokenService: TokenService,
     private educationService: EducationService,
+    private userService: UserService,
     private toastr: ToastrService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.isAdmin = this.tokenService.isAdmin();
-    this.getEducations();
+    this.getPersonId();
+  }
+
+  getPersonId() {
+    this.userService.person_id.subscribe((data) => {
+      this.person_id = data;
+      this.getEducations();
+    });
   }
 
   toggleAddForm() {
@@ -50,9 +59,11 @@ export class ProfileEducationComponent implements OnInit {
   }
 
   getEducations() {
-    this.educationService.getEducations(this.person_id).subscribe((data) => {
-      this.educationList = data;
-    });
+    if (this.person_id != 0) {
+      this.educationService.getEducations(this.person_id).subscribe((data) => {
+        this.educationList = data;
+      });
+    }
   }
 
   addEducation(education: Education) {

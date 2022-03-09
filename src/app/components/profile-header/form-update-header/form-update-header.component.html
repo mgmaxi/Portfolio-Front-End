@@ -57,6 +57,9 @@
       <p *ngIf="About?.hasError('maxlength')" class="error">
         *El campo "acerca de" no puede tener más de 250 caracteres.
       </p>
+      <p *ngIf="About?.hasError('pattern')" class="error">
+        *El campo no puede contener solo espacios vacíos.
+      </p>
     </div>
 
     <button type="submit">Modificar</button>

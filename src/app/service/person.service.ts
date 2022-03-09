@@ -24,9 +24,9 @@ export class PersonService {
     return this.http.get<Person[]>(url);
   }
 
-  getPersonProfile(person_id: number): Observable<PersonDTO[]> {
+  getPersonProfile(person_id: number): Observable<any> {
     const url = `${this.apiUrl}/persons/${person_id}/profile`;
-    return this.http.get<PersonDTO[]>(url);
+    return this.http.get<any>(url);
   }
 
   updatePerson(

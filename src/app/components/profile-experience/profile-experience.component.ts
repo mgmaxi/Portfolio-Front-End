@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Experience } from 'src/app/models/experience';
 import { ExperienceService } from 'src/app/service/experience.service';
 import { TokenService } from 'src/app/security/service/token.service';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-profile-experience',
@@ -11,8 +12,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./profile-experience.component.css'],
 })
 export class ProfileExperienceComponent implements OnInit {
+  @Input() person_id: any;
   experienceList: Experience[] = [];
-  person_id: number = 1;
   isAdmin = false;
   showAddForm: boolean = false;
   showUpdateForm: boolean = false;
@@ -22,19 +23,31 @@ export class ProfileExperienceComponent implements OnInit {
   constructor(
     private tokenService: TokenService,
     private experienceService: ExperienceService,
+    private userService: UserService,
     private toastr: ToastrService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.isAdmin = this.tokenService.isAdmin();
-    this.getExperiences();
+    this.getPersonId();
+  }
+
+  getPersonId() {
+    this.userService.person_id.subscribe((data) => {
+      this.person_id = data;
+      this.getExperiences();
+    });
   }
 
   getExperiences() {
-    this.experienceService.getExperiences(this.person_id).subscribe((data) => {
-      this.experienceList = data;
-    });
+    if (this.person_id != 0) {
+      this.experienceService
+        .getExperiences(this.person_id)
+        .subscribe((data) => {
+          this.experienceList = data;
+        });
+    }
   }
 
   addExperience(experience: Experience) {

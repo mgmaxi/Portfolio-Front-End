@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Project } from 'src/app/models/project';
 import { ProjectService } from 'src/app/service/project.service';
 import { TokenService } from 'src/app/security/service/token.service';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-profile-project',
@@ -11,9 +12,9 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./profile-project.component.css'],
 })
 export class ProfileProjectsComponent implements OnInit {
+  @Input() person_id: any;
   projectList: any[] = [];
   showForm: boolean = false;
-  person_id: number = 1;
   isAdmin = false;
   showAddForm: boolean = false;
   showUpdateForm: boolean = false;
@@ -22,19 +23,29 @@ export class ProfileProjectsComponent implements OnInit {
   constructor(
     private tokenService: TokenService,
     private projectService: ProjectService,
+    private userService: UserService,
     private toastr: ToastrService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.isAdmin = this.tokenService.isAdmin();
-    this.getProjects();
+    this.getPersonId();
+  }
+
+  getPersonId() {
+    this.userService.person_id.subscribe((data) => {
+      this.person_id = data;
+      this.getProjects();
+    });
   }
 
   getProjects() {
-    this.projectService.getProjects(this.person_id).subscribe((data) => {
-      this.projectList = data;
-    });
+    if (this.person_id != 0) {
+      this.projectService.getProjects(this.person_id).subscribe((data) => {
+        this.projectList = data;
+      });
+    }
   }
 
   addProject(project: Project) {

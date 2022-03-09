@@ -45,10 +45,14 @@ export class LoginComponent implements OnInit {
         (data) => {
           this.tokenService.setToken(data.token);
 
-          this.toastr.success('Bienvenido!', 'Inicio de sesión exitoso', {
-            timeOut: 3000,
-            positionClass: 'toast-top-center',
-          });
+          this.toastr.success(
+            `Bienvenido ${this.tokenService.getUsername()}!`,
+            'Inicio de sesión exitoso',
+            {
+              timeOut: 3000,
+              positionClass: 'toast-top-center',
+            }
+          );
           this.router.navigate(['/portfolio']);
         },
         (err) => {

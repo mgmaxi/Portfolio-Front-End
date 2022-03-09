@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Language } from 'src/app/models/language';
 import { LanguageService } from 'src/app/service/language.service';
 import { TokenService } from 'src/app/security/service/token.service';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-profile-language',
@@ -12,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ProfileLanguagesComponent implements OnInit {
   languagesList: any[] = [];
-  person_id: number = 1;
+  @Input() person_id: any;
   isAdmin = false;
   showAddForm: boolean = false;
   showAddLanguageToPersonForm: boolean = false;
@@ -21,19 +22,29 @@ export class ProfileLanguagesComponent implements OnInit {
   constructor(
     private languageService: LanguageService,
     private tokenService: TokenService,
+    private userService: UserService,
     private toastr: ToastrService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.isAdmin = this.tokenService.isAdmin();
-    this.getByPersonId();
+    this.getPersonId();
   }
 
-  getByPersonId() {
-    this.languageService.findByPersonId(this.person_id).subscribe((data) => {
-      this.languagesList = data;
+  getPersonId() {
+    this.userService.person_id.subscribe((data) => {
+      this.person_id = data;
+      this.getLanguages();
     });
+  }
+
+  getLanguages() {
+    if (this.person_id != 0) {
+      this.languageService.findByPersonId(this.person_id).subscribe((data) => {
+        this.languagesList = data;
+      });
+    }
   }
 
   addLanguage(language: Language) {

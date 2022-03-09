@@ -15,7 +15,7 @@ export class FormUpdateHeaderComponent implements OnInit {
     name: ['', [Validators.required, Validators.minLength(3)]],
     nationality: ['', [Validators.required]],
     profession: ['', [Validators.required]],
-    about: ['', []],
+    about: ['', [Validators.pattern(/[\S]/)]],
   });
 
   constructor(private formBuilder: FormBuilder) {}

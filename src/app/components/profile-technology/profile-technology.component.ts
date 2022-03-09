@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Technology } from 'src/app/models/technology';
 import { TechnologyService } from 'src/app/service/technology.service';
 import { TokenService } from 'src/app/security/service/token.service';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-profile-technology',
@@ -11,9 +12,9 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./profile-technology.component.css'],
 })
 export class ProfileTechnologiesComponent implements OnInit {
+  @Input() person_id: any;
   technologyList: Technology[] = [];
   filterCategory: Technology[] = [];
-  person_id: number = 1;
   isAdmin = false;
   showAddForm: boolean = false;
   showAddTechToPersonForm: boolean = false;
@@ -21,13 +22,21 @@ export class ProfileTechnologiesComponent implements OnInit {
   constructor(
     private tokenService: TokenService,
     private technologyService: TechnologyService,
+    private userService: UserService,
     private toastr: ToastrService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.isAdmin = this.tokenService.isAdmin();
-    this.getByPersonId();
+    this.getPersonId();
+  }
+
+  getPersonId() {
+    this.userService.person_id.subscribe((data) => {
+      this.person_id = data;
+      this.getTechnologies();
+    });
   }
 
   filter(category: string) {
@@ -41,11 +50,15 @@ export class ProfileTechnologiesComponent implements OnInit {
     });
   }
 
-  getByPersonId() {
-    this.technologyService.findByPersonId(this.person_id).subscribe((data) => {
-      this.technologyList = data;
-      this.filterCategory = data;
-    });
+  getTechnologies() {
+    if (this.person_id != 0) {
+      this.technologyService
+        .findByPersonId(this.person_id)
+        .subscribe((data) => {
+          this.technologyList = data;
+          this.filterCategory = data;
+        });
+    }
   }
 
   addTechnology(technology: Technology) {
