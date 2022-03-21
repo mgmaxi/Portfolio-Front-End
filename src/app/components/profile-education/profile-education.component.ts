@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-//import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { TokenService } from 'src/app/security/service/token.service';
 import { EducationService } from 'src/app/service/education.service';
 import { Education } from 'src/app/models/education';
@@ -54,7 +53,7 @@ export class ProfileEducationComponent implements OnInit {
     this.router
       .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
       .then(() => {
-        this.router.navigate(['portfolio']);
+        this.router.navigate(['profile']);
       });
   }
 

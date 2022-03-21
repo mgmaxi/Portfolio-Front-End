@@ -57,16 +57,32 @@
         </p>
       </div>
       <!-- Signup Person Data -->
-      <!-- Name input -->
-      <input type="text" placeholder="Nombre" formControlName="name" />
+      <!-- First_name input -->
+      <input type="text" placeholder="Nombre" formControlName="first_name" />
       <i class="fa fa-user"></i>
-      <!-- Name validation error -->
-      <div *ngIf="Name?.errors && (Name?.touched || Name?.dirty)">
-        <p *ngIf="Name?.hasError('required')" class="error">
+      <!-- First_name validation error -->
+      <div
+        *ngIf="First_name?.errors && (First_name?.touched || First_name?.dirty)"
+      >
+        <p *ngIf="First_name?.hasError('required')" class="error">
           *El nombre es requerido.
         </p>
-        <p *ngIf="Name?.hasError('minlength')" class="error">
+        <p *ngIf="First_name?.hasError('minlength')" class="error">
           El nombre debe tener al menos 3 caracteres.
+        </p>
+      </div>
+      <!-- Last_name input -->
+      <input type="text" placeholder="Apellido" formControlName="last_name" />
+      <i class="fa fa-user"></i>
+      <!-- Last_name validation error -->
+      <div
+        *ngIf="Last_name?.errors && (Last_name?.touched || Last_name?.dirty)"
+      >
+        <p *ngIf="Last_name?.hasError('required')" class="error">
+          *El apellido es requerido.
+        </p>
+        <p *ngIf="Last_name?.hasError('minlength')" class="error">
+          El apellido debe tener al menos 3 caracteres.
         </p>
       </div>
       <p>¿Ya tenés una cuenta? <a routerLink="/login">Inicia sesión</a></p>

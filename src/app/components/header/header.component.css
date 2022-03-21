@@ -1,26 +1,31 @@
 /* Header */
-
-header {
-  height: 75px;
-  background-color: #000;
+* {
+  font-family: "Quicksand";
 }
 
-.containerHeader {
+header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding: 15px 10px 8px 10px;
+  height: 75px;
+  background-color: rgb(34, 34, 34, 1);
+  box-shadow: 0px -2px 7px 12px rgb(34, 34, 34, 1);
+  -webkit-box-shadow: 0px -2px 7px 12px rgb(34, 34, 34, 1);
+  -moz-box-shadow: 0px -2px 7px 12px rgb(34, 34, 34, 1);
 }
 
-.containerLogoAP {
+.logos {
   display: flex;
+  justify-content: flex-start;
   align-items: center;
-  margin: 0 0 0 10px;
+  width: 230px;
 }
 
 .logoAP {
   margin: 0 10px 0 0;
-  height: 150px;
+  height: 75px;
   width: 150px;
 }
 
@@ -29,36 +34,97 @@ header {
   width: 60px;
 }
 
-header.containerHeader > nav > ul {
-  margin: 0 10px 0 0;
+.navbar > ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-header.containerHeader > nav > ul > li {
-  display: inline-block;
-  margin: 0 5px;
-  list-style-type: none;
-}
-header.containerHeader > nav > ul > li:active {
-  background-color: rgb(0, 0, 0);
+.navbar > ul > li {
+  margin: 0 7.5px;
 }
 
-nav > ul > li > a > button {
+.navbar > ul > li > a > span {
+  color: rgb(255, 255, 255, 0.8);
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar > ul > li > a > span:hover {
+  color: rgb(255, 255, 255);
+}
+
+.navbar > ul > li > a > span:after {
+  content: "";
+  display: block;
+  margin: 0 auto;
+  width: 0;
+  height: 1px;
+  color: rgb(255, 255, 255, 0.4);
+  border-radius: 15px;
+  transition: all 0.4s ease-in-out;
+}
+
+.navbar > ul > li > a > span:hover::after {
+  width: 95%;
+  background: rgb(255, 255, 255, 0.6);
+}
+
+.login {
+  display: flex;
+  justify-content: flex-end;
+  width: 230px;
+}
+
+.login > ul > li > a > button {
   background-color: rgb(0, 0, 0);
   border: 1px solid rgb(255, 255, 255, 0.4);
 }
 
-nav > ul > li > a > button:hover {
+.login > ul > li > a > button:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-nav > ul > li > a > button:active {
+.login > ul > li > a > button:active {
   background-color: rgb(0, 0, 0);
 }
 
-nav > ul > li > a > i {
+.login > ul > li > a > i {
   transition: all 0.3s ease;
 }
 
-nav > ul > li > a > i:hover {
+.login > ul > li > a > i:hover {
   transform: rotate(18deg);
+}
+
+.menu-wrap {
+  display: none;
+}
+
+/* Media queries */
+
+@media only screen and (max-width: 768px) {
+  header {
+    justify-content: space-evenly;
+  }
+
+  .navbar {
+    display: none;
+  }
+
+  .login {
+    display: none;
+  }
+
+  .menu-wrap {
+    display: flex;
+    position: absolute;
+    top: 7px;
+    right: 0;
+    z-index: 1;
+  }
 }

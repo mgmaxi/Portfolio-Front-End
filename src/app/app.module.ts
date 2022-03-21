@@ -23,7 +23,6 @@ import { FormUpdateExperienceComponent } from './components/profile-experience/f
 import { FormAddProjectComponent } from './components/profile-project/form-add-project/form-add-project.component';
 import { FormAddLanguageComponent } from './components/profile-language/form-add-language/form-add-language.component';
 import { FormAddTechnologieComponent } from './components/profile-technology/form-add-technology/form-add-technology.component';
-import { DragDropModule } from '@angular/cdk/drag-drop';
 import { interceptorProvider } from './security/interceptors/interceptor.service';
 import { FormUpdateEducationComponent } from './components/profile-education/form-update-education/form-update-education.component';
 import { FormUpdateProjectComponent } from './components/profile-project/form-update-project/form-update-project.component';
@@ -37,6 +36,9 @@ import { CompanyComponent } from './components/profile-experience/company/compan
 // Toastr
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { TemplateV01Component } from './components/portfolio-template/template-v01/template-v01.component';
+import { MenuComponent } from './components/header/menu/menu.component';
+import { FormUpdateSocialnetworkComponent } from './components/profile-header/form-update-socialnetwork/form-update-socialnetwork.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +71,9 @@ import { ToastrModule } from 'ngx-toastr';
     FormAddTechToPersonComponent,
     SchoolComponent,
     CompanyComponent,
+    TemplateV01Component,
+    MenuComponent,
+    FormUpdateSocialnetworkComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,7 +81,6 @@ import { ToastrModule } from 'ngx-toastr';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    DragDropModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
   ],

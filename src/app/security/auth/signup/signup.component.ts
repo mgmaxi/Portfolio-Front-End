@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-  signupUser: SignupUser = new SignupUser('', '', '', '');
+  signupUser: SignupUser = new SignupUser('', '', '', '', '');
   errorMsg: string = '';
 
   form: FormGroup = this.formBuilder.group({
@@ -21,7 +21,8 @@ export class SignupComponent implements OnInit {
     ],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8)]],
-    name: ['', [Validators.required, Validators.minLength(3)]],
+    first_name: ['', [Validators.required, Validators.minLength(3)]],
+    last_name: ['', [Validators.required, Validators.minLength(3)]],
   });
 
   constructor(
@@ -40,7 +41,8 @@ export class SignupComponent implements OnInit {
         this.form.value.username,
         this.form.value.email,
         this.form.value.password,
-        this.form.value.name
+        this.form.value.first_name,
+        this.form.value.last_name
       );
 
       this.authService.signup(this.signupUser).subscribe(
@@ -76,7 +78,10 @@ export class SignupComponent implements OnInit {
     return this.form.get('password');
   }
 
-  get Name() {
-    return this.form.get('name');
+  get First_name() {
+    return this.form.get('first_name');
+  }
+  get Last_name() {
+    return this.form.get('last_name');
   }
 }

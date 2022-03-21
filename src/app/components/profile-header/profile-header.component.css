@@ -14,11 +14,29 @@
 }
 
 .containerProfileHeaderCover {
-  margin: 0 0 70px 0;
   position: relative;
+  margin: 0 0 70px 0;
   min-height: 300px;
   border-radius: 10px 10px 0 0;
   background-color: rgb(240, 248, 255, 0.6);
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 75px;
+  height: 25px;
+  border-radius: 0 5px;
+  background-color: rgb(255, 255, 255);
+}
+
+.socials > li > a > i {
+  margin: 0 2.5px;
+  color: #000;
 }
 
 .imgCover {
@@ -72,11 +90,29 @@
   font-weight: 300;
 }
 
+.iconEditProfileSocialContainer {
+  position: absolute;
+  bottom: -60px;
+  left: 325px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.iconEditProfileSocialContainer:hover {
+  color: rgb(0, 0, 0, 0.6);
+}
+
+.iconEditProfileSocial {
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  font-weight: 300;
+}
+
 .containerProfileHeaderData {
   margin: 0 0 5px 5px;
   padding: 0 0 10px 10px;
 }
 
 button {
-  margin: 0 5px 0 0;
+  margin: 5px 5px;
 }

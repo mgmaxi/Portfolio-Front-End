@@ -174,7 +174,7 @@ export class ProfileTechnologiesComponent implements OnInit {
     this.router
       .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
       .then(() => {
-        this.router.navigate(['portfolio']);
+        this.router.navigate(['profile']);
       });
   }
 }

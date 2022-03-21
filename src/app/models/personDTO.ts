@@ -1,6 +1,7 @@
 export class PersonDTO {
   id?: number;
-  name: string;
+  first_name: string;
+  last_name: string;
   nationality: string;
   profession: string;
   about: string;
@@ -9,14 +10,16 @@ export class PersonDTO {
   cover_photo: string;
 
   constructor(
-    name: string,
+    first_name: string,
+    last_name: string,
     nationality: string,
     profession: string,
     about: string,
     profile_photo: string,
     cover_photo: string
   ) {
-    this.name = name;
+    this.first_name = first_name;
+    this.last_name = last_name;
     this.nationality = nationality;
     this.profession = profession;
     this.about = about;

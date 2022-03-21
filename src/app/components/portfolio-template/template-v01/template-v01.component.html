@@ -1,0 +1,139 @@
+<div class="templateContainer">
+  <!-- Header -->
+  <header>
+    <div class="headerContainer">
+      <div class="logoContainer">
+        <a href="#" target="_blank">
+          <p class="logoFirstName">{{ person.first_name }}</p>
+          <p class="logoLastName">{{ person.last_name }}</p>
+        </a>
+      </div>
+      <div class="socials">
+        <div class="separator"></div>
+        <ul>
+          <li>
+            <a href="https://www.linkedin.com/" target="_blank"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+          </li>
+          <li>
+            <a href="https://github.com/mgmaxi" target="_blank"
+              ><i class="fab fa-github"></i
+            ></a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/" target="_blank"
+              ><i class="fab fa-youtube"></i
+            ></a>
+          </li>
+        </ul>
+        <div class="separatorAnimated"></div>
+      </div>
+    </div>
+    <app-menu class="menu-wrap"></app-menu>
+  </header>
+
+  <!-- About -->
+  <section class="aboutSection">
+    <figure class="about">
+      <img
+        class="aboutBgImg"
+        src="../../../../assets/image/template/mountain.jpg"
+        alt="About background image"
+      />
+      <figcaption (click)="toggleAbout()" *ngIf="showAboutImage">
+        <div class="aboutImage">
+          <img
+            src="../../../../assets/image/template/mountain.jpg"
+            alt="About image"
+          />
+        </div>
+        <h2>
+          {{ person.first_name }} <span>{{ person.last_name }}</span>
+        </h2>
+      </figcaption>
+      <figcaption
+        (click)="toggleAbout()"
+        *ngIf="showAboutText"
+        class="aboutText"
+      >
+        <h3>
+          {{ aboutTypeWriter }}
+        </h3>
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- Projects -->
+  <section class="projectsSection">
+    <div class="divider"></div>
+    <h2 class="sectionTitle">Proyectos</h2>
+    <div class="projectsContainer">
+      <figure class="project" *ngFor="let project of projectList">
+        <img
+          src="../../../../assets/image/template/mountain.jpg"
+          alt="Project Image"
+        />
+        <figcaption>
+          <p class="projectDescription">
+            <span>{{ project.description }}</span>
+          </p>
+          <h2>{{ project.name }}</h2>
+          <div class="icons">
+            <a [href]="project.deploy" target="_blank"
+              ><i class="fas fa-rocket"></i></a
+            ><a [href]="project.repository" target="_blank"
+              ><i class="fab fa-github"></i
+            ></a>
+          </div>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Skills  -->
+  <section class="skillsSection">
+    <div class="divider"></div>
+    <!-- Technology -->
+    <h2 class="sectionTitle">Tecnologías</h2>
+    <!-- Technology  Filter-->
+    <div class="filterTechnologiesContainer">
+      <button class="btnFilter" (click)="filter('all')">Todas</button>
+      <button class="btnFilter" (click)="filter('front-end')">Front End</button>
+      <button class="btnFilter" (click)="filter('back-end')">Back End</button>
+      <button class="btnFilter" (click)="filter('mobile')">Mobile</button>
+      <button class="btnFilter" (click)="filter('data-base')">
+        Base de Datos
+      </button>
+      <button class="btnFilter" (click)="filter('svc')">SVC</button>
+      <button class="btnFilter" (click)="filter('hosting')">Hosting</button>
+      <button class="btnFilter" (click)="filter('editing')">Edición</button>
+      <button class="btnFilter" (click)="filter('other')">Otras</button>
+    </div>
+    <!-- Technology List -->
+    <div class="technologiesContainer">
+      <figure
+        *ngFor="let technology of filterCategory"
+        class="technologyItemContainer"
+      >
+        <a [href]="technology.url" target="_blank">
+          <img
+            class="technologyLogo"
+            [src]="technology.logo"
+            alt="Logo de la Tecnología"
+          />
+        </a>
+        <figcaption>
+          {{ technology.name }}
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="divider"></div>
+    <button class="btn">BOTON BASICO</button>
+    <button class="btn btnHorizontalEffect">BOTON EFECTO</button>
+  </footer>
+</div>

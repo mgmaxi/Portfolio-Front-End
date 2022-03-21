@@ -12,7 +12,8 @@ export class FormUpdateHeaderComponent implements OnInit {
   @Input() currentPersonForm: any;
 
   form: FormGroup = this.formBuilder.group({
-    name: ['', [Validators.required, Validators.minLength(3)]],
+    first_name: ['', [Validators.required, Validators.minLength(3)]],
+    last_name: ['', [Validators.required, Validators.minLength(3)]],
     nationality: ['', [Validators.required]],
     profession: ['', [Validators.required]],
     about: ['', [Validators.pattern(/[\S]/)]],
@@ -25,9 +26,11 @@ export class FormUpdateHeaderComponent implements OnInit {
   }
 
   updateFormValues() {
-    let { name, nationality, profession, about } = this.currentPersonForm;
+    let { first_name, last_name, nationality, profession, about } =
+      this.currentPersonForm;
     this.form.patchValue({
-      name: name,
+      first_name: first_name,
+      last_name: last_name,
       nationality: nationality,
       profession: profession,
       about: about,
@@ -37,16 +40,19 @@ export class FormUpdateHeaderComponent implements OnInit {
   onSubmit(event: Event) {
     event.preventDefault;
     if (this.form.valid) {
-      let { name, nationality, profession, about } = this.form.value;
+      let { first_name, last_name, nationality, profession, about } =
+        this.form.value;
       let id = this.currentPersonForm.id;
       const updatedPerson = {
         id,
-        name,
+        first_name,
+        last_name,
         nationality,
         profession,
         about,
       };
       this.onUpdatePerson.emit(updatedPerson);
+
       this.form.reset();
       return;
     } else {
@@ -54,8 +60,12 @@ export class FormUpdateHeaderComponent implements OnInit {
     }
   }
 
-  get Name() {
-    return this.form.get('name');
+  get First_name() {
+    return this.form.get('first_name');
+  }
+
+  get Last_name() {
+    return this.form.get('last_name');
   }
 
   get Nationality() {

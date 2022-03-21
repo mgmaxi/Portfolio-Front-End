@@ -1,0 +1,25 @@
+<div class="menu-wrap">
+  <input type="checkbox" class="toggler" />
+  <div class="hamburger"><div></div></div>
+  <div class="menu">
+    <div>
+      <div>
+        <ul>
+          <li><a routerLink="/home"> Inicio </a></li>
+          <li><a routerLink="/portfolio">Portfolio</a></li>
+          <li><a routerLink="/profile">Perfil</a></li>
+          <li *ngIf="!isLogged">
+            <a routerLink="/login">
+              <button>Iniciar sesión</button>
+            </a>
+          </li>
+          <li *ngIf="isLogged" (click)="onLogOut()">
+            <a>
+              <button>Cerrar sesión</button>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

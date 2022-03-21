@@ -32,11 +32,7 @@
       *ngIf="isAdmin"
     ></i>
     <!-- Education List -->
-    <div
-      *ngFor="let education of educationList"
-      class="containerSectionItem"
-      cdkDrag
-    >
+    <div *ngFor="let education of educationList" class="containerSectionItem">
       <img
         class="logoSection"
         [src]="

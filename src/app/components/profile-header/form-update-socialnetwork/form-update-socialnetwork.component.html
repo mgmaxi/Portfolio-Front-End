@@ -1,0 +1,27 @@
+<div class="containerForm">
+  <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+    <p class="title">Modificar redes sociales</p>
+    <!-- Linkedin input -->
+    <input
+      type="text"
+      placeholder="Enlace al perfil de Linkedin"
+      formControlName="linkedin"
+    />
+    <i class="fa fa-linkedin"></i>
+    <!-- Github input -->
+    <input
+      type="text"
+      placeholder="Enlace al perfil de Github"
+      formControlName="github"
+    />
+    <i class="fa fa-github"></i>
+    <!-- Youtube input -->
+    <input
+      type="text"
+      placeholder="Enlace al perfil de Youtube"
+      formControlName="youtube"
+    />
+    <i class="fa fa-youtube"></i>
+    <button type="submit">Modificar</button>
+  </form>
+</div>

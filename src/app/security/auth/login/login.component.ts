@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
               positionClass: 'toast-top-center',
             }
           );
-          this.router.navigate(['/portfolio']);
+          this.router.navigate(['/profile']);
         },
         (err) => {
           this.errorMsg = err.error.message;

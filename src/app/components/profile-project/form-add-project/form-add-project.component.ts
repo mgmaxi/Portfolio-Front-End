@@ -17,7 +17,7 @@ export class FormAddProjectComponent implements OnInit {
       [
         Validators.required,
         Validators.minLength(10),
-        Validators.maxLength(250),
+        Validators.maxLength(150),
       ],
     ],
     repository: ['', []],

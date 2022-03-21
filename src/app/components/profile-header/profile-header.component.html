@@ -21,6 +21,16 @@
     ></app-form-update-userphotos>
   </div>
 </div>
+<!-- Update Socialnetwork Modal  -->
+<div class="modal" *ngIf="showUpdateSocialnetworkForm">
+  <div class="containerFormAdd">
+    <i class="fas fa-times iconClose" (click)="toggleUpdateSocialForm()"></i>
+    <app-form-update-socialnetwork
+      (onUpdateSocialnetwork)="updateSocialnetwork($event)"
+      [currentSocialnetworkForm]="currentSocialnetwork"
+    ></app-form-update-socialnetwork>
+  </div>
+</div>
 <!-- Person Profile -->
 <div class="containerProfileHeader">
   <div class="containerProfileHeaderCover">
@@ -66,9 +76,37 @@
         Editar perfil
       </p>
     </div>
+    <div
+      class="iconEditProfileSocialContainer"
+      (click)="toggleUpdateSocialForm(socials)"
+      *ngIf="isAdmin"
+    >
+      <p>
+        <i class="fa fa-usb iconEditProfileSocial"></i>
+        Editar redes
+      </p>
+    </div>
+    <!-- Socials -->
+    <ul class="socials">
+      <li>
+        <a [href]="socials.linkedin" target="_blank"
+          ><i class="fab fa-linkedin"></i
+        ></a>
+      </li>
+      <li>
+        <a [href]="socials.github" target="_blank"
+          ><i class="fab fa-github"></i
+        ></a>
+      </li>
+      <li>
+        <a [href]="socials.youtube" target="_blank"
+          ><i class="fab fa-youtube"></i
+        ></a>
+      </li>
+    </ul>
   </div>
   <section class="containerProfileHeaderData">
-    <h2>{{ person.name }}</h2>
+    <h2>{{ person.first_name }} {{ person.last_name }}</h2>
     <p>{{ person.nationality }}</p>
     <p>{{ person.profession }}</p>
     <button class="btnShowSection" (click)="showAbout()">Acerca</button>

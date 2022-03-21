@@ -8,6 +8,8 @@ import { UserphotosService } from 'src/app/service/userphotos.service';
 import { ToastrService } from 'ngx-toastr';
 import { PersonDTO } from 'src/app/models/personDTO';
 import { UserService } from 'src/app/service/user.service';
+import { SocialnetworkService } from 'src/app/service/socialnetwork.service';
+import { Socialnetwork } from 'src/app/models/socialnetwork';
 
 @Component({
   selector: 'app-profile-header',
@@ -25,9 +27,12 @@ export class ProfileHeaderComponent implements OnInit {
 
   person: any = [];
   currentPerson: any;
+  socials: Socialnetwork = new Socialnetwork('', '', '');
+  currentSocialnetwork: any;
   isAdmin = false;
   showUpdateForm: boolean = false;
   showUpdateUserphotosForm: boolean = false;
+  showUpdateSocialnetworkForm: boolean = false;
   user_id: any;
   userphotos_id: any;
   cover_photo: string = '../../../assets/image/profile/profileCover.jpg';
@@ -38,6 +43,7 @@ export class ProfileHeaderComponent implements OnInit {
     private personService: PersonService,
     private userphotosService: UserphotosService,
     private userService: UserService,
+    private socialnetworkService: SocialnetworkService,
     private toastr: ToastrService,
     private router: Router
   ) {}
@@ -59,6 +65,7 @@ export class ProfileHeaderComponent implements OnInit {
     this.userService.person_id.subscribe((data) => {
       this.person_id = data;
       this.getPersonProfile();
+      this.getSocialnetworks();
     });
   }
 
@@ -71,15 +78,38 @@ export class ProfileHeaderComponent implements OnInit {
     }
   }
 
+  getSocialnetworks() {
+    if (this.person_id != 0) {
+      this.socialnetworkService
+        .getSocialNetwork(this.person_id)
+        .subscribe((data) => {
+          this.socials = data;
+        });
+    }
+  }
+
   updatePerson(person: Person) {
-    let { id: person_id, name, nationality, profession, about } = person;
-    const updatedPerson = { name, nationality, profession, about };
+    let {
+      id: person_id,
+      first_name,
+      last_name,
+      nationality,
+      profession,
+      about,
+    } = person;
+    const updatedPerson = {
+      first_name,
+      last_name,
+      nationality,
+      profession,
+      about,
+    };
     this.personService
       .updatePerson(this.user_id, person_id!, updatedPerson)
       .subscribe(
         (data) => {
           this.toastr.success(
-            'Los datos de "' + person.name + '" han sido modificados!',
+            'Los datos de "' + person.first_name + '" han sido modificados!',
             'Modificación exitosa',
             {
               timeOut: 3000,
@@ -125,6 +155,37 @@ export class ProfileHeaderComponent implements OnInit {
     this.toggleUpdateUserphotosForm();
   }
 
+  updateSocialnetwork(socialnetwork: Socialnetwork) {
+    let { id: socialnetwork_id, linkedin, github, youtube } = socialnetwork;
+    const updatedSocialnetwork = { linkedin, github, youtube };
+    this.socialnetworkService
+      .updateSocialNetwork(
+        socialnetwork_id!,
+        this.person_id,
+        updatedSocialnetwork
+      )
+      .subscribe(
+        (data) => {
+          this.toastr.success(
+            'Las redes sociales han sido modificadas!',
+            'Modificación exitosa',
+            {
+              timeOut: 3000,
+              positionClass: 'toast-top-center',
+            }
+          );
+          this.refreshComponent();
+        },
+        (err) => {
+          this.toastr.error(err.error.message, 'Error', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
+        }
+      );
+    this.toggleUpdateSocialForm();
+  }
+
   toggleUpdateForm(person?: PersonDTO) {
     this.currentPerson = person;
     this.showUpdateForm = !this.showUpdateForm;
@@ -134,11 +195,16 @@ export class ProfileHeaderComponent implements OnInit {
     this.showUpdateUserphotosForm = !this.showUpdateUserphotosForm;
   }
 
+  toggleUpdateSocialForm(social?: any) {
+    this.currentSocialnetwork = social;
+    this.showUpdateSocialnetworkForm = !this.showUpdateSocialnetworkForm;
+  }
+
   refreshComponent() {
     this.router
       .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
       .then(() => {
-        this.router.navigate(['portfolio']);
+        this.router.navigate(['profile']);
       });
   }
 

@@ -2,11 +2,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,900;1,300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  list-style: none;
 }
 
 body {
@@ -107,11 +108,11 @@ button {
   font-weight: bold;
   background-color: #3a4251;
   cursor: pointer;
+  transition: all 0.4s ease;
 }
 
 button:hover {
   background-color: #000000;
-  transition: all 0.3s ease;
 }
 
 button:active {
@@ -120,11 +121,11 @@ button:active {
 
 .btnCancel {
   background-color: rgba(163, 163, 163);
+  transition: all 0.3s ease;
 }
 
 .btnCancel:hover {
   background-color: rgb(99, 99, 99);
-  transition: all 0.3s ease;
 }
 
 .btnCreate {
@@ -448,13 +449,12 @@ form button {
   border-radius: 0 0 2px 2px;
   transform: rotateZ(0deg);
   border-bottom-width: 7px;
-  transition: all 0.1s ease-out;
+  transition: all 0.3s ease-out;
 }
 
 form button:hover {
   background-color: rgb(61, 112, 207);
   box-shadow: 0px 1px 3px #2196f3;
-  transition: all 0.3s ease;
 }
 form button:active {
   border-bottom-width: 4px;
@@ -542,6 +542,7 @@ select:focus.ng-valid {
   color: rgb(0, 0, 0);
   font-size: 20px;
   z-index: 2;
+  transition: all 0.5s ease-out;
 }
 
 .iconClose:hover {

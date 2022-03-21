@@ -1,0 +1,721 @@
+@import url("https://fonts.googleapis.com/css2?family=Saira:wght@100;200;300;400;600;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.templateContainer {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Header */
+header {
+  z-index: 6;
+  height: 115px;
+  background-color: #333;
+}
+
+.headerContainer {
+  z-index: 5;
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 85px;
+  padding: 10px 0 10px 0;
+  transition: all 0.5s ease-in-out;
+}
+
+header:hover > .headerContainer {
+  padding: 10px 0 0px 0;
+  background-color: rgb(34, 34, 34, 0.8);
+  box-shadow: 0px -2px 10px 15px rgb(34, 34, 34, 0.8);
+  -webkit-box-shadow: 0px -2px 10px 15px rgb(34, 34, 34, 0.8);
+  -moz-box-shadow: 0px -2px 10px 15px rgb(34, 34, 34, 0.8);
+}
+
+body:not([data-scroll="0"]) .headerContainer {
+  background-color: red;
+}
+
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  padding: 0 0 0 10px;
+  width: auto;
+  min-width: 150px;
+}
+
+.logoContainer:hover > a > .logoFirstName {
+  color: rgb(109, 109, 109);
+}
+
+.logoContainer:hover > a > .logoLastName {
+  color: white;
+}
+
+.logoFirstName {
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 2.8px;
+  transition: color 750ms linear;
+}
+
+.logoFirstName::first-letter {
+  color: red;
+}
+
+.logoLastName {
+  font-size: 18px;
+  text-align: center;
+  letter-spacing: 1.2px;
+  color: rgb(109, 109, 109);
+  text-transform: uppercase;
+  transition: color 750ms linear;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.separator {
+  margin: 0 7px;
+  width: 1px;
+  height: 60px;
+  background-color: rgb(255, 255, 255, 0.2);
+  transition: all 750ms linear;
+}
+
+.separatorAnimated {
+  margin: 0 7px;
+  width: 1px;
+  height: 0px;
+  background-color: rgb(255, 255, 255, 0.2);
+  transition: all 750ms linear;
+}
+
+.headerContainer:hover > .socials > .separatorAnimated {
+  height: 65px;
+}
+
+.headerContainer:hover > .socials > .separator {
+  height: 0;
+}
+
+.socials:hover > .separatorAnimated,
+.socials:hover > .separator {
+  background-color: rgb(255, 255, 255, 0.8);
+}
+
+.socials ul li {
+  margin: 3px 0;
+  list-style: none;
+}
+
+.menu-wrap {
+  display: flex;
+  position: fixed;
+  top: 7px;
+  right: 0;
+  z-index: 10;
+}
+
+/* About */
+
+.aboutSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  height: calc(100vh - 115px);
+  min-height: 420px;
+  max-height: 840px;
+  background-color: rgb(51, 51, 51);
+}
+
+.about {
+  position: relative;
+  overflow: hidden;
+  height: 400px;
+  width: 400px;
+  border-radius: 100%;
+  color: rgb(255, 255, 255);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgb(0, 0, 0);
+  transition: border 0.3s ease-in-out;
+  box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.61);
+  -webkit-box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.61);
+  -moz-box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.61);
+  cursor: pointer;
+}
+
+.about:hover {
+  border: 1px solid rgb(255, 0, 0, 0.4);
+  animation-name: border-animated;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+}
+
+.about figcaption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.about figcaption h2 {
+  margin: 0;
+  padding: 15px 10px;
+  position: absolute;
+  top: 55%;
+  right: 30px;
+  left: 30px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 1.2em;
+  font-weight: 300;
+  text-transform: uppercase;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.85);
+  background-color: rgb(0, 0, 0);
+  transition: top 0.5s;
+  -webkit-transition: top 0.5s;
+}
+.about figcaption h2 span {
+  font-weight: 800;
+}
+.aboutImage {
+  position: absolute;
+  top: 20%;
+  bottom: 35%;
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  transform: translate(0px, 0%);
+  -webkit-transform: translate(0px, 0%);
+}
+.aboutImage img {
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  max-height: 100%;
+  max-width: 70%;
+  width: auto;
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  transition: -webkit-transform 0.5s ease-in-out,
+    -moz-transform 0.5s ease-in-out, -o-transform 0.5s ease-in-out,
+    transform 0.5s ease-in-out;
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  transform: translate(-50%, 100%);
+  -webkit-transform: translate(-50%, 100%);
+}
+
+.aboutBgImg {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  filter: blur(0px);
+  -webkit-filter: blur(0px);
+  transform: scale(1.03);
+  -webkit-transform: scale(1.03);
+  transition: all 1s;
+  -webkit-transition: all 1s;
+  overflow: hidden;
+}
+
+.about:hover > .aboutBgImg,
+.about.hover > .aboutBgImg {
+  opacity: 0.4;
+  transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+  filter: blur(0.5px);
+  -webkit-filter: blur(0.5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  margin: 10px -10px -10px -5px;
+}
+
+.about:hover figcaption h2,
+.about.hover figcaption h2 {
+  top: 60%;
+}
+.about:hover figcaption .aboutImage img,
+.about.hover figcaption .aboutImage img {
+  transform: translate(-50%, 0%);
+  -webkit-transform: translate(-50%, 0%);
+}
+
+.aboutText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 7px 12px;
+  letter-spacing: 1px;
+  background-color: rgb(34, 34, 34, 0.6);
+}
+
+.aboutText h3 {
+  font-size: 20px;
+  font-weight: 100;
+}
+
+/* Projects */
+
+.projectsSection {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-x: hidden;
+  padding: 25px 10px;
+  height: 100%;
+  min-height: 420px;
+  background-color: #333;
+}
+
+.projectsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.project {
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  width: 100%;
+  min-width: 220px;
+  max-width: 310px;
+  max-height: 220px;
+  color: #fff;
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 5px;
+  text-align: center;
+  font-family: "Raleway", Arial, sans-serif; /* cambiar font */
+}
+
+.project:hover {
+  border: 1px solid rgb(255, 0, 0, 0.4);
+  animation-name: border-animated;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+}
+
+.project > img {
+  opacity: 1;
+  width: 100%;
+  filter: blur(0px);
+  -webkit-transition: all 0.35s;
+  transition: all 0.35s;
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+}
+.project figcaption {
+  z-index: 3;
+  position: absolute;
+  left: 30px;
+  right: 30px;
+  bottom: 100%;
+  margin-bottom: -50px;
+  -webkit-transition: bottom 0.35s;
+  transition: bottom 0.35s;
+}
+.project figcaption h2 {
+  z-index: 1;
+  position: relative;
+  bottom: 0;
+  margin: 0;
+  padding: 15px 10px;
+  width: 100%;
+  text-align: center;
+  border-radius: 0 0 5px 5px;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  background-color: #000000;
+  font-weight: 300;
+}
+
+.project figcaption p {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  min-height: 220px;
+  font-size: 0.9em;
+  color: #000;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.project figcaption p span {
+  padding: 5px 20px;
+  position: absolute;
+  bottom: 0;
+}
+.project figcaption .icons {
+  padding: 5px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.project figcaption .icons i {
+  position: relative;
+  bottom: -90px;
+  padding: 4px;
+  font-size: 18px;
+  color: #ffffff;
+  opacity: 0;
+  -webkit-transition: bottom 0.35s, opacity 0.35s;
+  transition: bottom 0.35s, opacity 0.35s;
+}
+
+.project figcaption .icons a:first-child i {
+  -webkit-transition-delay: 0.3s;
+  transition-delay: 0.3s;
+}
+.project figcaption .icons a:nth-child(2) i {
+  -webkit-transition-delay: 0.2s;
+  transition-delay: 0.2s;
+}
+.project figcaption .icons a:nth-child(3) i {
+  -webkit-transition-delay: 0.1s;
+  transition-delay: 0.1s;
+}
+.project:after {
+  position: absolute;
+  display: block;
+  bottom: -15px;
+  height: 15px;
+  right: 30px;
+  left: 30px;
+  border-radius: 5px 5px 0 0;
+  background-color: #000000;
+  z-index: 2;
+  content: "";
+  -webkit-transition: bottom 0.35s;
+  transition: bottom 0.35s;
+}
+.project:after,
+.project h2 {
+  background: rgb(0, 0, 0, 0.8);
+  width: 100%;
+  left: 0;
+}
+
+.project a {
+  opacity: 0.7;
+}
+.project a:hover {
+  opacity: 1;
+}
+.project:hover > img,
+.project.hover > img {
+  opacity: 0.5;
+  filter: blur(5px);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+.project:hover figcaption,
+.project.hover figcaption {
+  bottom: 115px;
+}
+.project:hover figcaption .icons i,
+.project.hover figcaption .icons i {
+  opacity: 1;
+  bottom: -41px;
+}
+.project:hover figcaption::before,
+.project.hover figcaption::before {
+  opacity: 0.8;
+}
+.project:hover:after,
+.project.hover:after {
+  bottom: 0;
+}
+
+/* Skills */
+
+.skillsSection {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+  padding: 25px 10px;
+  height: 100%;
+  min-height: 420px;
+  background-color: #333333;
+}
+
+/*  Skills Filter */
+
+.filterTechnologiesContainer {
+  margin: 10px 10px 25px 10px;
+  text-align: center;
+}
+
+.btnFilter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 5px;
+  padding: 7px 12px;
+  height: 1.8rem;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Quicksand";
+  border: 2px solid transparent;
+  transition: all 0.3s ease-in-out;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50px;
+  color: #000000;
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
+  transition: all 0.3s ease-in-out;
+}
+.btnFilter:hover {
+  background-color: rgb(255, 255, 255, 0.6);
+}
+
+/* Skills List */
+
+.technologiesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.technologyItemContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 7px;
+  padding: 2px;
+  width: 80px;
+}
+
+.technologyLogo {
+  height: 65px;
+  width: 65px;
+  cursor: pointer;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  transition: all 0.3s ease-in-out;
+}
+
+.technologyLogo:hover {
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.technologyItemContainer {
+  overflow-wrap: anywhere;
+}
+
+.technologyItemContainer figcaption {
+  margin: 10px 0 0 0;
+  text-align: center;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+/* Footer */
+
+footer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+  padding: 25px 10px;
+  height: 100%;
+  min-height: 420px;
+  background-color: #333333;
+}
+
+/* Global */
+
+.divider {
+  content: "";
+  position: absolute;
+  overflow: visible;
+  top: 0;
+  left: 0;
+  width: calc(100vw - 25vw);
+  height: 1px;
+  opacity: 0;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  animation: divider-animated 3s ease-in infinite alternate;
+}
+
+.sectionTitle {
+  margin: 0 0 10px 0;
+  padding: 2px;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 1.2px;
+  font-size: 2.8em;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0 30px;
+  height: 50px;
+  line-height: 50px;
+  color: #ffffff;
+  background: #333333;
+  border-radius: 0;
+  font-family: "Saira";
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
+}
+
+.btnHorizontalEffect:active::before,
+.btnHorizontalEffect:focus::before,
+.btnHorizontalEffect:hover::before {
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+}
+.btnHorizontalEffect::before {
+  background: #222222;
+}
+.btnHorizontalEffect::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transform-origin: 50%;
+  transform-origin: 50%;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+
+.btnHorizontalEffect:active,
+.btnHorizontalEffect:focus,
+.btnHorizontalEffect:hover {
+  color: rgb(255, 255, 255);
+}
+.btnHorizontalEffect {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  position: relative;
+  background: rgb(255, 61, 79);
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+
+/* Animations */
+
+@keyframes border-animated {
+  0% {
+    border: 1px solid rgb(255, 0, 0, 0.2);
+  }
+  25% {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+  75% {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  100% {
+    border: 1px solid rgb(255, 0, 0, 0.2);
+  }
+}
+
+@keyframes divider-animated {
+  0% {
+    transform: translateX(calc(0vw - 50vw));
+    opacity: 0;
+  }
+  20% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.2;
+    border-color: rgb(255, 255, 255);
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(calc(100vw));
+    opacity: 0;
+  }
+}
+
+/* Media queries */
+
+@media only screen and (min-width: 992px) {
+  .about {
+    height: 550px;
+    width: 550px;
+    border-radius: 100%;
+  }
+
+  .about figcaption h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 55px;
+    width: 425px;
+    right: 62.5px;
+    left: 62.5px;
+    font-size: 24px;
+  }
+  .about figcaption h2 span {
+    padding: 0 10px;
+  }
+
+  .about figcaption h3 {
+    font-size: 24px;
+  }
+  .divider {
+    width: calc(100vw - 25vw);
+  }
+}

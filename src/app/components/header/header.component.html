@@ -1,6 +1,6 @@
 <!-- Header -->
-<header class="containerHeader">
-  <div class="containerLogoAP">
+<header>
+  <div class="logos">
     <a
       href="https://www.argentina.gob.ar/produccion/argentina-programa/segunda-etapa"
       target="_blank"
@@ -19,23 +19,27 @@
       />
     </a>
   </div>
-  <nav>
+  <nav class="navbar">
     <ul>
       <li>
-        <a href="https://www.linkedin.com/" target="_blank"
-          ><i class="fab fa-linkedin"></i
-        ></a>
+        <a routerLink="/home">
+          <span>Inicio</span>
+        </a>
       </li>
       <li>
-        <a href="https://github.com/mgmaxi" target="_blank"
-          ><i class="fab fa-github"></i
-        ></a>
+        <a routerLink="/portfolio">
+          <span>Portfolio</span>
+        </a>
       </li>
       <li>
-        <a href="https://www.youtube.com/" target="_blank"
-          ><i class="fab fa-youtube"></i
-        ></a>
+        <a routerLink="/profile">
+          <span>Perfil</span>
+        </a>
       </li>
+    </ul>
+  </nav>
+  <div class="login">
+    <ul>
       <li *ngIf="!isLogged">
         <a routerLink="/login">
           <button>Iniciar sesión</button>
@@ -47,5 +51,6 @@
         </a>
       </li>
     </ul>
-  </nav>
+  </div>
+  <app-menu class="menu-wrap"></app-menu>
 </header>

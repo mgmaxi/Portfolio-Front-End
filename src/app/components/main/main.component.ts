@@ -16,11 +16,11 @@ import { TokenService } from 'src/app/security/service/token.service';
 export class MainComponent implements OnInit {
   person_id: number = 0;
   showAbout = false;
-  showExperience = true;
-  showEducation = true;
-  showProject = true;
-  showLanguage = true;
-  showTechnology = true;
+  showExperience = false;
+  showEducation = false;
+  showProject = false;
+  showLanguage = false;
+  showTechnology = false;
 
   constructor(
     private userService: UserService,
