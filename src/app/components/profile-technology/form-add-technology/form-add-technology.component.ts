@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Technology } from 'src/app/models/technology';
+import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
   selector: 'app-form-add-technology',
@@ -10,6 +11,19 @@ import { Technology } from 'src/app/models/technology';
 })
 export class FormAddTechnologieComponent implements OnInit {
   @Output() onAddTechnology: EventEmitter<Technology> = new EventEmitter();
+  technology_logo: any = '';
+  files: any = '';
+  categories = [
+    { name: 'Front End', value: 'front-end' },
+    { name: 'Back End', value: 'back-end' },
+    { name: 'Mobile', value: 'mobile' },
+    { name: 'Base de datos', value: 'data-base' },
+    { name: 'Control de versiones', value: 'vcs' },
+    { name: 'Hosting', value: 'hosting' },
+    { name: 'Edición', value: 'editing' },
+    { name: 'Otra', value: 'other' },
+  ];
+
   form: FormGroup = this.formBuilder.group({
     name: ['', [Validators.required]],
     category: ['', [Validators.required]],
@@ -17,20 +31,46 @@ export class FormAddTechnologieComponent implements OnInit {
     url: ['', []],
   });
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private storageService: StorageService
+  ) {}
 
   ngOnInit(): void {}
+
+  uploadPhoto(event: any) {
+    this.files = event.target.files;
+  }
 
   onSubmit(event: Event) {
     event.preventDefault;
     if (this.form.valid) {
       let { name, category, logo, url } = this.form.value;
-      logo.length === 0
-        ? (logo = 'assets/logos/technologies/logoTechnologie.png')
-        : logo;
       !url.includes('https://') ? (url = 'https://' + url) : url;
-      const newTechnology = { name, category, logo, url };
-      this.onAddTechnology.emit(newTechnology);
+
+      if (logo.length === 0) {
+        logo = 'assets/logos/technologies/logoTechnologie.png';
+        const newTechnology = { name, category, logo, url };
+        this.onAddTechnology.emit(newTechnology);
+      } else {
+        // Upload image to firebase
+        let reader = new FileReader();
+        reader.readAsDataURL(this.files[0]);
+        reader.onloadend = () => {
+          this.storageService
+            .uploadImage('technologies/' + name, reader.result)
+            .then((urlImage) => {
+              this.technology_logo = urlImage;
+              const newTechnology = {
+                name,
+                category,
+                logo: this.technology_logo,
+                url,
+              };
+              this.onAddTechnology.emit(newTechnology);
+            });
+        };
+      }
       this.form.reset();
       return;
     } else {

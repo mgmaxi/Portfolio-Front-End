@@ -74,16 +74,15 @@ export class ProfileTechnologiesComponent implements OnInit {
             positionClass: 'toast-top-center',
           }
         );
-        this.refreshComponent();
+        this.toggleAddForm();
       },
       (err) => {
-        this.toastr.error(err.error.message, 'Error', {
+        this.toastr.error(err.error.messageSent, 'Error', {
           timeOut: 3000,
           positionClass: 'toast-top-center',
         });
       }
     );
-    this.toggleAddForm();
   }
 
   addTechToPerson(technology_id: number) {

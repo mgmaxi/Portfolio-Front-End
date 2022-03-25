@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Company } from 'src/app/models/company';
 import { CompanyService } from 'src/app/service/company.service';
+import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
   selector: 'app-company',
@@ -10,6 +11,9 @@ import { CompanyService } from 'src/app/service/company.service';
   styleUrls: ['./company.component.css'],
 })
 export class CompanyComponent implements OnInit {
+  company_logo: any = '';
+  files: any = '';
+
   form: FormGroup = this.formBuilder.group({
     name: ['', [Validators.required]],
     logo: ['', []],
@@ -18,17 +22,32 @@ export class CompanyComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private companyService: CompanyService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private storageService: StorageService
   ) {}
 
   ngOnInit(): void {}
 
+  uploadPhoto(event: any) {
+    this.files = event.target.files;
+  }
+
   onSubmit(event: Event) {
     event.preventDefault;
     if (this.form.valid) {
-      let { name, logo } = this.form.value;
-      const newCompany = { name, logo };
-      this.addCompany(newCompany);
+      let { name } = this.form.value;
+      // Upload image to firebase
+      let reader = new FileReader();
+      reader.readAsDataURL(this.files[0]);
+      reader.onloadend = () => {
+        this.storageService
+          .uploadImage('companies/' + name, reader.result)
+          .then((urlImage) => {
+            this.company_logo = urlImage;
+            const newCompany = { name, logo: this.company_logo };
+            this.addCompany(newCompany);
+          });
+      };
       this.form.reset();
       return;
     } else {
@@ -49,7 +68,7 @@ export class CompanyComponent implements OnInit {
         );
       },
       (err) => {
-        this.toastr.error(err.error.message, 'Error', {
+        this.toastr.error(err.error.messageSent, 'Error', {
           timeOut: 3000,
           positionClass: 'toast-top-center',
         });

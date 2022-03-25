@@ -16,14 +16,14 @@
 .logoTechnology {
   height: 50px;
   width: 50px;
-  scale: 1;
+  transform: scale(1);
   transition: all 0.3s ease;
 }
 
 .logoTechnology:hover {
   height: 50px;
   width: 50px;
-  scale: 1.1;
+  transform: scale(1.1);
   cursor: pointer;
 }
 

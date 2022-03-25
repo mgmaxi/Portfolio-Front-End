@@ -4,8 +4,12 @@
     <!-- Profile_photo input -->
     <input
       type="text"
+      accept=".png, .jpg, .jpeg"
+      (change)="uploadPhoto($event, 'profile')"
       placeholder="Imagen de perfil"
+      class="inputLogo"
       formControlName="profile_photo"
+      onfocus="(this.type='file')"
     />
     <i class="fa fa-file-image"></i>
     <!-- Profile_photo validation error -->
@@ -22,8 +26,12 @@
     <!-- Cover_photo input -->
     <input
       type="text"
+      accept=".png, .jpg, .jpeg"
+      (change)="uploadPhoto($event, 'cover')"
       placeholder="Imagen de portada"
+      class="inputLogo"
       formControlName="cover_photo"
+      onfocus="(this.type='file')"
     />
     <i class="fa fa-file-image"></i>
     <!-- Cover_photo validation error -->

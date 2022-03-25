@@ -1,58 +1,55 @@
-<div class="formModal">
-  <div class="containerForm">
-    <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
-      <p class="title">Crear tecnología</p>
-      <p class="subTitle">
-        Crea una tecnología que no esté disponible en la función agregar
-
-        <i class="fas fa-plus iconAddTechnologyToPerson"></i>
+<div class="containerForm">
+  <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+    <p class="title">Crear tecnología</p>
+    <p class="subTitle">
+      Crea una tecnología que no esté disponible en la función agregar
+      <i class="fas fa-plus iconAddTechnologyToPerson"></i>
+    </p>
+    <!-- Name input -->
+    <input
+      type="text"
+      placeholder="Nombre de la tecnología"
+      formControlName="name"
+    />
+    <i class="fa fa-laptop-code"></i>
+    <!-- Name validation error -->
+    <div *ngIf="Name?.errors && (Name?.touched || Name?.dirty)">
+      <p *ngIf="Name?.hasError('required')" class="error">
+        *El nombre de la tecnología es requerido.
       </p>
-
-      <!-- Name input -->
-      <input
-        type="text"
-        placeholder="Nombre de la tecnología"
-        formControlName="name"
-      />
-      <i class="fa fa-laptop-code"></i>
-
-      <!-- Name validation error -->
-      <div *ngIf="Name?.errors && (Name?.touched || Name?.dirty)">
-        <p *ngIf="Name?.hasError('required')" class="error">
-          *El nombre de la tecnología es requerido.
-        </p>
-      </div>
-      <!-- Category input -->
-      <input
-        type="text"
-        placeholder="Categoría a la que pertenece"
-        formControlName="category"
-      />
-      <i class="fa fa-layer-group"></i>
-
-      <!-- Category validation error -->
-      <div *ngIf="Category?.errors && (Category?.touched || Category?.dirty)">
-        <p *ngIf="Category?.hasError('required')" class="error">
-          *La categoría de la tecnología es requerida.
-        </p>
-      </div>
-      <!-- Logo input -->
-      <input
-        type="text"
-        placeholder="Logo de la tecnología"
-        formControlName="logo"
-        class="inputLogo"
-        onfocus="(this.type='file')"
-      />
-      <i class="fa fa-file-image"></i>
-      <!-- Url input -->
-      <input
-        type="text"
-        placeholder="Enlace a la página de la tecnología"
-        formControlName="url"
-      />
-      <i class="fa fa-link"></i>
-      <button type="submit">Crear</button>
-    </form>
-  </div>
+    </div>
+    <!-- Category input -->
+    <select formControlName="category">
+      <option value="" disabled>Selecciona una categoría</option>
+      <option *ngFor="let category of categories" [ngValue]="category.value">
+        {{ category.name }}
+      </option>
+    </select>
+    <i class="fa fa-layer-group"></i>
+    <!-- Category validation error -->
+    <div *ngIf="Category?.errors && (Category?.touched || Category?.dirty)">
+      <p *ngIf="Category?.hasError('required')" class="error">
+        *Debes seleccionar una tecnología.
+      </p>
+    </div>
+    <!-- Logo input -->
+    <input
+      type="text"
+      accept=".png, .jpg, .jpeg"
+      (change)="uploadPhoto($event)"
+      placeholder="Logo de la tecnología"
+      formControlName="logo"
+      class="inputLogo"
+      onfocus="(this.type='file')"
+    />
+    <i class="fa fa-file-image"></i>
+    <!-- Url input -->
+    <input
+      type="text"
+      placeholder="Enlace a la página de la tecnología"
+      formControlName="url"
+    />
+    <i class="fa fa-link"></i>
+    <button type="submit">Crear</button>
+  </form>
 </div>
