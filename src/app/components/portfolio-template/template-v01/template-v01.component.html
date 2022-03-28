@@ -22,9 +22,7 @@
             ></a>
           </li>
           <li>
-            <a href="https://www.youtube.com/" target="_blank"
-              ><i class="fab fa-youtube"></i
-            ></a>
+            <a (click)="onClick('contact')"><i class="fa fa-envelope"></i></a>
           </li>
         </ul>
         <div class="separatorAnimated"></div>
@@ -130,10 +128,77 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer>
+  <section id="contact" class="contactSection">
     <div class="divider"></div>
-    <button class="btn">BOTON BASICO</button>
-    <button class="btn btnHorizontalEffect">BOTON EFECTO</button>
-  </footer>
+    <h2 class="sectionTitle">Contacto</h2>
+    <form
+      [formGroup]="form"
+      action="https://formsubmit.co/ghirardi.maxi@gmail.com"
+      method="POST"
+    >
+      <input
+        type="hidden"
+        name="_next"
+        value="https://yourdomain.co/thanks.html"
+      />
+      <input type="hidden" name="_subject" value="Portfolio contact email" />
+      <!-- Input name -->
+      <input
+        type="text"
+        name="name"
+        placeholder=" Nombre"
+        formControlName="name"
+        required
+      />
+      <i class="fa fa-person"></i>
+      <!-- Name validation error -->
+      <div *ngIf="Name?.errors && (Name?.touched || Name?.dirty)">
+        <p *ngIf="Name?.hasError('required')" class="error">
+          *Tu nombre es requerido.
+        </p>
+      </div>
+      <!-- Input email -->
+      <input
+        type="email"
+        name="email"
+        placeholder=" Correo electrónico"
+        formControlName="email"
+        required
+      />
+      <i class="fa fa-envelope"></i>
+      <!-- Email validation error -->
+      <div *ngIf="Email?.errors && (Email?.touched || Email?.dirty)">
+        <p *ngIf="Email?.hasError('required')" class="error">
+          *Tu correo electrónico es requerido.
+        </p>
+        <p *ngIf="Email?.hasError('email')" class="error">
+          *Tu correo electrónico debe ser válido.
+        </p>
+      </div>
+      <textarea
+        class="textarea"
+        type="text"
+        name="message"
+        placeholder=" Escribe un mensaje"
+        formControlName="message"
+        required
+      ></textarea>
+      <i class="fa fa-message"></i>
+      <!-- Message validation error -->
+      <div *ngIf="Message?.errors && (Message?.touched || Message?.dirty)">
+        <p *ngIf="Message?.hasError('required')" class="error">
+          *Debes escribir un mensaje.
+        </p>
+        <p *ngIf="Message?.hasError('minlength')" class="error">
+          *Debes escribir un mensaje de al menos 10 caracteres.
+        </p>
+      </div>
+      <button class="btn btnHorizontalEffect" type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <!--  <footer>
+    <div class="divider"></div>
+  </footer> -->
 </div>

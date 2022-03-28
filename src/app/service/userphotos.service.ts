@@ -26,4 +26,22 @@ export class UserphotosService {
     const url = `${this.apiUrl}/userphotos/${userphotos_id}/users/${user_id}`;
     return this.http.put<any>(url, updatedUserphotos, httpOptions);
   }
+
+  updateUserProfilePhoto(
+    user_id: number,
+    userphotos_id: number,
+    updatedUserphotos: string
+  ): Observable<any> {
+    const url = `${this.apiUrl}/userphotos/${userphotos_id}/profilephoto/users/${user_id}`;
+    return this.http.put<any>(url, updatedUserphotos, httpOptions);
+  }
+
+  updateUserCoverPhoto(
+    user_id: number,
+    userphotos_id: number,
+    updatedUserphotos: string
+  ): Observable<any> {
+    const url = `${this.apiUrl}/userphotos/${userphotos_id}/coverphoto/users/${user_id}`;
+    return this.http.put<any>(url, updatedUserphotos, httpOptions);
+  }
 }

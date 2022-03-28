@@ -285,7 +285,7 @@ body:not([data-scroll="0"]) .headerContainer {
   justify-content: flex-start;
   align-items: center;
   overflow-x: hidden;
-  padding: 25px 10px;
+  padding: 50px 10px;
   height: 100%;
   min-height: 420px;
   background-color: #333;
@@ -464,7 +464,7 @@ body:not([data-scroll="0"]) .headerContainer {
   align-items: center;
   flex-wrap: wrap;
   overflow-x: hidden;
-  padding: 25px 10px;
+  padding: 50px 10px;
   height: 100%;
   min-height: 420px;
   background-color: #333333;
@@ -543,6 +543,81 @@ body:not([data-scroll="0"]) .headerContainer {
   color: #fff;
 }
 
+/* Contact */
+
+.contactSection {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+  padding: 50px 10px;
+  height: 100%;
+  min-height: 420px;
+  background-color: #333333;
+}
+
+form {
+  border-radius: 2px 2px 5px 5px;
+  margin: 15px 0 0 0;
+  padding: 25px 20px 20px 20px;
+  width: 400px;
+  height: 475px;
+  background: #333;
+  position: relative;
+  padding-bottom: 80px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+form input {
+  margin: 10px auto;
+  padding: 0 0 0 5px;
+  font-size: 16px;
+  font-family: "Quicksand";
+}
+
+form .textarea {
+  margin: 10px auto;
+  padding: 0 0 0 5px;
+  resize: none;
+  height: 150px;
+  font-size: 16px;
+  font-family: "Quicksand";
+  word-break: break-word;
+}
+
+form i.fa {
+  color: #fff;
+  font-size: 1.2em;
+  position: absolute;
+  margin-top: -43px;
+  opacity: 0;
+  left: 30px;
+}
+
+form i.fa-message {
+  margin-top: -100px;
+}
+
+form input:focus + i.fa,
+form textarea:focus + i.fa {
+  opacity: 1;
+  left: 46px;
+  transition: all 0.5s ease-out;
+}
+
+form input:focus + i.fa-person {
+  left: 49px;
+}
+
+form .btn {
+  margin: 15px calc(50% - 75px);
+  width: 150px;
+}
+
 /* Footer */
 
 footer {
@@ -554,7 +629,7 @@ footer {
   overflow: hidden;
   padding: 25px 10px;
   height: 100%;
-  min-height: 420px;
+  min-height: 120px;
   background-color: #333333;
 }
 
@@ -587,7 +662,7 @@ footer {
 .btn {
   display: inline-block;
   padding: 0 30px;
-  height: 50px;
+  height: auto;
   line-height: 50px;
   color: #ffffff;
   background: #333333;

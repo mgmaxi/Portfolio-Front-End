@@ -156,8 +156,8 @@ export class ProfileHeaderComponent implements OnInit {
   }
 
   updateSocialnetwork(socialnetwork: Socialnetwork) {
-    let { id: socialnetwork_id, linkedin, github, youtube } = socialnetwork;
-    const updatedSocialnetwork = { linkedin, github, youtube };
+    let { id: socialnetwork_id, linkedin, github, email } = socialnetwork;
+    const updatedSocialnetwork = { linkedin, github, email };
     this.socialnetworkService
       .updateSocialNetwork(
         socialnetwork_id!,

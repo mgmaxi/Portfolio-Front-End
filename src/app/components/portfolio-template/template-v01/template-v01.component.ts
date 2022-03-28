@@ -4,6 +4,8 @@ import { PersonService } from 'src/app/service/person.service';
 import { ProjectService } from 'src/app/service/project.service';
 import { TokenService } from 'src/app/security/service/token.service';
 import { ToastrService } from 'ngx-toastr';
+import { ViewportScroller } from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-template-v01',
@@ -24,13 +26,25 @@ export class TemplateV01Component implements OnInit {
   about: string = ''; /* Description about from DB */
   aboutTypeWriter: string = '';
 
+  form: FormGroup = this.formBuilder.group({
+    name: ['', [Validators.required]],
+    email: [null, [Validators.required, Validators.email]],
+    message: ['', [Validators.required, Validators.minLength(10)]],
+  });
+
   constructor(
     private tokenService: TokenService,
     private personService: PersonService,
     private projectService: ProjectService,
     private technologyService: TechnologyService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private viewportScroller: ViewportScroller,
+    private formBuilder: FormBuilder
   ) {}
+
+  onClick(elementId: string): void {
+    this.viewportScroller.scrollToAnchor(elementId);
+  }
 
   ngOnInit(): void {
     this.isLogged = this.tokenService.isLogged();
@@ -133,5 +147,15 @@ export class TemplateV01Component implements OnInit {
         }
       );
     }
+  }
+
+  get Name() {
+    return this.form.get('name');
+  }
+  get Email() {
+    return this.form.get('email');
+  }
+  get Message() {
+    return this.form.get('message');
   }
 }

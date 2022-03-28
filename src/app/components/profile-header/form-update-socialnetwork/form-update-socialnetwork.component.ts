@@ -16,7 +16,7 @@ export class FormUpdateSocialnetworkComponent implements OnInit {
   form: FormGroup = this.formBuilder.group({
     linkedin: ['', []],
     github: ['', []],
-    youtube: ['', []],
+    email: ['', []],
   });
 
   constructor(private formBuilder: FormBuilder) {}
@@ -26,20 +26,20 @@ export class FormUpdateSocialnetworkComponent implements OnInit {
   }
 
   updateFormValues() {
-    let { linkedin, github, youtube } = this.currentSocialnetworkForm;
+    let { linkedin, github, email } = this.currentSocialnetworkForm;
     this.form.patchValue({
       linkedin: linkedin,
       github: github,
-      youtube: youtube,
+      email: email,
     });
   }
 
   onSubmit(event: Event) {
     event.preventDefault;
     if (this.form.valid) {
-      let { linkedin, github, youtube } = this.form.value;
+      let { linkedin, github, email } = this.form.value;
       let id = this.currentSocialnetworkForm.id;
-      const updateSocialnetwork = { id, linkedin, github, youtube };
+      const updateSocialnetwork = { id, linkedin, github, email };
       this.onUpdateSocialnetwork.emit(updateSocialnetwork);
       this.form.reset();
       return;
@@ -54,7 +54,7 @@ export class FormUpdateSocialnetworkComponent implements OnInit {
   get Github() {
     return this.form.get('github');
   }
-  get Youtube() {
-    return this.form.get('youtube');
+  get Email() {
+    return this.form.get('email');
   }
 }

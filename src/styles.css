@@ -74,6 +74,7 @@ a:active {
 }
 
 input,
+textarea,
 select {
   display: inline-block;
   margin: 0 0 5px 0;
@@ -363,6 +364,7 @@ form .title {
 }
 
 form input,
+form textarea,
 form select {
   display: block;
   padding: 15px 10px;
@@ -377,6 +379,7 @@ form select {
 }
 
 form input:focus,
+form textarea:focus,
 form select:focus {
   outline: none;
   color: rgb(255, 255, 255, 0.4);
@@ -391,10 +394,10 @@ form i.fa {
   margin-top: -43px;
   opacity: 0;
   left: 0;
-  transition: all 0.1s ease-in;
 }
 
 form input:focus + i.fa,
+form textarea:focus + i.fa,
 form select:focus + i.fa {
   opacity: 1;
   left: 46px;
@@ -473,6 +476,8 @@ form button:active {
 
 input.ng-touched,
 input.ng-dirty,
+textarea.ng-touched,
+textarea.ng-dirty,
 select.ng-touched,
 select.ng-dirty {
   border: 1.5px solid #e50914;
@@ -480,17 +485,21 @@ select.ng-dirty {
 
 input:focus.ng-touched,
 input:focus.ng-dirty,
+textarea:focus.ng-touched,
+textarea:focus.ng-dirty,
 select:focus.ng-touched,
 select:focus.ng-dirty {
   border-color: #e50914;
 }
 
 input.ng-valid,
+textarea.ng-valid,
 select.ng-valid {
   border: 1.5px solid rgb(46, 204, 113);
 }
 
 input:focus.ng-valid,
+textarea:focus.ng-valid,
 select:focus.ng-valid {
   color: rgb(255, 255, 255, 0.4);
   border: 1.5px solid rgb(46, 204, 113);
