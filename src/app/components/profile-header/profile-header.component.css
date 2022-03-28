@@ -45,6 +45,34 @@
   border-radius: 10px 10px 0 0;
 }
 
+.iconEditCoverPhotoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 300px;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  opacity: 0;
+  background-color: rgb(0, 0, 0);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.iconEditCoverPhotoContainer:hover {
+  opacity: 1;
+  background-color: rgb(0, 0, 0, 0.8);
+}
+
+.iconEditCoverPhotoContainer > p,
+.iconEditCoverPhotoContainer > p > i {
+  font-size: 18px;
+  letter-spacing: 0.05rem;
+  color: #fff;
+}
+
 .imgProfileHeader {
   position: absolute;
   bottom: -65px;
@@ -56,9 +84,40 @@
   background-color: aliceblue;
 }
 
+.iconEditProfilePhotoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: -65px;
+  left: 5px;
+  width: 150px;
+  height: 150px;
+  background-color: rgb(121, 0, 0);
+  border-radius: 150px;
+  opacity: 0;
+  background-color: rgb(0, 0, 0);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.iconEditProfilePhotoContainer:hover {
+  opacity: 1;
+  background-color: rgb(0, 0, 0, 0.8);
+}
+
+.iconEditProfilePhotoContainer > p,
+.iconEditProfilePhotoContainer > p > i {
+  margin: 0 5px;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 0.015rem;
+  color: #fff;
+}
+
 .iconEditProfileHeaderContainer {
   position: absolute;
-  bottom: -60px;
+  bottom: -30px;
   left: 165px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
@@ -72,18 +131,6 @@
   color: #000;
 }
 
-.iconEditProfilePhotoContainer {
-  position: absolute;
-  bottom: -30px;
-  left: 165px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-
-.iconEditProfilePhotoContainer:hover {
-  color: rgb(0, 0, 0, 0.6);
-}
-
 .iconEditProfilePhoto {
   color: rgb(0, 0, 0);
   font-size: 16px;
@@ -93,7 +140,7 @@
 .iconEditProfileSocialContainer {
   position: absolute;
   bottom: -60px;
-  left: 325px;
+  left: 165px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }

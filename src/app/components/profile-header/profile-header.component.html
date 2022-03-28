@@ -8,17 +8,30 @@
     ></app-form-update-header>
   </div>
 </div>
-<!-- Update Userphotos Modal  -->
-<div class="modal" *ngIf="showUpdateUserphotosForm">
+<!-- Update Profilephotos Modal  -->
+<div class="modal" *ngIf="showUpdateProfilephotosForm">
   <div class="containerFormAdd">
     <i
       class="fas fa-times iconClose"
-      (click)="toggleUpdateUserphotosForm()"
+      (click)="toggleUpdateProfilephotosForm()"
     ></i>
-    <app-form-update-userphotos
-      (onUpdateUserphotos)="updateUserphotos($event)"
+    <app-form-update-profilephotos
+      (onUpdateProfilephotos)="updateProfilephotos($event)"
       [currentPersonForm]="currentPerson"
-    ></app-form-update-userphotos>
+    ></app-form-update-profilephotos>
+  </div>
+</div>
+<!-- Update Coverphotos Modal  -->
+<div class="modal" *ngIf="showUpdateCoverphotosForm">
+  <div class="containerFormAdd">
+    <i
+      class="fas fa-times iconClose"
+      (click)="toggleUpdateCoverphotosForm()"
+    ></i>
+    <app-form-update-coverphoto
+      (onUpdateCoverphotos)="updateCoverphotos($event)"
+      [currentPersonForm]="currentPerson"
+    ></app-form-update-coverphoto>
   </div>
 </div>
 <!-- Update Socialnetwork Modal  -->
@@ -45,6 +58,16 @@
       "
       alt="Profile cover"
     />
+    <div
+      class="iconEditCoverPhotoContainer"
+      (click)="toggleUpdateCoverphotosForm(person)"
+      *ngIf="isAdmin"
+    >
+      <p>
+        <i class="fas fa-images iconEditProfilePhoto"></i>
+        Modificar imagen de portada
+      </p>
+    </div>
     <img
       class="imgProfileHeader"
       [src]="
@@ -58,12 +81,12 @@
     />
     <div
       class="iconEditProfilePhotoContainer"
-      (click)="toggleUpdateUserphotosForm(person)"
+      (click)="toggleUpdateProfilephotosForm(person)"
       *ngIf="isAdmin"
     >
       <p>
         <i class="fas fa-images iconEditProfilePhoto"></i>
-        Editar imágenes
+        Modificar imagen de perfil
       </p>
     </div>
     <div

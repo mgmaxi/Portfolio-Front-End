@@ -1,20 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormUpdateUserphotosComponent } from './form-update-userphotos.component';
+import { FormUpdateProfilephotosComponent } from './form-update-profilephotos.component';
 
 describe('FormUpdateUserphotosComponent', () => {
-  let component: FormUpdateUserphotosComponent;
-  let fixture: ComponentFixture<FormUpdateUserphotosComponent>;
+  let component: FormUpdateProfilephotosComponent;
+  let fixture: ComponentFixture<FormUpdateProfilephotosComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FormUpdateUserphotosComponent ]
-    })
-    .compileComponents();
+      declarations: [FormUpdateProfilephotosComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormUpdateUserphotosComponent);
+    fixture = TestBed.createComponent(FormUpdateProfilephotosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

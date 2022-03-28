@@ -30,7 +30,7 @@ export class UserphotosService {
   updateUserProfilePhoto(
     user_id: number,
     userphotos_id: number,
-    updatedUserphotos: string
+    updatedUserphotos: Userphotos
   ): Observable<any> {
     const url = `${this.apiUrl}/userphotos/${userphotos_id}/profilephoto/users/${user_id}`;
     return this.http.put<any>(url, updatedUserphotos, httpOptions);
@@ -39,7 +39,7 @@ export class UserphotosService {
   updateUserCoverPhoto(
     user_id: number,
     userphotos_id: number,
-    updatedUserphotos: string
+    updatedUserphotos: Userphotos
   ): Observable<any> {
     const url = `${this.apiUrl}/userphotos/${userphotos_id}/coverphoto/users/${user_id}`;
     return this.http.put<any>(url, updatedUserphotos, httpOptions);

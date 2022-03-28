@@ -31,7 +31,8 @@ export class ProfileHeaderComponent implements OnInit {
   currentSocialnetwork: any;
   isAdmin = false;
   showUpdateForm: boolean = false;
-  showUpdateUserphotosForm: boolean = false;
+  showUpdateProfilephotosForm: boolean = false;
+  showUpdateCoverphotosForm: boolean = false;
   showUpdateSocialnetworkForm: boolean = false;
   user_id: any;
   userphotos_id: any;
@@ -128,15 +129,15 @@ export class ProfileHeaderComponent implements OnInit {
     this.toggleUpdateForm();
   }
 
-  updateUserphotos(userphotos: Userphotos) {
-    let { id: userphotos_id, profile_photo, cover_photo } = userphotos;
-    const updatedUserphotos = { profile_photo, cover_photo };
+  updateProfilephotos(profilephotos: Userphotos) {
+    let { id: userphotos_id, profile_photo } = profilephotos;
+    const updatedUserphotos = { profile_photo };
     this.userphotosService
-      .updateUserphotos(this.user_id, userphotos_id!, updatedUserphotos)
+      .updateUserProfilePhoto(this.user_id, userphotos_id!, updatedUserphotos)
       .subscribe(
         (data) => {
           this.toastr.success(
-            'Las imágenes han sido modificadas!',
+            'La imagen de perfil ha sido modificada!',
             'Modificación exitosa',
             {
               timeOut: 3000,
@@ -146,13 +147,40 @@ export class ProfileHeaderComponent implements OnInit {
           this.refreshComponent();
         },
         (err) => {
-          this.toastr.error(err.error.message, 'Error', {
+          this.toastr.error(err, 'Error', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
         }
       );
-    this.toggleUpdateUserphotosForm();
+    this.toggleUpdateProfilephotosForm();
+  }
+
+  updateCoverphotos(coverphotos: Userphotos) {
+    let { id: userphotos_id, cover_photo } = coverphotos;
+    const updatedUserphotos = { cover_photo };
+    this.userphotosService
+      .updateUserCoverPhoto(this.user_id, userphotos_id!, updatedUserphotos)
+      .subscribe(
+        (data) => {
+          this.toastr.success(
+            'La imagen de portada ha sido modificada!',
+            'Modificación exitosa',
+            {
+              timeOut: 3000,
+              positionClass: 'toast-top-center',
+            }
+          );
+          this.refreshComponent();
+        },
+        (err) => {
+          this.toastr.error(err, 'Error', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
+        }
+      );
+    this.toggleUpdateCoverphotosForm();
   }
 
   updateSocialnetwork(socialnetwork: Socialnetwork) {
@@ -190,9 +218,14 @@ export class ProfileHeaderComponent implements OnInit {
     this.currentPerson = person;
     this.showUpdateForm = !this.showUpdateForm;
   }
-  toggleUpdateUserphotosForm(person?: PersonDTO) {
+  toggleUpdateProfilephotosForm(person?: PersonDTO) {
     this.currentPerson = person;
-    this.showUpdateUserphotosForm = !this.showUpdateUserphotosForm;
+    this.showUpdateProfilephotosForm = !this.showUpdateProfilephotosForm;
+  }
+
+  toggleUpdateCoverphotosForm(person?: PersonDTO) {
+    this.currentPerson = person;
+    this.showUpdateCoverphotosForm = !this.showUpdateCoverphotosForm;
   }
 
   toggleUpdateSocialForm(social?: any) {

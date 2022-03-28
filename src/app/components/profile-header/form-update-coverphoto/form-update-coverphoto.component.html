@@ -1,0 +1,27 @@
+<div class="containerForm">
+  <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+    <p class="title">Modificar imagen de portada</p>
+    <!-- Cover_photo input -->
+    <input
+      type="text"
+      accept=".png, .jpg, .jpeg"
+      (change)="uploadPhoto($event)"
+      placeholder="Imagen de portada"
+      class="inputLogo"
+      formControlName="cover_photo"
+      onfocus="(this.type='file')"
+    />
+    <i class="fa fa-file-image"></i>
+    <!-- Cover_photo validation error -->
+    <div
+      *ngIf="
+        Cover_photo?.errors && (Cover_photo?.touched || Cover_photo?.dirty)
+      "
+    >
+      <p *ngIf="Cover_photo?.hasError('required')" class="error">
+        *La imagen de portada es requerida.
+      </p>
+    </div>
+    <button type="submit">Modificar</button>
+  </form>
+</div>

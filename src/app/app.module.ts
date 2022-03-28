@@ -28,7 +28,7 @@ import { FormUpdateEducationComponent } from './components/profile-education/for
 import { FormUpdateProjectComponent } from './components/profile-project/form-update-project/form-update-project.component';
 import { FormUpdateLanguageComponent } from './components/profile-language/add-language-to-person/add-language-to-person.component';
 import { FormUpdateHeaderComponent } from './components/profile-header/form-update-header/form-update-header.component';
-import { FormUpdateUserphotosComponent } from './components/profile-header/form-update-userphotos/form-update-userphotos.component';
+import { FormUpdateProfilephotosComponent } from './components/profile-header/form-update-profilephotos/form-update-profilephotos.component';
 import { FormAddTechToPersonComponent } from './components/profile-technology/add-technology-to-person/add-technology-to-person.component';
 import { HomeComponent } from './components/home/home.component';
 import { SchoolComponent } from './components/profile-education/school/school.component';
@@ -39,6 +39,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { TemplateV01Component } from './components/portfolio-template/template-v01/template-v01.component';
 import { MenuComponent } from './components/header/menu/menu.component';
 import { FormUpdateSocialnetworkComponent } from './components/profile-header/form-update-socialnetwork/form-update-socialnetwork.component';
+import { FormUpdateCoverphotoComponent } from './components/profile-header/form-update-coverphoto/form-update-coverphoto.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { FormUpdateSocialnetworkComponent } from './components/profile-header/fo
     FormUpdateProjectComponent,
     FormUpdateLanguageComponent,
     FormUpdateHeaderComponent,
-    FormUpdateUserphotosComponent,
+    FormUpdateProfilephotosComponent,
+    FormUpdateCoverphotoComponent,
     FormAddTechToPersonComponent,
     SchoolComponent,
     CompanyComponent,
