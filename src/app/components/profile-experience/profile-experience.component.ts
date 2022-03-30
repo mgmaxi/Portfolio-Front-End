@@ -57,8 +57,15 @@ export class ProfileExperienceComponent implements OnInit {
       description,
       start_date,
       end_date,
+      is_current,
     } = experience;
-    const newExperience = { name, description, start_date, end_date };
+    const newExperience = {
+      name,
+      description,
+      start_date,
+      end_date,
+      is_current,
+    };
     this.experienceService
       .addExperience(this.person_id, company_id, newExperience)
       .subscribe(
@@ -93,8 +100,15 @@ export class ProfileExperienceComponent implements OnInit {
       description,
       start_date,
       end_date,
+      is_current,
     } = experience;
-    const updatedExperience = { name, description, start_date, end_date };
+    const updatedExperience = {
+      name,
+      description,
+      start_date,
+      end_date,
+      is_current,
+    };
     this.experienceService
       .updateExperience(
         experience_id!,

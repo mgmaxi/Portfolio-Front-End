@@ -54,7 +54,12 @@
           Fecha de inicio: {{ experience.start_date | date: "dd/MM/yyyy" }}
         </p>
         <p class="textSmall">
-          Fecha de finalización: {{ experience.end_date | date: "dd/MM/yyyy" }}
+          Fecha de finalización:
+          {{
+            experience.end_date != null
+              ? (experience.end_date | date: "dd/MM/yyyy")
+              : "present"
+          }}
         </p>
         <i
           class="fas fa-pencil-alt iconEdit"

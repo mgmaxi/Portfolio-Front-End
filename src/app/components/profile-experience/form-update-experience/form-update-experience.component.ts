@@ -27,7 +27,8 @@ export class FormUpdateExperienceComponent implements OnInit {
     ],
     company: [null, [Validators.required]],
     start_date: ['', [Validators.required]],
-    end_date: ['', [Validators.required]],
+    end_date: ['', []],
+    is_current: [false, []],
   });
 
   constructor(
@@ -62,7 +63,7 @@ export class FormUpdateExperienceComponent implements OnInit {
   onSubmit(event: Event) {
     event.preventDefault;
     if (this.form.valid) {
-      let { name, company, description, start_date, end_date } =
+      let { name, company, description, start_date, end_date, is_current } =
         this.form.value;
       let id = this.currentExperienceForm.id;
       const updatedExperience = {
@@ -72,6 +73,7 @@ export class FormUpdateExperienceComponent implements OnInit {
         description,
         start_date,
         end_date,
+        is_current,
       };
       this.onUpdateExperience.emit(updatedExperience);
       this.form.reset();
@@ -84,6 +86,18 @@ export class FormUpdateExperienceComponent implements OnInit {
   toggleAddCompany() {
     this.showAddCompany = !this.showAddCompany;
     this.getCompanies();
+  }
+
+  toggleIsCurrentJob() {
+    if (this.form.controls['end_date'].status === 'DISABLED') {
+      this.form.controls['end_date'].enable();
+      return;
+    } else {
+      this.form.controls['end_date'].reset();
+      this.form.controls['end_date'].disable();
+      this.form.controls['is_current'].setValue(true);
+      return;
+    }
   }
 
   get Name() {
@@ -104,5 +118,9 @@ export class FormUpdateExperienceComponent implements OnInit {
 
   get End_date() {
     return this.form.get('end_date');
+  }
+
+  get Is_current() {
+    return this.form.get('is_current');
   }
 }

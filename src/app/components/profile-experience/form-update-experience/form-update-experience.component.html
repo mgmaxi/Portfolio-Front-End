@@ -92,6 +92,16 @@
         *La fecha de finalización es requerida.
       </p>
     </div>
+    <!-- isCurrent input -->
+    <label>
+      <input
+        type="checkbox"
+        placeholder="Es trabajo actual?"
+        class="checkbox"
+        (change)="toggleIsCurrentJob()"
+      />
+      Es tu trabajo actual?</label
+    >
     <button type="submit">Modificar</button>
   </form>
 </div>
