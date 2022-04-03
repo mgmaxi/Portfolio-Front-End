@@ -39,12 +39,6 @@ export class FormAddExperienceComponent implements OnInit {
     this.getCompanies();
   }
 
-  getCompanies() {
-    this.companyService.getCompanies().subscribe((data) => {
-      this.companyList = data;
-    });
-  }
-
   onSubmit(event: Event) {
     event.preventDefault;
     if (this.form.valid) {
@@ -81,6 +75,14 @@ export class FormAddExperienceComponent implements OnInit {
       this.form.controls['is_current'].setValue(true);
       return;
     }
+  }
+
+  /* Services */
+
+  getCompanies() {
+    this.companyService.getCompanies().subscribe((data) => {
+      this.companyList = data;
+    });
   }
 
   get Name() {

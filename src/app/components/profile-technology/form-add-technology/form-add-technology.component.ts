@@ -17,11 +17,11 @@ export class FormAddTechnologieComponent implements OnInit {
     { name: 'Front End', value: 'front-end' },
     { name: 'Back End', value: 'back-end' },
     { name: 'Mobile', value: 'mobile' },
-    { name: 'Base de datos', value: 'data-base' },
-    { name: 'Control de versiones', value: 'vcs' },
+    { name: 'Database', value: 'data-base' },
+    { name: 'Version control', value: 'vcs' },
     { name: 'Hosting', value: 'hosting' },
-    { name: 'Edición', value: 'editing' },
-    { name: 'Otra', value: 'other' },
+    { name: 'Editing', value: 'editing' },
+    { name: 'Others', value: 'other' },
   ];
 
   form: FormGroup = this.formBuilder.group({

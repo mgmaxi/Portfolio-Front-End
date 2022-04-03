@@ -35,6 +35,7 @@ export class SignupComponent implements OnInit {
   ngOnInit() {}
 
   onSignup(event: Event) {
+    console.log(event);
     event.preventDefault;
     if (this.form.valid) {
       this.signupUser = new SignupUser(
@@ -47,15 +48,19 @@ export class SignupComponent implements OnInit {
 
       this.authService.signup(this.signupUser).subscribe(
         (data) => {
-          this.toastr.success('La cuenta ha sido creada!', 'Registro exitoso', {
-            timeOut: 3000,
-            positionClass: 'toast-top-center',
-          });
+          this.toastr.success(
+            'The account has been created.',
+            'Successful sign up!',
+            {
+              timeOut: 3000,
+              positionClass: 'toast-top-center',
+            }
+          );
           this.router.navigate(['/login']);
         },
         (err) => {
           this.errorMsg = err.error.messageSent;
-          this.toastr.error(this.errorMsg, 'Registro fallido', {
+          this.toastr.error(this.errorMsg, 'Sign up failed!', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });

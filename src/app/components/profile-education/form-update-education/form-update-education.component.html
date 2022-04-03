@@ -7,24 +7,22 @@
 </div>
 <div class="containerForm">
   <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
-    <p class="title">Modificar educación</p>
+    <p class="title">Update education</p>
     <!-- Name input -->
     <input
       type="text"
-      placeholder="Nombre de la disciplina académica"
+      placeholder="Academic discipline name"
       formControlName="name"
     />
     <i class="fa fa-graduation-cap"></i>
     <!-- Name validation error -->
     <div *ngIf="Name?.errors && (Name?.touched || Name?.dirty)">
-      <p *ngIf="Name?.hasError('required')" class="error">
-        *El nombre de la disciplina académica es requerido.
-      </p>
+      <p *ngIf="Name?.hasError('required')" class="error">*Name is required.</p>
     </div>
     <!-- Description input -->
     <input
       type="text"
-      placeholder="Descripción de la disciplina académica"
+      placeholder="Academic discipline description"
       formControlName="description"
     />
     <i class="fa fa-file-alt"></i>
@@ -35,23 +33,23 @@
       "
     >
       <p *ngIf="Description?.hasError('required')" class="error">
-        *La descripción es requerida.
+        *Description is required.
       </p>
       <p *ngIf="Description?.hasError('minlength')" class="error">
-        *La descripción debe tener al menos 10 caracteres.
+        *Description must have at least 10 characters.
       </p>
       <p *ngIf="Description?.hasError('maxlength')" class="error">
-        *La descripción no puede tener más de 250 caracteres.
+        *Description can't be longer than 250 characters.
       </p>
     </div>
     <!-- Add School  -->
     <p class="subTitle" (click)="toggleAddSchool()">
-      Si la institución no está en la lista, agrégala
+      If the institution is not on the list, add it
       <i class="fas fa-plus iconNote"></i>
     </p>
     <!-- School select -->
     <select formControlName="school">
-      <option [ngValue]="null" disabled>Selecciona una institución</option>
+      <option [ngValue]="null" disabled>Select an institution</option>
       <option *ngFor="let school of schoolList" [ngValue]="school.id">
         {{ school.name }}
       </option>
@@ -60,13 +58,13 @@
     <!-- School validation error -->
     <div *ngIf="School?.errors && (School?.touched || School?.dirty)">
       <p *ngIf="School?.hasError('required')" class="error">
-        *Debes seleccionar una institución.
+        *You must select an institution.
       </p>
     </div>
     <!-- Start_date input -->
     <input
       type="text"
-      placeholder="Fecha de inicio"
+      placeholder="Start date"
       formControlName="start_date"
       onfocus="(this.type='date')"
     />
@@ -76,13 +74,13 @@
       *ngIf="Start_date?.errors && (Start_date?.touched || Start_date?.dirty)"
     >
       <p *ngIf="Start_date?.hasError('required')" class="error">
-        *La fecha de inicio es requerida.
+        *Start date is required.
       </p>
     </div>
     <!-- End_date input -->
     <input
       type="text"
-      placeholder="Fecha de finalización"
+      placeholder="End date"
       formControlName="end_date"
       onfocus="(this.type='date')"
     />
@@ -90,9 +88,9 @@
     <!-- End_date validation error -->
     <div *ngIf="End_date?.errors && (End_date?.touched || End_date?.dirty)">
       <p *ngIf="End_date?.hasError('required')" class="error">
-        *La fecha de finalización es requerida.
+        *End date is required.
       </p>
     </div>
-    <button type="submit">Modificar</button>
+    <button type="submit">Update</button>
   </form>
 </div>

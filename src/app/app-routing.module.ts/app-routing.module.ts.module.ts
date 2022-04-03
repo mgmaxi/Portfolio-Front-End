@@ -12,7 +12,7 @@ import { TemplateV01Component } from '../components/portfolio-template/template-
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
+  { path: 'signin', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'signup', component: SignupComponent, canActivate: [LoginGuard] },
   { path: 'portfolio', component: TemplateV01Component },
   {

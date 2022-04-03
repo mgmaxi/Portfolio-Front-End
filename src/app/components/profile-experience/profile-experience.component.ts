@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { TokenService } from 'src/app/security/service/token.service';
 import { Experience } from 'src/app/models/experience';
 import { ExperienceService } from 'src/app/service/experience.service';
-import { TokenService } from 'src/app/security/service/token.service';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/service/user.service';
 
@@ -13,12 +13,12 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class ProfileExperienceComponent implements OnInit {
   @Input() person_id: any;
-  experienceList: Experience[] = [];
   isAdmin = false;
-  showAddForm: boolean = false;
-  showUpdateForm: boolean = false;
+  experienceList: Experience[] = [];
   currentExperience: any;
   company_logo: string = '../../../assets/logos/experience/logoExperience.png';
+  showAddForm: boolean = false;
+  showUpdateForm: boolean = false;
 
   constructor(
     private tokenService: TokenService,
@@ -32,6 +32,25 @@ export class ProfileExperienceComponent implements OnInit {
     this.isAdmin = this.tokenService.isAdmin();
     this.getPersonId();
   }
+
+  toggleAddForm() {
+    this.showAddForm = !this.showAddForm;
+  }
+
+  toggleUpdateForm(experience?: Experience) {
+    this.showUpdateForm = !this.showUpdateForm;
+    this.currentExperience = experience;
+  }
+
+  refreshComponent() {
+    this.router
+      .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
+      .then(() => {
+        this.router.navigate(['profile']);
+      });
+  }
+
+  /* Services */
 
   getPersonId() {
     this.userService.person_id.subscribe((data) => {
@@ -71,10 +90,8 @@ export class ProfileExperienceComponent implements OnInit {
       .subscribe(
         (data) => {
           this.toastr.success(
-            'La experiencia laboral "' +
-              name +
-              '" ha sido agregada a la cuenta!',
-            'Experiencia agregada',
+            'Work experience "' + name + '" has been added to the account.',
+            'Experience added!',
             {
               timeOut: 3000,
               positionClass: 'toast-top-center',
@@ -119,8 +136,8 @@ export class ProfileExperienceComponent implements OnInit {
       .subscribe(
         (data) => {
           this.toastr.success(
-            'La experiencia laboral "' + name + '" ha sido modificada!',
-            'Modificación exitosa',
+            'Work experience "' + name + '" has been updated.',
+            'Successful update!',
             {
               timeOut: 3000,
               positionClass: 'toast-top-center',
@@ -145,10 +162,8 @@ export class ProfileExperienceComponent implements OnInit {
       .subscribe(
         (data) => {
           this.toastr.success(
-            'La experiencia laboral "' +
-              experience.name +
-              '" ha sido eliminada!',
-            'Eliminación exitosa',
+            'Work experience "' + experience.name + '" has been deleted.',
+            'Successful delete!',
             {
               timeOut: 3000,
               positionClass: 'toast-top-center',
@@ -171,8 +186,8 @@ export class ProfileExperienceComponent implements OnInit {
       .subscribe(
         (data) => {
           this.toastr.success(
-            'Todas las experiencias laborales han sido eliminadas!',
-            'Eliminación exitosa',
+            'All work experiences have been deleted.',
+            'Successful delete!',
             {
               timeOut: 3000,
               positionClass: 'toast-top-center',
@@ -187,22 +202,5 @@ export class ProfileExperienceComponent implements OnInit {
           });
         }
       );
-  }
-
-  toggleAddForm() {
-    this.showAddForm = !this.showAddForm;
-  }
-
-  toggleUpdateForm(experience?: Experience) {
-    this.showUpdateForm = !this.showUpdateForm;
-    this.currentExperience = experience;
-  }
-
-  refreshComponent() {
-    this.router
-      .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
-      .then(() => {
-        this.router.navigate(['profile']);
-      });
   }
 }

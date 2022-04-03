@@ -12,9 +12,9 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./profile-language.component.css'],
 })
 export class ProfileLanguagesComponent implements OnInit {
-  languagesList: any[] = [];
   @Input() person_id: any;
   isAdmin = false;
+  languagesList: any[] = [];
   showAddForm: boolean = false;
   showAddLanguageToPersonForm: boolean = false;
   showLanguageSection: boolean = true;
@@ -31,6 +31,24 @@ export class ProfileLanguagesComponent implements OnInit {
     this.isAdmin = this.tokenService.isAdmin();
     this.getPersonId();
   }
+
+  toggleAddForm() {
+    this.showAddForm = !this.showAddForm;
+  }
+
+  toggleAddLanguageToPersonForm(language?: Language) {
+    this.showAddLanguageToPersonForm = !this.showAddLanguageToPersonForm;
+  }
+
+  refreshComponent() {
+    this.router
+      .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
+      .then(() => {
+        this.router.navigate(['profile']);
+      });
+  }
+
+  /* Services */
 
   getPersonId() {
     this.userService.person_id.subscribe((data) => {
@@ -51,8 +69,8 @@ export class ProfileLanguagesComponent implements OnInit {
     this.languageService.addLanguage(language).subscribe(
       (data) => {
         this.toastr.success(
-          'El idioma "' + language.name + '" ha sido creado!',
-          'Creación exitosa',
+          language.name + ' language has been created.',
+          'Successful creation!',
           {
             timeOut: 3000,
             positionClass: 'toast-top-center',
@@ -76,8 +94,8 @@ export class ProfileLanguagesComponent implements OnInit {
       .subscribe(
         (data) => {
           this.toastr.success(
-            'El idioma ha sido agregado a "' + data.name + '"!',
-            'Idioma agregado',
+            'The language has been added to "' + data.name + '".',
+            'Language added!',
             {
               timeOut: 3000,
               positionClass: 'toast-top-center',
@@ -102,8 +120,8 @@ export class ProfileLanguagesComponent implements OnInit {
       .subscribe(
         (data) => {
           this.toastr.success(
-            'El idioma "' + language.name + '" ha sido eliminado de la cuenta!',
-            'Eliminación exitosa',
+            language.name + ' language has been removed from the account.',
+            'Successful delete!',
             {
               timeOut: 3000,
               positionClass: 'toast-top-center',
@@ -124,8 +142,8 @@ export class ProfileLanguagesComponent implements OnInit {
     this.languageService.deleteAllLanguagesFromPerson(this.person_id).subscribe(
       (data) => {
         this.toastr.success(
-          'Todos los idiomas han sido eliminados de la cuenta!',
-          'Eliminación exitosa',
+          'All languages ​​have been removed from the account.',
+          'Successful delete!',
           {
             timeOut: 3000,
             positionClass: 'toast-top-center',
@@ -140,21 +158,5 @@ export class ProfileLanguagesComponent implements OnInit {
         });
       }
     );
-  }
-
-  toggleAddForm() {
-    this.showAddForm = !this.showAddForm;
-  }
-
-  toggleAddLanguageToPersonForm(language?: Language) {
-    this.showAddLanguageToPersonForm = !this.showAddLanguageToPersonForm;
-  }
-
-  refreshComponent() {
-    this.router
-      .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
-      .then(() => {
-        this.router.navigate(['profile']);
-      });
   }
 }

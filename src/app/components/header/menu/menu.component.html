@@ -5,17 +5,17 @@
     <div>
       <div>
         <ul>
-          <li><a routerLink="/home"> Inicio </a></li>
+          <li><a routerLink="/home">Home </a></li>
           <li><a routerLink="/portfolio">Portfolio</a></li>
-          <li><a routerLink="/profile">Perfil</a></li>
+          <li><a routerLink="/profile">Profile</a></li>
           <li *ngIf="!isLogged">
-            <a routerLink="/login">
-              <button>Iniciar sesión</button>
+            <a routerLink="/signin">
+              <button>Sign in</button>
             </a>
           </li>
           <li *ngIf="isLogged" (click)="onLogOut()">
             <a>
-              <button>Cerrar sesión</button>
+              <button>Sign out</button>
             </a>
           </li>
         </ul>

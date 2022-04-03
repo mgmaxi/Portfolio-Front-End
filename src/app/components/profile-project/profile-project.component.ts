@@ -13,12 +13,12 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class ProfileProjectsComponent implements OnInit {
   @Input() person_id: any;
-  projectList: any[] = [];
-  showForm: boolean = false;
   isAdmin = false;
+  projectList: any[] = [];
+  currentProject: any;
+  showForm: boolean = false;
   showAddForm: boolean = false;
   showUpdateForm: boolean = false;
-  currentProject: any;
 
   constructor(
     private tokenService: TokenService,
@@ -32,6 +32,25 @@ export class ProfileProjectsComponent implements OnInit {
     this.isAdmin = this.tokenService.isAdmin();
     this.getPersonId();
   }
+
+  toggleAddForm() {
+    this.showAddForm = !this.showAddForm;
+  }
+
+  toggleUpdateForm(project?: Project) {
+    this.showUpdateForm = !this.showUpdateForm;
+    this.currentProject = project;
+  }
+
+  refreshComponent() {
+    this.router
+      .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
+      .then(() => {
+        this.router.navigate(['profile']);
+      });
+  }
+
+  /* Services */
 
   getPersonId() {
     this.userService.person_id.subscribe((data) => {
@@ -52,8 +71,8 @@ export class ProfileProjectsComponent implements OnInit {
     this.projectService.addProject(this.person_id, project).subscribe(
       (data) => {
         this.toastr.success(
-          'El proyecto "' + project.name + '" ha sido agregado a la cuenta!',
-          'Proyecto agregado',
+          'The project "' + project.name + '" has been added to the account.',
+          'Project added!',
           {
             timeOut: 3000,
             positionClass: 'toast-top-center',
@@ -95,8 +114,8 @@ export class ProfileProjectsComponent implements OnInit {
       .subscribe(
         (data) => {
           this.toastr.success(
-            'El proyecto "' + name + '" ha sido modificado!',
-            'Modificación exitosa',
+            'The project "' + name + '" has been updated.',
+            'Successful update!',
             {
               timeOut: 3000,
               positionClass: 'toast-top-center',
@@ -119,8 +138,8 @@ export class ProfileProjectsComponent implements OnInit {
     this.projectService.deleteProject(project_id!, this.person_id).subscribe(
       (data) => {
         this.toastr.success(
-          'El proyecto "' + project.name + '" ha sido eliminado!',
-          'Eliminación exitosa',
+          'The project "' + project.name + '" has been deleted.',
+          'Successful delete!',
           {
             timeOut: 3000,
             positionClass: 'toast-top-center',
@@ -141,8 +160,8 @@ export class ProfileProjectsComponent implements OnInit {
     this.projectService.deleteAllProjectsFromPerson(this.person_id).subscribe(
       (data) => {
         this.toastr.success(
-          'Todos los proyectos han sido eliminados!',
-          'Eliminación exitosa',
+          'All the projects have been eliminated.',
+          'Successful delete!',
           {
             timeOut: 3000,
             positionClass: 'toast-top-center',
@@ -157,22 +176,5 @@ export class ProfileProjectsComponent implements OnInit {
         });
       }
     );
-  }
-
-  toggleAddForm() {
-    this.showAddForm = !this.showAddForm;
-  }
-
-  toggleUpdateForm(project?: Project) {
-    this.showUpdateForm = !this.showUpdateForm;
-    this.currentProject = project;
-  }
-
-  refreshComponent() {
-    this.router
-      .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
-      .then(() => {
-        this.router.navigate(['profile']);
-      });
   }
 }

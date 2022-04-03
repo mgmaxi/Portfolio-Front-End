@@ -1,19 +1,19 @@
 <div class="containerForm">
   <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
-    <p class="title">Crear idioma</p>
+    <p class="title">Create language</p>
     <p class="subTitle">
-      Crea un idioma que no esté disponible en la función agregar
+      Create a language that is not available in the add function
       <i class="fas fa-plus iconAddLanguageToPerson"></i>
     </p>
     <!-- Name input -->
-    <input type="text" placeholder="Idioma" formControlName="name" />
+    <input type="text" placeholder="Language" formControlName="name" />
     <i class="fa fa-globe-americas"></i>
     <!-- Name validation error -->
     <div *ngIf="Name?.errors && (Name?.touched || Name?.dirty)">
       <p *ngIf="Name?.hasError('required')" class="error">
-        *El idioma es requerido.
+        *Language is required.
       </p>
     </div>
-    <button type="submit">Crear</button>
+    <button type="submit">Create</button>
   </form>
 </div>

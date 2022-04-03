@@ -40,25 +40,6 @@ export class FormUpdateEducationComponent implements OnInit {
     this.updateFormValues();
   }
 
-  updateFormValues() {
-    let { name, description, school, start_date, end_date } =
-      this.currentEducationForm;
-    let school_id = school.id;
-    this.form.patchValue({
-      name: name,
-      description: description,
-      school: school_id,
-      start_date: start_date,
-      end_date: end_date,
-    });
-  }
-
-  getSchools() {
-    this.schoolService.getSchools().subscribe((data) => {
-      this.schoolList = data;
-    });
-  }
-
   onSubmit(event: Event) {
     event.preventDefault;
     if (this.form.valid) {
@@ -80,9 +61,30 @@ export class FormUpdateEducationComponent implements OnInit {
     }
   }
 
+  updateFormValues() {
+    let { name, description, school, start_date, end_date } =
+      this.currentEducationForm;
+    let school_id = school.id;
+    this.form.patchValue({
+      name: name,
+      description: description,
+      school: school_id,
+      start_date: start_date,
+      end_date: end_date,
+    });
+  }
+
   toggleAddSchool() {
     this.showAddSchool = !this.showAddSchool;
     this.getSchools();
+  }
+
+  /* Services */
+
+  getSchools() {
+    this.schoolService.getSchools().subscribe((data) => {
+      this.schoolList = data;
+    });
   }
 
   get Name() {

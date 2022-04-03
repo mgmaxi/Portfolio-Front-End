@@ -41,25 +41,6 @@ export class FormUpdateExperienceComponent implements OnInit {
     this.updateFormValues();
   }
 
-  updateFormValues() {
-    let { name, description, company, start_date, end_date } =
-      this.currentExperienceForm;
-    let company_id = company.id;
-    this.form.patchValue({
-      name: name,
-      description: description,
-      company: company_id,
-      start_date: start_date,
-      end_date: end_date,
-    });
-  }
-
-  getCompanies() {
-    this.companyService.getCompanies().subscribe((data) => {
-      this.companyList = data;
-    });
-  }
-
   onSubmit(event: Event) {
     event.preventDefault;
     if (this.form.valid) {
@@ -98,6 +79,27 @@ export class FormUpdateExperienceComponent implements OnInit {
       this.form.controls['is_current'].setValue(true);
       return;
     }
+  }
+
+  updateFormValues() {
+    let { name, description, company, start_date, end_date } =
+      this.currentExperienceForm;
+    let company_id = company.id;
+    this.form.patchValue({
+      name: name,
+      description: description,
+      company: company_id,
+      start_date: start_date,
+      end_date: end_date,
+    });
+  }
+
+  /* Services */
+
+  getCompanies() {
+    this.companyService.getCompanies().subscribe((data) => {
+      this.companyList = data;
+    });
   }
 
   get Name() {

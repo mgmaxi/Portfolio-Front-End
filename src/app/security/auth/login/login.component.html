@@ -1,18 +1,14 @@
 <div class="modal">
   <div class="containerForm">
     <form [formGroup]="form" (ngSubmit)="onLogin($event)">
-      <p class="title">Iniciar sesión</p>
+      <p class="title">Sign in</p>
       <!-- User input -->
-      <input
-        type="text"
-        placeholder="Nombre de usuario"
-        formControlName="username"
-      />
+      <input type="text" placeholder="Username" formControlName="username" />
       <i class="fa fa-user"></i>
       <!-- User validation error -->
       <div *ngIf="Username?.errors && (Username?.touched || Username?.dirty)">
         <p *ngIf="Username?.hasError('required')" class="error">
-          *El nombre de usuario es requerido.
+          *Username is required.
         </p>
         <p
           *ngIf="
@@ -20,28 +16,28 @@
           "
           class="error"
         >
-          El nombre de usuario debe tener entre 5 a 12 caracteres.
+          *Username must have between 5 to 12 characters.
         </p>
       </div>
       <!-- Password input -->
       <input
         type="password"
-        placeholder="Contraseña"
+        placeholder="Password"
         formControlName="password"
       />
       <i class="fa fa-key"></i>
       <!-- Password validation error -->
       <div *ngIf="Password?.errors && (Password?.touched || Password?.dirty)">
         <p *ngIf="Password?.hasError('required')" class="error">
-          *La contraseña es requerida.
+          *Password is required.
         </p>
         <p *ngIf="Password?.hasError('minlength')" class="error">
-          *La contraseña debe tener al menos 8 caracteres.
+          *Password must have at least 8 characters.
         </p>
       </div>
-      <p>¿No tienes una cuenta? <a routerLink="/signup">Regístrate</a></p>
-      <p>Ir al <a routerLink="/home">Inicio</a></p>
-      <button type="submit">Iniciar sesión</button>
+      <p>Don't have an account? <a routerLink="/signup">Sign up</a></p>
+      <p>Go to <a routerLink="/home">Home</a></p>
+      <button type="submit">Sign in</button>
     </form>
   </div>
 </div>

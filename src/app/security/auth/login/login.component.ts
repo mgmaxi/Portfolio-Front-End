@@ -46,8 +46,8 @@ export class LoginComponent implements OnInit {
           this.tokenService.setToken(data.token);
 
           this.toastr.success(
-            `Bienvenido ${this.tokenService.getUsername()}!`,
-            'Inicio de sesión exitoso',
+            `Welcome ${this.tokenService.getUsername()}!`,
+            'Successful sign in!',
             {
               timeOut: 3000,
               positionClass: 'toast-top-center',
@@ -58,9 +58,9 @@ export class LoginComponent implements OnInit {
         (err) => {
           this.errorMsg = err.error.message;
           if (this.errorMsg === 'No value present') {
-            this.errorMsg = 'Datos incorrectos';
+            this.errorMsg = 'Incorrect data!';
           }
-          this.toastr.error(this.errorMsg, 'Inicio de sesión fallido', {
+          this.toastr.error(this.errorMsg, 'Sign in failed!', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });

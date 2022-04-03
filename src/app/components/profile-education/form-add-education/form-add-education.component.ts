@@ -37,12 +37,6 @@ export class FormAddEducationComponent implements OnInit {
     this.getSchools();
   }
 
-  getSchools() {
-    this.schoolService.getSchools().subscribe((data) => {
-      this.schoolList = data;
-    });
-  }
-
   onSubmit(event: Event) {
     event.preventDefault;
     if (this.form.valid) {
@@ -59,6 +53,14 @@ export class FormAddEducationComponent implements OnInit {
   toggleAddSchool() {
     this.showAddSchool = !this.showAddSchool;
     this.getSchools();
+  }
+
+  /* Services */
+
+  getSchools() {
+    this.schoolService.getSchools().subscribe((data) => {
+      this.schoolList = data;
+    });
   }
 
   get Name() {

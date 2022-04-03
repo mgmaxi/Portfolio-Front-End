@@ -1,23 +1,19 @@
 <div class="containerForm">
   <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
-    <p class="title">Agregar proyecto</p>
+    <p class="title">Add project</p>
     <!-- Name input -->
-    <input
-      type="text"
-      placeholder="Nombre del proyecto"
-      formControlName="name"
-    />
+    <input type="text" placeholder="Project name" formControlName="name" />
     <i class="fa fa-plus-circle"></i>
     <!-- Name validation error -->
     <div *ngIf="Name?.errors && (Name?.touched || Name?.dirty)">
       <p *ngIf="Name?.hasError('required')" class="error">
-        *El nombre del proyecto es requerido.
+        *Project name is required.
       </p>
     </div>
     <!-- Description input -->
     <input
       type="text"
-      placeholder="Descripción del proyecto"
+      placeholder="Project description"
       formControlName="description"
     />
     <i class="fa fa-file-alt"></i>
@@ -28,33 +24,29 @@
       "
     >
       <p *ngIf="Description?.hasError('required')" class="error">
-        *La descripción es requerida.
+        *Description is required.
       </p>
       <p *ngIf="Description?.hasError('minlength')" class="error">
-        *La descripción debe tener al menos 10 caracteres.
+        *Description must have at least 10 characters.
       </p>
       <p *ngIf="Description?.hasError('maxlength')" class="error">
-        *La descripción no puede tener más de 150 caracteres.
+        *Description can't be longer than 250 characters.
       </p>
     </div>
     <!-- Repository input -->
     <input
       type="text"
-      placeholder="Enlace al repositorio"
+      placeholder="Link to repository"
       formControlName="repository"
     />
     <i class="fa fa-link"></i>
     <!-- Deploy input -->
-    <input
-      type="text"
-      placeholder="Enlace al deploy"
-      formControlName="deploy"
-    />
+    <input type="text" placeholder="Link to deploy" formControlName="deploy" />
     <i class="fa fa-link"></i>
     <!-- End_date input -->
     <input
       type="text"
-      placeholder="Fecha de realización"
+      placeholder="End date"
       formControlName="end_date"
       onfocus="(this.type='date')"
     />
@@ -62,18 +54,18 @@
     <!-- End_date validation error -->
     <div *ngIf="End_date?.errors && (End_date?.touched || End_date?.dirty)">
       <p *ngIf="End_date?.hasError('required')" class="error">
-        *La fecha de realización es requerida.
+        *End date is required.
       </p>
     </div>
     <!-- Logo input -->
     <input
       type="text"
-      placeholder="Agregue el logo del proyecto"
+      placeholder="Add the project logo"
       formControlName="logo"
       class="inputLogo"
       onfocus="(this.type='file')"
     />
     <i class="fa fa-file-image"></i>
-    <button type="submit">Agregar</button>
+    <button type="submit">Add</button>
   </form>
 </div>

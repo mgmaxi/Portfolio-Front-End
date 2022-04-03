@@ -1,8 +1,4 @@
 /* Header */
-* {
-  font-family: "Quicksand";
-}
-
 header {
   display: flex;
   flex-direction: row;

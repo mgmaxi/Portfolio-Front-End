@@ -33,7 +33,6 @@ import { FormAddTechToPersonComponent } from './components/profile-technology/ad
 import { HomeComponent } from './components/home/home.component';
 import { SchoolComponent } from './components/profile-education/school/school.component';
 import { CompanyComponent } from './components/profile-experience/company/company.component';
-// Toastr
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { TemplateV01Component } from './components/portfolio-template/template-v01/template-v01.component';

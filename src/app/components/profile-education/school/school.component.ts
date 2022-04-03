@@ -55,12 +55,14 @@ export class SchoolComponent implements OnInit {
     }
   }
 
+  /* Services */
+
   addSchool(newSchool: School) {
     this.schoolService.addSchool(newSchool).subscribe(
       (data) => {
         this.toastr.success(
-          'La institución académica "' + data.name + '" ha sido agregada!',
-          'Institución agregada',
+          'The academic institution "' + data.name + '" has been added!',
+          'Academic institution added!',
           {
             timeOut: 3000,
             positionClass: 'toast-top-center',

@@ -1,13 +1,5 @@
 /* Menu */
 
-/* .menu-wrap {
-  display: flex;
-  position: absolute;
-  top: 7px;
-  right: 0;
-  z-index: 1;
-} */
-
 .menu-wrap .toggler {
   position: absolute;
   top: 0;

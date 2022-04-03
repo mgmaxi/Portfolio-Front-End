@@ -1,9 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Saira:wght@100;200;300;400;600;900&display=swap");
-
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  user-select: none;
 }
 
 .templateContainer {
@@ -197,7 +193,7 @@ body:not([data-scroll="0"]) .headerContainer {
 }
 .aboutImage {
   position: absolute;
-  top: 20%;
+  top: 21%;
   bottom: 35%;
   width: 100%;
   overflow: hidden;

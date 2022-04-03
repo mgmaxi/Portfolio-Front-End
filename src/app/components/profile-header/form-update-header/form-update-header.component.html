@@ -1,36 +1,36 @@
 <div class="containerForm">
   <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
-    <p class="title">Modificar perfil</p>
+    <p class="title">Update profile</p>
     <!-- First_name input -->
-    <input type="text" placeholder="Nombre" formControlName="first_name" />
+    <input type="text" placeholder="First name" formControlName="first_name" />
     <i class="fa fa-user"></i>
     <!-- First_name validation error -->
     <div
       *ngIf="First_name?.errors && (First_name?.touched || First_name?.dirty)"
     >
       <p *ngIf="First_name?.hasError('required')" class="error">
-        *El nombre es requerido.
+        *First name is required.
       </p>
       <p *ngIf="First_name?.hasError('minlength')" class="error">
-        *El nombre debe tener al menos 3 caracteres.
+        *First name must have at least 3 characters.
       </p>
     </div>
     <!-- Last_name input -->
-    <input type="text" placeholder="Apellido" formControlName="last_name" />
+    <input type="text" placeholder="Last name" formControlName="last_name" />
     <i class="fa fa-user"></i>
     <!-- Last_name validation error -->
     <div *ngIf="Last_name?.errors && (Last_name?.touched || Last_name?.dirty)">
       <p *ngIf="Last_name?.hasError('required')" class="error">
-        *El apellido es requerido.
+        *Last name is required.
       </p>
       <p *ngIf="Last_name?.hasError('minlength')" class="error">
-        *El apellido debe tener al menos 3 caracteres.
+        *Last name must have at least 3 characters.
       </p>
     </div>
     <!-- Nationality input -->
     <input
       type="text"
-      placeholder="Nacionalidad"
+      placeholder="Nationality"
       formControlName="nationality"
     />
     <i class="fa fa-flag"></i>
@@ -41,41 +41,40 @@
       "
     >
       <p *ngIf="Nationality?.hasError('required')" class="error">
-        *La nacionalidad es requerida.
+        *Nationality is required.
       </p>
     </div>
 
     <!-- Profession input -->
-    <input type="text" placeholder="Profesión" formControlName="profession" />
+    <input type="text" placeholder="Profession" formControlName="profession" />
     <i class="fa fa-user-tie"></i>
     <!-- Profession validation error -->
     <div
       *ngIf="Profession?.errors && (Profession?.touched || Profession?.dirty)"
     >
       <p *ngIf="Profession?.hasError('required')" class="error">
-        *La profesión es requerida.
+        *Profession is required.
       </p>
     </div>
     <!-- About input -->
-    <input type="text" placeholder="Acerca de" formControlName="about" />
+    <input type="text" placeholder="About" formControlName="about" />
     <i class="fa fa-address-card"></i>
     <!-- About validation error -->
     <div *ngIf="About?.errors && (About?.touched || About?.dirty)">
       <p *ngIf="About?.hasError('required')" class="error">
-        *El campo "acerca de" es requerido.
+        *About is required.
       </p>
 
       <p *ngIf="About?.hasError('minlength')" class="error">
-        *El campo "acerca de" debe tener al menos 10 caracteres.
+        *About must have at least 10 characters.
       </p>
       <p *ngIf="About?.hasError('maxlength')" class="error">
-        *El campo "acerca de" no puede tener más de 250 caracteres.
+        *About can't be longer than 250 characters.
       </p>
       <p *ngIf="About?.hasError('pattern')" class="error">
-        *El campo no puede contener solo espacios vacíos.
+        *About can't be empty.
       </p>
     </div>
-
-    <button type="submit">Modificar</button>
+    <button type="submit">Update</button>
   </form>
 </div>

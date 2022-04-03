@@ -13,12 +13,12 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class ProfileEducationComponent implements OnInit {
   @Input() person_id: any;
-  educationList: Education[] = [];
-  showAddForm: boolean = false;
-  showUpdateForm: boolean = false;
   isAdmin = false;
+  educationList: Education[] = [];
   currentEducation: any;
   school_logo: string = '../../../assets/logos/education/logoEducation.png';
+  showAddForm: boolean = false;
+  showUpdateForm: boolean = false;
 
   constructor(
     private tokenService: TokenService,
@@ -31,13 +31,6 @@ export class ProfileEducationComponent implements OnInit {
   ngOnInit(): void {
     this.isAdmin = this.tokenService.isAdmin();
     this.getPersonId();
-  }
-
-  getPersonId() {
-    this.userService.person_id.subscribe((data) => {
-      this.person_id = data;
-      this.getEducations();
-    });
   }
 
   toggleAddForm() {
@@ -55,6 +48,15 @@ export class ProfileEducationComponent implements OnInit {
       .then(() => {
         this.router.navigate(['profile']);
       });
+  }
+
+  /* Services */
+
+  getPersonId() {
+    this.userService.person_id.subscribe((data) => {
+      this.person_id = data;
+      this.getEducations();
+    });
   }
 
   getEducations() {
@@ -79,10 +81,10 @@ export class ProfileEducationComponent implements OnInit {
       .subscribe(
         (data) => {
           this.toastr.success(
-            'La disciplina académica "' +
+            'The academic discipline "' +
               data.name +
-              '" ha sido agregada a la cuenta!',
-            'Educación agregada',
+              '" has been added to the account.',
+            'Education added!',
             {
               timeOut: 3000,
               positionClass: 'toast-top-center',
@@ -120,8 +122,8 @@ export class ProfileEducationComponent implements OnInit {
       .subscribe(
         (data) => {
           this.toastr.success(
-            'La disciplina académica "' + name + '" ha sido modificada!',
-            'Modificación exitosa',
+            'The academic discipline"' + name + '" has been updated.',
+            'Successful update!',
             {
               timeOut: 3000,
               positionClass: 'toast-top-center',
@@ -147,10 +149,10 @@ export class ProfileEducationComponent implements OnInit {
       .subscribe(
         (data) => {
           this.toastr.success(
-            'La disciplina académica "' +
+            'The academic discipline "' +
               education.name +
-              '" ha sido eliminada!',
-            'Eliminación exitosa',
+              '" has been deleted.',
+            'Successful delete!',
             {
               timeOut: 3000,
               positionClass: 'toast-top-center',
@@ -173,8 +175,8 @@ export class ProfileEducationComponent implements OnInit {
       .subscribe(
         (data) => {
           this.toastr.success(
-            'Todas las disciplinas académicas han sido eliminadas!',
-            'Eliminación exitosa',
+            'All academic disciplines have been eliminated.',
+            'Successful delete!',
             {
               timeOut: 3000,
               positionClass: 'toast-top-center',

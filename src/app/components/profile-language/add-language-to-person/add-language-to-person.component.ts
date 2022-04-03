@@ -17,6 +17,8 @@ export class FormUpdateLanguageComponent implements OnInit {
     this.getLanguages();
   }
 
+  /* Services */
+
   getLanguages() {
     this.languageService
       .getLanguages()

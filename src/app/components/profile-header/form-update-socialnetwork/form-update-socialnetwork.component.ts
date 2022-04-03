@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Validators } from '@angular/forms';
 import { Socialnetwork } from 'src/app/models/socialnetwork';
 
 @Component({

@@ -25,19 +25,19 @@ export class ProfileHeaderComponent implements OnInit {
   @Output() onToggleTechnology = new EventEmitter<string>();
   @Input() person_id: any;
 
+  isAdmin = false;
+  user_id: any;
+  userphotos_id: any;
   person: any = [];
   currentPerson: any;
   socials: Socialnetwork = new Socialnetwork('', '', '');
   currentSocialnetwork: any;
-  isAdmin = false;
+  cover_photo: string = '../../../assets/image/profile/profileCover.jpg';
+  profile_photo: string = '../../../assets/image/profile/profileCover.jpg';
   showUpdateForm: boolean = false;
   showUpdateProfilephotosForm: boolean = false;
   showUpdateCoverphotosForm: boolean = false;
   showUpdateSocialnetworkForm: boolean = false;
-  user_id: any;
-  userphotos_id: any;
-  cover_photo: string = '../../../assets/image/profile/profileCover.jpg';
-  profile_photo: string = '../../../assets/image/profile/profileCover.jpg';
 
   constructor(
     private tokenService: TokenService,
@@ -54,6 +54,59 @@ export class ProfileHeaderComponent implements OnInit {
     this.getUserId();
     this.getPersonId();
   }
+
+  toggleUpdateForm(person?: PersonDTO) {
+    this.currentPerson = person;
+    this.showUpdateForm = !this.showUpdateForm;
+  }
+  toggleUpdateProfilephotosForm(person?: PersonDTO) {
+    this.currentPerson = person;
+    this.showUpdateProfilephotosForm = !this.showUpdateProfilephotosForm;
+  }
+
+  toggleUpdateCoverphotosForm(person?: PersonDTO) {
+    this.currentPerson = person;
+    this.showUpdateCoverphotosForm = !this.showUpdateCoverphotosForm;
+  }
+
+  toggleUpdateSocialForm(social?: any) {
+    this.currentSocialnetwork = social;
+    this.showUpdateSocialnetworkForm = !this.showUpdateSocialnetworkForm;
+  }
+
+  refreshComponent() {
+    this.router
+      .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
+      .then(() => {
+        this.router.navigate(['profile']);
+      });
+  }
+
+  showAbout() {
+    this.onToggleAbout.emit();
+  }
+
+  showExperience() {
+    this.onToggleExperience.emit();
+  }
+
+  showEducation() {
+    this.onToggleEducation.emit();
+  }
+
+  showProject() {
+    this.onToggleProject.emit();
+  }
+
+  showLanguage() {
+    this.onToggleLanguage.emit();
+  }
+
+  showTechnology() {
+    this.onToggleTechnology.emit();
+  }
+
+  /* Services */
 
   getUserId() {
     const username = this.tokenService.getUsername();
@@ -110,8 +163,8 @@ export class ProfileHeaderComponent implements OnInit {
       .subscribe(
         (data) => {
           this.toastr.success(
-            'Los datos de "' + person.first_name + '" han sido modificados!',
-            'Modificación exitosa',
+            person.first_name + "'s data has been updated.",
+            'Successful update!',
             {
               timeOut: 3000,
               positionClass: 'toast-top-center',
@@ -137,8 +190,8 @@ export class ProfileHeaderComponent implements OnInit {
       .subscribe(
         (data) => {
           this.toastr.success(
-            'La imagen de perfil ha sido modificada!',
-            'Modificación exitosa',
+            'Profile photo has been updated.',
+            'Successful update!',
             {
               timeOut: 3000,
               positionClass: 'toast-top-center',
@@ -164,8 +217,8 @@ export class ProfileHeaderComponent implements OnInit {
       .subscribe(
         (data) => {
           this.toastr.success(
-            'La imagen de portada ha sido modificada!',
-            'Modificación exitosa',
+            'The cover image has been updated.',
+            'Successful update!',
             {
               timeOut: 3000,
               positionClass: 'toast-top-center',
@@ -195,8 +248,8 @@ export class ProfileHeaderComponent implements OnInit {
       .subscribe(
         (data) => {
           this.toastr.success(
-            'Las redes sociales han sido modificadas!',
-            'Modificación exitosa',
+            'Social networks have been updated.',
+            'Successful update!',
             {
               timeOut: 3000,
               positionClass: 'toast-top-center',
@@ -212,56 +265,5 @@ export class ProfileHeaderComponent implements OnInit {
         }
       );
     this.toggleUpdateSocialForm();
-  }
-
-  toggleUpdateForm(person?: PersonDTO) {
-    this.currentPerson = person;
-    this.showUpdateForm = !this.showUpdateForm;
-  }
-  toggleUpdateProfilephotosForm(person?: PersonDTO) {
-    this.currentPerson = person;
-    this.showUpdateProfilephotosForm = !this.showUpdateProfilephotosForm;
-  }
-
-  toggleUpdateCoverphotosForm(person?: PersonDTO) {
-    this.currentPerson = person;
-    this.showUpdateCoverphotosForm = !this.showUpdateCoverphotosForm;
-  }
-
-  toggleUpdateSocialForm(social?: any) {
-    this.currentSocialnetwork = social;
-    this.showUpdateSocialnetworkForm = !this.showUpdateSocialnetworkForm;
-  }
-
-  refreshComponent() {
-    this.router
-      .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
-      .then(() => {
-        this.router.navigate(['profile']);
-      });
-  }
-
-  showAbout() {
-    this.onToggleAbout.emit();
-  }
-
-  showExperience() {
-    this.onToggleExperience.emit();
-  }
-
-  showEducation() {
-    this.onToggleEducation.emit();
-  }
-
-  showProject() {
-    this.onToggleProject.emit();
-  }
-
-  showLanguage() {
-    this.onToggleLanguage.emit();
-  }
-
-  showTechnology() {
-    this.onToggleTechnology.emit();
   }
 }

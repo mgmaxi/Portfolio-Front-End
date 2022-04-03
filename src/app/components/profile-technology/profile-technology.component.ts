@@ -32,6 +32,24 @@ export class ProfileTechnologiesComponent implements OnInit {
     this.getPersonId();
   }
 
+  toggleAddForm() {
+    this.showAddForm = !this.showAddForm;
+  }
+
+  toggleAddTechToPersonForm() {
+    this.showAddTechToPersonForm = !this.showAddTechToPersonForm;
+  }
+
+  refreshComponent() {
+    this.router
+      .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
+      .then(() => {
+        this.router.navigate(['profile']);
+      });
+  }
+
+  /* Services */
+
   getPersonId() {
     this.userService.person_id.subscribe((data) => {
       this.person_id = data;
@@ -67,8 +85,8 @@ export class ProfileTechnologiesComponent implements OnInit {
     this.technologyService.addTechnology(newTechnology).subscribe(
       (data) => {
         this.toastr.success(
-          'La tecnología "' + name + '" ha sido creada!',
-          'Creación exitosa',
+          name + ' technology has been created.',
+          'Successful creation!',
           {
             timeOut: 3000,
             positionClass: 'toast-top-center',
@@ -91,8 +109,8 @@ export class ProfileTechnologiesComponent implements OnInit {
       .subscribe(
         (data) => {
           this.toastr.success(
-            'La tecnología ha sido agregada a "' + data.name + '"!',
-            'Tecnología agregada',
+            'The technology has been added to"' + data.name + '"!',
+            'Language added!',
             {
               timeOut: 3000,
               positionClass: 'toast-top-center',
@@ -117,10 +135,8 @@ export class ProfileTechnologiesComponent implements OnInit {
       .subscribe(
         (data) => {
           this.toastr.success(
-            'La tecnología "' +
-              technology.name +
-              '" ha sido eliminado de la cuenta!',
-            'Eliminación exitosa',
+            technology.name + ' technology has been removed from the account.',
+            'Successful delete!',
             {
               timeOut: 3000,
               positionClass: 'toast-top-center',
@@ -143,8 +159,8 @@ export class ProfileTechnologiesComponent implements OnInit {
       .subscribe(
         (data) => {
           this.toastr.success(
-            'Todas las tecnologías han sido eliminados de la cuenta!',
-            'Eliminación exitosa',
+            'All technologies ​​have been removed from the account.',
+            'Successful delete!',
             {
               timeOut: 3000,
               positionClass: 'toast-top-center',
@@ -159,21 +175,5 @@ export class ProfileTechnologiesComponent implements OnInit {
           });
         }
       );
-  }
-
-  toggleAddForm() {
-    this.showAddForm = !this.showAddForm;
-  }
-
-  toggleAddTechToPersonForm() {
-    this.showAddTechToPersonForm = !this.showAddTechToPersonForm;
-  }
-
-  refreshComponent() {
-    this.router
-      .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
-      .then(() => {
-        this.router.navigate(['profile']);
-      });
   }
 }

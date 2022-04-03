@@ -1,6 +1,6 @@
 <div class="containerSection">
   <section class="containerSectionData">
-    <h2 class="sectionTitle">Agregar Tecnologías</h2>
+    <h2 class="sectionTitle">Add technology</h2>
     <p class="subTitle">
       <i
         class="fas fa-plus iconAddTechnologyToPerson"
@@ -11,7 +11,7 @@
           display: inline-block;
         "
       ></i>
-      Agrega una tecnología a tu cuenta.
+      Add a technology to your account.
     </p>
     <p class="subTitle">
       <i
@@ -23,11 +23,14 @@
           display: inline-block;
         "
       ></i>
-      Elimina una tecnología permanentemente.
+      Remove a technology permanently.
     </p>
 
     <!-- Technology List -->
     <div class="containerTechnology">
+      <div *ngIf="technologyList.length == 0">
+        <p>There's no technologies yet, create one!</p>
+      </div>
       <figure
         *ngFor="let technology of technologyList"
         class="containerTechnologyItem"
@@ -36,7 +39,7 @@
           <img
             class="logoTechnology"
             [src]="technology.logo"
-            alt="Logo de la tecnología"
+            alt="Technology logo"
           />
         </a>
         <figcaption>

@@ -2,18 +2,14 @@
   <div class="containerForm">
     <form [formGroup]="form" (ngSubmit)="onSignup($event)">
       <!-- Signup User Data -->
-      <p class="title">Crear una cuenta</p>
+      <p class="title">Create an account</p>
       <!-- User input -->
-      <input
-        type="text"
-        placeholder="Nombre de usuario"
-        formControlName="username"
-      />
+      <input type="text" placeholder="Username" formControlName="username" />
       <i class="fa fa-user"></i>
       <!-- User validation error -->
       <div *ngIf="Username?.errors && (Username?.touched || Username?.dirty)">
         <p *ngIf="Username?.hasError('required')" class="error">
-          *El nombre de usuario es requerido.
+          *Username is required.
         </p>
         <p
           *ngIf="
@@ -21,73 +17,73 @@
           "
           class="error"
         >
-          El nombre de usuario debe tener entre 5 a 12 caracteres.
+          *Username must have between 5 to 12 characters.
         </p>
       </div>
       <!-- Email input -->
-      <input
-        type="email"
-        placeholder="Correo electrónico"
-        formControlName="email"
-      />
+      <input type="email" placeholder="Email" formControlName="email" />
       <i class="fa fa-at"></i>
       <!-- Email validation error -->
       <div *ngIf="Email?.errors && (Email?.touched || Email?.dirty)">
         <p *ngIf="Email?.hasError('required')" class="error">
-          *El correo electrónico es requerido.
+          *Email is required.
         </p>
         <p *ngIf="Email?.hasError('email')" class="error">
-          *El formato del correo electrónico debe ser válido.
+          *Email format must be valid.
         </p>
       </div>
       <!-- Password input -->
       <input
         type="password"
-        placeholder="Contraseña"
+        placeholder="Password"
         formControlName="password"
       />
       <i class="fa fa-key"></i>
       <!-- Password validation error -->
       <div *ngIf="Password?.errors && (Password?.touched || Password?.dirty)">
         <p *ngIf="Password?.hasError('required')" class="error">
-          *La contraseña es requerida.
+          *Password is required.
         </p>
         <p *ngIf="Password?.hasError('minlength')" class="error">
-          *La contraseña debe tener al menos 8 caracteres.
+          *Password must have at least 8 characters.
         </p>
       </div>
       <!-- Signup Person Data -->
       <!-- First_name input -->
-      <input type="text" placeholder="Nombre" formControlName="first_name" />
+      <input
+        type="text"
+        placeholder="First Name"
+        formControlName="first_name"
+      />
       <i class="fa fa-user"></i>
       <!-- First_name validation error -->
       <div
         *ngIf="First_name?.errors && (First_name?.touched || First_name?.dirty)"
       >
         <p *ngIf="First_name?.hasError('required')" class="error">
-          *El nombre es requerido.
+          *First Name is required.
         </p>
         <p *ngIf="First_name?.hasError('minlength')" class="error">
-          El nombre debe tener al menos 3 caracteres.
+          *First Name must have at least 3 characters.
         </p>
       </div>
       <!-- Last_name input -->
-      <input type="text" placeholder="Apellido" formControlName="last_name" />
+      <input type="text" placeholder="Last Name" formControlName="last_name" />
       <i class="fa fa-user"></i>
       <!-- Last_name validation error -->
       <div
         *ngIf="Last_name?.errors && (Last_name?.touched || Last_name?.dirty)"
       >
         <p *ngIf="Last_name?.hasError('required')" class="error">
-          *El apellido es requerido.
+          *Last name is required.
         </p>
         <p *ngIf="Last_name?.hasError('minlength')" class="error">
-          El apellido debe tener al menos 3 caracteres.
+          *Last Name must have at least 3 characters.
         </p>
       </div>
-      <p>¿Ya tenés una cuenta? <a routerLink="/login">Inicia sesión</a></p>
-      <p>Ir al <a routerLink="/home">Inicio</a></p>
-      <button type="submit" [disabled]="!form.valid">Registrarse</button>
+      <p>Do you have an account? <a routerLink="/signin">Sign in</a></p>
+      <p>Go to <a routerLink="/home">Home</a></p>
+      <button type="submit">Sign up</button>
     </form>
   </div>
 </div>

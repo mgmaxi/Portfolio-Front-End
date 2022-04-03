@@ -26,7 +26,7 @@ export class GuardService implements CanActivate {
       !this.tokenService.isLogged() ||
       expectedRoles.indexOf(this.realRole) < 0
     ) {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/signin']);
       return false;
     }
     return true;

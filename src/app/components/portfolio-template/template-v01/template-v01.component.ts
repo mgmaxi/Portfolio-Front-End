@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { TechnologyService } from 'src/app/service/technology.service';
-import { PersonService } from 'src/app/service/person.service';
-import { ProjectService } from 'src/app/service/project.service';
 import { TokenService } from 'src/app/security/service/token.service';
+import { PersonService } from 'src/app/service/person.service';
+import { SocialnetworkService } from 'src/app/service/socialnetwork.service';
+import { Socialnetwork } from 'src/app/models/socialnetwork';
+import { ProjectService } from 'src/app/service/project.service';
+import { TechnologyService } from 'src/app/service/technology.service';
 import { ToastrService } from 'ngx-toastr';
 import { ViewportScroller } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -14,10 +16,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class TemplateV01Component implements OnInit {
   isLogged = false;
-  showAboutText: boolean = false;
-  showAboutImage: boolean = true;
   person_id: number = 1;
   person: any = '';
+  cover_photo: string = '../../../../assets/image/template/mountain.jpg';
+  profile_photo: string = '../../../../assets/image/template/mountain.jpg';
+  showAboutText: boolean = false;
+  showAboutImage: boolean = true;
+  socials: Socialnetwork = new Socialnetwork('', '', '');
   projectList: any = [];
   technologyList: any[] = [];
   filterCategory: any[] = [];
@@ -35,6 +40,7 @@ export class TemplateV01Component implements OnInit {
   constructor(
     private tokenService: TokenService,
     private personService: PersonService,
+    private socialnetworkService: SocialnetworkService,
     private projectService: ProjectService,
     private technologyService: TechnologyService,
     private toastr: ToastrService,
@@ -42,20 +48,23 @@ export class TemplateV01Component implements OnInit {
     private formBuilder: FormBuilder
   ) {}
 
-  onClick(elementId: string): void {
-    this.viewportScroller.scrollToAnchor(elementId);
-  }
-
   ngOnInit(): void {
     this.isLogged = this.tokenService.isLogged();
     this.getPersonProfile();
     this.getProjects();
     this.getTechnologies();
+    this.getSocialnetworks();
+  }
+
+  onClick(elementId: string): void {
+    this.viewportScroller.scrollToAnchor(elementId);
   }
 
   onLogOut(): void {
     this.tokenService.logOut();
   }
+
+  /* About section */
 
   toggleAbout() {
     this.showAboutText = !this.showAboutText;
@@ -75,6 +84,8 @@ export class TemplateV01Component implements OnInit {
     }
   }
 
+  /* Technologies filter */
+
   filter(category: string) {
     this.filterCategory = this.technologyList.filter((a: any) => {
       if (category == 'all') {
@@ -86,6 +97,8 @@ export class TemplateV01Component implements OnInit {
     });
   }
 
+  /* Services */
+
   getPersonProfile() {
     if (this.person_id != 0) {
       this.personService.getPersonProfile(this.person_id).subscribe(
@@ -95,14 +108,10 @@ export class TemplateV01Component implements OnInit {
         },
         (err) => {
           console.log(err);
-          this.toastr.error(
-            'No se ha podido obtener los datos del perfil.',
-            'Error',
-            {
-              timeOut: 3000,
-              positionClass: 'toast-top-center',
-            }
-          );
+          this.toastr.error('Failed to get profile data.', 'Error', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
         }
       );
     }
@@ -115,14 +124,10 @@ export class TemplateV01Component implements OnInit {
           this.projectList = data;
         },
         (err) => {
-          this.toastr.error(
-            'No se ha podido obtener los datos de los proyectos.',
-            'Error',
-            {
-              timeOut: 3000,
-              positionClass: 'toast-top-center',
-            }
-          );
+          this.toastr.error('Failed to get projects data.', 'Error', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
         }
       );
     }
@@ -136,16 +141,22 @@ export class TemplateV01Component implements OnInit {
           this.filterCategory = data;
         },
         (err) => {
-          this.toastr.error(
-            'No se ha podido obtener los datos de las tecnologías.',
-            'Error',
-            {
-              timeOut: 3000,
-              positionClass: 'toast-top-center',
-            }
-          );
+          this.toastr.error('Failed to get technologies data.', 'Error', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
         }
       );
+    }
+  }
+
+  getSocialnetworks() {
+    if (this.person_id != 0) {
+      this.socialnetworkService
+        .getSocialNetwork(this.person_id)
+        .subscribe((data) => {
+          this.socials = data;
+        });
     }
   }
 

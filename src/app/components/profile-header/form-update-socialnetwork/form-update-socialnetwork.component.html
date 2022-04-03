@@ -1,27 +1,19 @@
 <div class="containerForm">
   <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
-    <p class="title">Modificar redes sociales</p>
+    <p class="title">Update social networks</p>
     <!-- Linkedin input -->
     <input
       type="text"
-      placeholder="Enlace al perfil de Linkedin"
+      placeholder="Linkedin profile"
       formControlName="linkedin"
     />
     <i class="fa fa-linkedin"></i>
     <!-- Github input -->
-    <input
-      type="text"
-      placeholder="Enlace al perfil de Github"
-      formControlName="github"
-    />
+    <input type="text" placeholder="Github profile" formControlName="github" />
     <i class="fa fa-github"></i>
     <!-- Email input -->
-    <input
-      type="text"
-      placeholder="Correo electrónico"
-      formControlName="email"
-    />
+    <input type="text" placeholder="Email" formControlName="email" />
     <i class="fa fa-envelope"></i>
-    <button type="submit">Modificar</button>
+    <button type="submit">Update</button>
   </form>
 </div>

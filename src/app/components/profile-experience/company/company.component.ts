@@ -55,12 +55,14 @@ export class CompanyComponent implements OnInit {
     }
   }
 
+  /* Services */
+
   addCompany(newCompany: Company) {
     this.companyService.addCompany(newCompany).subscribe(
       (data) => {
         this.toastr.success(
-          'La empresa "' + data.name + '" ha sido agregada!',
-          'Empresa agregada',
+          'The company  "' + data.name + '" has been added.',
+          'Company added!',
           {
             timeOut: 3000,
             positionClass: 'toast-top-center',

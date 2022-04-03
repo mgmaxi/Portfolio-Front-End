@@ -23,7 +23,7 @@
     <ul>
       <li>
         <a routerLink="/home">
-          <span>Inicio</span>
+          <span>Home</span>
         </a>
       </li>
       <li>
@@ -33,7 +33,7 @@
       </li>
       <li>
         <a routerLink="/profile">
-          <span>Perfil</span>
+          <span>Profile</span>
         </a>
       </li>
     </ul>
@@ -41,13 +41,13 @@
   <div class="login">
     <ul>
       <li *ngIf="!isLogged">
-        <a routerLink="/login">
-          <button>Iniciar sesión</button>
+        <a routerLink="/signin">
+          <button>Sign in</button>
         </a>
       </li>
       <li *ngIf="isLogged" (click)="onLogOut()">
         <a>
-          <button>Cerrar sesión</button>
+          <button>Sign out</button>
         </a>
       </li>
     </ul>

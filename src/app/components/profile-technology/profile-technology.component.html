@@ -22,24 +22,20 @@
 <!-- Technology -->
 <div class="containerSection">
   <section class="containerSectionData">
-    <h2 class="sectionTitle">Tecnologías</h2>
+    <h2 class="sectionTitle">Technologies</h2>
     <div>
-      <button class="btnFilter" (click)="filter('all')">Todas</button>
+      <button class="btnFilter" (click)="filter('all')">All</button>
       <button class="btnFilter" (click)="filter('front-end')">Front End</button>
       <button class="btnFilter" (click)="filter('back-end')">Back End</button>
       <button class="btnFilter" (click)="filter('mobile')">Mobile</button>
-      <button class="btnFilter" (click)="filter('data-base')">
-        Base de Datos
-      </button>
-      <button class="btnFilter" (click)="filter('vcs')">
-        Control de Versiones
-      </button>
+      <button class="btnFilter" (click)="filter('data-base')">Database</button>
+      <button class="btnFilter" (click)="filter('vcs')">Version control</button>
       <button class="btnFilter" (click)="filter('hosting')">Hosting</button>
-      <button class="btnFilter" (click)="filter('editing')">Edición</button>
-      <button class="btnFilter" (click)="filter('other')">Otras</button>
+      <button class="btnFilter" (click)="filter('editing')">Editing</button>
+      <button class="btnFilter" (click)="filter('other')">Others</button>
     </div>
     <button class="btnCreate" (click)="toggleAddForm()" *ngIf="isAdmin">
-      Crear
+      Create
     </button>
     <i
       class="fas fa-plus iconAdd"

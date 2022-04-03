@@ -1,12 +1,12 @@
 <div class="containerForm">
   <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
-    <p class="title">Modificar imagen de perfil</p>
+    <p class="title">Update profile photo</p>
     <!-- Profile_photo input -->
     <input
       type="text"
       accept=".png, .jpg, .jpeg"
       (change)="uploadPhoto($event)"
-      placeholder="Imagen de perfil"
+      placeholder="Profile photo"
       class="inputLogo"
       formControlName="profile_photo"
       onfocus="(this.type='file')"
@@ -20,9 +20,9 @@
       "
     >
       <p *ngIf="Profile_photo?.hasError('required')" class="error">
-        *La imagen de perfil es requerida.
+        *Profile photo is required.
       </p>
     </div>
-    <button type="submit">Modificar</button>
+    <button type="submit">Update</button>
   </form>
 </div>

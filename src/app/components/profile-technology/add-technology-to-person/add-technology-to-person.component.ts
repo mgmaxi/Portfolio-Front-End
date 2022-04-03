@@ -23,6 +23,16 @@ export class FormAddTechToPersonComponent implements OnInit {
     this.getTechnologies();
   }
 
+  refreshComponent() {
+    this.router
+      .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
+      .then(() => {
+        this.router.navigate(['profile']);
+      });
+  }
+
+  /* Services */
+
   getTechnologies() {
     this.technologyService
       .getTechnologies()
@@ -31,7 +41,6 @@ export class FormAddTechToPersonComponent implements OnInit {
 
   addTechnologyToPerson(technology: Technology) {
     let { id: technology_id } = technology;
-
     this.onAddTechToPerson.emit(technology_id);
   }
 
@@ -40,10 +49,8 @@ export class FormAddTechToPersonComponent implements OnInit {
     this.technologyService.deleteTechnology(technology_id!).subscribe(
       (data) => {
         this.toastr.success(
-          'La tecnología "' +
-            technology.name +
-            '" ha sido eliminada permanentemente!',
-          'Eliminación exitosa',
+          technology.name + ' has been permanently deleted!',
+          'Successful delete!',
           {
             timeOut: 3000,
             positionClass: 'toast-top-center',
@@ -52,20 +59,11 @@ export class FormAddTechToPersonComponent implements OnInit {
         this.refreshComponent();
       },
       (err) => {
-        console.log(err);
         this.toastr.error(err.error.message, 'Error', {
           timeOut: 3000,
           positionClass: 'toast-top-center',
         });
       }
     );
-  }
-
-  refreshComponent() {
-    this.router
-      .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
-      .then(() => {
-        this.router.navigate(['profile']);
-      });
   }
 }

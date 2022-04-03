@@ -8,20 +8,20 @@
 <!-- Update Experience Form -->
 <div class="containerForm">
   <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
-    <p class="title">Modificar experiencia</p>
+    <p class="title">Update experience</p>
     <!-- Name input -->
-    <input type="text" placeholder="Nombre del cargo" formControlName="name" />
+    <input type="text" placeholder="Job title" formControlName="name" />
     <i class="fa fa-briefcase"></i>
     <!-- Name validation error -->
     <div *ngIf="Name?.errors && (Name?.touched || Name?.dirty)">
       <p *ngIf="Name?.hasError('required')" class="error">
-        *El nombre del cargo es requerido.
+        *Title is required.
       </p>
     </div>
     <!-- Description input -->
     <input
       type="text"
-      placeholder="Descripción del cargo"
+      placeholder="Job description"
       formControlName="description"
     />
     <i class="fa fa-file-alt"></i>
@@ -32,25 +32,25 @@
       "
     >
       <p *ngIf="Description?.hasError('required')" class="error">
-        *La descripción es requerida.
+        *Description is required.
       </p>
 
       <p *ngIf="Description?.hasError('minlength')" class="error">
-        *La descripción debe tener al menos 10 caracteres.
+        *Description must have at least 10 characters.
       </p>
       <p *ngIf="Description?.hasError('maxlength')" class="error">
-        *La descripción no puede tener más de 250 caracteres.
+        *Description can't be longer than 250 characters.
       </p>
     </div>
     <!-- Add Company  -->
     <p class="subNote" (click)="toggleAddCompany()">
-      Si la empresa no está en la lista, agrégala
+      If the company is not on the list, add it
       <i class="fas fa-plus iconNote"></i>
     </p>
 
     <!-- Company select -->
     <select formControlName="company">
-      <option [ngValue]="null" disabled>Selecciona una empresa</option>
+      <option [ngValue]="null" disabled>Select a company</option>
       <option *ngFor="let company of companyList" [ngValue]="company.id">
         {{ company.name }}
       </option>
@@ -59,13 +59,13 @@
     <!-- Company validation error -->
     <div *ngIf="Company?.errors && (Company?.touched || Company?.dirty)">
       <p *ngIf="Company?.hasError('required')" class="error">
-        *Debes seleccionar una empresa.
+        *You must select a company.
       </p>
     </div>
     <!-- Start_date input -->
     <input
       type="text"
-      placeholder="Fecha de inicio"
+      placeholder="Start date"
       formControlName="start_date"
       onfocus="(this.type='date')"
     />
@@ -75,13 +75,13 @@
       *ngIf="Start_date?.errors && (Start_date?.touched || Start_date?.dirty)"
     >
       <p *ngIf="Start_date?.hasError('required')" class="error">
-        *La fecha de inicio es requerida.
+        *Start date is required.
       </p>
     </div>
     <!-- End_date input -->
     <input
       type="text"
-      placeholder="Fecha de finalización"
+      placeholder="End date"
       formControlName="end_date"
       onfocus="(this.type='date')"
     />
@@ -89,7 +89,7 @@
     <!-- End_date validation error -->
     <div *ngIf="End_date?.errors && (End_date?.touched || End_date?.dirty)">
       <p *ngIf="End_date?.hasError('required')" class="error">
-        *La fecha de finalización es requerida.
+        *End date is required.
       </p>
     </div>
     <!-- isCurrent input -->
@@ -100,8 +100,8 @@
         class="checkbox"
         (change)="toggleIsCurrentJob()"
       />
-      Es tu trabajo actual?</label
+      Currently working in this role?</label
     >
-    <button type="submit">Modificar</button>
+    <button type="submit">Update</button>
   </form>
 </div>

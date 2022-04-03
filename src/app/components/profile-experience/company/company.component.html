@@ -1,17 +1,13 @@
 <div class="containerForm">
   <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
-    <p class="title">Agregar empresa</p>
+    <p class="title">Add company</p>
     <!-- Name input -->
-    <input
-      type="text"
-      placeholder="Nombre de la empresa"
-      formControlName="name"
-    />
+    <input type="text" placeholder="Company name" formControlName="name" />
     <i class="fa fa-building"></i>
     <!-- Name validation error -->
     <div *ngIf="Name?.errors && (Name?.touched || Name?.dirty)">
       <p *ngIf="Name?.hasError('required')" class="error">
-        *El nombre de la empresa es requerido.
+        *Company name is required.
       </p>
     </div>
     <!-- Logo input -->
@@ -19,12 +15,12 @@
       type="text"
       accept=".png, .jpg, .jpeg"
       (change)="uploadPhoto($event)"
-      placeholder="Logo de la empresa"
+      placeholder="Company logo"
       formControlName="logo"
       class="inputLogo"
       onfocus="(this.type='file')"
     />
     <i class="fa fa-file-image"></i>
-    <button type="submit">Agregar</button>
+    <button type="submit">Add</button>
   </form>
 </div>
