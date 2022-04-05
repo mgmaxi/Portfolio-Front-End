@@ -33,7 +33,17 @@
     ></i>
     <!-- Projects List -->
     <div *ngFor="let project of projectList" class="containerSectionItem">
-      <img class="logoSection" [src]="project.logo" alt="Logo del proyecto" />
+      <img
+        class="logoSection"
+        [src]="
+          project.logo === null ||
+          project.logo === undefined ||
+          !project.logo.trim()
+            ? project_logo
+            : project.logo
+        "
+        alt="Logo del proyecto"
+      />
       <article class="containerSectionItemData">
         <a [href]="project.deploy" target="_blank"
           ><h3>{{ project.name }}</h3></a

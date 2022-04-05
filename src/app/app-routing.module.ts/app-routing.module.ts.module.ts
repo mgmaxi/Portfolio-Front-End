@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from '../components/home/home.component';
-import { MainComponent } from '../components/main/main.component';
+import { ProfileComponent } from '../components/profile/profile.component';
 import { LoginComponent } from '../security/auth/login/login.component';
 import { SignupComponent } from '../security/auth/signup/signup.component';
 import { NotFoundComponent } from '../components/not-found/not-found.component';
@@ -17,8 +17,8 @@ const routes: Routes = [
   { path: 'portfolio', component: TemplateV01Component },
   {
     path: 'profile',
-    component: MainComponent,
-    canActivate: [GuardService],
+    component: ProfileComponent,
+    /* canActivate: [GuardService], */
     data: { expectedRole: ['admin', 'user'] },
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },

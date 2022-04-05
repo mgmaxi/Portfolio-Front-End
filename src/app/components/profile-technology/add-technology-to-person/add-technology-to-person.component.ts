@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class FormAddTechToPersonComponent implements OnInit {
   @Output() onAddTechToPerson: EventEmitter<number> = new EventEmitter();
   technologyList: any[] = [];
+  technology_logo: string = '../../../assets/logos/logoTechnology.png';
 
   constructor(
     private technologyService: TechnologyService,

@@ -60,6 +60,8 @@
     <!-- Logo input -->
     <input
       type="text"
+      accept=".png, .jpg, .jpeg"
+      (change)="uploadPhoto($event)"
       placeholder="Add the project logo"
       formControlName="logo"
       class="inputLogo"

@@ -35,7 +35,6 @@ export class SignupComponent implements OnInit {
   ngOnInit() {}
 
   onSignup(event: Event) {
-    console.log(event);
     event.preventDefault;
     if (this.form.valid) {
       this.signupUser = new SignupUser(

@@ -47,7 +47,6 @@ export class EducationService {
     return this.http.delete<any>(url, { responseType: 'text' as 'json' });
   }
 
-  // Delete All educations from person
   deleteAllEducationsFromPerson(person_id: number): Observable<any> {
     const url = `${this.apiUrl}/educations/persons/${person_id}`;
     return this.http.delete<any>(url, { responseType: 'text' as 'json' });

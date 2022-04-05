@@ -16,7 +16,7 @@ export class ProfileExperienceComponent implements OnInit {
   isAdmin = false;
   experienceList: Experience[] = [];
   currentExperience: any;
-  company_logo: string = '../../../assets/logos/experience/logoExperience.png';
+  company_logo: string = '../../../assets/logos/logoExperience.png';
   showAddForm: boolean = false;
   showUpdateForm: boolean = false;
 

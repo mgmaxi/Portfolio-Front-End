@@ -16,6 +16,7 @@ export class ProfileProjectsComponent implements OnInit {
   isAdmin = false;
   projectList: any[] = [];
   currentProject: any;
+  project_logo: string = '../../../assets/logos/logoProject.png';
   showForm: boolean = false;
   showAddForm: boolean = false;
   showUpdateForm: boolean = false;

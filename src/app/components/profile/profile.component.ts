@@ -9,11 +9,12 @@ import { UserService } from 'src/app/service/user.service';
 import { TokenService } from 'src/app/security/service/token.service';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css'],
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css'],
 })
-export class MainComponent implements OnInit {
+export class ProfileComponent implements OnInit {
+  username: string = 'mgmaxi';
   person_id: number = 0;
   showAbout = false;
   showExperience = false;
@@ -38,7 +39,10 @@ export class MainComponent implements OnInit {
   }
 
   private getPersonId() {
-    const username = this.tokenService.getUsername();
+    let username = this.tokenService.getUsername();
+    if (username === null) {
+      username = 'admin';
+    }
     this.userService.getPersonId(username).subscribe((data) => {
       this.person_id = data;
       this.userService.changePersonId(data);

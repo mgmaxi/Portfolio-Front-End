@@ -42,7 +42,6 @@ export class ProjectService {
     return this.http.delete<any>(url, { responseType: 'text' as 'json' });
   }
 
-  // Delete All projects from person
   deleteAllProjectsFromPerson(person_id: number): Observable<any> {
     const url = `${this.apiUrl}/projects/persons/${person_id}`;
     return this.http.delete<any>(url, { responseType: 'text' as 'json' });

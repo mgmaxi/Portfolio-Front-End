@@ -20,6 +20,7 @@ export class TemplateV01Component implements OnInit {
   person: any = '';
   cover_photo: string = '../../../../assets/image/template/mountain.jpg';
   profile_photo: string = '../../../../assets/image/template/mountain.jpg';
+  project_logo: string = '../../../assets/logos/logoProject.png';
   showAboutText: boolean = false;
   showAboutImage: boolean = true;
   socials: Socialnetwork = new Socialnetwork('', '', '');
@@ -107,7 +108,6 @@ export class TemplateV01Component implements OnInit {
           this.about = data.about;
         },
         (err) => {
-          console.log(err);
           this.toastr.error('Failed to get profile data.', 'Error', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
@@ -155,7 +155,11 @@ export class TemplateV01Component implements OnInit {
       this.socialnetworkService
         .getSocialNetwork(this.person_id)
         .subscribe((data) => {
-          this.socials = data;
+          if (data === null) {
+            return;
+          } else {
+            this.socials = data;
+          }
         });
     }
   }

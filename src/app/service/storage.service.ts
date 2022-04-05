@@ -20,7 +20,6 @@ export class StorageService {
         .putString(imgBase64, 'data_url');
       return await response.ref.getDownloadURL();
     } catch (error) {
-      console.log(error);
       return null;
     }
   }

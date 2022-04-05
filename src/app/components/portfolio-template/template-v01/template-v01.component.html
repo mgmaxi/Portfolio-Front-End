@@ -73,7 +73,14 @@
     <div class="projectsContainer">
       <figure class="project" *ngFor="let project of projectList">
         <img
-          src="../../../../assets/image/template/mountain.jpg"
+          class="img"
+          [src]="
+            project.logo === null ||
+            project.logo === undefined ||
+            !project.logo.trim()
+              ? project_logo
+              : project.logo
+          "
           alt="Project Image"
         />
         <figcaption>
@@ -198,9 +205,4 @@
       <button class="btn btnHorizontalEffect" type="submit">Send</button>
     </form>
   </section>
-
-  <!-- Footer -->
-  <!--  <footer>
-    <div class="divider"></div>
-  </footer> -->
 </div>

@@ -35,19 +35,25 @@ export class CompanyComponent implements OnInit {
   onSubmit(event: Event) {
     event.preventDefault;
     if (this.form.valid) {
-      let { name } = this.form.value;
+      let { name, logo } = this.form.value;
       // Upload image to firebase
-      let reader = new FileReader();
-      reader.readAsDataURL(this.files[0]);
-      reader.onloadend = () => {
-        this.storageService
-          .uploadImage('companies/' + name, reader.result)
-          .then((urlImage) => {
-            this.company_logo = urlImage;
-            const newCompany = { name, logo: this.company_logo };
-            this.addCompany(newCompany);
-          });
-      };
+      if (logo !== '') {
+        let reader = new FileReader();
+        reader.readAsDataURL(this.files[0]);
+        reader.onloadend = () => {
+          this.storageService
+            .uploadImage('companies/' + name, reader.result)
+            .then((urlImage) => {
+              this.company_logo = urlImage;
+              const newCompany = { name, logo: this.company_logo };
+              this.addCompany(newCompany);
+            });
+        };
+      } else {
+        const newCompany = { name, logo };
+        this.addCompany(newCompany);
+      }
+
       this.form.reset();
       return;
     } else {

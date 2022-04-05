@@ -16,6 +16,7 @@ export class ProfileTechnologiesComponent implements OnInit {
   technologyList: Technology[] = [];
   filterCategory: Technology[] = [];
   isAdmin = false;
+  technology_logo: string = '../../../assets/logos/logoTechnology.png';
   showAddForm: boolean = false;
   showAddTechToPersonForm: boolean = false;
 

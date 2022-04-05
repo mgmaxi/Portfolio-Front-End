@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module.ts/app-routing.module.ts.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { MainComponent } from './components/main/main.component';
+import { ProfileComponent } from './components/profile/profile.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ProfileHeaderComponent } from './components/profile-header/profile-header.component';
 import { ProfileAboutComponent } from './components/profile-about/profile-about.component';
@@ -45,7 +45,7 @@ import { FormUpdateCoverphotoComponent } from './components/profile-header/form-
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    MainComponent,
+    ProfileComponent,
     FooterComponent,
     ProfileHeaderComponent,
     ProfileAboutComponent,

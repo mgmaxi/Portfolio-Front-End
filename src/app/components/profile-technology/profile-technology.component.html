@@ -57,8 +57,14 @@
         <a [href]="technology.url" target="_blank">
           <img
             class="logoTechnology"
-            [src]="technology.logo"
-            alt="Logo de la sección"
+            [src]="
+              technology.logo === null ||
+              technology.logo === undefined ||
+              !technology.logo.trim()
+                ? technology_logo
+                : technology.logo
+            "
+            alt="Technology logo"
           />
         </a>
         <figcaption>

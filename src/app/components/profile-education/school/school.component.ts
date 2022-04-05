@@ -35,19 +35,24 @@ export class SchoolComponent implements OnInit {
   onSubmit(event: Event) {
     event.preventDefault;
     if (this.form.valid) {
-      let { name } = this.form.value;
+      let { name, logo } = this.form.value;
       // Upload image to firebase
-      let reader = new FileReader();
-      reader.readAsDataURL(this.files[0]);
-      reader.onloadend = () => {
-        this.storageService
-          .uploadImage('schools/' + name, reader.result)
-          .then((urlImage) => {
-            this.school_logo = urlImage;
-            const newSchool = { name, logo: this.school_logo };
-            this.addSchool(newSchool);
-          });
-      };
+      if (logo !== '') {
+        let reader = new FileReader();
+        reader.readAsDataURL(this.files[0]);
+        reader.onloadend = () => {
+          this.storageService
+            .uploadImage('schools/' + name, reader.result)
+            .then((urlImage) => {
+              this.school_logo = urlImage;
+              const newSchool = { name, logo: this.school_logo };
+              this.addSchool(newSchool);
+            });
+        };
+      } else {
+        const newSchool = { name, logo };
+        this.addSchool(newSchool);
+      }
       this.form.reset();
       return;
     } else {

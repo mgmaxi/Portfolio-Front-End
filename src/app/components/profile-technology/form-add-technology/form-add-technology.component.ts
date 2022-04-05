@@ -49,7 +49,6 @@ export class FormAddTechnologieComponent implements OnInit {
       !url.includes('https://') ? (url = 'https://' + url) : url;
 
       if (logo.length === 0) {
-        logo = 'assets/logos/technologies/logoTechnologie.png';
         const newTechnology = { name, category, logo, url };
         this.onAddTechnology.emit(newTechnology);
       } else {

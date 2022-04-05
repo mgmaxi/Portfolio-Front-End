@@ -16,7 +16,7 @@ export class ProfileEducationComponent implements OnInit {
   isAdmin = false;
   educationList: Education[] = [];
   currentEducation: any;
-  school_logo: string = '../../../assets/logos/education/logoEducation.png';
+  school_logo: string = '../../../assets/logos/logoEducation.png';
   showAddForm: boolean = false;
   showUpdateForm: boolean = false;
 

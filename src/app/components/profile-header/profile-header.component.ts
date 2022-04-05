@@ -109,7 +109,10 @@ export class ProfileHeaderComponent implements OnInit {
   /* Services */
 
   getUserId() {
-    const username = this.tokenService.getUsername();
+    let username = this.tokenService.getUsername();
+    if (username === null) {
+      username = 'admin';
+    }
     this.userService
       .getUserId(username)
       .subscribe((data) => (this.user_id = data));
@@ -137,7 +140,11 @@ export class ProfileHeaderComponent implements OnInit {
       this.socialnetworkService
         .getSocialNetwork(this.person_id)
         .subscribe((data) => {
-          this.socials = data;
+          if (data === null) {
+            return;
+          } else {
+            this.socials = data;
+          }
         });
     }
   }

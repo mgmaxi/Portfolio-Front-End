@@ -47,7 +47,6 @@ export class ExperienceService {
     return this.http.delete<any>(url, { responseType: 'text' as 'json' });
   }
 
-  // Delete All experiences from person
   deleteAllExperiencesFromPerson(person_id: number): Observable<any> {
     const url = `${this.apiUrl}/experiences/persons/${person_id}`;
     return this.http.delete<any>(url, { responseType: 'text' as 'json' });
