@@ -32,11 +32,7 @@ export class ProfileAboutComponent implements OnInit {
     if (this.person_id != 0) {
       this.personService.getPersonProfile(this.person_id).subscribe((data) => {
         this.person = data;
-        if (
-          this.person.about.length === 0 ||
-          this.person.about === null ||
-          !this.person.about.trim()
-        ) {
+        if (this.person.about === null) {
           this.showAboutSection = false;
         }
       });

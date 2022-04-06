@@ -55,7 +55,7 @@ export class SignupComponent implements OnInit {
               positionClass: 'toast-top-center',
             }
           );
-          this.router.navigate(['/login']);
+          this.router.navigate(['/signin']);
         },
         (err) => {
           this.errorMsg = err.error.messageSent;

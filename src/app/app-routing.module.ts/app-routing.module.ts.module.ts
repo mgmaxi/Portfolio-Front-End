@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'signin', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'signup', component: SignupComponent, canActivate: [LoginGuard] },
-  { path: 'portfolio', component: TemplateV01Component },
+  { path: 'portfolio/:username', component: TemplateV01Component },
   {
     path: 'profile',
     component: ProfileComponent,

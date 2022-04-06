@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenService } from 'src/app/security/service/token.service';
+import { UserService } from 'src/app/service/user.service';
 import { PersonService } from 'src/app/service/person.service';
 import { SocialnetworkService } from 'src/app/service/socialnetwork.service';
 import { Socialnetwork } from 'src/app/models/socialnetwork';
@@ -8,6 +9,8 @@ import { TechnologyService } from 'src/app/service/technology.service';
 import { ToastrService } from 'ngx-toastr';
 import { ViewportScroller } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-template-v01',
@@ -16,10 +19,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class TemplateV01Component implements OnInit {
   isLogged = false;
-  person_id: number = 1;
+  username: string = '';
+  person_id: number = 0;
   person: any = '';
-  cover_photo: string = '../../../../assets/image/template/mountain.jpg';
-  profile_photo: string = '../../../../assets/image/template/mountain.jpg';
+  cover_photo: string = '../../../assets/image/profile/coverPhoto.png';
+  profile_photo: string = '../../../assets/image/profile/profilePhoto.png';
   project_logo: string = '../../../assets/logos/logoProject.png';
   showAboutText: boolean = false;
   showAboutImage: boolean = true;
@@ -40,21 +44,24 @@ export class TemplateV01Component implements OnInit {
 
   constructor(
     private tokenService: TokenService,
+    private userService: UserService,
     private personService: PersonService,
     private socialnetworkService: SocialnetworkService,
     private projectService: ProjectService,
     private technologyService: TechnologyService,
     private toastr: ToastrService,
     private viewportScroller: ViewportScroller,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.isLogged = this.tokenService.isLogged();
-    this.getPersonProfile();
-    this.getProjects();
-    this.getTechnologies();
-    this.getSocialnetworks();
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.username = params['username'].toString();
+      this.getPersonId();
+    });
   }
 
   onClick(elementId: string): void {
@@ -99,6 +106,25 @@ export class TemplateV01Component implements OnInit {
   }
 
   /* Services */
+
+  getPersonId() {
+    this.userService.getPersonId(this.username).subscribe(
+      (data) => {
+        this.person_id = data;
+        this.getPersonProfile();
+        this.getProjects();
+        this.getTechnologies();
+        this.getSocialnetworks();
+      },
+      (err) => {
+        this.toastr.error('Failed to get person id.', 'Error', {
+          timeOut: 3000,
+          positionClass: 'toast-top-center',
+        });
+        this.router.navigate(['/notfound']);
+      }
+    );
+  }
 
   getPersonProfile() {
     if (this.person_id != 0) {

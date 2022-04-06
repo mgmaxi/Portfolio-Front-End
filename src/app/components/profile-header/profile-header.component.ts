@@ -32,8 +32,8 @@ export class ProfileHeaderComponent implements OnInit {
   currentPerson: any;
   socials: Socialnetwork = new Socialnetwork('', '', '');
   currentSocialnetwork: any;
-  cover_photo: string = '../../../assets/image/profile/profileCover.jpg';
-  profile_photo: string = '../../../assets/image/profile/profileCover.jpg';
+  cover_photo: string = '../../../assets/image/profile/coverPhoto.png';
+  profile_photo: string = '../../../assets/image/profile/profilePhoto.png';
   showUpdateForm: boolean = false;
   showUpdateProfilephotosForm: boolean = false;
   showUpdateCoverphotosForm: boolean = false;
@@ -111,7 +111,7 @@ export class ProfileHeaderComponent implements OnInit {
   getUserId() {
     let username = this.tokenService.getUsername();
     if (username === null) {
-      username = 'admin';
+      username = 'mgmaxi';
     }
     this.userService
       .getUserId(username)

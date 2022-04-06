@@ -41,7 +41,7 @@ export class ProfileComponent implements OnInit {
   private getPersonId() {
     let username = this.tokenService.getUsername();
     if (username === null) {
-      username = 'admin';
+      username = 'mgmaxi';
     }
     this.userService.getPersonId(username).subscribe((data) => {
       this.person_id = data;

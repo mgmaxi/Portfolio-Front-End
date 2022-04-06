@@ -44,15 +44,12 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.loginUser).subscribe(
         (data) => {
           this.tokenService.setToken(data.token);
+          let username = this.tokenService.getUsername();
 
-          this.toastr.success(
-            `Welcome ${this.tokenService.getUsername()}!`,
-            'Successful sign in!',
-            {
-              timeOut: 3000,
-              positionClass: 'toast-top-center',
-            }
-          );
+          this.toastr.success(`Welcome ${username}!`, 'Successful sign in!', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
           this.router.navigate(['/profile']);
         },
         (err) => {
