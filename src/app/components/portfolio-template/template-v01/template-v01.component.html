@@ -3,7 +3,7 @@
   <header>
     <div class="headerContainer">
       <div class="logoContainer">
-        <a href="#" target="_blank">
+        <a [href]="socials.github" target="_blank">
           <p class="logoFirstName">{{ person.first_name }}</p>
           <p class="logoLastName">{{ person.last_name }}</p>
         </a>
@@ -126,7 +126,13 @@
         <a [href]="technology.url" target="_blank">
           <img
             class="technologyLogo"
-            [src]="technology.logo"
+            [src]="
+              technology.logo === null ||
+              technology.logo === undefined ||
+              !technology.logo.trim()
+                ? technology_logo
+                : technology.logo
+            "
             alt="Logo de la Tecnología"
           />
         </a>
@@ -148,14 +154,14 @@
       <input
         type="hidden"
         name="_next"
-        value="https://yourdomain.co/thanks.html"
+        value="{{ domainUrl + '/thanks.html' }}"
       />
       <input type="hidden" name="_subject" value="Portfolio contact email" />
       <!-- Input name -->
       <input
         type="text"
         name="name"
-        placeholder=" Nombre"
+        placeholder=" Name"
         formControlName="name"
         required
       />
@@ -170,7 +176,7 @@
       <input
         type="email"
         name="email"
-        placeholder=" Correo electrónico"
+        placeholder=" Email"
         formControlName="email"
         required
       />
@@ -188,7 +194,7 @@
         class="textarea"
         type="text"
         name="message"
-        placeholder=" Escribe un mensaje"
+        placeholder=" Write a message.."
         formControlName="message"
         required
       ></textarea>

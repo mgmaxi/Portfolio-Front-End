@@ -37,6 +37,10 @@ export class FormUpdateSocialnetworkComponent implements OnInit {
     event.preventDefault;
     if (this.form.valid) {
       let { linkedin, github, email } = this.form.value;
+      !linkedin.includes('https://')
+        ? (linkedin = 'https://' + linkedin)
+        : linkedin;
+      !github.includes('https://') ? (github = 'https://' + github) : github;
       let id = this.currentSocialnetworkForm.id;
       const updateSocialnetwork = { id, linkedin, github, email };
       this.onUpdateSocialnetwork.emit(updateSocialnetwork);

@@ -11,6 +11,7 @@ import { ViewportScroller } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-template-v01',
@@ -19,12 +20,14 @@ import { Router } from '@angular/router';
 })
 export class TemplateV01Component implements OnInit {
   isLogged = false;
+  domainUrl: string = environment.domainUrl;
   username: string = '';
   person_id: number = 0;
   person: any = '';
   cover_photo: string = '../../../assets/image/profile/coverPhoto.png';
   profile_photo: string = '../../../assets/image/profile/profilePhoto.png';
   project_logo: string = '../../../assets/logos/logoProject.png';
+  technology_logo: string = '../../../assets/logos/logoTechnology.png';
   showAboutText: boolean = false;
   showAboutImage: boolean = true;
   socials: Socialnetwork = new Socialnetwork('', '', '');

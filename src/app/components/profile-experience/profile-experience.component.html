@@ -47,7 +47,11 @@
       <section class="containerSectionItemData">
         <h3>
           {{ experience.name }}
-          {{ experience.company.name ? "in " + experience.company.name : "" }}
+          {{
+            experience.company.name !== "Self employed"
+              ? "in " + experience.company.name
+              : ""
+          }}
         </h3>
         <p>{{ experience.description }}</p>
         <p class="textSmall">
