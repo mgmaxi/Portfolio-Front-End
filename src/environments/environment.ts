@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  domainUrl: 'http://localhost:4200',
-  apiUrl: 'http://localhost:8080/api',
-  authURL: 'http://localhost:8080/api/auth',
+  domainUrl: 'https://mgm-portfolio.web.app',
+  apiUrl: 'https://mgm-portfolio-back-end.herokuapp.com/api',
+  authURL: 'https://mgm-portfolio-back-end.herokuapp.com/api/auth',
   firebaseConfig: {
     apiKey: 'AIzaSyBJnTGWCZQ-QWuZxq-naCa54jpY2rFBO4Y',
     authDomain: 'portfolio-43f55.firebaseapp.com',

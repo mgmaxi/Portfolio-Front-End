@@ -12,6 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { EmailSenderService } from 'src/app/service/email-sender.service';
 
 @Component({
   selector: 'app-template-v01',
@@ -42,7 +43,7 @@ export class TemplateV01Component implements OnInit {
   form: FormGroup = this.formBuilder.group({
     name: ['', [Validators.required]],
     email: [null, [Validators.required, Validators.email]],
-    message: ['', [Validators.required, Validators.minLength(10)]],
+    body: ['', [Validators.required, Validators.minLength(10)]],
   });
 
   constructor(
@@ -52,6 +53,7 @@ export class TemplateV01Component implements OnInit {
     private socialnetworkService: SocialnetworkService,
     private projectService: ProjectService,
     private technologyService: TechnologyService,
+    private emailSenderService: EmailSenderService,
     private toastr: ToastrService,
     private viewportScroller: ViewportScroller,
     private formBuilder: FormBuilder,
@@ -65,6 +67,30 @@ export class TemplateV01Component implements OnInit {
       this.username = params['username'].toString();
       this.getPersonId();
     });
+  }
+
+  sendEmail() {
+    if (this.form.valid) {
+      this.emailSenderService.sendEmail(this.form.value).subscribe(
+        (data) => {
+          this.toastr.success(
+            this.form.value.name +
+              ' thanks for contacting me. I will answer you as soon as possible',
+            'Email send',
+            {
+              timeOut: 3000,
+              positionClass: 'toast-top-center',
+            }
+          );
+        },
+        (err) => {
+          this.toastr.error("The email hasn't been sent", 'Error', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
+        }
+      );
+    }
   }
 
   onClick(elementId: string): void {
@@ -134,7 +160,9 @@ export class TemplateV01Component implements OnInit {
       this.personService.getPersonProfile(this.person_id).subscribe(
         (data) => {
           this.person = data;
-          this.about = data.about;
+          if (data.about) {
+            this.about = data.about;
+          }
         },
         (err) => {
           this.toastr.error('Failed to get profile data.', 'Error', {
@@ -199,7 +227,7 @@ export class TemplateV01Component implements OnInit {
   get Email() {
     return this.form.get('email');
   }
-  get Message() {
-    return this.form.get('message');
+  get Body() {
+    return this.form.get('body');
   }
 }

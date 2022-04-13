@@ -49,7 +49,7 @@
   <div class="containerProfileHeaderCover">
     <img
       class="imgCover"
-      [src]="person.cover_photo === null ? cover_photo : person.cover_photo"
+      [src]="!person.cover_photo ? cover_photo : person.cover_photo"
       alt="Profile cover"
     />
     <div
@@ -64,9 +64,7 @@
     </div>
     <img
       class="imgProfileHeader"
-      [src]="
-        person.profile_photo === null ? profile_photo : person.profile_photo
-      "
+      [src]="!person.profile_photo ? profile_photo : person.profile_photo"
       alt="Profile image"
     />
     <div

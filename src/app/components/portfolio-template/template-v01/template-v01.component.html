@@ -36,17 +36,13 @@
     <figure class="about">
       <img
         class="aboutBgImg"
-        [src]="person.cover_photo === null ? cover_photo : person.cover_photo"
+        [src]="!person.cover_photo ? cover_photo : person.cover_photo"
         alt="About background image"
       />
       <figcaption (click)="toggleAbout()" *ngIf="showAboutImage">
         <div class="aboutImage">
           <img
-            [src]="
-              person.profile_photo === null
-                ? profile_photo
-                : person.profile_photo
-            "
+            [src]="!person.profile_photo ? profile_photo : person.profile_photo"
             alt="About image"
           />
         </div>
@@ -150,6 +146,7 @@
       [formGroup]="form"
       action="{{ 'https://formsubmit.co/' + socials.email }} "
       method="POST"
+      (ngSubmit)="sendEmail()"
     >
       <input
         type="hidden"
@@ -193,18 +190,18 @@
       <textarea
         class="textarea"
         type="text"
-        name="message"
+        name="body"
         placeholder=" Write a message.."
-        formControlName="message"
+        formControlName="body"
         required
       ></textarea>
       <i class="fa fa-message"></i>
       <!-- Message validation error -->
-      <div *ngIf="Message?.errors && (Message?.touched || Message?.dirty)">
-        <p *ngIf="Message?.hasError('required')" class="error">
+      <div *ngIf="Body?.errors && (Body?.touched || Body?.dirty)">
+        <p *ngIf="Body?.hasError('required')" class="error">
           *You must write a message.
         </p>
-        <p *ngIf="Message?.hasError('minlength')" class="error">
+        <p *ngIf="Body?.hasError('minlength')" class="error">
           *You must write a message of at least 10 characters.
         </p>
       </div>

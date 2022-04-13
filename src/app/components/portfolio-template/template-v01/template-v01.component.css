@@ -136,8 +136,8 @@ header:hover > .headerContainer {
 .about {
   position: relative;
   overflow: hidden;
-  height: 400px;
-  width: 400px;
+  height: 350px;
+  width: 350px;
   border-radius: 100%;
   color: rgb(255, 255, 255);
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -556,7 +556,7 @@ form {
   border-radius: 2px 2px 5px 5px;
   margin: 15px 0 0 0;
   padding: 25px 20px 20px 20px;
-  width: 400px;
+  width: 350px;
   height: 475px;
   background: #333;
   position: relative;
@@ -784,6 +784,11 @@ footer {
   .about figcaption h3 {
     font-size: 24px;
   }
+
+  form {
+    width: 400px;
+  }
+
   .divider {
     width: calc(100vw - 25vw);
   }
