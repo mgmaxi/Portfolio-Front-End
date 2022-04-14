@@ -7,7 +7,6 @@ import { Socialnetwork } from 'src/app/models/socialnetwork';
 import { ProjectService } from 'src/app/service/project.service';
 import { TechnologyService } from 'src/app/service/technology.service';
 import { ToastrService } from 'ngx-toastr';
-import { ViewportScroller } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
@@ -55,7 +54,6 @@ export class TemplateV01Component implements OnInit {
     private technologyService: TechnologyService,
     private emailSenderService: EmailSenderService,
     private toastr: ToastrService,
-    private viewportScroller: ViewportScroller,
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private router: Router
@@ -67,34 +65,6 @@ export class TemplateV01Component implements OnInit {
       this.username = params['username'].toString();
       this.getPersonId();
     });
-  }
-
-  sendEmail() {
-    if (this.form.valid) {
-      this.emailSenderService.sendEmail(this.form.value).subscribe(
-        (data) => {
-          this.toastr.success(
-            this.form.value.name +
-              ' thanks for contacting me. I will answer you as soon as possible',
-            'Email send',
-            {
-              timeOut: 3000,
-              positionClass: 'toast-top-center',
-            }
-          );
-        },
-        (err) => {
-          this.toastr.error("The email hasn't been sent", 'Error', {
-            timeOut: 3000,
-            positionClass: 'toast-top-center',
-          });
-        }
-      );
-    }
-  }
-
-  onClick(elementId: string): void {
-    this.viewportScroller.scrollToAnchor(elementId);
   }
 
   onLogOut(): void {
@@ -132,6 +102,32 @@ export class TemplateV01Component implements OnInit {
         return a;
       }
     });
+  }
+
+  /* Contact */
+
+  sendEmail() {
+    if (this.form.valid) {
+      this.emailSenderService.sendEmail(this.form.value).subscribe(
+        (data) => {
+          this.toastr.success(
+            this.form.value.name +
+              ' thanks for contacting me. I will answer you as soon as possible',
+            'Email send',
+            {
+              timeOut: 3000,
+              positionClass: 'toast-top-center',
+            }
+          );
+        },
+        (err) => {
+          this.toastr.error("The email hasn't been sent", 'Error', {
+            timeOut: 3000,
+            positionClass: 'toast-top-center',
+          });
+        }
+      );
+    }
   }
 
   /* Services */
