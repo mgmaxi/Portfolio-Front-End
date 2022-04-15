@@ -2,6 +2,7 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Userphotos } from 'src/app/models/userphotos';
 import { StorageService } from 'src/app/service/storage.service';
+import { TokenService } from 'src/app/security/service/token.service';
 
 @Component({
   selector: 'app-form-update-profilephotos',
@@ -13,6 +14,7 @@ export class FormUpdateProfilephotosComponent implements OnInit {
     new EventEmitter();
   @Input() currentPersonForm: any;
   profile_photo: any = '';
+  username: string = '';
 
   form: FormGroup = this.formBuilder.group({
     profile_photo: ['', [Validators.required]],
@@ -20,20 +22,26 @@ export class FormUpdateProfilephotosComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private tokenService: TokenService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getUsername();
+  }
+
+  getUsername() {
+    this.username = this.tokenService.getUsername();
+  }
 
   uploadPhoto(event: any) {
     let files = event.target.files;
     let reader = new FileReader();
-    let user = 'mgmaxi';
 
     reader.readAsDataURL(files[0]);
     reader.onloadend = () => {
       this.storageService
-        .uploadImage('users/' + user + '/profile', reader.result)
+        .uploadImage('users/' + this.username + '/profile', reader.result)
         .then((urlImage) => {
           this.profile_photo = urlImage;
         });

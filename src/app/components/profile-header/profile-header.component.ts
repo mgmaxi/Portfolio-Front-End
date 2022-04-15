@@ -169,6 +169,7 @@ export class ProfileHeaderComponent implements OnInit {
       .updatePerson(this.user_id, person_id!, updatedPerson)
       .subscribe(
         (data) => {
+          this.person = data;
           this.toastr.success(
             person.first_name + "'s data has been updated.",
             'Successful update!',
@@ -177,7 +178,6 @@ export class ProfileHeaderComponent implements OnInit {
               positionClass: 'toast-top-center',
             }
           );
-          this.refreshComponent();
         },
         (err) => {
           this.toastr.error(err.error.message, 'Error', {
@@ -196,6 +196,7 @@ export class ProfileHeaderComponent implements OnInit {
       .updateUserProfilePhoto(this.user_id, userphotos_id!, updatedUserphotos)
       .subscribe(
         (data) => {
+          this.person.profile_photo = data.profile_photo;
           this.toastr.success(
             'Profile photo has been updated.',
             'Successful update!',
@@ -204,7 +205,6 @@ export class ProfileHeaderComponent implements OnInit {
               positionClass: 'toast-top-center',
             }
           );
-          this.refreshComponent();
         },
         (err) => {
           this.toastr.error(err, 'Error', {
@@ -223,6 +223,7 @@ export class ProfileHeaderComponent implements OnInit {
       .updateUserCoverPhoto(this.user_id, userphotos_id!, updatedUserphotos)
       .subscribe(
         (data) => {
+          this.person.cover_photo = data.cover_photo;
           this.toastr.success(
             'The cover image has been updated.',
             'Successful update!',
@@ -231,7 +232,6 @@ export class ProfileHeaderComponent implements OnInit {
               positionClass: 'toast-top-center',
             }
           );
-          this.refreshComponent();
         },
         (err) => {
           this.toastr.error(err, 'Error', {
@@ -254,6 +254,7 @@ export class ProfileHeaderComponent implements OnInit {
       )
       .subscribe(
         (data) => {
+          this.socials = data;
           this.toastr.success(
             'Social networks have been updated.',
             'Successful update!',
@@ -262,7 +263,6 @@ export class ProfileHeaderComponent implements OnInit {
               positionClass: 'toast-top-center',
             }
           );
-          this.refreshComponent();
         },
         (err) => {
           this.toastr.error(err.error.message, 'Error', {

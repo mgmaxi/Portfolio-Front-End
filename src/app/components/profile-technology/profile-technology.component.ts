@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
 import { Technology } from 'src/app/models/technology';
 import { TechnologyService } from 'src/app/service/technology.service';
 import { TokenService } from 'src/app/security/service/token.service';
@@ -24,8 +23,7 @@ export class ProfileTechnologiesComponent implements OnInit {
     private tokenService: TokenService,
     private technologyService: TechnologyService,
     private userService: UserService,
-    private toastr: ToastrService,
-    private router: Router
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -39,14 +37,6 @@ export class ProfileTechnologiesComponent implements OnInit {
 
   toggleAddTechToPersonForm() {
     this.showAddTechToPersonForm = !this.showAddTechToPersonForm;
-  }
-
-  refreshComponent() {
-    this.router
-      .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
-      .then(() => {
-        this.router.navigate(['profile']);
-      });
   }
 
   /* Services */
@@ -109,15 +99,17 @@ export class ProfileTechnologiesComponent implements OnInit {
       .addTechnologyToPerson(this.person_id, technology_id)
       .subscribe(
         (data) => {
+          this.technologyList.push(
+            data.technologies[data.technologies.length - 1]
+          );
           this.toastr.success(
-            'The technology has been added to"' + data.name + '"!',
+            'The technology has been added to the account!',
             'Language added!',
             {
               timeOut: 3000,
               positionClass: 'toast-top-center',
             }
           );
-          this.refreshComponent();
         },
         (err) => {
           this.toastr.error(err.error.message, 'Error', {
@@ -135,6 +127,10 @@ export class ProfileTechnologiesComponent implements OnInit {
       .deleteTechnologyOfPerson(this.person_id, technology_id!)
       .subscribe(
         (data) => {
+          let index = this.technologyList.findIndex(
+            (item) => item.id == technology_id
+          );
+          this.technologyList.splice(index, 1);
           this.toastr.success(
             technology.name + ' technology has been removed from the account.',
             'Successful delete!',
@@ -143,7 +139,6 @@ export class ProfileTechnologiesComponent implements OnInit {
               positionClass: 'toast-top-center',
             }
           );
-          this.refreshComponent();
         },
         (err) => {
           this.toastr.error(err.error.message, 'Error', {
@@ -159,6 +154,7 @@ export class ProfileTechnologiesComponent implements OnInit {
       .deleteAllTechnologiesFromPerson(this.person_id)
       .subscribe(
         (data) => {
+          this.technologyList.splice(0, this.technologyList.length);
           this.toastr.success(
             'All technologies ​​have been removed from the account.',
             'Successful delete!',
@@ -167,7 +163,6 @@ export class ProfileTechnologiesComponent implements OnInit {
               positionClass: 'toast-top-center',
             }
           );
-          this.refreshComponent();
         },
         (err) => {
           this.toastr.error(err.error.message, 'Error', {

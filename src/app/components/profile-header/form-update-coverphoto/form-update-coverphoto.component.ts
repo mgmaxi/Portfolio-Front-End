@@ -2,6 +2,7 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StorageService } from 'src/app/service/storage.service';
 import { Userphotos } from 'src/app/models/userphotos';
+import { TokenService } from 'src/app/security/service/token.service';
 
 @Component({
   selector: 'app-form-update-coverphoto',
@@ -12,6 +13,7 @@ export class FormUpdateCoverphotoComponent implements OnInit {
   @Output() onUpdateCoverphotos: EventEmitter<Userphotos> = new EventEmitter();
   @Input() currentPersonForm: any;
   cover_photo: any = '';
+  username: string = '';
 
   form: FormGroup = this.formBuilder.group({
     cover_photo: ['', [Validators.required]],
@@ -19,20 +21,26 @@ export class FormUpdateCoverphotoComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private tokenService: TokenService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getUsername();
+  }
+
+  getUsername() {
+    this.username = this.tokenService.getUsername();
+  }
 
   uploadPhoto(event: any) {
     let files = event.target.files;
     let reader = new FileReader();
-    let user = 'mgmaxi';
 
     reader.readAsDataURL(files[0]);
     reader.onloadend = () => {
       this.storageService
-        .uploadImage('users/' + user + '/cover', reader.result)
+        .uploadImage('users/' + this.username + '/cover', reader.result)
         .then((urlImage) => {
           this.cover_photo = urlImage;
         });

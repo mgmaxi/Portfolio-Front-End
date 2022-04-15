@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { TokenService } from 'src/app/security/service/token.service';
 import { EducationService } from 'src/app/service/education.service';
 import { Education } from 'src/app/models/education';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/service/user.service';
 
@@ -24,8 +23,7 @@ export class ProfileEducationComponent implements OnInit {
     private tokenService: TokenService,
     private educationService: EducationService,
     private userService: UserService,
-    private toastr: ToastrService,
-    private router: Router
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -40,14 +38,6 @@ export class ProfileEducationComponent implements OnInit {
   toggleUpdateForm(education?: Education) {
     this.showUpdateForm = !this.showUpdateForm;
     this.currentEducation = education;
-  }
-
-  refreshComponent() {
-    this.router
-      .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
-      .then(() => {
-        this.router.navigate(['profile']);
-      });
   }
 
   /* Services */
@@ -80,6 +70,7 @@ export class ProfileEducationComponent implements OnInit {
       .addEducation(this.person_id, school_id, newEducation)
       .subscribe(
         (data) => {
+          this.educationList.push(data);
           this.toastr.success(
             'The academic discipline "' +
               data.name +
@@ -90,7 +81,6 @@ export class ProfileEducationComponent implements OnInit {
               positionClass: 'toast-top-center',
             }
           );
-          this.refreshComponent();
         },
         (err) => {
           this.toastr.error(err.error.message, 'Error', {
@@ -121,6 +111,10 @@ export class ProfileEducationComponent implements OnInit {
       )
       .subscribe(
         (data) => {
+          let index = this.educationList.findIndex(
+            (item) => item.id == education_id
+          );
+          this.educationList[index] = data;
           this.toastr.success(
             'The academic discipline"' + name + '" has been updated.',
             'Successful update!',
@@ -129,7 +123,6 @@ export class ProfileEducationComponent implements OnInit {
               positionClass: 'toast-top-center',
             }
           );
-          this.refreshComponent();
         },
         (err) => {
           this.toastr.error(err.error.message, 'Error', {
@@ -143,11 +136,14 @@ export class ProfileEducationComponent implements OnInit {
 
   deleteEducation(education: Education) {
     let education_id = education.id;
-
     this.educationService
       .deleteEducation(education_id!, this.person_id)
       .subscribe(
         (data) => {
+          let index = this.educationList.findIndex(
+            (item) => item.id == education_id
+          );
+          this.educationList.splice(index, 1);
           this.toastr.success(
             'The academic discipline "' +
               education.name +
@@ -158,7 +154,6 @@ export class ProfileEducationComponent implements OnInit {
               positionClass: 'toast-top-center',
             }
           );
-          this.refreshComponent();
         },
         (err) => {
           this.toastr.error(err.error.message, 'Error', {
@@ -174,6 +169,7 @@ export class ProfileEducationComponent implements OnInit {
       .deleteAllEducationsFromPerson(this.person_id)
       .subscribe(
         (data) => {
+          this.educationList.splice(0, this.educationList.length);
           this.toastr.success(
             'All academic disciplines have been eliminated.',
             'Successful delete!',
@@ -182,7 +178,6 @@ export class ProfileEducationComponent implements OnInit {
               positionClass: 'toast-top-center',
             }
           );
-          this.refreshComponent();
         },
         (err) => {
           this.toastr.error(err.error.message, 'Error', {

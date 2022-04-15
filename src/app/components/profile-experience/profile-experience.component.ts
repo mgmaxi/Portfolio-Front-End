@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
 import { TokenService } from 'src/app/security/service/token.service';
 import { Experience } from 'src/app/models/experience';
 import { ExperienceService } from 'src/app/service/experience.service';
@@ -24,8 +23,7 @@ export class ProfileExperienceComponent implements OnInit {
     private tokenService: TokenService,
     private experienceService: ExperienceService,
     private userService: UserService,
-    private toastr: ToastrService,
-    private router: Router
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -40,14 +38,6 @@ export class ProfileExperienceComponent implements OnInit {
   toggleUpdateForm(experience?: Experience) {
     this.showUpdateForm = !this.showUpdateForm;
     this.currentExperience = experience;
-  }
-
-  refreshComponent() {
-    this.router
-      .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
-      .then(() => {
-        this.router.navigate(['profile']);
-      });
   }
 
   /* Services */
@@ -89,6 +79,7 @@ export class ProfileExperienceComponent implements OnInit {
       .addExperience(this.person_id, company_id, newExperience)
       .subscribe(
         (data) => {
+          this.experienceList.push(data);
           this.toastr.success(
             'Work experience "' + name + '" has been added to the account.',
             'Experience added!',
@@ -97,7 +88,6 @@ export class ProfileExperienceComponent implements OnInit {
               positionClass: 'toast-top-center',
             }
           );
-          this.refreshComponent();
         },
         (err) => {
           this.toastr.error(err.error.message, 'Error', {
@@ -135,6 +125,10 @@ export class ProfileExperienceComponent implements OnInit {
       )
       .subscribe(
         (data) => {
+          let index = this.experienceList.findIndex(
+            (item) => item.id == experience_id
+          );
+          this.experienceList[index] = data;
           this.toastr.success(
             'Work experience "' + name + '" has been updated.',
             'Successful update!',
@@ -143,7 +137,6 @@ export class ProfileExperienceComponent implements OnInit {
               positionClass: 'toast-top-center',
             }
           );
-          this.refreshComponent();
         },
         (err) => {
           this.toastr.error(err.error.message, 'Error', {
@@ -161,6 +154,10 @@ export class ProfileExperienceComponent implements OnInit {
       .deleteExperience(experience_id!, this.person_id)
       .subscribe(
         (data) => {
+          let index = this.experienceList.findIndex(
+            (item) => item.id == experience_id
+          );
+          this.experienceList.splice(index, 1);
           this.toastr.success(
             'Work experience "' + experience.name + '" has been deleted.',
             'Successful delete!',
@@ -169,7 +166,6 @@ export class ProfileExperienceComponent implements OnInit {
               positionClass: 'toast-top-center',
             }
           );
-          this.refreshComponent();
         },
         (err) => {
           this.toastr.error(err.error.message, 'Error', {
@@ -185,6 +181,7 @@ export class ProfileExperienceComponent implements OnInit {
       .deleteAllExperiencesFromPerson(this.person_id)
       .subscribe(
         (data) => {
+          this.experienceList.splice(0, this.experienceList.length);
           this.toastr.success(
             'All work experiences have been deleted.',
             'Successful delete!',
@@ -193,7 +190,6 @@ export class ProfileExperienceComponent implements OnInit {
               positionClass: 'toast-top-center',
             }
           );
-          this.refreshComponent();
         },
         (err) => {
           this.toastr.error(err.error.message, 'Error', {

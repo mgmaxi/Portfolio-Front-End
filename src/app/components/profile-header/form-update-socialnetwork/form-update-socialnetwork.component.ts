@@ -42,14 +42,13 @@ export class FormUpdateSocialnetworkComponent implements OnInit {
           ? (linkedin = 'https://' + linkedin)
           : linkedin;
       } else {
-        linkedin = 'https://www.linkedin.com/';
+        linkedin;
       }
       if (github) {
         !github.includes('https://') ? (github = 'https://' + github) : github;
       } else {
-        github = 'https://github.com/';
+        github;
       }
-
       let id = this.currentSocialnetworkForm.id;
       const updateSocialnetwork = { id, linkedin, github, email };
       this.onUpdateSocialnetwork.emit(updateSocialnetwork);

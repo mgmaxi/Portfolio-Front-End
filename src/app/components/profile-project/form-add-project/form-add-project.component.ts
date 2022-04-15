@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Project } from 'src/app/models/project';
 import { StorageService } from 'src/app/service/storage.service';
+import { TokenService } from 'src/app/security/service/token.service';
 
 @Component({
   selector: 'app-form-add-project',
@@ -13,6 +14,8 @@ export class FormAddProjectComponent implements OnInit {
   @Output() onAddProject: EventEmitter<Project> = new EventEmitter();
   project_logo: any = '';
   files: any = '';
+  username: string = '';
+
   form: FormGroup = this.formBuilder.group({
     name: ['', [Validators.required]],
     description: [
@@ -31,10 +34,17 @@ export class FormAddProjectComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private tokenService: TokenService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getUsername();
+  }
+
+  getUsername() {
+    this.username = this.tokenService.getUsername();
+  }
 
   uploadPhoto(event: any) {
     this.files = event.target.files;
@@ -63,11 +73,13 @@ export class FormAddProjectComponent implements OnInit {
       } else {
         /* Upload logo to firebase */
         let reader = new FileReader();
-        let user = 'mgmaxi';
         reader.readAsDataURL(this.files[0]);
         reader.onloadend = () => {
           this.storageService
-            .uploadImage('users/' + user + '/projects/' + name, reader.result)
+            .uploadImage(
+              'users/' + this.username + '/projects/' + name,
+              reader.result
+            )
             .then((urlImage) => {
               this.project_logo = urlImage;
               const newProject = {

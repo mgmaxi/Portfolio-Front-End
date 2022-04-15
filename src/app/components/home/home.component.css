@@ -52,16 +52,18 @@ section > h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 12px 0;
+  margin: 25px 0;
   max-width: 750px;
 }
 
 .guideImage {
   margin: 0 2.5px;
+  width: 50%;
+  text-align: center;
 }
 
 .guideText {
-  margin: 25px 2.5px;
+  margin: 0 2.5px;
   width: 50%;
   text-align: center;
 }
@@ -93,5 +95,25 @@ section > h2 {
 
   .guideText > p {
     font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .guide h2 {
+    margin: 25px 0 0 0;
+  }
+
+  .guideSteps {
+    flex-direction: column;
+  }
+
+  .guideText {
+    order: 1;
+    width: 100%;
+  }
+
+  .guideImage {
+    order: 2;
+    width: 100%;
   }
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
 import { Language } from 'src/app/models/language';
 import { LanguageService } from 'src/app/service/language.service';
 import { TokenService } from 'src/app/security/service/token.service';
@@ -23,8 +22,7 @@ export class ProfileLanguagesComponent implements OnInit {
     private languageService: LanguageService,
     private tokenService: TokenService,
     private userService: UserService,
-    private toastr: ToastrService,
-    private router: Router
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -38,14 +36,6 @@ export class ProfileLanguagesComponent implements OnInit {
 
   toggleAddLanguageToPersonForm(language?: Language) {
     this.showAddLanguageToPersonForm = !this.showAddLanguageToPersonForm;
-  }
-
-  refreshComponent() {
-    this.router
-      .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
-      .then(() => {
-        this.router.navigate(['profile']);
-      });
   }
 
   /* Services */
@@ -76,7 +66,6 @@ export class ProfileLanguagesComponent implements OnInit {
             positionClass: 'toast-top-center',
           }
         );
-        this.refreshComponent();
       },
       (err) => {
         this.toastr.error(err.error.message, 'Error', {
@@ -93,6 +82,7 @@ export class ProfileLanguagesComponent implements OnInit {
       .addLanguageToPerson(this.person_id, language_id)
       .subscribe(
         (data) => {
+          this.languagesList.push(data.languages[data.languages.length - 1]);
           this.toastr.success(
             'The language has been added to "' + data.name + '".',
             'Language added!',
@@ -101,7 +91,6 @@ export class ProfileLanguagesComponent implements OnInit {
               positionClass: 'toast-top-center',
             }
           );
-          this.refreshComponent();
         },
         (err) => {
           this.toastr.error(err.error.message, 'Error', {
@@ -119,6 +108,10 @@ export class ProfileLanguagesComponent implements OnInit {
       .deleteLanguageOfPerson(this.person_id, language_id!)
       .subscribe(
         (data) => {
+          let index = this.languagesList.findIndex(
+            (item) => item.id == language_id
+          );
+          this.languagesList.splice(index, 1);
           this.toastr.success(
             language.name + ' language has been removed from the account.',
             'Successful delete!',
@@ -127,7 +120,6 @@ export class ProfileLanguagesComponent implements OnInit {
               positionClass: 'toast-top-center',
             }
           );
-          this.refreshComponent();
         },
         (err) => {
           this.toastr.error(err.error.message, 'Error', {
@@ -141,6 +133,7 @@ export class ProfileLanguagesComponent implements OnInit {
   deleteAllLanguagesFromPerson() {
     this.languageService.deleteAllLanguagesFromPerson(this.person_id).subscribe(
       (data) => {
+        this.languagesList.splice(0, this.languagesList.length);
         this.toastr.success(
           'All languages ​​have been removed from the account.',
           'Successful delete!',
@@ -149,7 +142,6 @@ export class ProfileLanguagesComponent implements OnInit {
             positionClass: 'toast-top-center',
           }
         );
-        this.refreshComponent();
       },
       (err) => {
         this.toastr.error(err.error.message, 'Error', {
