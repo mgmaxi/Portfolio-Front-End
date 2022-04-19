@@ -1,27 +1,30 @@
-# AngularPortfolio
+# <b> PORTFOLIO</b>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
+**_<p align="center">Create your portfolio easily and dynamically. Load your data and choose a portfolio design depending on what you need, being able to change it at any time.</p>_**
 
-## Development server
+<p align="center">
+<img src="https://github.com/mgmaxi/Portfolio-Front-End/blob/main/src/assets/logos/logoMMG.png" width="275" height="275" >
+</p>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## 📄 <b> About the Application </b>
 
-## Code scaffolding
+In this application you can create a personal account, upload your data in the profile section and dynamically you will have a portfolio desing for share it.
+You can add your work experiences, educations, projects, languages, technologies, social networks, profile photo and cover photo. Being able to change or delete them at any time. The changes will be reflected in the portfolio automatically.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 📖 <b> Portfolio WIKI </b>
 
-## Build
+For more information about the project, application, front end, back end, database and technologies used check out the wiki.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- [Portfolio WIKI](https://github.com/mgmaxi/Portfolio-Front-End/wiki)
 
-## Running unit tests
+## 🚀 <b> Deploy</b>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- [Portfolio Deploy](https://mgm-portfolio.web.app/home)
 
-## Running end-to-end tests
+## 📷 <b> Preview </b>
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+<p align="center">
+<img src="https://github.com/mgmaxi/Portfolio-Front-End/blob/main/src/assets/image/home/guide-template.png" width="475" height="720" >
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+<img src="https://github.com/mgmaxi/Portfolio-Front-End/blob/main/src/assets/image/home/guide-profile.png" width="475" height="700" >
+</p>
