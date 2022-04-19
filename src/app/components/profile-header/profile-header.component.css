@@ -162,3 +162,12 @@
 button {
   margin: 5px 5px;
 }
+
+/* Spinner */
+
+.spinnerContainer {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+}

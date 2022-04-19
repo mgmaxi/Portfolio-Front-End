@@ -39,6 +39,7 @@ import { TemplateV01Component } from './components/portfolio-template/template-v
 import { MenuComponent } from './components/header/menu/menu.component';
 import { FormUpdateSocialnetworkComponent } from './components/profile-header/form-update-socialnetwork/form-update-socialnetwork.component';
 import { FormUpdateCoverphotoComponent } from './components/profile-header/form-update-coverphoto/form-update-coverphoto.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { FormUpdateCoverphotoComponent } from './components/profile-header/form-
     TemplateV01Component,
     MenuComponent,
     FormUpdateSocialnetworkComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

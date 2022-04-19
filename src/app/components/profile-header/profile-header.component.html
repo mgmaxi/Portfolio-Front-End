@@ -117,9 +117,16 @@
     </ul>
   </div>
   <section class="containerProfileHeaderData">
-    <h2>{{ person.first_name }} {{ person.last_name }}</h2>
-    <p>{{ person.nationality }}</p>
-    <p>{{ person.profession }}</p>
+    <div *ngIf="person.length != 0; else loading">
+      <h2>{{ person.first_name }} {{ person.last_name }}</h2>
+      <p>{{ person.nationality }}</p>
+      <p>{{ person.profession }}</p>
+    </div>
+    <ng-template #loading>
+      <div class="spinnerContainer">
+        <app-spinner></app-spinner>
+      </div>
+    </ng-template>
     <button class="btnShowSection" (click)="showAbout()">About</button>
     <button class="btnShowSection" (click)="showExperience()">
       Experience

@@ -9,7 +9,6 @@ import { TechnologyService } from 'src/app/service/technology.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { EmailSenderService } from 'src/app/service/email-sender.service';
 
@@ -31,9 +30,9 @@ export class TemplateV01Component implements OnInit {
   showAboutText: boolean = false;
   showAboutImage: boolean = true;
   socials: Socialnetwork = new Socialnetwork('', '', '');
-  projectList: any = [];
-  technologyList: any[] = [];
-  filterCategory: any[] = [];
+  projectList!: any[];
+  technologyList!: any[];
+  filterCategory!: any[];
   /* Typewriter effect */
   i: number = 0;
   about: string = ''; /* Description about from DB */
@@ -55,8 +54,7 @@ export class TemplateV01Component implements OnInit {
     private emailSenderService: EmailSenderService,
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
-    private activatedRoute: ActivatedRoute,
-    private router: Router
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -146,7 +144,6 @@ export class TemplateV01Component implements OnInit {
           timeOut: 3000,
           positionClass: 'toast-top-center',
         });
-        this.router.navigate(['/notfound']);
       }
     );
   }

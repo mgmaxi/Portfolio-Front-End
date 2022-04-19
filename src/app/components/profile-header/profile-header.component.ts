@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
 import { Person } from 'src/app/models/person';
 import { Userphotos } from 'src/app/models/userphotos';
 import { PersonService } from 'src/app/service/person.service';
@@ -45,8 +44,7 @@ export class ProfileHeaderComponent implements OnInit {
     private userphotosService: UserphotosService,
     private userService: UserService,
     private socialnetworkService: SocialnetworkService,
-    private toastr: ToastrService,
-    private router: Router
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -72,14 +70,6 @@ export class ProfileHeaderComponent implements OnInit {
   toggleUpdateSocialForm(social?: any) {
     this.currentSocialnetwork = social;
     this.showUpdateSocialnetworkForm = !this.showUpdateSocialnetworkForm;
-  }
-
-  refreshComponent() {
-    this.router
-      .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
-      .then(() => {
-        this.router.navigate(['profile']);
-      });
   }
 
   showAbout() {

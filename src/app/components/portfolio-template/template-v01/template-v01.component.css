@@ -206,6 +206,7 @@ header:hover > .headerContainer {
   max-width: 70%;
   width: auto;
   border-radius: 5px 5px 0 0;
+  opacity: 0;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   transition: -webkit-transform 0.5s ease-in-out,
     -moz-transform 0.5s ease-in-out, -o-transform 0.5s ease-in-out,
@@ -247,6 +248,7 @@ header:hover > .headerContainer {
 }
 .about:hover figcaption .aboutImage img,
 .about.hover figcaption .aboutImage img {
+  opacity: 1;
   transform: translate(-50%, 0%);
   -webkit-transform: translate(-50%, 0%);
 }
@@ -499,15 +501,16 @@ header:hover > .headerContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  max-width: 1000px;
 }
 
 .technologyItemContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 7px;
+  margin: 7px 2.5px;
   padding: 2px;
-  width: 100px;
+  width: 90px;
 }
 
 .technologyLogo {
@@ -531,7 +534,7 @@ header:hover > .headerContainer {
 .technologyItemContainer figcaption {
   margin: 10px 0 0 0;
   text-align: center;
-  font-size: 16px;
+  font-size: 14px;
   text-transform: uppercase;
   color: #fff;
 }

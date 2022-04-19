@@ -1,0 +1,41 @@
+.spinner-animation div {
+  position: absolute;
+  animation: spinner-animation 1s linear infinite;
+  width: 50px;
+  height: 50px;
+  top: 25px;
+  left: 25px;
+  border-radius: 50%;
+  box-shadow: 0 2px 0 0 #000000;
+  transform-origin: 25px 26px;
+}
+.spinner {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  overflow: hidden;
+  background: none;
+}
+.spinner-animation {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0 0;
+}
+.spinner-animation div {
+  box-sizing: content-box;
+}
+
+@keyframes spinner-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
