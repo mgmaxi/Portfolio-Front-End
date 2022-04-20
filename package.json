@@ -21,6 +21,7 @@
     "@angular/platform-browser": "~13.1.0",
     "@angular/platform-browser-dynamic": "~13.1.0",
     "@angular/router": "~13.1.0",
+    "aos": "^2.3.4",
     "firebase": "^9.6.9",
     "ngx-toastr": "^14.2.1",
     "rxjs": "~7.4.0",

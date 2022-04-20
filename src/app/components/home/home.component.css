@@ -3,8 +3,9 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 30px auto 70px;
+  margin: 0 auto 70px;
   padding: 0 7px;
+  overflow-x: hidden;
 }
 
 section > h2 {
@@ -16,22 +17,51 @@ section > h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin: 7px 0 0 0;
-  padding: 7px 12px;
+  justify-content: space-evenly;
   min-width: 350px;
   max-width: 750px;
-  min-height: 100px;
+  height: calc(100vh - 75px);
+  min-height: 850px;
+}
+
+.aboutText {
+  margin: 14px 0;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.05rem;
+}
+
+.MGMLogo {
+  width: 275px;
+  height: 275px;
+}
+
+.aboutTextBoxContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 14px 0;
+  padding: 7px 12px;
+  min-width: 250px;
   border-radius: 15px;
   background-color: #fff;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
-.aboutApp > p {
-  padding: 7px 3px;
+.aboutTextBoxContainer img {
+  width: 30px;
+  height: 30px;
+}
+
+.aboutTextBox {
+  padding: 7px 8px;
   font-size: 18px;
+  font-weight: bold;
   text-align: center;
+  text-transform: uppercase;
 }
 
 .guide {
@@ -44,7 +74,7 @@ section > h2 {
 
 .guide > h2 {
   margin: 25px 0;
-  font-size: 26px;
+  font-size: 32px;
   text-transform: uppercase;
 }
 
@@ -76,6 +106,7 @@ section > h2 {
 .guideText > p {
   font-size: 16px;
   margin: 0 0 15px 0;
+  line-height: 1.5;
 }
 
 .guideImage img {

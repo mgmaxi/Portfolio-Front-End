@@ -24,7 +24,7 @@ For more information about the project, application, front end, back end, databa
 ## 📷 <b> Preview </b>
 
 <p align="center">
-<img src="https://github.com/mgmaxi/Portfolio-Front-End/blob/main/src/assets/image/home/guide-template.png" width="475" height="720" >
+<img src="https://github.com/mgmaxi/Portfolio-Front-End/blob/main/src/assets/image/home/guide-template.png" width="340" height="525" >
 
-<img src="https://github.com/mgmaxi/Portfolio-Front-End/blob/main/src/assets/image/home/guide-profile.png" width="475" height="700" >
+<img src="https://github.com/mgmaxi/Portfolio-Front-End/blob/main/src/assets/image/home/guide-profile.png" width="340" height="525" >
 </p>

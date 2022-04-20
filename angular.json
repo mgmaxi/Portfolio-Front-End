@@ -23,8 +23,12 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["node_modules/ngx-toastr/toastr.css", "src/styles.css"],
-            "scripts": []
+            "styles": [
+              "node_modules/ngx-toastr/toastr.css",
+              "src/styles.css",
+              "node_modules/aos/dist/aos.css"
+            ],
+            "scripts": ["node_modules/aos/dist/aos.js"]
           },
           "configurations": {
             "production": {

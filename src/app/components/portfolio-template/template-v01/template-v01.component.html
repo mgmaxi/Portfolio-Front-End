@@ -36,51 +36,56 @@
 
   <!-- About -->
   <section class="aboutSection">
-    <figure class="about">
-      <img
-        class="aboutBgImg"
-        [src]="!person.cover_photo ? cover_photo : person.cover_photo"
-        alt="About background image"
-      />
-      <figcaption (click)="toggleAbout()" *ngIf="showAboutImage">
-        <div class="aboutImage">
-          <img
-            [src]="!person.profile_photo ? profile_photo : person.profile_photo"
-            alt="About image"
-          />
-        </div>
-        <h2>
-          {{ person.first_name }} <span>{{ person.last_name }}</span>
-        </h2>
-      </figcaption>
-      <figcaption
-        (click)="toggleAbout()"
-        *ngIf="showAboutText"
-        class="aboutText"
-      >
-        <h3>
-          {{ aboutTypeWriter }}
-        </h3>
-      </figcaption>
-    </figure>
+    <div data-aos="fade-up" data-aos-duration="3000">
+      <figure class="about">
+        <img
+          class="aboutBgImg"
+          [src]="!person.cover_photo ? cover_photo : person.cover_photo"
+          alt="About background image"
+        />
+        <figcaption (click)="toggleAbout()" *ngIf="showAboutImage">
+          <div class="aboutImage">
+            <img
+              [src]="
+                !person.profile_photo ? profile_photo : person.profile_photo
+              "
+              alt="About image"
+            />
+          </div>
+          <h2>
+            {{ person.first_name }} <span>{{ person.last_name }}</span>
+          </h2>
+        </figcaption>
+        <figcaption
+          (click)="toggleAbout()"
+          *ngIf="showAboutText"
+          class="aboutText"
+        >
+          <h3>
+            {{ aboutTypeWriter }}
+          </h3>
+        </figcaption>
+      </figure>
+    </div>
   </section>
 
   <!-- Projects -->
   <section class="projectsSection">
     <div class="divider"></div>
-    <h2 class="sectionTitle">Projects</h2>
+    <h2 class="sectionTitle" data-aos="zoom-in" data-aos-duration="3000">
+      Projects
+    </h2>
     <div *ngIf="projectList; else loading" class="projectsContainer">
-      <figure class="project" *ngFor="let project of projectList">
+      <figure
+        class="project"
+        *ngFor="let project of projectList"
+        data-aos="zoom-in-up"
+        data-aos-duration="3000"
+      >
         <img
           class="img"
-          [src]="
-            project.logo === null ||
-            project.logo === undefined ||
-            !project.logo.trim()
-              ? project_logo
-              : project.logo
-          "
-          alt="Project Image"
+          [src]="!project.logo ? project_logo : project.logo"
+          alt=""
         />
         <figcaption>
           <p class="projectDescription">
@@ -104,9 +109,15 @@
   <section class="skillsSection">
     <div class="divider"></div>
     <!-- Technology -->
-    <h2 class="sectionTitle">Technologies</h2>
+    <h2 class="sectionTitle" data-aos="zoom-in" data-aos-duration="3000">
+      Technologies
+    </h2>
     <!-- Technology  Filter-->
-    <div class="filterTechnologiesContainer">
+    <div
+      class="filterTechnologiesContainer"
+      data-aos="flip-down"
+      data-aos-duration="1500"
+    >
       <button class="btnFilter" (click)="filter('all')">All</button>
       <button class="btnFilter" (click)="filter('front-end')">Front End</button>
       <button class="btnFilter" (click)="filter('back-end')">Back End</button>
@@ -122,18 +133,14 @@
       <figure
         *ngFor="let technology of filterCategory"
         class="technologyItemContainer"
+        data-aos="zoom-in-up"
+        data-aos-duration="3000"
       >
         <a [href]="technology.url" target="_blank">
           <img
             class="technologyLogo"
-            [src]="
-              technology.logo === null ||
-              technology.logo === undefined ||
-              !technology.logo.trim()
-                ? technology_logo
-                : technology.logo
-            "
-            alt="Technology logo"
+            [src]="!technology.logo ? technology_logo : technology.logo"
+            alt=""
           />
         </a>
         <figcaption>
@@ -146,8 +153,15 @@
 
   <section *ngIf="username === 'mgmaxi'" id="contact" class="contactSection">
     <div class="divider"></div>
-    <h2 class="sectionTitle">Contact</h2>
-    <form [formGroup]="form" (ngSubmit)="sendEmail()">
+    <h2 class="sectionTitle" data-aos="zoom-in" data-aos-duration="3000">
+      Contact
+    </h2>
+    <form
+      [formGroup]="form"
+      (ngSubmit)="sendEmail()"
+      data-aos="fade-up"
+      data-aos-anchor-placement="center-bottom"
+    >
       <!-- Input name -->
       <input
         type="text"
