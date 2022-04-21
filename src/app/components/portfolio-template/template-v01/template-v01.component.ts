@@ -23,7 +23,7 @@ export class TemplateV01Component implements OnInit {
   username: string = '';
   person_id: number = 0;
   person: any = '';
-  cover_photo: string = '../../../assets/image/profile/coverPhoto.png';
+  cover_photo: string = '../../../assets/image/profile/coverMGM.jpg';
   profile_photo: string = '../../../assets/image/profile/profilePhoto.png';
   project_logo: string = '../../../assets/logos/logoProject.png';
   technology_logo: string = '../../../assets/logos/logoTechnology.png';
@@ -155,6 +155,10 @@ export class TemplateV01Component implements OnInit {
           this.person = data;
           if (data.about) {
             this.about = data.about;
+          }
+          if (this.username == 'mgmaxi') {
+            this.person.cover_photo =
+              '../../../assets/image/profile/coverMGM.jpg';
           }
         },
         (err) => {

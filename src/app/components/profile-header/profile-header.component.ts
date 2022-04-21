@@ -29,7 +29,7 @@ export class ProfileHeaderComponent implements OnInit {
   userphotos_id: any;
   person: any = [];
   currentPerson: any;
-  socials: Socialnetwork = new Socialnetwork('', '', '');
+  socials: any = '';
   currentSocialnetwork: any;
   cover_photo: string = '../../../assets/image/profile/coverPhoto.png';
   profile_photo: string = '../../../assets/image/profile/profilePhoto.png';
