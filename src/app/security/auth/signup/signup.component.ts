@@ -45,8 +45,8 @@ export class SignupComponent implements OnInit {
         this.form.value.last_name
       );
 
-      this.authService.signup(this.signupUser).subscribe(
-        (data) => {
+      this.authService.signup(this.signupUser).subscribe({
+        next: (data) => {
           this.toastr.success(
             'The account has been created.',
             'Successful sign up!',
@@ -57,14 +57,14 @@ export class SignupComponent implements OnInit {
           );
           this.router.navigate(['/signin']);
         },
-        (err) => {
+        error: (err) => {
           this.errorMsg = err.error.messageSent;
           this.toastr.error(this.errorMsg, 'Sign up failed!', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
-        }
-      );
+        },
+      });
     } else {
       this.form.markAllAsTouched();
     }

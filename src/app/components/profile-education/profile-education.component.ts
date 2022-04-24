@@ -43,16 +43,20 @@ export class ProfileEducationComponent implements OnInit {
   /* Services */
 
   getPersonId() {
-    this.userService.person_id.subscribe((data) => {
-      this.person_id = data;
-      this.getEducations();
+    this.userService.person_id.subscribe({
+      next: (data) => {
+        this.person_id = data;
+        this.getEducations();
+      },
     });
   }
 
   getEducations() {
     if (this.person_id != 0) {
-      this.educationService.getEducations(this.person_id).subscribe((data) => {
-        this.educationList = data;
+      this.educationService.getEducations(this.person_id).subscribe({
+        next: (data) => {
+          this.educationList = data;
+        },
       });
     }
   }
@@ -68,8 +72,8 @@ export class ProfileEducationComponent implements OnInit {
     const newEducation = { name, description, start_date, end_date };
     this.educationService
       .addEducation(this.person_id, school_id, newEducation)
-      .subscribe(
-        (data) => {
+      .subscribe({
+        next: (data) => {
           this.educationList.push(data);
           this.toastr.success(
             'The academic discipline "' +
@@ -82,13 +86,13 @@ export class ProfileEducationComponent implements OnInit {
             }
           );
         },
-        (err) => {
+        error: (err) => {
           this.toastr.error(err.error.message, 'Error', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
-        }
-      );
+        },
+      });
     this.toggleAddForm();
   }
 
@@ -109,8 +113,8 @@ export class ProfileEducationComponent implements OnInit {
         school_id,
         updatedEducation
       )
-      .subscribe(
-        (data) => {
+      .subscribe({
+        next: (data) => {
           let index = this.educationList.findIndex(
             (item) => item.id == education_id
           );
@@ -124,13 +128,13 @@ export class ProfileEducationComponent implements OnInit {
             }
           );
         },
-        (err) => {
+        error: (err) => {
           this.toastr.error(err.error.message, 'Error', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
-        }
-      );
+        },
+      });
     this.toggleUpdateForm();
   }
 
@@ -138,8 +142,8 @@ export class ProfileEducationComponent implements OnInit {
     let education_id = education.id;
     this.educationService
       .deleteEducation(education_id!, this.person_id)
-      .subscribe(
-        (data) => {
+      .subscribe({
+        next: (data) => {
           let index = this.educationList.findIndex(
             (item) => item.id == education_id
           );
@@ -155,20 +159,20 @@ export class ProfileEducationComponent implements OnInit {
             }
           );
         },
-        (err) => {
+        error: (err) => {
           this.toastr.error(err.error.message, 'Error', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
-        }
-      );
+        },
+      });
   }
 
   deleteAllEducationsFromPerson() {
     this.educationService
       .deleteAllEducationsFromPerson(this.person_id)
-      .subscribe(
-        (data) => {
+      .subscribe({
+        next: (data) => {
           this.educationList.splice(0, this.educationList.length);
           this.toastr.success(
             'All academic disciplines have been eliminated.',
@@ -179,12 +183,12 @@ export class ProfileEducationComponent implements OnInit {
             }
           );
         },
-        (err) => {
+        error: (err) => {
           this.toastr.error(err.error.message, 'Error', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
-        }
-      );
+        },
+      });
   }
 }

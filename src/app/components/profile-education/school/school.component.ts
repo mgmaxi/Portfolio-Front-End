@@ -63,8 +63,8 @@ export class SchoolComponent implements OnInit {
   /* Services */
 
   addSchool(newSchool: School) {
-    this.schoolService.addSchool(newSchool).subscribe(
-      (data) => {
+    this.schoolService.addSchool(newSchool).subscribe({
+      next: (data) => {
         this.toastr.success(
           'The academic institution "' + data.name + '" has been added!',
           'Academic institution added!',
@@ -74,13 +74,13 @@ export class SchoolComponent implements OnInit {
           }
         );
       },
-      (err) => {
+      error: (err) => {
         this.toastr.error(err.error.messageSent, 'Error', {
           timeOut: 3000,
           positionClass: 'toast-top-center',
         });
-      }
-    );
+      },
+    });
   }
 
   get Name() {

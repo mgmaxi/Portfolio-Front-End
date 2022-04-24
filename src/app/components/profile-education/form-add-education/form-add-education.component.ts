@@ -58,8 +58,10 @@ export class FormAddEducationComponent implements OnInit {
   /* Services */
 
   getSchools() {
-    this.schoolService.getSchools().subscribe((data) => {
-      this.schoolList = data;
+    this.schoolService.getSchools().subscribe({
+      next: (data) => {
+        this.schoolList = data;
+      },
     });
   }
 

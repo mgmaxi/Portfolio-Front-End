@@ -22,19 +22,23 @@ export class ProfileAboutComponent implements OnInit {
   }
 
   getPersonId() {
-    this.userService.person_id.subscribe((data) => {
-      this.person_id = data;
-      this.getAbout();
+    this.userService.person_id.subscribe({
+      next: (data) => {
+        this.person_id = data;
+        this.getAbout();
+      },
     });
   }
 
   getAbout() {
     if (this.person_id != 0) {
-      this.personService.getPersonProfile(this.person_id).subscribe((data) => {
-        this.person = data;
-        if (this.person.about === null) {
-          this.showAboutSection = false;
-        }
+      this.personService.getPersonProfile(this.person_id).subscribe({
+        next: (data) => {
+          this.person = data;
+          if (this.person.about === null) {
+            this.showAboutSection = false;
+          }
+        },
       });
     }
   }

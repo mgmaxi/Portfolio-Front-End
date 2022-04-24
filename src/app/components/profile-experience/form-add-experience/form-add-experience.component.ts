@@ -80,8 +80,10 @@ export class FormAddExperienceComponent implements OnInit {
   /* Services */
 
   getCompanies() {
-    this.companyService.getCompanies().subscribe((data) => {
-      this.companyList = data;
+    this.companyService.getCompanies().subscribe({
+      next: (data) => {
+        this.companyList = data;
+      },
     });
   }
 

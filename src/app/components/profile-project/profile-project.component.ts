@@ -44,23 +44,27 @@ export class ProfileProjectsComponent implements OnInit {
   /* Services */
 
   getPersonId() {
-    this.userService.person_id.subscribe((data) => {
-      this.person_id = data;
-      this.getProjects();
+    this.userService.person_id.subscribe({
+      next: (data) => {
+        this.person_id = data;
+        this.getProjects();
+      },
     });
   }
 
   getProjects() {
     if (this.person_id != 0) {
-      this.projectService.getProjects(this.person_id).subscribe((data) => {
-        this.projectList = data;
+      this.projectService.getProjects(this.person_id).subscribe({
+        next: (data) => {
+          this.projectList = data;
+        },
       });
     }
   }
 
   addProject(project: Project) {
-    this.projectService.addProject(this.person_id, project).subscribe(
-      (data) => {
+    this.projectService.addProject(this.person_id, project).subscribe({
+      next: (data) => {
         this.projectList.push(data);
         this.toastr.success(
           'The project "' + project.name + '" has been added to the account.',
@@ -71,13 +75,13 @@ export class ProfileProjectsComponent implements OnInit {
           }
         );
       },
-      (err) => {
+      error: (err) => {
         this.toastr.error(err.error.message, 'Error', {
           timeOut: 3000,
           positionClass: 'toast-top-center',
         });
-      }
-    );
+      },
+    });
     this.toggleAddForm();
   }
 
@@ -102,8 +106,8 @@ export class ProfileProjectsComponent implements OnInit {
 
     this.projectService
       .updateProject(project_id!, this.person_id, updatedProject)
-      .subscribe(
-        (data) => {
+      .subscribe({
+        next: (data) => {
           let index = this.projectList.findIndex(
             (item) => item.id == project_id
           );
@@ -117,20 +121,20 @@ export class ProfileProjectsComponent implements OnInit {
             }
           );
         },
-        (err) => {
+        error: (err) => {
           this.toastr.error(err.error.message, 'Error', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
-        }
-      );
+        },
+      });
     this.toggleUpdateForm();
   }
 
   deleteProject(project: Project) {
     let project_id = project.id;
-    this.projectService.deleteProject(project_id!, this.person_id).subscribe(
-      (data) => {
+    this.projectService.deleteProject(project_id!, this.person_id).subscribe({
+      next: (data) => {
         let index = this.projectList.findIndex((item) => item.id == project_id);
         this.projectList.splice(index, 1);
         this.toastr.success(
@@ -142,18 +146,18 @@ export class ProfileProjectsComponent implements OnInit {
           }
         );
       },
-      (err) => {
+      error: (err) => {
         this.toastr.error(err.error.message, 'Error', {
           timeOut: 3000,
           positionClass: 'toast-top-center',
         });
-      }
-    );
+      },
+    });
   }
 
   deleteAllProjectsFromPerson() {
-    this.projectService.deleteAllProjectsFromPerson(this.person_id).subscribe(
-      (data) => {
+    this.projectService.deleteAllProjectsFromPerson(this.person_id).subscribe({
+      next: (data) => {
         this.projectList.splice(0, this.projectList.length);
         this.toastr.success(
           'All the projects have been deleted.',
@@ -164,12 +168,12 @@ export class ProfileProjectsComponent implements OnInit {
           }
         );
       },
-      (err) => {
+      error: (err) => {
         this.toastr.error(err.error.message, 'Error', {
           timeOut: 3000,
           positionClass: 'toast-top-center',
         });
-      }
-    );
+      },
+    });
   }
 }

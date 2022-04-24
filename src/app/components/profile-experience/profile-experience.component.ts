@@ -43,19 +43,21 @@ export class ProfileExperienceComponent implements OnInit {
   /* Services */
 
   getPersonId() {
-    this.userService.person_id.subscribe((data) => {
-      this.person_id = data;
-      this.getExperiences();
+    this.userService.person_id.subscribe({
+      next: (data) => {
+        this.person_id = data;
+        this.getExperiences();
+      },
     });
   }
 
   getExperiences() {
     if (this.person_id != 0) {
-      this.experienceService
-        .getExperiences(this.person_id)
-        .subscribe((data) => {
+      this.experienceService.getExperiences(this.person_id).subscribe({
+        next: (data) => {
           this.experienceList = data;
-        });
+        },
+      });
     }
   }
 
@@ -77,8 +79,8 @@ export class ProfileExperienceComponent implements OnInit {
     };
     this.experienceService
       .addExperience(this.person_id, company_id, newExperience)
-      .subscribe(
-        (data) => {
+      .subscribe({
+        next: (data) => {
           this.experienceList.push(data);
           this.toastr.success(
             'Work experience "' + name + '" has been added to the account.',
@@ -89,13 +91,13 @@ export class ProfileExperienceComponent implements OnInit {
             }
           );
         },
-        (err) => {
+        error: (err) => {
           this.toastr.error(err.error.message, 'Error', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
-        }
-      );
+        },
+      });
     this.toggleAddForm();
   }
 
@@ -123,8 +125,8 @@ export class ProfileExperienceComponent implements OnInit {
         company_id,
         updatedExperience
       )
-      .subscribe(
-        (data) => {
+      .subscribe({
+        next: (data) => {
           let index = this.experienceList.findIndex(
             (item) => item.id == experience_id
           );
@@ -138,13 +140,13 @@ export class ProfileExperienceComponent implements OnInit {
             }
           );
         },
-        (err) => {
+        error: (err) => {
           this.toastr.error(err.error.message, 'Error', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
-        }
-      );
+        },
+      });
     this.toggleUpdateForm();
   }
 
@@ -152,8 +154,8 @@ export class ProfileExperienceComponent implements OnInit {
     let experience_id = experience.id;
     this.experienceService
       .deleteExperience(experience_id!, this.person_id)
-      .subscribe(
-        (data) => {
+      .subscribe({
+        next: (data) => {
           let index = this.experienceList.findIndex(
             (item) => item.id == experience_id
           );
@@ -167,20 +169,20 @@ export class ProfileExperienceComponent implements OnInit {
             }
           );
         },
-        (err) => {
+        error: (err) => {
           this.toastr.error(err.error.message, 'Error', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
-        }
-      );
+        },
+      });
   }
 
   deleteAllExperiencesFromPerson() {
     this.experienceService
       .deleteAllExperiencesFromPerson(this.person_id)
-      .subscribe(
-        (data) => {
+      .subscribe({
+        next: (data) => {
           this.experienceList.splice(0, this.experienceList.length);
           this.toastr.success(
             'All work experiences have been deleted.',
@@ -191,12 +193,12 @@ export class ProfileExperienceComponent implements OnInit {
             }
           );
         },
-        (err) => {
+        error: (err) => {
           this.toastr.error(err.error.message, 'Error', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
-        }
-      );
+        },
+      });
   }
 }

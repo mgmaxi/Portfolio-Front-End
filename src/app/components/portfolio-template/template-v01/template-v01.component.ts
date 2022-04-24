@@ -59,9 +59,11 @@ export class TemplateV01Component implements OnInit {
 
   ngOnInit(): void {
     this.isLogged = this.tokenService.isLogged();
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.username = params['username'].toString();
-      this.getPersonId();
+    this.activatedRoute.params.subscribe({
+      next: (params: Params) => {
+        this.username = params['username'].toString();
+        this.getPersonId();
+      },
     });
   }
 
@@ -106,8 +108,8 @@ export class TemplateV01Component implements OnInit {
 
   sendEmail() {
     if (this.form.valid) {
-      this.emailSenderService.sendEmail(this.form.value).subscribe(
-        (data) => {
+      this.emailSenderService.sendEmail(this.form.value).subscribe({
+        next: (data) => {
           this.toastr.success(
             this.form.value.name +
               ' thanks for contacting me. I will answer you as soon as possible',
@@ -118,40 +120,40 @@ export class TemplateV01Component implements OnInit {
             }
           );
         },
-        (err) => {
+        error: (err) => {
           this.toastr.error("The email hasn't been sent", 'Error', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
-        }
-      );
+        },
+      });
     }
   }
 
   /* Services */
 
   getPersonId() {
-    this.userService.getPersonId(this.username).subscribe(
-      (data) => {
+    this.userService.getPersonId(this.username).subscribe({
+      next: (data) => {
         this.person_id = data;
         this.getPersonProfile();
         this.getProjects();
         this.getTechnologies();
         this.getSocialnetworks();
       },
-      (err) => {
+      error: (err) => {
         this.toastr.error('Failed to get person id.', 'Error', {
           timeOut: 3000,
           positionClass: 'toast-top-center',
         });
-      }
-    );
+      },
+    });
   }
 
   getPersonProfile() {
     if (this.person_id != 0) {
-      this.personService.getPersonProfile(this.person_id).subscribe(
-        (data) => {
+      this.personService.getPersonProfile(this.person_id).subscribe({
+        next: (data) => {
           this.person = data;
           if (data.about) {
             this.about = data.about;
@@ -161,60 +163,60 @@ export class TemplateV01Component implements OnInit {
               '../../../assets/image/profile/coverMGM.jpg';
           }
         },
-        (err) => {
+        error: (err) => {
           this.toastr.error('Failed to get profile data.', 'Error', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
-        }
-      );
+        },
+      });
     }
   }
 
   getProjects() {
     if (this.person_id != 0) {
-      this.projectService.getProjects(this.person_id).subscribe(
-        (data) => {
+      this.projectService.getProjects(this.person_id).subscribe({
+        next: (data) => {
           this.projectList = data;
         },
-        (err) => {
+        error: (err) => {
           this.toastr.error('Failed to get projects data.', 'Error', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
-        }
-      );
+        },
+      });
     }
   }
 
   getTechnologies() {
     if (this.person_id != 0) {
-      this.technologyService.findByPersonId(this.person_id).subscribe(
-        (data) => {
+      this.technologyService.findByPersonId(this.person_id).subscribe({
+        next: (data) => {
           this.technologyList = data;
           this.filterCategory = data;
         },
-        (err) => {
+        error: (err) => {
           this.toastr.error('Failed to get technologies data.', 'Error', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
-        }
-      );
+        },
+      });
     }
   }
 
   getSocialnetworks() {
     if (this.person_id != 0) {
-      this.socialnetworkService
-        .getSocialNetwork(this.person_id)
-        .subscribe((data) => {
+      this.socialnetworkService.getSocialNetwork(this.person_id).subscribe({
+        next: (data) => {
           if (data === null) {
             return;
           } else {
             this.socials = data;
           }
-        });
+        },
+      });
     }
   }
 

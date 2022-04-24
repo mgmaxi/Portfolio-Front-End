@@ -41,23 +41,27 @@ export class ProfileLanguagesComponent implements OnInit {
   /* Services */
 
   getPersonId() {
-    this.userService.person_id.subscribe((data) => {
-      this.person_id = data;
-      this.getLanguages();
+    this.userService.person_id.subscribe({
+      next: (data) => {
+        this.person_id = data;
+        this.getLanguages();
+      },
     });
   }
 
   getLanguages() {
     if (this.person_id != 0) {
-      this.languageService.findByPersonId(this.person_id).subscribe((data) => {
-        this.languagesList = data;
+      this.languageService.findByPersonId(this.person_id).subscribe({
+        next: (data) => {
+          this.languagesList = data;
+        },
       });
     }
   }
 
   addLanguage(language: Language) {
-    this.languageService.addLanguage(language).subscribe(
-      (data) => {
+    this.languageService.addLanguage(language).subscribe({
+      next: (data) => {
         this.toastr.success(
           language.name + ' language has been created.',
           'Successful creation!',
@@ -67,21 +71,21 @@ export class ProfileLanguagesComponent implements OnInit {
           }
         );
       },
-      (err) => {
+      error: (err) => {
         this.toastr.error(err.error.message, 'Error', {
           timeOut: 3000,
           positionClass: 'toast-top-center',
         });
-      }
-    );
+      },
+    });
     this.toggleAddForm();
   }
 
   addLanguageToPerson(language_id: number) {
     this.languageService
       .addLanguageToPerson(this.person_id, language_id)
-      .subscribe(
-        (data) => {
+      .subscribe({
+        next: (data) => {
           this.languagesList.push(data.languages[data.languages.length - 1]);
           this.toastr.success(
             'The language has been added to "' + data.name + '".',
@@ -92,13 +96,13 @@ export class ProfileLanguagesComponent implements OnInit {
             }
           );
         },
-        (err) => {
+        error: (err) => {
           this.toastr.error(err.error.message, 'Error', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
-        }
-      );
+        },
+      });
     this.toggleAddLanguageToPersonForm();
   }
 
@@ -106,8 +110,8 @@ export class ProfileLanguagesComponent implements OnInit {
     let language_id = language.id;
     this.languageService
       .deleteLanguageOfPerson(this.person_id, language_id!)
-      .subscribe(
-        (data) => {
+      .subscribe({
+        next: (data) => {
           let index = this.languagesList.findIndex(
             (item) => item.id == language_id
           );
@@ -121,34 +125,36 @@ export class ProfileLanguagesComponent implements OnInit {
             }
           );
         },
-        (err) => {
+        error: (err) => {
           this.toastr.error(err.error.message, 'Error', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
-        }
-      );
+        },
+      });
   }
 
   deleteAllLanguagesFromPerson() {
-    this.languageService.deleteAllLanguagesFromPerson(this.person_id).subscribe(
-      (data) => {
-        this.languagesList.splice(0, this.languagesList.length);
-        this.toastr.success(
-          'All languages ​​have been removed from the account.',
-          'Successful delete!',
-          {
+    this.languageService
+      .deleteAllLanguagesFromPerson(this.person_id)
+      .subscribe({
+        next: (data) => {
+          this.languagesList.splice(0, this.languagesList.length);
+          this.toastr.success(
+            'All languages ​​have been removed from the account.',
+            'Successful delete!',
+            {
+              timeOut: 3000,
+              positionClass: 'toast-top-center',
+            }
+          );
+        },
+        error: (err) => {
+          this.toastr.error(err.error.message, 'Error', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
-          }
-        );
-      },
-      (err) => {
-        this.toastr.error(err.error.message, 'Error', {
-          timeOut: 3000,
-          positionClass: 'toast-top-center',
-        });
-      }
-    );
+          });
+        },
+      });
   }
 }

@@ -4,7 +4,7 @@ main {
   justify-content: center;
   align-items: center;
   margin: 0 auto 70px;
-  padding: 0 7px;
+  padding: 0;
   overflow-x: hidden;
 }
 
@@ -74,8 +74,15 @@ section > h2 {
 
 .guide > h2 {
   margin: 25px 0;
-  font-size: 32px;
+  font-size: 42px;
+  color: #fff;
   text-transform: uppercase;
+  text-shadow: rgb(0, 0, 0) 1px 0px 0px, rgb(0, 0, 0) 0.540302px 0.841471px 0px,
+    rgb(0, 0, 0) -0.416147px 0.909297px 0px,
+    rgb(0, 0, 0) -0.989993px 0.14112px 0px,
+    rgb(0, 0, 0) -0.653644px -0.756803px 0px,
+    rgb(0, 0, 0) 0.283662px -0.958924px 0px,
+    rgb(0, 0, 0) 0.96017px -0.279416px 0px;
 }
 
 .guideSteps {

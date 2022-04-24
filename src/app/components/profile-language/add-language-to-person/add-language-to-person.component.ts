@@ -22,7 +22,7 @@ export class FormUpdateLanguageComponent implements OnInit {
   getLanguages() {
     this.languageService
       .getLanguages()
-      .subscribe((data) => (this.languageList = data));
+      .subscribe({ next: (data) => (this.languageList = data) });
   }
 
   addLanguageToPerson(language: Language) {
@@ -34,11 +34,11 @@ export class FormUpdateLanguageComponent implements OnInit {
     let language_id = language.id;
     this.languageService
       .deleteLanguage(language_id!)
-      .subscribe(
-        () =>
+      .subscribe({
+        next: () =>
           (this.languageList = this.languageList.filter(
             (list) => list.id !== language_id
-          ))
-      );
+          )),
+      });
   }
 }

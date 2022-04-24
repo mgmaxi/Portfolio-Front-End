@@ -42,9 +42,11 @@ export class ProfileTechnologiesComponent implements OnInit {
   /* Services */
 
   getPersonId() {
-    this.userService.person_id.subscribe((data) => {
-      this.person_id = data;
-      this.getTechnologies();
+    this.userService.person_id.subscribe({
+      next: (data) => {
+        this.person_id = data;
+        this.getTechnologies();
+      },
     });
   }
 
@@ -61,20 +63,20 @@ export class ProfileTechnologiesComponent implements OnInit {
 
   getTechnologies() {
     if (this.person_id != 0) {
-      this.technologyService
-        .findByPersonId(this.person_id)
-        .subscribe((data) => {
+      this.technologyService.findByPersonId(this.person_id).subscribe({
+        next: (data) => {
           this.technologyList = data;
           this.filterCategory = data;
-        });
+        },
+      });
     }
   }
 
   addTechnology(technology: Technology) {
     let { name, category, logo, url } = technology;
     const newTechnology = { name, category, logo, url };
-    this.technologyService.addTechnology(newTechnology).subscribe(
-      (data) => {
+    this.technologyService.addTechnology(newTechnology).subscribe({
+      next: (data) => {
         this.toastr.success(
           name + ' technology has been created.',
           'Successful creation!',
@@ -85,20 +87,20 @@ export class ProfileTechnologiesComponent implements OnInit {
         );
         this.toggleAddForm();
       },
-      (err) => {
+      error: (err) => {
         this.toastr.error(err.error.messageSent, 'Error', {
           timeOut: 3000,
           positionClass: 'toast-top-center',
         });
-      }
-    );
+      },
+    });
   }
 
   addTechToPerson(technology_id: number) {
     this.technologyService
       .addTechnologyToPerson(this.person_id, technology_id)
-      .subscribe(
-        (data) => {
+      .subscribe({
+        next: (data) => {
           this.technologyList.push(
             data.technologies[data.technologies.length - 1]
           );
@@ -111,13 +113,13 @@ export class ProfileTechnologiesComponent implements OnInit {
             }
           );
         },
-        (err) => {
+        error: (err) => {
           this.toastr.error(err.error.message, 'Error', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
-        }
-      );
+        },
+      });
     this.toggleAddTechToPersonForm();
   }
 
@@ -125,8 +127,8 @@ export class ProfileTechnologiesComponent implements OnInit {
     let technology_id = technology.id;
     this.technologyService
       .deleteTechnologyOfPerson(this.person_id, technology_id!)
-      .subscribe(
-        (data) => {
+      .subscribe({
+        next: (data) => {
           let index = this.technologyList.findIndex(
             (item) => item.id == technology_id
           );
@@ -140,20 +142,20 @@ export class ProfileTechnologiesComponent implements OnInit {
             }
           );
         },
-        (err) => {
+        error: (err) => {
           this.toastr.error(err.error.message, 'Error', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
-        }
-      );
+        },
+      });
   }
 
   deleteAllTechnologiesFromPerson() {
     this.technologyService
       .deleteAllTechnologiesFromPerson(this.person_id)
-      .subscribe(
-        (data) => {
+      .subscribe({
+        next: (data) => {
           this.technologyList.splice(0, this.technologyList.length);
           this.toastr.success(
             'All technologies ​​have been removed from the account.',
@@ -164,12 +166,12 @@ export class ProfileTechnologiesComponent implements OnInit {
             }
           );
         },
-        (err) => {
+        error: (err) => {
           this.toastr.error(err.error.message, 'Error', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
-        }
-      );
+        },
+      });
   }
 }

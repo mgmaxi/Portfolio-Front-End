@@ -64,8 +64,8 @@ export class CompanyComponent implements OnInit {
   /* Services */
 
   addCompany(newCompany: Company) {
-    this.companyService.addCompany(newCompany).subscribe(
-      (data) => {
+    this.companyService.addCompany(newCompany).subscribe({
+      next: (data) => {
         this.toastr.success(
           'The company  "' + data.name + '" has been added.',
           'Company added!',
@@ -75,13 +75,13 @@ export class CompanyComponent implements OnInit {
           }
         );
       },
-      (err) => {
+      error: (err) => {
         this.toastr.error(err.error.messageSent, 'Error', {
           timeOut: 3000,
           positionClass: 'toast-top-center',
         });
-      }
-    );
+      },
+    });
   }
 
   get Name() {

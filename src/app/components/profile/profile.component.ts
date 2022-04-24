@@ -43,26 +43,30 @@ export class ProfileComponent implements OnInit {
     if (username === null) {
       username = 'mgmaxi';
     }
-    this.userService.getPersonId(username).subscribe((data) => {
-      this.person_id = data;
-      this.userService.changePersonId(data);
-      this.AboutIsEmpty();
-      this.ExperienceIsEmpty();
-      this.EducationIsEmpty();
-      this.ProjectIsEmpty();
-      this.LanguageIsEmpty();
-      this.TechnologyIsEmpty();
+    this.userService.getPersonId(username).subscribe({
+      next: (data) => {
+        this.person_id = data;
+        this.userService.changePersonId(data);
+        this.AboutIsEmpty();
+        this.ExperienceIsEmpty();
+        this.EducationIsEmpty();
+        this.ProjectIsEmpty();
+        this.LanguageIsEmpty();
+        this.TechnologyIsEmpty();
+      },
     });
   }
 
   private AboutIsEmpty() {
-    this.personService.getPersonProfile(this.person_id).subscribe((data) => {
-      let person: any = data;
-      if (person.about === '' || person.about === null) {
-        this.showAbout = false;
-      } else {
-        this.showAbout = true;
-      }
+    this.personService.getPersonProfile(this.person_id).subscribe({
+      next: (data) => {
+        let person: any = data;
+        if (person.about === '' || person.about === null) {
+          this.showAbout = false;
+        } else {
+          this.showAbout = true;
+        }
+      },
     });
   }
 
@@ -71,10 +75,12 @@ export class ProfileComponent implements OnInit {
   }
 
   private ExperienceIsEmpty() {
-    this.experienceService.getExperiences(this.person_id).subscribe((data) => {
-      data.length === 0
-        ? (this.showExperience = false)
-        : (this.showExperience = true);
+    this.experienceService.getExperiences(this.person_id).subscribe({
+      next: (data) => {
+        data.length === 0
+          ? (this.showExperience = false)
+          : (this.showExperience = true);
+      },
     });
   }
 
@@ -83,10 +89,12 @@ export class ProfileComponent implements OnInit {
   }
 
   private EducationIsEmpty() {
-    this.educationService.getEducations(this.person_id).subscribe((data) => {
-      data.length === 0
-        ? (this.showEducation = false)
-        : (this.showEducation = true);
+    this.educationService.getEducations(this.person_id).subscribe({
+      next: (data) => {
+        data.length === 0
+          ? (this.showEducation = false)
+          : (this.showEducation = true);
+      },
     });
   }
 
@@ -95,10 +103,12 @@ export class ProfileComponent implements OnInit {
   }
 
   private ProjectIsEmpty() {
-    this.projectService.getProjects(this.person_id).subscribe((data) => {
-      data.length === 0
-        ? (this.showProject = false)
-        : (this.showProject = true);
+    this.projectService.getProjects(this.person_id).subscribe({
+      next: (data) => {
+        data.length === 0
+          ? (this.showProject = false)
+          : (this.showProject = true);
+      },
     });
   }
 
@@ -107,10 +117,12 @@ export class ProfileComponent implements OnInit {
   }
 
   private LanguageIsEmpty() {
-    this.languageService.findByPersonId(this.person_id).subscribe((data) => {
-      data.length === 0
-        ? (this.showLanguage = false)
-        : (this.showLanguage = true);
+    this.languageService.findByPersonId(this.person_id).subscribe({
+      next: (data) => {
+        data.length === 0
+          ? (this.showLanguage = false)
+          : (this.showLanguage = true);
+      },
     });
   }
 
@@ -119,10 +131,12 @@ export class ProfileComponent implements OnInit {
   }
 
   private TechnologyIsEmpty() {
-    this.technologyService.findByPersonId(this.person_id).subscribe((data) => {
-      data.length === 0
-        ? (this.showTechnology = false)
-        : (this.showTechnology = true);
+    this.technologyService.findByPersonId(this.person_id).subscribe({
+      next: (data) => {
+        data.length === 0
+          ? (this.showTechnology = false)
+          : (this.showTechnology = true);
+      },
     });
   }
 

@@ -37,7 +37,7 @@ export class FormAddTechToPersonComponent implements OnInit {
   getTechnologies() {
     this.technologyService
       .getTechnologies()
-      .subscribe((data) => (this.technologyList = data));
+      .subscribe({ next: (data) => (this.technologyList = data) });
   }
 
   addTechnologyToPerson(technology: Technology) {
@@ -47,8 +47,8 @@ export class FormAddTechToPersonComponent implements OnInit {
 
   deleteTechnology(technology: Technology) {
     let technology_id = technology.id;
-    this.technologyService.deleteTechnology(technology_id!).subscribe(
-      (data) => {
+    this.technologyService.deleteTechnology(technology_id!).subscribe({
+      next: (data) => {
         this.toastr.success(
           technology.name + ' has been permanently deleted!',
           'Successful delete!',
@@ -59,12 +59,12 @@ export class FormAddTechToPersonComponent implements OnInit {
         );
         this.refreshComponent();
       },
-      (err) => {
+      error: (err) => {
         this.toastr.error(err.error.message, 'Error', {
           timeOut: 3000,
           positionClass: 'toast-top-center',
         });
-      }
-    );
+      },
+    });
   }
 }

@@ -41,8 +41,8 @@ export class LoginComponent implements OnInit {
         this.form.value.password
       );
 
-      this.authService.login(this.loginUser).subscribe(
-        (data) => {
+      this.authService.login(this.loginUser).subscribe({
+        next: (data) => {
           this.tokenService.setToken(data.token);
           let username = this.tokenService.getUsername();
 
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
           });
           this.router.navigate(['/profile']);
         },
-        (err) => {
+        error: (err) => {
           this.errorMsg = err.error.message;
           if (this.errorMsg === 'No value present') {
             this.errorMsg = 'Incorrect data!';
@@ -61,8 +61,8 @@ export class LoginComponent implements OnInit {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
-        }
-      );
+        },
+      });
     } else {
       this.form.markAllAsTouched();
     }

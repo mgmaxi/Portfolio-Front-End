@@ -105,37 +105,41 @@ export class ProfileHeaderComponent implements OnInit {
     }
     this.userService
       .getUserId(username)
-      .subscribe((data) => (this.user_id = data));
+      .subscribe({ next: (data) => (this.user_id = data) });
   }
 
   getPersonId() {
-    this.userService.person_id.subscribe((data) => {
-      this.person_id = data;
-      this.getPersonProfile();
-      this.getSocialnetworks();
+    this.userService.person_id.subscribe({
+      next: (data) => {
+        this.person_id = data;
+        this.getPersonProfile();
+        this.getSocialnetworks();
+      },
     });
   }
 
   getPersonProfile() {
     if (this.person_id != 0) {
-      this.personService.getPersonProfile(this.person_id).subscribe((data) => {
-        this.person = data;
-        this.userphotos_id = data.userphotos_id;
+      this.personService.getPersonProfile(this.person_id).subscribe({
+        next: (data) => {
+          this.person = data;
+          this.userphotos_id = data.userphotos_id;
+        },
       });
     }
   }
 
   getSocialnetworks() {
     if (this.person_id != 0) {
-      this.socialnetworkService
-        .getSocialNetwork(this.person_id)
-        .subscribe((data) => {
+      this.socialnetworkService.getSocialNetwork(this.person_id).subscribe({
+        next: (data) => {
           if (data === null) {
             return;
           } else {
             this.socials = data;
           }
-        });
+        },
+      });
     }
   }
 
@@ -157,8 +161,8 @@ export class ProfileHeaderComponent implements OnInit {
     };
     this.personService
       .updatePerson(this.user_id, person_id!, updatedPerson)
-      .subscribe(
-        (data) => {
+      .subscribe({
+        next: (data) => {
           this.person = data;
           this.toastr.success(
             person.first_name + "'s data has been updated.",
@@ -169,13 +173,13 @@ export class ProfileHeaderComponent implements OnInit {
             }
           );
         },
-        (err) => {
+        error: (err) => {
           this.toastr.error(err.error.message, 'Error', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
-        }
-      );
+        },
+      });
     this.toggleUpdateForm();
   }
 
@@ -184,8 +188,8 @@ export class ProfileHeaderComponent implements OnInit {
     const updatedUserphotos = { profile_photo };
     this.userphotosService
       .updateUserProfilePhoto(this.user_id, userphotos_id!, updatedUserphotos)
-      .subscribe(
-        (data) => {
+      .subscribe({
+        next: (data) => {
           this.person.profile_photo = data.profile_photo;
           this.toastr.success(
             'Profile photo has been updated.',
@@ -196,13 +200,13 @@ export class ProfileHeaderComponent implements OnInit {
             }
           );
         },
-        (err) => {
+        error: (err) => {
           this.toastr.error(err, 'Error', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
-        }
-      );
+        },
+      });
     this.toggleUpdateProfilephotosForm();
   }
 
@@ -211,8 +215,8 @@ export class ProfileHeaderComponent implements OnInit {
     const updatedUserphotos = { cover_photo };
     this.userphotosService
       .updateUserCoverPhoto(this.user_id, userphotos_id!, updatedUserphotos)
-      .subscribe(
-        (data) => {
+      .subscribe({
+        next: (data) => {
           this.person.cover_photo = data.cover_photo;
           this.toastr.success(
             'The cover image has been updated.',
@@ -223,13 +227,13 @@ export class ProfileHeaderComponent implements OnInit {
             }
           );
         },
-        (err) => {
+        error: (err) => {
           this.toastr.error(err, 'Error', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
-        }
-      );
+        },
+      });
     this.toggleUpdateCoverphotosForm();
   }
 
@@ -242,8 +246,8 @@ export class ProfileHeaderComponent implements OnInit {
         this.person_id,
         updatedSocialnetwork
       )
-      .subscribe(
-        (data) => {
+      .subscribe({
+        next: (data) => {
           this.socials = data;
           this.toastr.success(
             'Social networks have been updated.',
@@ -254,13 +258,13 @@ export class ProfileHeaderComponent implements OnInit {
             }
           );
         },
-        (err) => {
+        error: (err) => {
           this.toastr.error(err.error.message, 'Error', {
             timeOut: 3000,
             positionClass: 'toast-top-center',
           });
-        }
-      );
+        },
+      });
     this.toggleUpdateSocialForm();
   }
 }
