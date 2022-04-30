@@ -555,3 +555,17 @@ select:focus.ng-valid {
   border-radius: 25px;
   background-color: rgb(0, 0, 0, 0.15);
 }
+
+/* Animation */
+
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-20px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
