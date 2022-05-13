@@ -29,6 +29,7 @@ export class TemplateV01Component implements OnInit {
   technology_logo: string = '../../../assets/logos/logoTechnology.png';
   showAboutText: boolean = false;
   showAboutImage: boolean = true;
+  showHeader: boolean = false;
   socials: Socialnetwork = new Socialnetwork('', '', '');
   projectList!: any[];
   technologyList!: any[];
@@ -65,10 +66,33 @@ export class TemplateV01Component implements OnInit {
         this.getPersonId();
       },
     });
+    this.onScrollNavbar();
   }
 
   onLogOut(): void {
     this.tokenService.logOut();
+  }
+
+  /* OnScroll Navbar */
+
+  onScrollNavbar() {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        this.showHeader = true;
+      } else {
+        this.showHeader = false;
+      }
+    });
+  }
+
+  /* Navigation Anchor Link */
+
+  scrollToElement($element: any): void {
+    $element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'nearest',
+    });
   }
 
   /* About section */

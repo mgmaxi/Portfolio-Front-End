@@ -15,6 +15,7 @@ header {
 }
 
 .headerContainer {
+  position: fixed;
   z-index: 5;
   width: 100%;
   display: flex;
@@ -33,6 +34,13 @@ header:hover > .headerContainer {
   -moz-box-shadow: 0px -2px 10px 15px rgb(34, 34, 34, 0.8);
 }
 
+.headerContainerOnScroll {
+  padding: 10px 0 0px 0;
+  background-color: rgb(34, 34, 34, 0.8);
+  box-shadow: 0px -2px 10px 15px rgb(34, 34, 34, 0.8);
+  -webkit-box-shadow: 0px -2px 10px 15px rgb(34, 34, 34, 0.8);
+  -moz-box-shadow: 0px -2px 10px 15px rgb(34, 34, 34, 0.8);
+}
 .logoContainer {
   display: flex;
   justify-content: center;
@@ -110,6 +118,22 @@ header:hover > .headerContainer {
 .socials ul li {
   margin: 3px 0;
   list-style: none;
+}
+
+.navigation ul {
+  display: flex;
+  flex-direction: column;
+}
+.navigation ul li a {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.navigation ul li a:hover {
+  color: rgb(255, 255, 255, 0.6);
 }
 
 .menu-wrap {
@@ -764,6 +788,27 @@ footer {
 /* Media queries */
 
 @media only screen and (min-width: 992px) {
+  .navigation {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .navigation ul {
+    flex-direction: row;
+  }
+
+  .navigation ul li a {
+    margin: 0 10px;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 22px;
+    cursor: pointer;
+    transition: all 1s ease;
+  }
+
   .about {
     height: 400px;
     width: 400px;
@@ -772,14 +817,16 @@ footer {
 
   .about figcaption h2 {
     display: flex;
+    justify-content: center;
     align-items: center;
     text-align: center;
     right: 62.5px;
     left: 62.5px;
     font-size: 22px;
+    padding-right: 10px;
   }
   .about figcaption h2 span {
-    padding: 0 10px;
+    padding: 0 0 0 10px;
   }
 
   .about figcaption h3 {

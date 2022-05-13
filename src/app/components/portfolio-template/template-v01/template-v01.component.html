@@ -1,7 +1,13 @@
 <div class="templateContainer">
   <!-- Header -->
   <header>
-    <div class="headerContainer">
+    <div
+      [ngClass]="
+        showHeader
+          ? 'headerContainer headerContainerOnScroll'
+          : 'headerContainer'
+      "
+    >
       <div class="logoContainer">
         <a *ngIf="person; else loading" [href]="socials.github" target="_blank">
           <p class="logoFirstName">{{ person.first_name }}</p>
@@ -18,24 +24,43 @@
             ></a>
           </li>
           <li>
-            <a [href]="socials.github" target="_blank"
+            <a
+              [href]="
+                this.username == 'mgmaxi'
+                  ? 'https://github.com/mgmaxi'
+                  : socials.github
+              "
+              target="_blank"
               ><i class="fab fa-github"></i
             ></a>
           </li>
           <li>
-            <a [href]="'mailto:' + socials.email + '?Subject=Portfolio'"
+            <a
+              [href]="
+                this.username == 'mgmaxi'
+                  ? 'mailto: ' + '?Subject=Portfolio'
+                  : 'mailto:' + socials.email + '?Subject=Portfolio'
+              "
               ><i class="fa fa-envelope"></i
             ></a>
           </li>
         </ul>
         <div class="separatorAnimated"></div>
       </div>
+      <div class="navigation">
+        <ul>
+          <li><a (click)="scrollToElement(about)">ABOUT</a></li>
+          <li><a (click)="scrollToElement(projects)">PROJECTS</a></li>
+          <li><a (click)="scrollToElement(skills)">SKILLS</a></li>
+          <li><a (click)="scrollToElement(contact)">CONTACT</a></li>
+        </ul>
+      </div>
     </div>
     <app-menu class="menu-wrap"></app-menu>
   </header>
 
   <!-- About -->
-  <section class="aboutSection">
+  <section #about class="aboutSection">
     <div data-aos="fade-up" data-aos-duration="3000">
       <figure class="about">
         <img
@@ -70,7 +95,7 @@
   </section>
 
   <!-- Projects -->
-  <section class="projectsSection">
+  <section #projects class="projectsSection">
     <div class="divider"></div>
     <h2 class="sectionTitle" data-aos="zoom-in" data-aos-duration="3000">
       Projects
@@ -106,7 +131,7 @@
   </section>
 
   <!-- Skills  -->
-  <section class="skillsSection">
+  <section #skills class="skillsSection">
     <div class="divider"></div>
     <!-- Technology -->
     <h2 class="sectionTitle" data-aos="zoom-in" data-aos-duration="3000">
@@ -150,8 +175,8 @@
       <ng-template #loading><app-spinner></app-spinner></ng-template>
     </div>
   </section>
-
-  <section *ngIf="username === 'mgmaxi'" id="contact" class="contactSection">
+  <span #contact></span>
+  <section *ngIf="username === 'mgmaxi'" class="contactSection">
     <div class="divider"></div>
     <h2 class="sectionTitle" data-aos="zoom-in" data-aos-duration="3000">
       Contact
